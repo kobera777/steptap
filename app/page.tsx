@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { siteContacts, telHref } from "@/data/site";
 
 const faqs = [
@@ -33,6 +33,54 @@ const faqs = [
   },
 ];
 
+/** Пункт меню с выпадающим списком: открывается по hover, а также по клику на стрелку
+ *  (для планшетов и тач-экранов). Закрывается по клику вне меню и по Esc. */
+function NavDropdown({
+  trigger,
+  children,
+}: {
+  trigger: ReactNode;
+  children: ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const onPointerDown = (event: PointerEvent) => {
+      if (!ref.current?.contains(event.target as Node)) setOpen(false);
+    };
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  return (
+    <div ref={ref} className={`nav-dropdown ${open ? "is-open" : ""}`}>
+      {trigger}
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-label={open ? "Скрыть подменю" : "Показать подменю"}
+        onClick={() => setOpen((value) => !value)}
+      >
+        ⌄
+      </button>
+      <div className="dropdown-menu" onClick={() => setOpen(false)}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -54,22 +102,16 @@ export default function Home() {
         <nav className="main-nav" aria-label="Главное меню">
           <Link href="/about">О ШКОЛЕ</Link>
 
-          <div className="nav-dropdown">
-            <Link href="/directions">НАПРАВЛЕНИЯ <span>⌄</span></Link>
-            <div className="dropdown-menu">
-              <Link href="/directions#bachata">Бачата</Link>
-              <Link href="/directions">Все направления →</Link>
-            </div>
-          </div>
+          <NavDropdown trigger={<Link href="/directions">НАПРАВЛЕНИЯ</Link>}>
+            <Link href="/directions#bachata">Бачата</Link>
+            <Link href="/directions">Все направления →</Link>
+          </NavDropdown>
 
-          <div className="nav-dropdown">
-            <a href="#classes">ЗАНЯТИЯ <span>⌄</span></a>
-            <div className="dropdown-menu">
-              <a href="#levels">Групповые занятия</a>
-              <a href="#trial">Индивидуальные занятия</a>
-              <a href="#trial">Пробный урок</a>
-            </div>
-          </div>
+          <NavDropdown trigger={<a href="#classes">ЗАНЯТИЯ</a>}>
+            <a href="#levels">Групповые занятия</a>
+            <a href="#trial">Индивидуальные занятия</a>
+            <a href="#trial">Пробный урок</a>
+          </NavDropdown>
 
           <Link href="/schedule">РАСПИСАНИЕ</Link>
           <Link href="/gallery">ГАЛЕРЕЯ</Link>
