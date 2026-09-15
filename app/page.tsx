@@ -183,6 +183,7 @@ export default function Home() {
             alt="STEP TAP — бачата"
             fill
             priority
+            quality={90}
             sizes="(max-width: 900px) 100vw, 50vw"
           />
 
