@@ -180,6 +180,19 @@ export default function Home() {
         <div className="hero-photo">
           <Image
             src="/hero-bachata.jpg"
+            alt=""
+            aria-hidden="true"
+            fill
+            priority
+            quality={90}
+            sizes="(max-width: 900px) 100vw, 50vw"
+          />
+
+          {/* Пара, вырезанная из фона: лежит поверх градиента, поэтому
+              градиент затрагивает только фон, а не людей. */}
+          <Image
+            className="hero-cutout"
+            src="/hero-bachata-cutout.webp"
             alt="STEP TAP — бачата"
             fill
             priority

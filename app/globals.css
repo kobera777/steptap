@@ -364,9 +364,14 @@ img {
   );
 }
 
+/* Вырезанная пара — над градиентом (z 2), под подписью. */
+.hero-photo img.hero-cutout {
+  z-index: 3 !important;
+}
+
 .hero-note {
   position: absolute;
-  z-index: 3;
+  z-index: 4;
   right: 28px;
   bottom: 28px;
   max-width: 190px;
