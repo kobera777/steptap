@@ -346,6 +346,29 @@ img {
   transform: none !important;
 }
 
+/* Плавный переход фото в кремовый фон слева и лёгкое затемнение снизу —
+   как в референсе: пара «выходит» из страницы, без резкой границы. */
+.hero-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      var(--cream) 0%,
+      rgba(244, 241, 234, 0.85) 8%,
+      rgba(244, 241, 234, 0.35) 22%,
+      rgba(244, 241, 234, 0) 42%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(244, 241, 234, 0) 78%,
+      rgba(244, 241, 234, 0.55) 100%
+    );
+}
+
 .hero-note {
   position: absolute;
   z-index: 3;
@@ -1122,6 +1145,20 @@ img {
   .hero-photo {
     min-height: 0;
     aspect-ratio: 4 / 3;
+  }
+
+  .hero-photo::before {
+    background:
+      linear-gradient(
+        180deg,
+        var(--cream) 0%,
+        rgba(244, 241, 234, 0) 28%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(244, 241, 234, 0) 80%,
+        rgba(244, 241, 234, 0.55) 100%
+      );
   }
 
   .hero-photo img {
