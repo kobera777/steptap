@@ -270,9 +270,9 @@ img {
 
 .hero {
   width: 100%;
-  min-height: clamp(520px, 47vw, 700px);
+  min-height: clamp(520px, 50vw, 740px);
   display: grid;
-  grid-template-columns: 47% 53%;
+  grid-template-columns: 43% 57%;
   background: var(--cream);
 }
 
@@ -371,8 +371,8 @@ img {
 .hero-note {
   position: absolute;
   z-index: 4;
-  right: 28px;
-  bottom: 28px;
+  left: 6%;
+  bottom: 34px;
   max-width: 190px;
   color: var(--pink);
   font-family: Georgia, "Times New Roman", serif;
