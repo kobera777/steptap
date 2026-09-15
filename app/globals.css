@@ -270,7 +270,7 @@ img {
 
 .hero {
   width: 100%;
-  min-height: clamp(560px, 48vw, 720px);
+  min-height: clamp(520px, 47vw, 700px);
   display: grid;
   grid-template-columns: 47% 53%;
   background: var(--cream);
@@ -342,9 +342,8 @@ img {
   height: 100% !important;
   max-width: none !important;
   object-fit: cover !important;
-  object-position: 50% 10% !important;
-  transform: translateX(-5%) scale(1.06) !important;
-  transform-origin: center top;
+  object-position: 50% 0% !important;
+  transform: none !important;
 }
 
 /* Плавный переход фото в кремовый фон слева и лёгкое затемнение снизу —
@@ -1070,8 +1069,8 @@ img {
   }
 
   .hero {
-    grid-template-columns: 50% 50%;
-    min-height: clamp(480px, 46vw, 600px);
+    grid-template-columns: 48% 52%;
+    min-height: clamp(460px, 46vw, 600px);
   }
 
   .hero-copy {
@@ -1157,7 +1156,7 @@ img {
 
   .hero-photo img {
     object-fit: cover !important;
-    object-position: 50% 15% !important;
+    object-position: 50% 0% !important;
     transform: none !important;
   }
 
@@ -1250,7 +1249,7 @@ img {
 
   .hero-photo img {
     object-fit: cover !important;
-    object-position: 50% 15% !important;
+    object-position: 50% 0% !important;
     transform: none !important;
   }
 

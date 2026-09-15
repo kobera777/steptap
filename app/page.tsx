@@ -179,7 +179,7 @@ export default function Home() {
 
         <div className="hero-photo">
           <Image
-            src="/hero-bachata.jpg"
+            src="/hero-bachata-crop.jpg"
             alt=""
             aria-hidden="true"
             fill
@@ -192,7 +192,7 @@ export default function Home() {
               градиент затрагивает только фон, а не людей. */}
           <Image
             className="hero-cutout"
-            src="/hero-bachata-cutout.webp"
+            src="/hero-bachata-crop-cutout.webp"
             alt="STEP TAP — бачата"
             fill
             priority
