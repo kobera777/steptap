@@ -270,7 +270,7 @@ img {
 
 .hero {
   width: 100%;
-  min-height: clamp(540px, 44vw, 680px);
+  min-height: clamp(560px, 48vw, 720px);
   display: grid;
   grid-template-columns: 52% 48%;
   background: var(--cream);
@@ -342,9 +342,8 @@ img {
   height: 100% !important;
   max-width: none !important;
   object-fit: cover !important;
-  object-position: 50% 18% !important;
+  object-position: 50% 10% !important;
   transform: none !important;
-  filter: saturate(1.15) contrast(1.06);
 }
 
 /* Плавный переход фото в кремовый фон слева и лёгкое затемнение снизу —
@@ -355,19 +354,12 @@ img {
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background:
-    linear-gradient(
-      90deg,
-      var(--cream) 0%,
-      rgba(244, 241, 234, 0.75) 12%,
-      rgba(244, 241, 234, 0.35) 30%,
-      rgba(244, 241, 234, 0) 50%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(244, 241, 234, 0) 86%,
-      rgba(244, 241, 234, 0.4) 100%
-    );
+  background: linear-gradient(
+    90deg,
+    var(--cream) 0%,
+    rgba(244, 241, 234, 0.6) 9%,
+    rgba(244, 241, 234, 0) 26%
+  );
 }
 
 .hero-note {
@@ -1085,7 +1077,7 @@ img {
 
   .hero-photo img {
     object-fit: cover !important;
-    object-position: 50% 18% !important;
+    object-position: 50% 10% !important;
     transform: none !important;
   }
 
@@ -1149,17 +1141,11 @@ img {
   }
 
   .hero-photo::before {
-    background:
-      linear-gradient(
-        180deg,
-        var(--cream) 0%,
-        rgba(244, 241, 234, 0) 28%
-      ),
-      linear-gradient(
-        180deg,
-        rgba(244, 241, 234, 0) 80%,
-        rgba(244, 241, 234, 0.55) 100%
-      );
+    background: linear-gradient(
+      180deg,
+      var(--cream) 0%,
+      rgba(244, 241, 234, 0) 22%
+    );
   }
 
   .hero-photo img {
