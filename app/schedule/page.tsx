@@ -748,7 +748,7 @@ export default function SchedulePage() {
         )}
       </section>
 
-      <section className="schedule-events">
+      <section className="schedule-events" id="events">
         <div>
           <p className="section-kicker">
             СОБЫТИЯ И МАСТЕР-КЛАССЫ

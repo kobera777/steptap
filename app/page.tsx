@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
+import { siteContacts, telHref } from "@/data/site";
 
 const faqs = [
   {
@@ -33,12 +35,13 @@ const faqs = [
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <main className="site-shell">
       {/* HEADER */}
-      <header className="site-header">
-        <a className="site-logo" href="#top" aria-label="STEP TAP — на главную">
+      <header className={`site-header ${menuOpen ? "is-open" : ""}`}>
+        <Link className="site-logo" href="/" aria-label="STEP TAP — на главную">
           <Image
             src="/step-tap-logo.png"
             alt="STEP TAP"
@@ -46,30 +49,30 @@ export default function Home() {
             height={160}
             priority
           />
-        </a>
+        </Link>
 
         <nav className="main-nav" aria-label="Главное меню">
-          <a href="#about">О ШКОЛЕ</a>
+          <Link href="/about">О ШКОЛЕ</Link>
 
           <div className="nav-dropdown">
-            <a href="#directions">НАПРАВЛЕНИЯ <span>⌄</span></a>
+            <Link href="/directions">НАПРАВЛЕНИЯ <span>⌄</span></Link>
             <div className="dropdown-menu">
-              <a href="#bachata">Бачата</a>
-              <a href="#directions">Все направления →</a>
+              <Link href="/directions#bachata">Бачата</Link>
+              <Link href="/directions">Все направления →</Link>
             </div>
           </div>
 
           <div className="nav-dropdown">
             <a href="#classes">ЗАНЯТИЯ <span>⌄</span></a>
             <div className="dropdown-menu">
-              <a href="#classes">Групповые занятия</a>
+              <a href="#levels">Групповые занятия</a>
               <a href="#trial">Индивидуальные занятия</a>
               <a href="#trial">Пробный урок</a>
             </div>
           </div>
 
-          <a href="/schedule">РАСПИСАНИЕ</a>
-          <a href="#gallery">ГАЛЕРЕЯ</a>
+          <Link href="/schedule">РАСПИСАНИЕ</Link>
+          <Link href="/gallery">ГАЛЕРЕЯ</Link>
           <a href="#rental">АРЕНДА</a>
           <a href="#contacts">КОНТАКТЫ</a>
         </nav>
@@ -77,14 +80,41 @@ export default function Home() {
         <a className="header-action" href="#trial">
           ЗАПИСАТЬСЯ <span>→</span>
         </a>
+
+        <button
+          type="button"
+          className="menu-toggle"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-nav"
+          aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <i />
+        </button>
+
+        <nav
+          id="mobile-nav"
+          className="mobile-nav"
+          aria-label="Мобильное меню"
+          onClick={() => setMenuOpen(false)}
+        >
+          <Link href="/about">О ШКОЛЕ</Link>
+          <Link href="/directions">НАПРАВЛЕНИЯ</Link>
+          <a href="#classes">ЗАНЯТИЯ</a>
+          <Link href="/schedule">РАСПИСАНИЕ</Link>
+          <Link href="/gallery">ГАЛЕРЕЯ</Link>
+          <a href="#rental">АРЕНДА</a>
+          <a href="#contacts">КОНТАКТЫ</a>
+          <a href="#trial" className="mobile-nav-action">ЗАПИСАТЬСЯ →</a>
+        </nav>
       </header>
 
       {/* HERO */}
       <section className="hero" id="top">
         <div className="hero-copy">
-          <a className="back-link" href="#directions">
+          <Link className="back-link" href="/directions">
             ← ВСЕ НАПРАВЛЕНИЯ
-          </a>
+          </Link>
 
           <h1>БАЧАТА</h1>
 
@@ -127,7 +157,7 @@ export default function Home() {
       </section>
 
       {/* ABOUT DIRECTION */}
-      <section className="about-direction" id="about">
+      <section className="about-direction" id="bachata">
         <div className="about-copy">
           <p className="section-kicker">О НАПРАВЛЕНИИ</p>
 
@@ -216,6 +246,13 @@ export default function Home() {
             ОБЪЕДИНЯЕТ
           </div>
         </div>
+
+        <div className="moments-footer">
+          <p>Фото и видео с вечеринок, мастер-классов и концертов.</p>
+          <Link className="outline-button" href="/gallery">
+            ВСЕ АЛЬБОМЫ →
+          </Link>
+        </div>
       </section>
 
       {/* WHAT IS INCLUDED */}
@@ -259,7 +296,7 @@ export default function Home() {
       </section>
 
       {/* GROUP LEVELS */}
-      <section className="levels-section" id="directions">
+      <section className="levels-section" id="levels">
         <div>
           <p className="section-kicker">ГРУППОВЫЕ ЗАНЯТИЯ</p>
           <h2>НАЙДИ СВОЙ<br />УРОВЕНЬ.</h2>
@@ -357,6 +394,44 @@ export default function Home() {
         </div>
       </section>
 
+      {/* RENTAL */}
+      <section className="rental" id="rental">
+        <div className="rental-copy">
+          <p className="section-kicker">АРЕНДА ЗАЛА</p>
+          <h2>
+            ЗАЛ ДЛЯ
+            <br />
+            ТВОИХ ИДЕЙ.
+          </h2>
+          <p>
+            Светлый танцевальный зал STEP TAP можно арендовать
+            в свободные часы — для репетиций, индивидуальных
+            занятий, мастер-классов и съёмок.
+          </p>
+
+          <ul className="rental-list">
+            <li>Репетиции и индивидуальные занятия</li>
+            <li>Мастер-классы и интенсивы</li>
+            <li>Вечеринки и мероприятия</li>
+            <li>Фото- и видеосъёмка</li>
+          </ul>
+
+          <a className="primary-button" href="#contacts">
+            УЗНАТЬ УСЛОВИЯ <span>→</span>
+          </a>
+        </div>
+
+        <div className="rental-art" aria-hidden="true">
+          <div className="rental-square">
+            <span>
+              Пространство
+              <br />
+              для движения ♡
+            </span>
+          </div>
+        </div>
+      </section>
+
       {/* FINAL CTA */}
       <section className="final-cta" id="trial">
         <div className="final-cta-pink">
@@ -390,11 +465,77 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PLACEHOLDER ANCHORS FOR FUTURE PAGES */}
-      <div id="bachata" />
-      <div id="schedule" />
-      <div id="rental" />
-      <div id="contacts" />
+      {/* CONTACTS */}
+      <section className="contacts" id="contacts">
+        <div className="contacts-heading">
+          <p className="section-kicker">СВЯЗЬ</p>
+          <h2>
+            КОНТАКТЫ
+            <br />
+            STEP TAP.
+          </h2>
+          <p className="contacts-intro">
+            Напишите нам — ответим на вопросы,
+            <br />
+            подберём группу и запишем на пробное занятие.
+          </p>
+        </div>
+
+        <div className="contacts-grid">
+          <div className="contacts-block">
+            <span>АДРЕС</span>
+            <strong>{siteContacts.address || "Адрес уточняется"}</strong>
+            {siteContacts.addressNote && <small>{siteContacts.addressNote}</small>}
+          </div>
+
+          <div className="contacts-block">
+            <span>ТЕЛЕФОН</span>
+            {siteContacts.phone ? (
+              <a href={telHref(siteContacts.phone)}>
+                <strong>{siteContacts.phone}</strong>
+              </a>
+            ) : (
+              <strong>Уточняется</strong>
+            )}
+            {siteContacts.email && (
+              <a href={`mailto:${siteContacts.email}`}>
+                <small>{siteContacts.email}</small>
+              </a>
+            )}
+          </div>
+
+          <div className="contacts-block">
+            <span>ЗАНЯТИЯ</span>
+            <strong>Ежедневно, по расписанию</strong>
+            <Link href="/schedule">
+              <small>Смотреть расписание →</small>
+            </Link>
+          </div>
+        </div>
+
+        <div className="contacts-actions">
+          {siteContacts.telegram && (
+            <a href={siteContacts.telegram} target="_blank" rel="noreferrer">
+              TELEGRAM <span>→</span>
+            </a>
+          )}
+          {siteContacts.whatsapp && (
+            <a href={siteContacts.whatsapp} target="_blank" rel="noreferrer">
+              WHATSAPP <span>→</span>
+            </a>
+          )}
+          {siteContacts.instagram && (
+            <a href={siteContacts.instagram} target="_blank" rel="noreferrer">
+              INSTAGRAM <span>→</span>
+            </a>
+          )}
+          {siteContacts.youtube && (
+            <a href={siteContacts.youtube} target="_blank" rel="noreferrer">
+              YOUTUBE <span>→</span>
+            </a>
+          )}
+        </div>
+      </section>
     </main>
   );
 }

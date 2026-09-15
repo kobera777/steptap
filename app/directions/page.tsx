@@ -60,7 +60,7 @@ export default function DirectionsPage() {
       </section>
 
       {/* BACHATA */}
-      <section className="direction-main bachata-section">
+      <section className="direction-main bachata-section" id="bachata">
         <div className="direction-intro">
           <div>
             <p className="section-kicker">01 / НАПРАВЛЕНИЕ</p>
