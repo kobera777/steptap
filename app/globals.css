@@ -270,9 +270,9 @@ img {
 
 .hero {
   width: 100%;
-  min-height: 570px;
+  min-height: clamp(540px, 44vw, 680px);
   display: grid;
-  grid-template-columns: 42% 58%;
+  grid-template-columns: 52% 48%;
   background: var(--cream);
 }
 
@@ -321,7 +321,7 @@ img {
 
 .hero-photo {
   position: relative;
-  min-height: 570px;
+  min-height: 100%;
   overflow: hidden;
   background: transparent;
 }
@@ -329,27 +329,23 @@ img {
 /*
   HERO PHOTO
 
-  Небольшой отступ сверху.
-  Головы полностью видны.
-  Фото не прижимается к самому верху.
-  Снизу сохраняется видимость тела
-  примерно до белых штанов.
-
-  Никакой дополнительной рамки нет.
+  Фото заполняет всю правую часть до края экрана (object-fit: cover),
+  без рамки и отступов. Кадрируем так, чтобы головы были полностью
+  видны, а пара занимала весь блок.
 */
 
 .hero-photo img {
   position: absolute !important;
   z-index: 1 !important;
-  top: 0% !important;
-  left: 0 !important;
+  inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
   max-width: none !important;
-  object-fit: contain !important;
-  object-position: center top !important;
-  transform: scale(0.91) !important;
+  object-fit: cover !important;
+  object-position: 50% 18% !important;
+  transform: none !important;
 }
+
 .hero-note {
   position: absolute;
   z-index: 3;
@@ -1051,8 +1047,8 @@ img {
   }
 
   .hero {
-    grid-template-columns: 42% 58%;
-    min-height: 520px;
+    grid-template-columns: 50% 50%;
+    min-height: clamp(480px, 46vw, 600px);
   }
 
   .hero-copy {
@@ -1060,14 +1056,12 @@ img {
   }
 
   .hero-photo {
-    min-height: 520px;
+    min-height: 100%;
   }
 
   .hero-photo img {
-    top: 14px !important;
-    height: calc(100% - 14px) !important;
-    object-fit: contain !important;
-    object-position: center top !important;
+    object-fit: cover !important;
+    object-position: 50% 18% !important;
     transform: none !important;
   }
 
@@ -1126,14 +1120,13 @@ img {
   }
 
   .hero-photo {
-    min-height: 62vw;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
   }
 
   .hero-photo img {
-    top: 14px !important;
-    height: calc(100% - 14px) !important;
-    object-fit: contain !important;
-    object-position: center top !important;
+    object-fit: cover !important;
+    object-position: 50% 15% !important;
     transform: none !important;
   }
 
@@ -1221,13 +1214,12 @@ img {
   }
 
   .hero-photo {
-    min-height: 115vw;
+    aspect-ratio: 4 / 5;
   }
 
   .hero-photo img {
-    top: 12px !important;
-    height: calc(100% - 12px) !important;
-    object-position: center top !important;
+    object-fit: cover !important;
+    object-position: 50% 15% !important;
     transform: none !important;
   }
 
