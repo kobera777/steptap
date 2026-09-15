@@ -272,7 +272,7 @@ img {
   width: 100%;
   min-height: clamp(560px, 48vw, 720px);
   display: grid;
-  grid-template-columns: 52% 48%;
+  grid-template-columns: 47% 53%;
   background: var(--cream);
 }
 
@@ -343,7 +343,8 @@ img {
   max-width: none !important;
   object-fit: cover !important;
   object-position: 50% 10% !important;
-  transform: none !important;
+  transform: translateX(-5%) scale(1.06) !important;
+  transform-origin: center top;
 }
 
 /* Плавный переход фото в кремовый фон слева и лёгкое затемнение снизу —
@@ -357,8 +358,9 @@ img {
   background: linear-gradient(
     90deg,
     var(--cream) 0%,
-    rgba(244, 241, 234, 0.6) 9%,
-    rgba(244, 241, 234, 0) 26%
+    rgba(244, 241, 234, 0.7) 15%,
+    rgba(244, 241, 234, 0.3) 32%,
+    rgba(244, 241, 234, 0) 50%
   );
 }
 
