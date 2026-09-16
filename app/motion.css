@@ -33,12 +33,24 @@
 }
 
 /* Задержки для «лесенки» */
-[data-reveal-delay="1"] { --reveal-delay: 1; }
-[data-reveal-delay="2"] { --reveal-delay: 2; }
-[data-reveal-delay="3"] { --reveal-delay: 3; }
-[data-reveal-delay="4"] { --reveal-delay: 4; }
-[data-reveal-delay="5"] { --reveal-delay: 5; }
-[data-reveal-delay="6"] { --reveal-delay: 6; }
+[data-reveal-delay="1"] {
+  --reveal-delay: 1;
+}
+[data-reveal-delay="2"] {
+  --reveal-delay: 2;
+}
+[data-reveal-delay="3"] {
+  --reveal-delay: 3;
+}
+[data-reveal-delay="4"] {
+  --reveal-delay: 4;
+}
+[data-reveal-delay="5"] {
+  --reveal-delay: 5;
+}
+[data-reveal-delay="6"] {
+  --reveal-delay: 6;
+}
 
 /* ---------- Параллакс ---------- */
 
@@ -51,7 +63,9 @@
 
 [data-tilt] {
   transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
-  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s ease;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.35s ease;
   transform-style: preserve-3d;
 }
 
@@ -116,11 +130,7 @@
       rgba(255, 255, 255, 0.08) 38%,
       rgba(255, 255, 255, 0) 60%
     ),
-    radial-gradient(
-      120% 80% at 10% 0%,
-      rgba(255, 255, 255, 0.35),
-      transparent 55%
-    );
+    radial-gradient(120% 80% at 10% 0%, rgba(255, 255, 255, 0.35), transparent 55%);
 }
 
 /* Тёмное стекло (для чёрной шапки) */
@@ -141,11 +151,7 @@
       rgba(255, 255, 255, 0.03) 40%,
       rgba(255, 255, 255, 0) 60%
     ),
-    radial-gradient(
-      120% 80% at 10% 0%,
-      rgba(212, 95, 136, 0.22),
-      transparent 55%
-    );
+    radial-gradient(120% 80% at 10% 0%, rgba(212, 95, 136, 0.22), transparent 55%);
 }
 
 /* Розовое стекло (для акцентных кнопок) */
@@ -195,8 +201,12 @@
 }
 
 @keyframes marquee {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-50%, 0, 0); }
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 /* ---------- Кнопки: стрелка «уезжает» ---------- */

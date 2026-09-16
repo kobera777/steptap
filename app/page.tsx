@@ -13,8 +13,7 @@ const faqs = [
   },
   {
     question: "Я никогда не танцевал. Мне подойдёт?",
-    answer:
-      "Да. В STEP TAP есть группы, в которых можно начать с самого первого шага.",
+    answer: "Да. В STEP TAP есть группы, в которых можно начать с самого первого шага.",
   },
   {
     question: "Что надеть на первое занятие?",
@@ -35,13 +34,7 @@ const faqs = [
 
 /** Пункт меню с выпадающим списком: открывается по hover, а также по клику на стрелку
  *  (для планшетов и тач-экранов). Закрывается по клику вне меню и по Esc. */
-function NavDropdown({
-  trigger,
-  children,
-}: {
-  trigger: ReactNode;
-  children: ReactNode;
-}) {
+function NavDropdown({ trigger, children }: { trigger: ReactNode; children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -88,10 +81,7 @@ export default function Home() {
   return (
     <main className="site-shell">
       {/* HEADER */}
-      <header
-        className={`site-header ${menuOpen ? "is-open" : ""}`}
-        data-glass-header
-      >
+      <header className={`site-header ${menuOpen ? "is-open" : ""}`} data-glass-header>
         <Link className="site-logo" href="/" aria-label="STEP TAP — на главную">
           <Image
             src="/step-tap-logo.png"
@@ -150,7 +140,9 @@ export default function Home() {
           <Link href="/gallery">ГАЛЕРЕЯ</Link>
           <a href="#rental">АРЕНДА</a>
           <a href="#contacts">КОНТАКТЫ</a>
-          <a href="#trial" className="mobile-nav-action">ЗАПИСАТЬСЯ →</a>
+          <a href="#trial" className="mobile-nav-action">
+            ЗАПИСАТЬСЯ →
+          </a>
         </nav>
       </header>
 
@@ -161,7 +153,9 @@ export default function Home() {
             ← ВСЕ НАПРАВЛЕНИЯ
           </Link>
 
-          <h1 data-reveal data-reveal-delay="1">БАЧАТА</h1>
+          <h1 data-reveal data-reveal-delay="1">
+            БАЧАТА
+          </h1>
 
           <p className="hero-accent" data-reveal data-reveal-delay="2">
             МУЗЫКА. КОНТАКТ.
@@ -170,8 +164,7 @@ export default function Home() {
           </p>
 
           <p className="hero-description" data-reveal data-reveal-delay="3">
-            Парные занятия для взрослых, где танец
-            становится способом чувствовать,
+            Парные занятия для взрослых, где танец становится способом чувствовать,
             наслаждаться и быть собой.
           </p>
 
@@ -219,14 +212,20 @@ export default function Home() {
       <div className="marquee" aria-hidden="true">
         <div className="marquee-track">
           {Array.from({ length: 2 }).map((_, copy) =>
-            ["МУЗЫКА", "КОНТАКТ", "УВЕРЕННОСТЬ", "STEP TAP", "БАЧАТА", "ЛЮДИ", "ДВИЖЕНИЕ"].map(
-              (word) => (
-                <span key={`${copy}-${word}`}>
-                  {word}
-                  <i />
-                </span>
-              ),
-            ),
+            [
+              "МУЗЫКА",
+              "КОНТАКТ",
+              "УВЕРЕННОСТЬ",
+              "STEP TAP",
+              "БАЧАТА",
+              "ЛЮДИ",
+              "ДВИЖЕНИЕ",
+            ].map((word) => (
+              <span key={`${copy}-${word}`}>
+                {word}
+                <i />
+              </span>
+            )),
           )}
         </div>
       </div>
@@ -242,20 +241,15 @@ export default function Home() {
             ЭТО ПРО КОНТАКТ.
           </h2>
 
+          <p>Это гармоничное сочетание музыки, движения и эмоций.</p>
+
           <p>
-            Это гармоничное сочетание музыки,
-            движения и эмоций.
+            На наших занятиях вы учитесь слышать музыку, чувствовать партнёра и получать
+            удовольствие от каждого шага.
           </p>
 
           <p>
-            На наших занятиях вы учитесь слышать музыку,
-            чувствовать партнёра и получать удовольствие
-            от каждого шага.
-          </p>
-
-          <p>
-            Подходит как для начинающих, так и для тех,
-            кто хочет углубить свои знания.
+            Подходит как для начинающих, так и для тех, кто хочет углубить свои знания.
           </p>
         </div>
 
@@ -334,7 +328,10 @@ export default function Home() {
       <section className="class-features" id="classes">
         <div className="features-title" data-reveal>
           <p className="section-kicker">ЧТО ВХОДИТ В ЗАНЯТИЕ</p>
-          <h2>ТРИ   ШАГА<br />К СВОБОДНОМУ ТАНЦУ.</h2>
+          <h2>
+            ТРИ ШАГА
+            <br />К СВОБОДНОМУ ТАНЦУ.
+          </h2>
         </div>
 
         <div className="features-grid">
@@ -374,7 +371,11 @@ export default function Home() {
       <section className="levels-section" id="levels">
         <div data-reveal="left">
           <p className="section-kicker">ГРУППОВЫЕ ЗАНЯТИЯ</p>
-          <h2>НАЙДИ СВОЙ<br />УРОВЕНЬ.</h2>
+          <h2>
+            НАЙДИ СВОЙ
+            <br />
+            УРОВЕНЬ.
+          </h2>
         </div>
 
         <div className="levels-list" data-reveal="right" data-reveal-delay="1">
@@ -419,8 +420,7 @@ export default function Home() {
           <p>
             Ничего страшного.
             <br />
-            Поможем подобрать подходящий уровень,
-            даже если ты никогда раньше не танцевал.
+            Поможем подобрать подходящий уровень, даже если ты никогда раньше не танцевал.
           </p>
 
           <a className="outline-button" href="#trial">
@@ -444,7 +444,11 @@ export default function Home() {
       <section className="faq-section">
         <div className="faq-heading" data-reveal="left">
           <p className="section-kicker">FAQ</p>
-          <h2>ЧАСТЫЕ<br />ВОПРОСЫ</h2>
+          <h2>
+            ЧАСТЫЕ
+            <br />
+            ВОПРОСЫ
+          </h2>
         </div>
 
         <div className="faq-list" data-reveal data-reveal-delay="1">
@@ -484,9 +488,8 @@ export default function Home() {
             ТВОИХ ИДЕЙ.
           </h2>
           <p>
-            Светлый танцевальный зал STEP TAP можно арендовать
-            в свободные часы — для репетиций, индивидуальных
-            занятий, мастер-классов и съёмок.
+            Светлый танцевальный зал STEP TAP можно арендовать в свободные часы — для
+            репетиций, индивидуальных занятий, мастер-классов и съёмок.
           </p>
 
           <ul className="rental-list">
@@ -501,7 +504,12 @@ export default function Home() {
           </a>
         </div>
 
-        <div className="rental-art" aria-hidden="true" data-reveal="scale" data-reveal-delay="2">
+        <div
+          className="rental-art"
+          aria-hidden="true"
+          data-reveal="scale"
+          data-reveal-delay="2"
+        >
           <div className="rental-square" data-parallax="0.08">
             <span>
               Пространство
@@ -536,12 +544,7 @@ export default function Home() {
         </div>
 
         <div className="final-logo" data-reveal="scale" data-reveal-delay="2">
-          <Image
-            src="/step-tap-logo.png"
-            alt="STEP TAP"
-            width={260}
-            height={260}
-          />
+          <Image src="/step-tap-logo.png" alt="STEP TAP" width={260} height={260} />
         </div>
       </section>
 

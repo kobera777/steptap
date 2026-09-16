@@ -21,9 +21,15 @@ export function SiteFooter() {
       </nav>
 
       <div className="sc-social">
-        <a href="#" aria-label="Instagram">◎</a>
-        <a href="#" aria-label="YouTube">▶</a>
-        <a href="#" aria-label="Telegram">➤</a>
+        <a href="#" aria-label="Instagram">
+          ◎
+        </a>
+        <a href="#" aria-label="YouTube">
+          ▶
+        </a>
+        <a href="#" aria-label="Telegram">
+          ➤
+        </a>
       </div>
     </footer>
   );

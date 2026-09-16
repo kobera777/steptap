@@ -9,12 +9,7 @@
  */
 
 export type GalleryCategory =
-  | "party"
-  | "masterclass"
-  | "performance"
-  | "concert"
-  | "trip"
-  | "open";
+  "party" | "masterclass" | "performance" | "concert" | "trip" | "open";
 
 export const categoryLabels: Record<GalleryCategory, string> = {
   party: "ВЕЧЕРИНКИ",
@@ -109,7 +104,15 @@ export const albums: GalleryAlbum[] = [
     featured: true,
     media: [
       demoVideo("Афтемуви вечеринки", "1:12"),
-      p01, p02, p03, p05, p06, p07, p09, p10, p12,
+      p01,
+      p02,
+      p03,
+      p05,
+      p06,
+      p07,
+      p09,
+      p10,
+      p12,
     ],
   },
   {
@@ -133,7 +136,14 @@ export const albums: GalleryAlbum[] = [
     media: [
       demoVideo("Полная запись концерта", "1:48:20"),
       demoVideo("Номер группы 3.0 Развитие", "3:05"),
-      p06, p09, p01, p10, p03, p08, p11, p12,
+      p06,
+      p09,
+      p01,
+      p10,
+      p03,
+      p08,
+      p11,
+      p12,
     ],
   },
   {
@@ -141,8 +151,7 @@ export const albums: GalleryAlbum[] = [
     title: "Мастер-класс по мужскому стилю",
     date: "2026-06-14",
     category: "masterclass",
-    description:
-      "Пластика, ведение и музыкальность — два часа интенсивной работы с Гио.",
+    description: "Пластика, ведение и музыкальность — два часа интенсивной работы с Гио.",
     cover: "/gallery/demo/p07.webp",
     media: [p07, p02, p04, p05, p12],
   },
@@ -151,8 +160,7 @@ export const albums: GalleryAlbum[] = [
     title: "Выступление на фестивале",
     date: "2026-05-09",
     category: "performance",
-    description:
-      "Наша шоу-группа на открытой площадке городского фестиваля.",
+    description: "Наша шоу-группа на открытой площадке городского фестиваля.",
     cover: "/gallery/demo/p10.webp",
     media: [demoVideo("Выступление шоу-группы", "4:31"), p10, p03, p09, p08, p01],
   },
@@ -161,8 +169,7 @@ export const albums: GalleryAlbum[] = [
     title: "Поездка на бачата-фестиваль",
     date: "2026-03-21",
     category: "trip",
-    description:
-      "Три дня мастер-классов, вечеринок и новых знакомств. Едем всей школой.",
+    description: "Три дня мастер-классов, вечеринок и новых знакомств. Едем всей школой.",
     cover: "/gallery/demo/p11.webp",
     media: [p11, p05, p02, p06, p12, p04, p07],
   },
@@ -171,8 +178,18 @@ export const albums: GalleryAlbum[] = [
 /* ---------- helpers ---------- */
 
 const monthShort = [
-  "ЯНВ", "ФЕВ", "МАР", "АПР", "МАЯ", "ИЮН",
-  "ИЮЛ", "АВГ", "СЕН", "ОКТ", "НОЯ", "ДЕК",
+  "ЯНВ",
+  "ФЕВ",
+  "МАР",
+  "АПР",
+  "МАЯ",
+  "ИЮН",
+  "ИЮЛ",
+  "АВГ",
+  "СЕН",
+  "ОКТ",
+  "НОЯ",
+  "ДЕК",
 ];
 
 /** "2026-09-12" → "12 СЕН 2026" */

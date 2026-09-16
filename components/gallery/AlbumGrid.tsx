@@ -25,9 +25,7 @@ export function AlbumGrid({ albums }: { albums: GalleryAlbum[] }) {
   }, [albums]);
 
   const visible =
-    filter === "all"
-      ? albums
-      : albums.filter((album) => album.category === filter);
+    filter === "all" ? albums : albums.filter((album) => album.category === filter);
 
   const filters: { value: Filter; label: string; count: number }[] = [
     { value: "all", label: "ВСЕ", count: albums.length },
@@ -43,20 +41,20 @@ export function AlbumGrid({ albums }: { albums: GalleryAlbum[] }) {
   return (
     <>
       <div className="gal-filters-bar">
-      <div className="gal-filters glass" role="group" aria-label="Фильтр по категории">
-        {filters.map((item) => (
-          <button
-            key={item.value}
-            type="button"
-            className={filter === item.value ? "is-active" : undefined}
-            aria-pressed={filter === item.value}
-            onClick={() => setFilter(item.value)}
-          >
-            {item.label}
-            <small>{item.count}</small>
-          </button>
-        ))}
-      </div>
+        <div className="gal-filters glass" role="group" aria-label="Фильтр по категории">
+          {filters.map((item) => (
+            <button
+              key={item.value}
+              type="button"
+              className={filter === item.value ? "is-active" : undefined}
+              aria-pressed={filter === item.value}
+              onClick={() => setFilter(item.value)}
+            >
+              {item.label}
+              <small>{item.count}</small>
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="gal-albums">
@@ -84,7 +82,9 @@ export function AlbumGrid({ albums }: { albums: GalleryAlbum[] }) {
                       : "(max-width: 640px) 100vw, (max-width: 1000px) 45vw, 30vw"
                   }
                 />
-                <span className="gal-album-date glass">{formatAlbumDate(album.date)}</span>
+                <span className="gal-album-date glass">
+                  {formatAlbumDate(album.date)}
+                </span>
                 <span className="gal-album-category">
                   {categoryLabels[album.category]}
                 </span>

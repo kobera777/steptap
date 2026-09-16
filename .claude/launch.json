@@ -4,7 +4,7 @@
     {
       "name": "steptap",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["next", "start", "-p", "3111"],
+      "runtimeArgs": ["next", "dev", "-p", "3111"],
       "port": 3111
     }
   ]

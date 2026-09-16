@@ -5,7 +5,6 @@ import { useState } from "react";
 import { navItems, type NavHref } from "./nav-items";
 import "./site-chrome.css";
 
-
 export function SiteHeader({ active }: { active?: NavHref }) {
   const [open, setOpen] = useState(false);
 

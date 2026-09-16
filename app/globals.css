@@ -4,8 +4,8 @@
   --black: #111111;
   --cream: #f4f1ea;
   --white: #ffffff;
-  --pink: #D45F88;
-  --soft-pink: #D45F88;
+  --pink: #d45f88;
+  --soft-pink: #d45f88;
   --line: #1a1a1a;
   --muted: #6f6b65;
 }
@@ -556,13 +556,7 @@ img {
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background:
-    radial-gradient(
-      circle at 60% 40%,
-      #343434 0,
-      #1c1c1c 42%,
-      #111111 100%
-    );
+  background: radial-gradient(circle at 60% 40%, #343434 0, #1c1c1c 42%, #111111 100%);
   border: 1px solid var(--black);
   box-shadow: none;
 }
@@ -773,7 +767,9 @@ img {
 }
 
 .levels-list a {
-  transition: padding-left 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.3s ease;
+  transition:
+    padding-left 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+    background 0.3s ease;
 }
 
 .levels-list a:hover {
@@ -1032,7 +1028,9 @@ img {
   line-height: 1.5;
   opacity: 0;
   transform: translateY(-6px);
-  transition: opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s;
+  transition:
+    opacity 0.35s ease 0.1s,
+    transform 0.35s ease 0.1s;
 }
 
 .faq-item.is-open .faq-answer p {
@@ -1133,24 +1131,24 @@ img {
     gap: 20px;
   }
 
-.main-nav {
-  flex: 1;
-  min-width: 0;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  align-items: center;
-  justify-items: center;
-  gap: 0;
-  height: 100%;
-}
+  .main-nav {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    justify-items: center;
+    gap: 0;
+    height: 100%;
+  }
 
-.main-nav > a,
-.nav-dropdown {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .main-nav > a,
+  .nav-dropdown {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   .main-nav > a,
   .nav-dropdown > a {
@@ -1236,11 +1234,7 @@ img {
   }
 
   .hero-photo::before {
-    background: linear-gradient(
-      180deg,
-      var(--cream) 0%,
-      rgba(244, 241, 234, 0) 22%
-    );
+    background: linear-gradient(180deg, var(--cream) 0%, rgba(244, 241, 234, 0) 22%);
   }
 
   .hero-photo img {
@@ -1525,7 +1519,7 @@ img {
    SCHEDULE PAGE
    ========================================= */
 
- /* =========================================
+/* =========================================
    SCHEDULE PAGE
    ========================================= */
 
@@ -1765,10 +1759,7 @@ img {
 .schedule-grid-header {
   min-width: 900px;
   display: grid;
-  grid-template-columns: 58px repeat(
-    7,
-    minmax(110px, 1fr)
-  );
+  grid-template-columns: 58px repeat(7, minmax(110px, 1fr));
 }
 
 .schedule-time-head {
@@ -1797,10 +1788,7 @@ img {
 
   min-width: 900px;
   display: grid;
-  grid-template-columns: 58px repeat(
-    7,
-    minmax(110px, 1fr)
-  );
+  grid-template-columns: 58px repeat(7, minmax(110px, 1fr));
   border-bottom: 1px solid rgba(17, 17, 17, 0.1);
 }
 
@@ -1819,9 +1807,7 @@ img {
 
 .schedule-day-column {
   position: relative;
-  min-height: calc(
-    9 * var(--schedule-minute-height)
-  );
+  min-height: calc(9 * var(--schedule-minute-height));
   border-left: 1px solid rgba(17, 17, 17, 0.1);
 }
 
@@ -2285,7 +2271,6 @@ img {
   }
 }
 
-
 /* ==================================================
    HEADER — MOBILE MENU
 ================================================== */
@@ -2313,7 +2298,9 @@ img {
   box-shadow:
     0 -5px 0 currentColor,
     0 5px 0 currentColor;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .menu-toggle[aria-expanded="true"] i {
@@ -2604,7 +2591,9 @@ img {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.05em;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .contacts-actions a:hover {

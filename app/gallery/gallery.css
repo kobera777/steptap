@@ -149,7 +149,9 @@
   font-weight: 900;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .gal-filters button small {
@@ -428,9 +430,7 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
-  background:
-    linear-gradient(135deg, rgba(212, 95, 136, 0.35), transparent 60%),
-    #1a1a1a;
+  background: linear-gradient(135deg, rgba(212, 95, 136, 0.35), transparent 60%), #1a1a1a;
 }
 
 .gal-video-placeholder b {
@@ -637,7 +637,9 @@
   color: #fff;
   font: inherit;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .gal-lightbox button:hover {
@@ -654,13 +656,23 @@
 }
 
 @keyframes gal-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes gal-zoom {
-  from { opacity: 0; transform: scale(0.96); }
-  to { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .gal-lightbox-close {

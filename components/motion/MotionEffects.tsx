@@ -60,7 +60,10 @@ export function MotionEffects() {
             // Смещение считаем от центра экрана, чтобы в «покое» элемент стоял на месте
             const progress = (rect.top + rect.height / 2 - vh / 2) / vh;
             const strength = parseFloat(el.dataset.parallax || "0.1");
-            el.style.setProperty("--parallax", `${(-progress * strength * 100).toFixed(2)}px`);
+            el.style.setProperty(
+              "--parallax",
+              `${(-progress * strength * 100).toFixed(2)}px`,
+            );
           }
         }
         ticking = false;
