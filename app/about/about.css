@@ -1,11 +1,11 @@
 /* Страница «О ШКОЛЕ» — все стили только здесь. Префикс классов: .st-about */
 
 .st-about {
-  --black: #111111;
-  --cream: #f5f0ea;
-  --white: #fbfaf8;
-  --pink: #d45f88;
-  --pink-strong: #d45f88;
+  --black: var(--color-black);
+  --cream: var(--color-cream-2);
+  --white: var(--color-paper);
+  --pink: var(--color-pink);
+  --pink-strong: var(--color-pink);
 
   width: 100%;
   min-height: 100vh;
@@ -18,7 +18,7 @@
   color: var(--black);
   background: var(--cream);
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-ui);
 }
 
 .st-about a {
@@ -236,7 +236,7 @@
   left: 34%;
   top: 50px;
 
-  border: 1px solid #111;
+  border: 1px solid var(--color-black);
 
   border-radius: 50%;
 }
@@ -264,7 +264,7 @@
   left: 23%;
   top: 25px;
 
-  border: 1px solid #111;
+  border: 1px solid var(--color-black);
 
   border-radius: 50%;
 
@@ -316,7 +316,7 @@
 
   z-index: 10;
 
-  font-family: Georgia, serif;
+  font-family: var(--font-serif);
 
   font-size: 21px;
 
@@ -337,7 +337,7 @@
 
   margin-top: 13px;
 
-  background: #111;
+  background: var(--color-black);
 }
 
 .st-art-words {
@@ -430,7 +430,7 @@
 
   margin: 25px 0;
 
-  background: #111;
+  background: var(--color-black);
 }
 
 .st-date small {
@@ -576,7 +576,7 @@
 
   margin-top: 12px;
 
-  background: #111;
+  background: var(--color-black);
 }
 
 .st-approach {
@@ -705,7 +705,7 @@
 
   padding: 15px 20px;
 
-  background: #111;
+  background: var(--color-black);
 
   color: white !important;
 

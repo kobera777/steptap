@@ -12,7 +12,7 @@ body {
   margin: 0;
   background: var(--cream);
   color: var(--black);
-  font-family: "DM Sans", Arial, sans-serif;
+  font-family: var(--font-body);
 }
 
 a {

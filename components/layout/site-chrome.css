@@ -2,9 +2,9 @@
    Префикс sc- чтобы не пересекаться со стилями страниц. */
 
 .sc-header {
-  --sc-black: #111111;
-  --sc-cream: #f5f0ea;
-  --sc-pink: #d45f88;
+  --sc-black: var(--color-black);
+  --sc-cream: var(--color-cream-2);
+  --sc-pink: var(--color-pink);
 
   position: sticky;
   top: 0;
@@ -21,7 +21,7 @@
   background: var(--sc-cream);
   color: var(--sc-black);
   border-bottom: 1px solid rgba(17, 17, 17, 0.14);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-ui);
 }
 
 /* Liquid Glass после первого скролла */
@@ -206,8 +206,8 @@
 /* Подвал */
 
 .sc-footer {
-  --sc-black: #111111;
-  --sc-pink: #d45f88;
+  --sc-black: var(--color-black);
+  --sc-pink: var(--color-pink);
 
   min-height: 110px;
   display: grid;
@@ -215,9 +215,9 @@
   align-items: center;
   gap: 30px;
   padding: 28px 52px;
-  background: #fbfaf8;
+  background: var(--color-paper);
   color: var(--sc-black);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-ui);
 }
 
 .sc-footer-logo {

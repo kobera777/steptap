@@ -1,12 +1,38 @@
-/* Палитра и шрифты сайта — единственное место, где они задаются. */
+/* ==================================================
+   ПАЛИТРА И ШРИФТЫ — единственное место, где они задаются.
+   В остальных файлах только var(--…). Никаких hex-кодов «россыпью».
+================================================== */
 
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
 
 :root {
-  --black: #111111;
-  --cream: #f4f1ea;
-  --white: #ffffff;
-  --pink: #d45f88;
-  --soft-pink: #d45f88;
-  --line: #1a1a1a;
-  --muted: #6f6b65;
+  /* ---- Цвета ---- */
+  --color-black: #111111;
+  --color-cream: #f4f1ea; /* фон главной */
+  --color-cream-2: #f5f0ea; /* фон внутренних страниц и общей шапки (на 1 тон светлее) */
+  --color-paper: #fbfaf8; /* карточки и подвал */
+  --color-white: #ffffff;
+  --color-pink: #d45f88;
+  --color-line: #1a1a1a;
+  --color-muted: #6f6b65;
+
+  /* Страница «Разбор песни» намеренно использует свою «бумажную» палитру
+     (#f4eee5 / #171717) — см. app/song-analysis/song-analysis.css. */
+
+  /* ---- Шрифты ----
+     DM Sans не содержит кириллицу: русский текст в --font-body рендерится Arial,
+     латиница («STEP TAP», цифры) — DM Sans. Manrope кириллицу содержит. */
+  --font-body: "DM Sans", Arial, sans-serif;
+  --font-display: "Manrope", Arial, sans-serif;
+  --font-ui: Arial, Helvetica, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+
+  /* ---- Старые имена (оставлены для совместимости) ---- */
+  --black: var(--color-black);
+  --cream: var(--color-cream);
+  --white: var(--color-white);
+  --pink: var(--color-pink);
+  --soft-pink: var(--color-pink);
+  --line: var(--color-line);
+  --muted: var(--color-muted);
+}

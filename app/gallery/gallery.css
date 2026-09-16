@@ -1,18 +1,18 @@
 /* Галерея — /gallery и /gallery/[album]. Префикс gal- */
 
 .gal-page {
-  --black: #111111;
-  --cream: #f5f0ea;
-  --paper: #fbfaf8;
+  --black: var(--color-black);
+  --cream: var(--color-cream-2);
+  --paper: var(--color-paper);
   --sand: #f0e8df;
-  --pink: #d45f88;
+  --pink: var(--color-pink);
   --line: rgba(17, 17, 17, 0.14);
 
   min-height: 100vh;
   overflow-x: clip; /* не hidden — иначе sticky-шапка не работает */
   background: var(--cream);
   color: var(--black);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-ui);
 }
 
 .gal-page a {
@@ -91,7 +91,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-serif);
   font-size: 17px;
   line-height: 1.15;
 }
@@ -166,7 +166,7 @@
 
 .gal-filters button.is-active {
   background: var(--black);
-  color: #fff;
+  color: var(--color-white);
 }
 
 .gal-filters button.is-active small {
@@ -238,7 +238,7 @@
   top: 16px;
   padding: 8px 10px;
   background: var(--pink);
-  color: #fff;
+  color: var(--color-white);
   font-size: 9px;
   font-weight: 900;
   letter-spacing: 1.5px;
@@ -342,7 +342,7 @@
 .gal-album-meta span.is-pink {
   background: var(--pink);
   border-color: var(--pink);
-  color: #fff;
+  color: var(--color-white);
 }
 
 .gal-album-hero p {
@@ -409,7 +409,7 @@
   position: relative;
   aspect-ratio: 16 / 9;
   background: #1a1a1a;
-  color: #fff;
+  color: var(--color-white);
   overflow: hidden;
 }
 
@@ -439,7 +439,7 @@
   justify-content: center;
   width: 64px;
   height: 64px;
-  border: 1px solid #fff;
+  border: 1px solid var(--color-white);
   border-radius: 50%;
   font-size: 22px;
   padding-left: 4px;
@@ -555,7 +555,7 @@
   align-items: center;
   margin-top: 80px;
   padding: 80px 7vw;
-  background: #fff;
+  background: var(--color-white);
 }
 
 .gal-final h2 {
@@ -578,7 +578,7 @@
   align-items: center;
   padding: 16px 23px;
   background: #ee5b91;
-  color: #fff !important;
+  color: var(--color-white) !important;
   font-size: 10px;
   font-weight: 900;
 }
@@ -613,7 +613,7 @@
   align-items: center;
   justify-content: center;
   background: rgba(17, 17, 17, 0.96);
-  color: #fff;
+  color: var(--color-white);
   touch-action: pan-y;
 }
 
@@ -634,7 +634,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  color: #fff;
+  color: var(--color-white);
   font: inherit;
   cursor: pointer;
   transition:
@@ -713,7 +713,7 @@
 }
 
 .gal-lightbox-counter span {
-  color: var(--pink, #d45f88);
+  color: var(--color-pink);
 }
 
 /* ---------- ПЛАНШЕТ ---------- */

@@ -278,7 +278,7 @@
 
 .hero-copy h1 {
   margin: 0;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(68px, 7.5vw, 112px);
   line-height: 0.82;
   letter-spacing: -0.075em;
@@ -288,7 +288,7 @@
 .hero-accent {
   margin: 19px 0 0;
   color: var(--pink);
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(23px, 2.1vw, 32px);
   line-height: 0.98;
   letter-spacing: -0.045em;
@@ -359,7 +359,7 @@
   bottom: 28px;
   max-width: 190px;
   color: var(--pink);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-serif);
   font-size: 23px;
   line-height: 0.95;
   text-align: left;
@@ -386,7 +386,7 @@
 
 .about-copy h2 {
   margin: 0 0 27px;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(43px, 5vw, 76px);
   line-height: 0.9;
   letter-spacing: -0.07em;
@@ -474,7 +474,7 @@
 
 .moments-heading h2 {
   margin: 0;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(43px, 5.3vw, 76px);
   line-height: 0.86;
   letter-spacing: -0.075em;
@@ -483,7 +483,7 @@
 
 .moments-subtitle {
   margin: 0;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: 16px;
   line-height: 1.05;
   font-weight: 600;
@@ -501,7 +501,12 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: radial-gradient(circle at 60% 40%, #343434 0, #1c1c1c 42%, #111111 100%);
+  background: radial-gradient(
+    circle at 60% 40%,
+    #343434 0,
+    #1c1c1c 42%,
+    var(--color-black) 100%
+  );
   border: 1px solid var(--black);
   box-shadow: none;
 }
@@ -637,7 +642,7 @@
 
 .features-title h2 {
   margin: 0;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(43px, 5vw, 76px);
   line-height: 0.88;
   letter-spacing: -0.07em;
@@ -673,7 +678,7 @@
 
 .features-grid h3 {
   margin: 52px 0 12px;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(28px, 2.4vw, 38px);
   line-height: 0.95;
   letter-spacing: -0.055em;
@@ -700,7 +705,7 @@
 
 .levels-section h2 {
   margin: 0;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(45px, 5vw, 78px);
   line-height: 0.88;
   letter-spacing: -0.07em;
@@ -760,7 +765,7 @@
 }
 
 .levels-list strong {
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(21px, 2vw, 31px);
   line-height: 1;
   letter-spacing: -0.04em;
@@ -794,7 +799,7 @@
 
 .group-cta-copy h2 {
   margin: 0;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(44px, 5vw, 74px);
   line-height: 0.83;
   letter-spacing: -0.075em;
@@ -872,7 +877,7 @@
   position: relative;
   z-index: 2;
   color: var(--white);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-serif);
   font-size: 25px;
   line-height: 0.95;
   text-align: center;
@@ -893,7 +898,7 @@
 
 .faq-heading h2 {
   margin: 0;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(45px, 5vw, 78px);
   line-height: 0.88;
   letter-spacing: -0.07em;
@@ -1007,7 +1012,7 @@
 
 .final-cta-pink h2 {
   margin: 0;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(45px, 5vw, 78px);
   line-height: 0.85;
   letter-spacing: -0.075em;
@@ -1591,7 +1596,7 @@
 
 .rental-copy h2 {
   margin: 0 0 22px;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(44px, 5vw, 74px);
   line-height: 0.85;
   letter-spacing: -0.075em;
@@ -1671,7 +1676,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-serif);
   font-size: 22px;
   line-height: 1.15;
 }
@@ -1696,7 +1701,7 @@
 
 .contacts-heading h2 {
   margin: 0;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(48px, 6.5vw, 96px);
   line-height: 0.83;
   letter-spacing: -0.075em;
@@ -1743,7 +1748,7 @@
 }
 
 .contacts-block strong {
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: 20px;
   line-height: 1.1;
   font-weight: 700;

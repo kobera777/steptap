@@ -22,7 +22,7 @@
 
 .song-page .hero-copy h1 {
   margin: 0;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(68px, 7.5vw, 112px);
   line-height: 0.82;
   letter-spacing: -0.075em;
@@ -61,14 +61,14 @@
 }
 
 .song-page {
-  --pink: #d45f88;
+  --pink: var(--color-pink);
   --cream: #f4eee5;
   --paper: #fbf8f3;
   --black: #171717;
   min-height: 100vh;
   background: var(--cream);
   color: var(--black);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-ui);
   overflow: clip; /* clip, не hidden: иначе не работает sticky-шапка */
 }
 .song-page .hero {

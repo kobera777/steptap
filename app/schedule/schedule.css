@@ -48,7 +48,7 @@
 
 .schedule-hero-copy h1 {
   margin: 0;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(62px, 7vw, 104px);
   line-height: 0.82;
   letter-spacing: -0.075em;
@@ -90,7 +90,7 @@
 }
 
 .schedule-outline-square span {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-serif);
   font-size: 22px;
   line-height: 1.05;
   text-align: center;
@@ -135,7 +135,7 @@
 
 .schedule-calendar-top h2 {
   margin: 0;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(28px, 3vw, 42px);
   line-height: 1;
   letter-spacing: -0.055em;
@@ -347,7 +347,7 @@
 
 .schedule-card h3 {
   margin: 0 0 5px;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: 10px;
   line-height: 1.05;
   font-weight: 800;
@@ -505,7 +505,7 @@
 
 .schedule-events h2 {
   margin: 0;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(46px, 5vw, 76px);
   line-height: 0.86;
   letter-spacing: -0.07em;
@@ -533,7 +533,7 @@
 }
 
 .schedule-events-list article strong {
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: 15px;
   line-height: 1.15;
   font-weight: 700;
@@ -565,7 +565,7 @@
 
 .schedule-final-cta h2 {
   margin: 0;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(50px, 6vw, 82px);
   line-height: 0.82;
   letter-spacing: -0.075em;

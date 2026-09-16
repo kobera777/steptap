@@ -167,10 +167,10 @@
 .marquee {
   overflow: hidden;
   white-space: nowrap;
-  border-top: 1px solid var(--line, #1a1a1a);
-  border-bottom: 1px solid var(--line, #1a1a1a);
-  background: var(--black, #111);
-  color: var(--white, #fff);
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  background: var(--color-black);
+  color: var(--color-white);
 }
 
 .marquee-track {
@@ -184,7 +184,7 @@
   align-items: center;
   gap: 26px;
   padding: 14px 13px 14px 26px;
-  font-family: "Manrope", Arial, sans-serif;
+  font-family: var(--font-display);
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -194,7 +194,7 @@
 .marquee-track span i {
   width: 8px;
   height: 8px;
-  background: var(--pink, #d45f88);
+  background: var(--color-pink);
   transform: rotate(45deg);
 }
 
