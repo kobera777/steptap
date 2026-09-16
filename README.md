@@ -43,6 +43,19 @@ Los **textos y listas** viven en `data/`; los **estilos** en un `.css` por pági
 4. Añade una línea en `data/nav.ts` → `mainNav`. Con eso aparece en el menú, en el pie y en el sitemap.
 5. `npm run build` y revisa en el navegador a 1280 / 768 / 375 px.
 
+## Comprobar que nada cambió (red de seguridad visual)
+
+Captura las 7 páginas a 1280 / 768 / 375 px y las compara píxel a píxel con una referencia. Úsalo antes y después de cualquier cambio:
+
+```bash
+npm run build && npm run shots:baseline   # 1. referencia, ANTES de tocar nada
+# … haces los cambios …
+npm run build && npm run shots            # 2. captura nueva
+npm run shots:diff                        # 3. tabla por página/ancho; falla si algo cambió > 0,1 %
+```
+
+Las diferencias se pintan en rojo en `shots/diff/*.png` (el resto de la página queda en gris). La carpeta `shots/` no se sube a git. La primera vez hace falta `npx playwright install chromium`; si no está, el script usa Edge o Chrome del sistema.
+
 ## Publicar
 
 Después de fusionar en `main`, desplegar a producción con:

@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# capturas de la red de seguridad visual (se regeneran con npm run shots:baseline)
+/shots
