@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import Link from "next/link";
 import { signupHref } from "@/data/nav";
+import { lifeItems, values } from "@/data/about";
 
 import Image from "next/image";
 import "./about.css";
@@ -11,39 +12,6 @@ export const metadata: Metadata = {
   title: "О школе",
   description: "STEP TAP — школа танца: история, ценности, преподаватели и жизнь школы.",
 };
-
-const values = [
-  {
-    icon: "♧",
-    title: "СООБЩЕСТВО",
-    text: "Мы создаём большую танцевальную семью, где каждый может найти своё место.",
-  },
-  {
-    icon: "♡",
-    title: "ПОДДЕРЖКА",
-    text: "Неважно, танцуешь ты первый день или уже много лет — мы помогаем поверить в себя и двигаться дальше.",
-  },
-  {
-    icon: "☆",
-    title: "РАЗВИТИЕ",
-    text: "Танец помогает становиться увереннее не только на паркете, но и в жизни.",
-  },
-  {
-    icon: "☺",
-    title: "КОМФОРТ",
-    text: "Мы создаём атмосферу, в которую хочется возвращаться. Здесь ты можешь быть собой.",
-  },
-];
-
-const lifeItems = [
-  ["♫", "ВЕЧЕРИНКИ"],
-  ["♧", "МАСТЕР-КЛАССЫ"],
-  ["☆", "ВЫСТУПЛЕНИЯ"],
-  ["▣", "ОТЧЁТНЫЕ КОНЦЕРТЫ"],
-  ["✈", "ПОЕЗДКИ"],
-  ["♡", "ОТКРЫТЫЕ УРОКИ"],
-  ["♢", "СОРЕВНОВАНИЯ"],
-];
 
 export default function AboutPage() {
   return (

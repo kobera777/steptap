@@ -3,6 +3,8 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import Link from "next/link";
 import { signupHref } from "@/data/nav";
+import { bachataCards, otherCards } from "@/data/directions";
+import { Fragment } from "react";
 
 import Image from "next/image";
 import "./directions.css";
@@ -69,81 +71,46 @@ export default function DirectionsPage() {
         </div>
 
         <div className="bachata-grid">
-          <Link href="/directions/bachata/pair" className="direction-card card-large">
-            <div className="card-number">01</div>
+          {bachataCards.map((card) => (
+            <Link
+              key={card.href}
+              href={card.href}
+              className={`direction-card ${card.variant}`}
+            >
+              <div className="card-number">{card.number}</div>
 
-            <div className="card-content">
-              <p>ПАРНАЯ</p>
-              <h3>БАЧАТА</h3>
-            </div>
+              <div className="card-content">
+                <p>{card.kicker}</p>
+                <h3>{card.title}</h3>
+              </div>
 
-            <div className="card-arrow">→</div>
+              <div className="card-arrow">→</div>
 
-            <div className="card-circle">КОНТАКТ</div>
-          </Link>
-
-          <Link href="/directions/bachata/lady" className="direction-card card-pink">
-            <div className="card-number">02</div>
-
-            <div className="card-content">
-              <p>БАЧАТА</p>
-              <h3>ЛЕДИ</h3>
-            </div>
-
-            <div className="card-arrow">→</div>
-
-            <div className="card-note">
-              ПЛАСТИКА
-              <br />
-              ПОДАЧА
-              <br />
-              МУЗЫКА
-            </div>
-          </Link>
-
-          <Link
-            href="/directions/bachata/mens-style"
-            className="direction-card card-dark"
-          >
-            <div className="card-number">03</div>
-
-            <div className="card-content">
-              <p>МУЖСКОЙ</p>
-              <h3>СТИЛЬ</h3>
-            </div>
-
-            <div className="card-arrow">→</div>
-
-            <div className="card-note">
-              ТЕХНИКА
-              <br />
-              ФУТВОРК
-              <br />
-              ПОДАЧА
-            </div>
-          </Link>
-
-          <a
-            href="/directions/bachata/experimental"
-            className="direction-card card-outline"
-          >
-            <div className="card-number">04</div>
-
-            <div className="card-content">
-              <p>ЭКСПЕРИМЕНТАЛЬНАЯ</p>
-              <h3>БАЧАТА</h3>
-            </div>
-
-            <div className="card-arrow">→</div>
-
-            <div className="outline-circle">
-              ЭКСПЕРИМЕНТ
-              <br />
-              ×
-              <br />
-              ДВИЖЕНИЕ
-            </div>
-          </a>
+              {card.decor.kind === "circle" && (
+                <div className="card-circle">{card.decor.text}</div>
+              )}
+              {card.decor.kind === "note" && (
+                <div className="card-note">
+                  {card.decor.lines.map((line, index) => (
+                    <Fragment key={line}>
+                      {index > 0 && <br />}
+                      {line}
+                    </Fragment>
+                  ))}
+                </div>
+              )}
+              {card.decor.kind === "outline" && (
+                <div className="outline-circle">
+                  {card.decor.lines.map((line, index) => (
+                    <Fragment key={line}>
+                      {index > 0 && <br />}
+                      {line}
+                    </Fragment>
+                  ))}
+                </div>
+              )}
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -168,40 +135,37 @@ export default function DirectionsPage() {
         </div>
 
         <div className="other-list">
-          <Link href="/directions/dancehall" className="other-card dancehall-card">
-            <div className="other-card-top">
-              <span>02</span>
-              <span>→</span>
-            </div>
+          {otherCards.map((card) => (
+            <Link
+              key={card.href}
+              href={card.href}
+              className={`other-card ${card.variant}`}
+            >
+              <div className="other-card-top">
+                <span>{card.number}</span>
+                <span>→</span>
+              </div>
 
-            <div className="other-card-title">
-              <p>ЭНЕРГИЯ / РИТМ / СВОБОДА</p>
-              <h3>ДЭНСХОЛЛ</h3>
-            </div>
+              <div className="other-card-title">
+                <p>{card.kicker}</p>
+                <h3>{card.title}</h3>
+              </div>
 
-            <div className="other-card-shape">
-              <div />
-              <div />
-              <div />
-            </div>
-          </Link>
-
-          <Link href="/directions/latina" className="other-card latina-card">
-            <div className="other-card-top">
-              <span>03</span>
-              <span>→</span>
-            </div>
-
-            <div className="other-card-title">
-              <p>МУЗЫКА / ДВИЖЕНИЕ / ХАРАКТЕР</p>
-              <h3>ЛАТИНА</h3>
-            </div>
-
-            <div className="latina-circle">
-              <span>ТАНЦУЙ</span>
-              <span>ЧУВСТВУЙ</span>
-            </div>
-          </Link>
+              {card.variant === "dancehall-card" ? (
+                <div className="other-card-shape">
+                  <div />
+                  <div />
+                  <div />
+                </div>
+              ) : (
+                <div className="latina-circle">
+                  {card.circleWords?.map((word) => (
+                    <span key={word}>{word}</span>
+                  ))}
+                </div>
+              )}
+            </Link>
+          ))}
         </div>
       </section>
 

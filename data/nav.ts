@@ -19,3 +19,35 @@ export const mainNav: NavItem[] = [
 
 /** Куда ведёт кнопка «Записаться» по всему сайту. */
 export const signupHref = "/#trial";
+
+/** Пункт меню главной: может иметь вложенный список. #якорь — раздел на самой главной. */
+export type HomeNavItem = NavItem & { children?: NavItem[] };
+
+/** Меню главной страницы (у неё своя шапка с выпадающими списками). */
+export const homeNav: HomeNavItem[] = [
+  { href: "/about", label: "О ШКОЛЕ" },
+  {
+    href: "/directions",
+    label: "НАПРАВЛЕНИЯ",
+    children: [
+      { href: "/directions#bachata", label: "Бачата" },
+      { href: "/directions", label: "Все направления →" },
+    ],
+  },
+  {
+    href: "#classes",
+    label: "ЗАНЯТИЯ",
+    children: [
+      { href: "#levels", label: "Групповые занятия" },
+      { href: "#trial", label: "Индивидуальные занятия" },
+      { href: "#trial", label: "Пробный урок" },
+    ],
+  },
+  { href: "/schedule", label: "РАСПИСАНИЕ" },
+  { href: "/gallery", label: "ГАЛЕРЕЯ" },
+  { href: "#rental", label: "АРЕНДА" },
+  { href: "#contacts", label: "КОНТАКТЫ" },
+];
+
+/** Кнопка «Записаться» на самой главной ведёт на её раздел, без перехода. */
+export const homeSignupHref = "#trial";

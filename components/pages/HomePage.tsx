@@ -2,150 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useState } from "react";
+import { HomeHeader } from "@/components/layout/HomeHeader";
+import { faqs, features, homeLevels, marqueeWords, rentalItems } from "@/data/home";
+import { homeSignupHref } from "@/data/nav";
 import { siteContacts, telHref } from "@/data/site";
-
-const faqs = [
-  {
-    question: "Можно ли прийти одному?",
-    answer:
-      "Да. Партнёр для первого занятия не нужен — мы поможем комфортно войти в группу.",
-  },
-  {
-    question: "Я никогда не танцевал. Мне подойдёт?",
-    answer: "Да. В STEP TAP есть группы, в которых можно начать с самого первого шага.",
-  },
-  {
-    question: "Что надеть на первое занятие?",
-    answer:
-      "Главное — удобная одежда, в которой легко двигаться. Специальная форма не нужна.",
-  },
-  {
-    question: "Нужен ли партнёр?",
-    answer:
-      "Нет. На групповых занятиях мы работаем с партнёрами и меняемся в процессе занятия.",
-  },
-  {
-    question: "Как понять, какая группа мне подходит?",
-    answer:
-      "Оставьте заявку — мы зададим несколько вопросов и подскажем подходящий уровень.",
-  },
-];
-
-/** Пункт меню с выпадающим списком: открывается по hover, а также по клику на стрелку
- *  (для планшетов и тач-экранов). Закрывается по клику вне меню и по Esc. */
-function NavDropdown({ trigger, children }: { trigger: ReactNode; children: ReactNode }) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-
-    const onPointerDown = (event: PointerEvent) => {
-      if (!ref.current?.contains(event.target as Node)) setOpen(false);
-    };
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
-    };
-
-    document.addEventListener("pointerdown", onPointerDown);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("pointerdown", onPointerDown);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [open]);
-
-  return (
-    <div ref={ref} className={`nav-dropdown ${open ? "is-open" : ""}`}>
-      {trigger}
-      <button
-        type="button"
-        aria-expanded={open}
-        aria-label={open ? "Скрыть подменю" : "Показать подменю"}
-        onClick={() => setOpen((value) => !value)}
-      >
-        ⌄
-      </button>
-      <div className="dropdown-menu glass glass-dark" onClick={() => setOpen(false)}>
-        {children}
-      </div>
-    </div>
-  );
-}
 
 /** Главная страница (клиентский компонент: FAQ, меню, выпадающие списки). */
 export function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <main className="site-shell">
-      {/* HEADER */}
-      <header className={`site-header ${menuOpen ? "is-open" : ""}`} data-glass-header>
-        <Link className="site-logo" href="/" aria-label="STEP TAP — на главную">
-          <Image
-            src="/step-tap-logo.png"
-            alt="STEP TAP"
-            width={160}
-            height={160}
-            priority
-          />
-        </Link>
-
-        <nav className="main-nav" aria-label="Главное меню">
-          <Link href="/about">О ШКОЛЕ</Link>
-
-          <NavDropdown trigger={<Link href="/directions">НАПРАВЛЕНИЯ</Link>}>
-            <Link href="/directions#bachata">Бачата</Link>
-            <Link href="/directions">Все направления →</Link>
-          </NavDropdown>
-
-          <NavDropdown trigger={<a href="#classes">ЗАНЯТИЯ</a>}>
-            <a href="#levels">Групповые занятия</a>
-            <a href="#trial">Индивидуальные занятия</a>
-            <a href="#trial">Пробный урок</a>
-          </NavDropdown>
-
-          <Link href="/schedule">РАСПИСАНИЕ</Link>
-          <Link href="/gallery">ГАЛЕРЕЯ</Link>
-          <a href="#rental">АРЕНДА</a>
-          <a href="#contacts">КОНТАКТЫ</a>
-        </nav>
-
-        <a className="header-action glass glass-dark" href="#trial">
-          ЗАПИСАТЬСЯ <span>→</span>
-        </a>
-
-        <button
-          type="button"
-          className="menu-toggle"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-nav"
-          aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <i />
-        </button>
-
-        <nav
-          id="mobile-nav"
-          className="mobile-nav glass glass-dark"
-          aria-label="Мобильное меню"
-          onClick={() => setMenuOpen(false)}
-        >
-          <Link href="/about">О ШКОЛЕ</Link>
-          <Link href="/directions">НАПРАВЛЕНИЯ</Link>
-          <a href="#classes">ЗАНЯТИЯ</a>
-          <Link href="/schedule">РАСПИСАНИЕ</Link>
-          <Link href="/gallery">ГАЛЕРЕЯ</Link>
-          <a href="#rental">АРЕНДА</a>
-          <a href="#contacts">КОНТАКТЫ</a>
-          <a href="#trial" className="mobile-nav-action">
-            ЗАПИСАТЬСЯ →
-          </a>
-        </nav>
-      </header>
+      <HomeHeader />
 
       {/* HERO */}
       <section className="hero" id="top">
@@ -213,15 +82,7 @@ export function HomePage() {
       <div className="marquee" aria-hidden="true">
         <div className="marquee-track">
           {Array.from({ length: 2 }).map((_, copy) =>
-            [
-              "МУЗЫКА",
-              "КОНТАКТ",
-              "УВЕРЕННОСТЬ",
-              "STEP TAP",
-              "БАЧАТА",
-              "ЛЮДИ",
-              "ДВИЖЕНИЕ",
-            ].map((word) => (
+            marqueeWords.map((word) => (
               <span key={`${copy}-${word}`}>
                 {word}
                 <i />
@@ -336,35 +197,21 @@ export function HomePage() {
         </div>
 
         <div className="features-grid">
-          <article data-reveal data-reveal-delay="1">
-            <span>01</span>
-            <h3>ДВИЖЕНИЕ</h3>
-            <p>
-              Основы бачаты,
-              <br />
-              шаги и пластика.
-            </p>
-          </article>
-
-          <article data-reveal data-reveal-delay="2">
-            <span>02</span>
-            <h3>КОНТАКТ</h3>
-            <p>
-              Учимся чувствовать
-              <br />
-              партнёра и музыку.
-            </p>
-          </article>
-
-          <article data-reveal data-reveal-delay="3">
-            <span>03</span>
-            <h3>УВЕРЕННОСТЬ</h3>
-            <p>
-              Постепенно начинаем
-              <br />
-              танцевать свободнее.
-            </p>
-          </article>
+          {features.map((feature, index) => (
+            <article
+              key={feature.title}
+              data-reveal
+              data-reveal-delay={String(index + 1)}
+            >
+              <span>{feature.number}</span>
+              <h3>{feature.title}</h3>
+              <p>
+                {feature.lines[0]}
+                <br />
+                {feature.lines[1]}
+              </p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -380,29 +227,13 @@ export function HomePage() {
         </div>
 
         <div className="levels-list" data-reveal="right" data-reveal-delay="1">
-          <a href="#trial">
-            <span>01</span>
-            <strong>С НУЛЯ</strong>
-            <span>→</span>
-          </a>
-
-          <a href="#trial">
-            <span>02</span>
-            <strong>НАЧИНАЮЩИЕ</strong>
-            <span>→</span>
-          </a>
-
-          <a href="#trial">
-            <span>03</span>
-            <strong>ПРОДОЛЖАЮЩИЕ</strong>
-            <span>→</span>
-          </a>
-
-          <a href="#trial">
-            <span>04</span>
-            <strong>ПРОДВИНУТЫЕ</strong>
-            <span>→</span>
-          </a>
+          {homeLevels.map((level) => (
+            <a key={level.number} href={homeSignupHref}>
+              <span>{level.number}</span>
+              <strong>{level.title}</strong>
+              <span>→</span>
+            </a>
+          ))}
         </div>
       </section>
 
@@ -494,10 +325,9 @@ export function HomePage() {
           </p>
 
           <ul className="rental-list">
-            <li>Репетиции и индивидуальные занятия</li>
-            <li>Мастер-классы и интенсивы</li>
-            <li>Вечеринки и мероприятия</li>
-            <li>Фото- и видеосъёмка</li>
+            {rentalItems.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
 
           <a className="primary-button" href="#contacts">
