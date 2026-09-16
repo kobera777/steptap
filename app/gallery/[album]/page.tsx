@@ -58,7 +58,7 @@ export default async function AlbumPage(props: PageProps<"/gallery/[album]">) {
         </Link>
 
         <div className="gal-album-hero-grid">
-          <div>
+          <div data-reveal="left">
             <div className="gal-album-meta">
               <span className="is-pink">{categoryLabels[album.category]}</span>
               <span>{formatAlbumDate(album.date)}</span>
@@ -66,7 +66,7 @@ export default async function AlbumPage(props: PageProps<"/gallery/[album]">) {
             <h1>{album.title}</h1>
           </div>
 
-          <div>
+          <div data-reveal data-reveal-delay="2">
             <p>{album.description}</p>
             <div className="gal-album-hero-count">{formatMediaCount(album)}</div>
           </div>
@@ -76,7 +76,7 @@ export default async function AlbumPage(props: PageProps<"/gallery/[album]">) {
       {/* ВИДЕО */}
       {videos.length > 0 && (
         <section className="gal-section">
-          <div className="gal-section-head">
+          <div className="gal-section-head" data-reveal>
             <div>
               <p className="gal-kicker">{nextSection()} / ВИДЕО</p>
               <h2>СМОТРИ.</h2>
@@ -95,7 +95,7 @@ export default async function AlbumPage(props: PageProps<"/gallery/[album]">) {
       {/* ФОТО */}
       {photos.length > 0 && (
         <section className="gal-section">
-          <div className="gal-section-head">
+          <div className="gal-section-head" data-reveal>
             <div>
               <p className="gal-kicker">{nextSection()} / ФОТО</p>
               <h2>НАЙДИ СЕБЯ.</h2>
@@ -127,7 +127,7 @@ export default async function AlbumPage(props: PageProps<"/gallery/[album]">) {
 
       {/* FINAL CTA */}
       <section className="gal-final">
-        <div>
+        <div data-reveal="left">
           <p className="gal-kicker">ТВОЙ ПЕРВЫЙ ШАГ</p>
           <h2>
             ГОТОВЫ
@@ -144,7 +144,7 @@ export default async function AlbumPage(props: PageProps<"/gallery/[album]">) {
           </Link>
         </div>
 
-        <div className="gal-final-logo">
+        <div className="gal-final-logo" data-reveal="scale" data-reveal-delay="2">
           <div>
             <Image src="/step-tap-logo.png" alt="STEP TAP" width={260} height={260} />
           </div>

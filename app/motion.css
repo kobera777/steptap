@@ -1,0 +1,237 @@
+/* ==================================================
+   ДВИЖЕНИЕ + LIQUID GLASS
+   Общие правила для всего сайта (подключено в layout).
+================================================== */
+
+/* ---------- Появление при скролле ---------- */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: calc(var(--reveal-delay, 0) * 90ms);
+  will-change: opacity, transform;
+}
+
+[data-reveal="left"] {
+  transform: translate3d(-36px, 0, 0);
+}
+
+[data-reveal="right"] {
+  transform: translate3d(36px, 0, 0);
+}
+
+[data-reveal="scale"] {
+  transform: scale(0.94);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Задержки для «лесенки» */
+[data-reveal-delay="1"] { --reveal-delay: 1; }
+[data-reveal-delay="2"] { --reveal-delay: 2; }
+[data-reveal-delay="3"] { --reveal-delay: 3; }
+[data-reveal-delay="4"] { --reveal-delay: 4; }
+[data-reveal-delay="5"] { --reveal-delay: 5; }
+[data-reveal-delay="6"] { --reveal-delay: 6; }
+
+/* ---------- Параллакс ---------- */
+
+[data-parallax] {
+  transform: translate3d(0, var(--parallax, 0px), 0);
+  will-change: transform;
+}
+
+/* ---------- Наклон карточек за курсором ---------- */
+
+[data-tilt] {
+  transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s ease;
+  transform-style: preserve-3d;
+}
+
+[data-tilt]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 255, 255, 0.35),
+    transparent 55%
+  );
+  transition: opacity 0.35s ease;
+}
+
+[data-tilt]:hover::after {
+  opacity: 1;
+}
+
+/* ---------- Liquid Glass ---------- */
+
+/* :where() = нулевая специфичность: если у элемента есть свой position (absolute и т.п.), он побеждает */
+:where(.glass) {
+  position: relative;
+}
+
+.glass {
+  isolation: isolate;
+  background: rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15),
+    inset 1px 0 0 rgba(255, 255, 255, 0.3),
+    0 12px 40px rgba(17, 17, 17, 0.12);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+}
+
+/* Прогрессивно: где поддерживается SVG-фильтр в backdrop-filter (Chrome/Edge),
+   добавляем «жидкое» преломление по краям. Остальные браузеры оставят строку выше. */
+.glass {
+  -webkit-backdrop-filter: blur(22px) saturate(180%) url(#liquid-glass);
+  backdrop-filter: blur(22px) saturate(180%) url(#liquid-glass);
+}
+
+/* Блик по верхней кромке */
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.08) 38%,
+      rgba(255, 255, 255, 0) 60%
+    ),
+    radial-gradient(
+      120% 80% at 10% 0%,
+      rgba(255, 255, 255, 0.35),
+      transparent 55%
+    );
+}
+
+/* Тёмное стекло (для чёрной шапки) */
+.glass-dark {
+  background: rgba(17, 17, 17, 0.55);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.glass-dark::before {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.16) 0%,
+      rgba(255, 255, 255, 0.03) 40%,
+      rgba(255, 255, 255, 0) 60%
+    ),
+    radial-gradient(
+      120% 80% at 10% 0%,
+      rgba(212, 95, 136, 0.22),
+      transparent 55%
+    );
+}
+
+/* Розовое стекло (для акцентных кнопок) */
+.glass-pink {
+  background: rgba(212, 95, 136, 0.55);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+/* ---------- Бегущая строка ---------- */
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: 1px solid var(--line, #1a1a1a);
+  border-bottom: 1px solid var(--line, #1a1a1a);
+  background: var(--black, #111);
+  color: var(--white, #fff);
+}
+
+.marquee-track {
+  display: inline-flex;
+  gap: 0;
+  animation: marquee 28s linear infinite;
+}
+
+.marquee-track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 26px;
+  padding: 14px 13px 14px 26px;
+  font-family: "Manrope", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.marquee-track span i {
+  width: 8px;
+  height: 8px;
+  background: var(--pink, #d45f88);
+  transform: rotate(45deg);
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ---------- Кнопки: стрелка «уезжает» ---------- */
+
+.primary-button span,
+.header-action span,
+.sc-signup b,
+.gal-final-button span,
+.gal-album-arrow {
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.primary-button:hover span,
+.header-action:hover span,
+.sc-signup:hover b,
+.gal-final-button:hover span {
+  transform: translateX(6px);
+}
+
+/* ---------- Без анимаций для тех, кто их отключил ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  [data-parallax],
+  [data-tilt] {
+    transform: none;
+    transition: none;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+}

@@ -74,7 +74,7 @@ function NavDropdown({
       >
         ⌄
       </button>
-      <div className="dropdown-menu" onClick={() => setOpen(false)}>
+      <div className="dropdown-menu glass glass-dark" onClick={() => setOpen(false)}>
         {children}
       </div>
     </div>
@@ -88,7 +88,10 @@ export default function Home() {
   return (
     <main className="site-shell">
       {/* HEADER */}
-      <header className={`site-header ${menuOpen ? "is-open" : ""}`}>
+      <header
+        className={`site-header ${menuOpen ? "is-open" : ""}`}
+        data-glass-header
+      >
         <Link className="site-logo" href="/" aria-label="STEP TAP — на главную">
           <Image
             src="/step-tap-logo.png"
@@ -119,7 +122,7 @@ export default function Home() {
           <a href="#contacts">КОНТАКТЫ</a>
         </nav>
 
-        <a className="header-action" href="#trial">
+        <a className="header-action glass glass-dark" href="#trial">
           ЗАПИСАТЬСЯ <span>→</span>
         </a>
 
@@ -136,7 +139,7 @@ export default function Home() {
 
         <nav
           id="mobile-nav"
-          className="mobile-nav"
+          className="mobile-nav glass glass-dark"
           aria-label="Мобильное меню"
           onClick={() => setMenuOpen(false)}
         >
@@ -154,30 +157,30 @@ export default function Home() {
       {/* HERO */}
       <section className="hero" id="top">
         <div className="hero-copy">
-          <Link className="back-link" href="/directions">
+          <Link className="back-link" href="/directions" data-reveal>
             ← ВСЕ НАПРАВЛЕНИЯ
           </Link>
 
-          <h1>БАЧАТА</h1>
+          <h1 data-reveal data-reveal-delay="1">БАЧАТА</h1>
 
-          <p className="hero-accent">
+          <p className="hero-accent" data-reveal data-reveal-delay="2">
             МУЗЫКА. КОНТАКТ.
             <br />
             УВЕРЕННОСТЬ.
           </p>
 
-          <p className="hero-description">
+          <p className="hero-description" data-reveal data-reveal-delay="3">
             Парные занятия для взрослых, где танец
             становится способом чувствовать,
             наслаждаться и быть собой.
           </p>
 
-          <a className="primary-button" href="#trial">
+          <a className="primary-button" href="#trial" data-reveal data-reveal-delay="4">
             ЗАПИСАТЬСЯ <span>→</span>
           </a>
         </div>
 
-        <div className="hero-photo">
+        <div className="hero-photo" data-reveal="scale" data-reveal-delay="2">
           <Image
             src="/hero-bachata-crop.jpg"
             alt=""
@@ -200,7 +203,7 @@ export default function Home() {
             sizes="(max-width: 900px) 100vw, 50vw"
           />
 
-          <div className="hero-note">
+          <div className="hero-note" data-parallax="0.12">
             Танцуй
             <br />
             чувствуй
@@ -212,9 +215,25 @@ export default function Home() {
         </div>
       </section>
 
+      {/* MARQUEE */}
+      <div className="marquee" aria-hidden="true">
+        <div className="marquee-track">
+          {Array.from({ length: 2 }).map((_, copy) =>
+            ["МУЗЫКА", "КОНТАКТ", "УВЕРЕННОСТЬ", "STEP TAP", "БАЧАТА", "ЛЮДИ", "ДВИЖЕНИЕ"].map(
+              (word) => (
+                <span key={`${copy}-${word}`}>
+                  {word}
+                  <i />
+                </span>
+              ),
+            ),
+          )}
+        </div>
+      </div>
+
       {/* ABOUT DIRECTION */}
       <section className="about-direction" id="bachata">
-        <div className="about-copy">
+        <div className="about-copy" data-reveal="left">
           <p className="section-kicker">О НАПРАВЛЕНИИ</p>
 
           <h2>
@@ -240,8 +259,8 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="geometry">
-          <div className="geometry-square">
+        <div className="geometry" data-reveal="right" data-reveal-delay="2">
+          <div className="geometry-square" data-parallax="0.08">
             <span>
               БОЛЬШЕ
               <br />
@@ -251,7 +270,7 @@ export default function Home() {
             </span>
           </div>
 
-          <div className="geometry-circle">
+          <div className="geometry-circle" data-parallax="-0.06">
             МУЗЫКА
             <br />
             ЛЮДИ
@@ -263,7 +282,7 @@ export default function Home() {
 
       {/* OUR MOMENTS */}
       <section className="moments" id="gallery">
-        <div className="moments-heading">
+        <div className="moments-heading" data-reveal>
           <div>
             <p className="section-kicker">АТМОСФЕРА STEP TAP</p>
             <h2>НАШИ МОМЕНТЫ</h2>
@@ -278,7 +297,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="video-frame">
+        <div className="video-frame" data-reveal="scale" data-reveal-delay="1">
           <div className="video-placeholder">
             <div className="video-play">▶</div>
 
@@ -303,7 +322,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="moments-footer">
+        <div className="moments-footer" data-reveal data-reveal-delay="2">
           <p>Фото и видео с вечеринок, мастер-классов и концертов.</p>
           <Link className="outline-button" href="/gallery">
             ВСЕ АЛЬБОМЫ →
@@ -313,13 +332,13 @@ export default function Home() {
 
       {/* WHAT IS INCLUDED */}
       <section className="class-features" id="classes">
-        <div className="features-title">
+        <div className="features-title" data-reveal>
           <p className="section-kicker">ЧТО ВХОДИТ В ЗАНЯТИЕ</p>
           <h2>ТРИ   ШАГА<br />К СВОБОДНОМУ ТАНЦУ.</h2>
         </div>
 
         <div className="features-grid">
-          <article>
+          <article data-reveal data-reveal-delay="1">
             <span>01</span>
             <h3>ДВИЖЕНИЕ</h3>
             <p>
@@ -329,7 +348,7 @@ export default function Home() {
             </p>
           </article>
 
-          <article>
+          <article data-reveal data-reveal-delay="2">
             <span>02</span>
             <h3>КОНТАКТ</h3>
             <p>
@@ -339,7 +358,7 @@ export default function Home() {
             </p>
           </article>
 
-          <article>
+          <article data-reveal data-reveal-delay="3">
             <span>03</span>
             <h3>УВЕРЕННОСТЬ</h3>
             <p>
@@ -353,12 +372,12 @@ export default function Home() {
 
       {/* GROUP LEVELS */}
       <section className="levels-section" id="levels">
-        <div>
+        <div data-reveal="left">
           <p className="section-kicker">ГРУППОВЫЕ ЗАНЯТИЯ</p>
           <h2>НАЙДИ СВОЙ<br />УРОВЕНЬ.</h2>
         </div>
 
-        <div className="levels-list">
+        <div className="levels-list" data-reveal="right" data-reveal-delay="1">
           <a href="#trial">
             <span>01</span>
             <strong>С НУЛЯ</strong>
@@ -387,7 +406,7 @@ export default function Home() {
 
       {/* FIND YOUR GROUP */}
       <section className="group-cta">
-        <div className="group-cta-copy">
+        <div className="group-cta-copy" data-reveal="left">
           <p className="section-kicker">НЕ ЗНАЕШЬ,</p>
           <h2>
             С КАКОЙ
@@ -409,8 +428,8 @@ export default function Home() {
           </a>
         </div>
 
-        <div className="group-cta-art">
-          <div className="circle-lines" />
+        <div className="group-cta-art" data-reveal="scale" data-reveal-delay="2">
+          <div className="circle-lines" data-parallax="0.06" />
           <span>
             Танец
             <br />
@@ -423,36 +442,41 @@ export default function Home() {
 
       {/* FAQ */}
       <section className="faq-section">
-        <div className="faq-heading">
+        <div className="faq-heading" data-reveal="left">
           <p className="section-kicker">FAQ</p>
           <h2>ЧАСТЫЕ<br />ВОПРОСЫ</h2>
         </div>
 
-        <div className="faq-list">
-          {faqs.map((faq, index) => (
-            <button
-              className={`faq-item ${
-                openFaq === index ? "is-open" : ""
-              }`}
-              key={faq.question}
-              onClick={() =>
-                setOpenFaq(openFaq === index ? null : index)
-              }
-            >
-              <span>{faq.question}</span>
-              <strong>{openFaq === index ? "−" : "+"}</strong>
+        <div className="faq-list" data-reveal data-reveal-delay="1">
+          {faqs.map((faq, index) => {
+            const open = openFaq === index;
+            return (
+              <div className={`faq-item ${open ? "is-open" : ""}`} key={faq.question}>
+                <button
+                  type="button"
+                  className="faq-question"
+                  aria-expanded={open}
+                  aria-controls={`faq-answer-${index}`}
+                  onClick={() => setOpenFaq(open ? null : index)}
+                >
+                  <span>{faq.question}</span>
+                  <strong aria-hidden="true">+</strong>
+                </button>
 
-              {openFaq === index && (
-                <p>{faq.answer}</p>
-              )}
-            </button>
-          ))}
+                <div id={`faq-answer-${index}`} className="faq-answer" role="region">
+                  <div>
+                    <p>{faq.answer}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
       {/* RENTAL */}
       <section className="rental" id="rental">
-        <div className="rental-copy">
+        <div className="rental-copy" data-reveal="left">
           <p className="section-kicker">АРЕНДА ЗАЛА</p>
           <h2>
             ЗАЛ ДЛЯ
@@ -477,8 +501,8 @@ export default function Home() {
           </a>
         </div>
 
-        <div className="rental-art" aria-hidden="true">
-          <div className="rental-square">
+        <div className="rental-art" aria-hidden="true" data-reveal="scale" data-reveal-delay="2">
+          <div className="rental-square" data-parallax="0.08">
             <span>
               Пространство
               <br />
@@ -490,7 +514,7 @@ export default function Home() {
 
       {/* FINAL CTA */}
       <section className="final-cta" id="trial">
-        <div className="final-cta-pink">
+        <div className="final-cta-pink" data-reveal="left">
           <p>ТВОЙ ПЕРВЫЙ ШАГ</p>
           <h2>
             ГОТОВЫ
@@ -499,7 +523,7 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="final-cta-copy">
+        <div className="final-cta-copy" data-reveal data-reveal-delay="1">
           <p>
             Запишитесь на пробное занятие —
             <br />
@@ -511,7 +535,7 @@ export default function Home() {
           </a>
         </div>
 
-        <div className="final-logo">
+        <div className="final-logo" data-reveal="scale" data-reveal-delay="2">
           <Image
             src="/step-tap-logo.png"
             alt="STEP TAP"
@@ -523,7 +547,7 @@ export default function Home() {
 
       {/* CONTACTS */}
       <section className="contacts" id="contacts">
-        <div className="contacts-heading">
+        <div className="contacts-heading" data-reveal>
           <p className="section-kicker">СВЯЗЬ</p>
           <h2>
             КОНТАКТЫ
@@ -537,7 +561,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="contacts-grid">
+        <div className="contacts-grid" data-reveal data-reveal-delay="1">
           <div className="contacts-block">
             <span>АДРЕС</span>
             <strong>{siteContacts.address || "Адрес уточняется"}</strong>
@@ -569,7 +593,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="contacts-actions">
+        <div className="contacts-actions" data-reveal data-reveal-delay="2">
           {siteContacts.telegram && (
             <a href={siteContacts.telegram} target="_blank" rel="noreferrer">
               TELEGRAM <span>→</span>

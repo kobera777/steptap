@@ -22,7 +22,7 @@ export default function GalleryPage() {
 
       {/* HERO */}
       <section className="gal-hero">
-        <div>
+        <div data-reveal="left">
           <p className="gal-kicker is-pink">АТМОСФЕРА STEP TAP</p>
           <h1>
             НАШИ
@@ -31,8 +31,8 @@ export default function GalleryPage() {
           </h1>
         </div>
 
-        <div className="gal-hero-right">
-          <div className="gal-hero-art" aria-hidden="true">
+        <div className="gal-hero-right" data-reveal="right" data-reveal-delay="2">
+          <div className="gal-hero-art" aria-hidden="true" data-parallax="0.1">
             <span>
               Танец
               <br />
@@ -57,7 +57,7 @@ export default function GalleryPage() {
 
       {/* FINAL CTA */}
       <section className="gal-final">
-        <div>
+        <div data-reveal="left">
           <p className="gal-kicker">ТВОЙ ПЕРВЫЙ ШАГ</p>
           <h2>
             ХОЧЕШЬ
@@ -74,7 +74,7 @@ export default function GalleryPage() {
           </Link>
         </div>
 
-        <div className="gal-final-logo">
+        <div className="gal-final-logo" data-reveal="scale" data-reveal-delay="2">
           <div>
             <Image src="/step-tap-logo.png" alt="STEP TAP" width={260} height={260} />
           </div>

@@ -43,7 +43,8 @@ button {
 
 main {
   width: 100%;
-  overflow: hidden;
+  /* clip вместо hidden: режет горизонтальный выход, но не ломает position: sticky у шапки */
+  overflow: clip;
 }
 
 section {
@@ -59,7 +60,8 @@ img {
 ================================================== */
 
 .site-header {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 100;
   width: 100%;
   min-height: 74px;
@@ -69,6 +71,44 @@ img {
   gap: 30px;
   background: var(--black);
   color: var(--white);
+  transition:
+    background 0.35s ease,
+    padding 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* Liquid Glass: после первого скролла шапка становится полупрозрачной */
+.site-header.is-scrolled {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background: rgba(17, 17, 17, 0.6);
+  box-shadow:
+    inset 0 -1px 0 rgba(255, 255, 255, 0.12),
+    0 10px 40px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+}
+
+.site-header.is-scrolled {
+  -webkit-backdrop-filter: blur(22px) saturate(180%) url(#liquid-glass);
+  backdrop-filter: blur(22px) saturate(180%) url(#liquid-glass);
+}
+
+/* Пока открыто мобильное меню, шапка сплошная: вложенный backdrop-filter
+   не дал бы панели меню размыть страницу под собой */
+.site-header.is-open {
+  background: var(--black);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.site-header.is-scrolled .site-logo {
+  transform: scale(0.88);
+}
+
+.site-logo {
+  transition: transform 0.35s ease;
+  transform-origin: left center;
 }
 
 .site-logo {
@@ -156,9 +196,7 @@ img {
   padding: 10px;
   display: grid;
   gap: 2px;
-  background: var(--black);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -179,6 +217,7 @@ img {
 .dropdown-menu a {
   display: block;
   padding: 9px 10px;
+  border-radius: 8px;
   color: var(--white);
   font-size: 11px;
   line-height: 1.25;
@@ -197,7 +236,6 @@ img {
   align-items: center;
   gap: 13px;
   padding: 12px 20px;
-  border: 1px solid var(--white);
   border-radius: 999px;
   color: var(--white);
   font-size: 11px;
@@ -215,7 +253,7 @@ img {
 }
 
 .header-action:hover {
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.92);
   color: var(--black);
 }
 
@@ -343,7 +381,8 @@ img {
   max-width: none !important;
   object-fit: cover !important;
   object-position: 50% 0% !important;
-  transform: none !important;
+  transform: translate3d(0, calc(var(--parallax, 0px) * -1), 0) scale(1.04) !important;
+  transform-origin: center top;
 }
 
 /* Плавный переход фото в кремовый фон слева и лёгкое затемнение снизу —
@@ -734,6 +773,23 @@ img {
 }
 
 .levels-list a {
+  transition: padding-left 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.3s ease;
+}
+
+.levels-list a:hover {
+  padding-left: 14px;
+  background: rgba(212, 95, 136, 0.08);
+}
+
+.levels-list a span:last-child {
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.levels-list a:hover span:last-child {
+  transform: translateX(8px);
+}
+
+.levels-list a {
   min-height: 67px;
   padding: 13px 4px;
   display: grid;
@@ -908,27 +964,37 @@ img {
 }
 
 .faq-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-question {
   position: relative;
   width: 100%;
   min-height: 58px;
   padding: 17px 45px 17px 0;
   display: block;
   border: 0;
-  border-bottom: 1px solid var(--line);
   background: transparent;
   color: var(--black);
+  font: inherit;
   text-align: left;
+  cursor: pointer;
 }
 
-.faq-item > span:first-child {
+.faq-question > span {
   display: block;
   padding-right: 25px;
   font-size: 14px;
   line-height: 1.3;
   font-weight: 600;
+  transition: color 0.2s ease;
 }
 
-.faq-item > strong {
+.faq-question:hover > span {
+  color: var(--pink);
+}
+
+.faq-question > strong {
   position: absolute;
   top: 14px;
   right: 0;
@@ -936,19 +1002,42 @@ img {
   font-size: 21px;
   line-height: 1;
   font-weight: 400;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.faq-item p {
+.faq-item.is-open .faq-question > strong {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.faq-answer > div {
+  overflow: hidden;
+}
+
+.faq-item.is-open .faq-answer {
+  grid-template-rows: 1fr;
+}
+
+.faq-answer p {
   max-width: 650px;
-  margin: 11px 0 0;
+  margin: 0 0 20px;
   padding-right: 20px;
   color: var(--muted);
   font-size: 13px;
   line-height: 1.5;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s;
 }
 
-.faq-item.is-open {
-  padding-bottom: 20px;
+.faq-item.is-open .faq-answer p {
+  opacity: 1;
+  transform: none;
 }
 
 /* ==================================================
@@ -1414,7 +1503,7 @@ img {
     top: 116px;
   }
 
-  .faq-item > span:first-child {
+  .faq-question > span {
     font-size: 14px;
   }
 
@@ -2241,9 +2330,19 @@ img {
   z-index: 100;
   flex-direction: column;
   padding: 6px 18px 20px;
-  background: var(--black);
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-radius: 0 0 18px 18px;
+  animation: mobile-nav-in 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes mobile-nav-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .mobile-nav a {

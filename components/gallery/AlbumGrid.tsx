@@ -42,7 +42,8 @@ export function AlbumGrid({ albums }: { albums: GalleryAlbum[] }) {
 
   return (
     <>
-      <div className="gal-filters" role="group" aria-label="Фильтр по категории">
+      <div className="gal-filters-bar">
+      <div className="gal-filters glass" role="group" aria-label="Фильтр по категории">
         {filters.map((item) => (
           <button
             key={item.value}
@@ -56,6 +57,7 @@ export function AlbumGrid({ albums }: { albums: GalleryAlbum[] }) {
           </button>
         ))}
       </div>
+      </div>
 
       <div className="gal-albums">
         {visible.map((album, index) => {
@@ -66,6 +68,9 @@ export function AlbumGrid({ albums }: { albums: GalleryAlbum[] }) {
               key={album.slug}
               href={`/gallery/${album.slug}`}
               className={`gal-album ${featured ? "is-featured" : ""}`}
+              data-reveal
+              data-reveal-delay={String((index % 3) + 1)}
+              data-tilt
             >
               <div className="gal-album-cover">
                 <Image
@@ -79,7 +84,7 @@ export function AlbumGrid({ albums }: { albums: GalleryAlbum[] }) {
                       : "(max-width: 640px) 100vw, (max-width: 1000px) 45vw, 30vw"
                   }
                 />
-                <span className="gal-album-date">{formatAlbumDate(album.date)}</span>
+                <span className="gal-album-date glass">{formatAlbumDate(album.date)}</span>
                 <span className="gal-album-category">
                   {categoryLabels[album.category]}
                 </span>

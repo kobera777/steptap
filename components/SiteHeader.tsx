@@ -21,7 +21,7 @@ export function SiteHeader({ active }: { active?: NavHref }) {
   ));
 
   return (
-    <header className={`sc-header ${open ? "is-open" : ""}`}>
+    <header className={`sc-header ${open ? "is-open" : ""}`} data-glass-header>
       <Link href="/" className="sc-logo" aria-label="STEP TAP — на главную">
         <strong>
           STEP TAP<span>.</span>
@@ -50,7 +50,7 @@ export function SiteHeader({ active }: { active?: NavHref }) {
         </button>
       </div>
 
-      <nav id="sc-mobile-menu" className="sc-mobile" aria-label="Мобильное меню">
+      <nav id="sc-mobile-menu" className="sc-mobile glass" aria-label="Мобильное меню">
         {links}
       </nav>
     </header>

@@ -8,7 +8,7 @@ import type { GalleryPhoto, GalleryVideo } from "@/data/gallery";
 
 export function VideoCard({ video }: { video: GalleryVideo }) {
   return (
-    <article className="gal-video">
+    <article className="gal-video" data-reveal>
       <div className="gal-video-frame">
         {video.youtubeId ? (
           <iframe
@@ -96,6 +96,8 @@ export function PhotoGrid({ photos }: { photos: GalleryPhoto[] }) {
             key={`${item.src}-${index}`}
             type="button"
             className="gal-photo"
+            data-reveal="scale"
+            data-reveal-delay={String((index % 3) + 1)}
             onClick={() => setCurrent(index)}
             aria-label={`Открыть фото ${index + 1} из ${photos.length}`}
           >
@@ -122,7 +124,7 @@ export function PhotoGrid({ photos }: { photos: GalleryPhoto[] }) {
         >
           <button
             type="button"
-            className="gal-lightbox-close"
+            className="gal-lightbox-close glass glass-dark"
             aria-label="Закрыть"
             onClick={close}
           >
@@ -133,7 +135,7 @@ export function PhotoGrid({ photos }: { photos: GalleryPhoto[] }) {
             <>
               <button
                 type="button"
-                className="gal-lightbox-prev"
+                className="gal-lightbox-prev glass glass-dark"
                 aria-label="Предыдущее фото"
                 onClick={(event) => {
                   event.stopPropagation();
@@ -144,7 +146,7 @@ export function PhotoGrid({ photos }: { photos: GalleryPhoto[] }) {
               </button>
               <button
                 type="button"
-                className="gal-lightbox-next"
+                className="gal-lightbox-next glass glass-dark"
                 aria-label="Следующее фото"
                 onClick={(event) => {
                   event.stopPropagation();
@@ -170,7 +172,7 @@ export function PhotoGrid({ photos }: { photos: GalleryPhoto[] }) {
             />
           </div>
 
-          <div className="gal-lightbox-counter">
+          <div className="gal-lightbox-counter glass glass-dark">
             <span>{String(current + 1).padStart(2, "0")}</span> /{" "}
             {String(photos.length).padStart(2, "0")}
           </div>

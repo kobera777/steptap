@@ -9,7 +9,7 @@
   --line: rgba(17, 17, 17, 0.14);
 
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip; /* не hidden — иначе sticky-шапка не работает */
   background: var(--cream);
   color: var(--black);
   font-family: Arial, Helvetica, sans-serif;
@@ -115,12 +115,24 @@
 
 /* ---------- ФИЛЬТРЫ ---------- */
 
+.gal-filters-bar {
+  position: sticky;
+  top: 60px;
+  z-index: 50;
+  padding: 18px 7vw 0;
+  pointer-events: none;
+}
+
 .gal-filters {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
-  padding: 34px 7vw 0;
+  gap: 8px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 8px;
+  border-radius: 999px;
+  pointer-events: auto;
 }
 
 .gal-filters button {
@@ -128,8 +140,9 @@
   align-items: center;
   gap: 8px;
   padding: 11px 16px;
+  border-radius: 999px;
   background: transparent;
-  border: 1px solid var(--black);
+  border: 1px solid rgba(17, 17, 17, 0.35);
   color: var(--black);
   font: inherit;
   font-size: 10px;
@@ -168,16 +181,16 @@
 }
 
 .gal-album {
+  position: relative;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--black);
   background: var(--paper);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
 }
 
 .gal-album:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.14);
 }
 
 .gal-album.is-featured {
@@ -209,9 +222,9 @@
   position: absolute;
   left: 16px;
   top: 16px;
-  padding: 8px 10px;
-  background: var(--cream);
-  border: 1px solid var(--black);
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: var(--black);
   font-size: 10px;
   font-weight: 900;
   letter-spacing: 1px;
@@ -620,17 +633,34 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
   color: #fff;
   font: inherit;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .gal-lightbox button:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+  transform: scale(1.06);
+}
+
+.gal-lightbox {
+  animation: gal-fade 0.25s ease;
+}
+
+.gal-lightbox-stage img {
+  animation: gal-zoom 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes gal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes gal-zoom {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: none; }
 }
 
 .gal-lightbox-close {
@@ -663,6 +693,8 @@
   left: 50%;
   bottom: 22px;
   transform: translateX(-50%);
+  padding: 8px 14px;
+  border-radius: 999px;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 2px;
@@ -719,9 +751,9 @@
     height: 120px;
   }
 
-  .gal-filters {
-    padding: 24px 18px 0;
-    gap: 8px;
+  .gal-filters-bar {
+    top: 54px;
+    padding: 14px 18px 0;
   }
 
   .gal-filters button {
