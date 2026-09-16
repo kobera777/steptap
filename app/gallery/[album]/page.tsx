@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { PhotoGrid, VideoCard } from "@/components/gallery/AlbumMedia";
 import {
   albums,
@@ -49,7 +49,7 @@ export default async function AlbumPage(props: PageProps<"/gallery/[album]">) {
 
   return (
     <main className="gal-page">
-      <SiteHeader active="/gallery" />
+      <SiteHeader />
 
       {/* HERO */}
       <section className="gal-album-hero">

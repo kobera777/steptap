@@ -1,5 +1,8 @@
 "use client";
 
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+
 export default function SongAnalysisPage() {
   const accents = [
     { time: "00:00", type: "Вступление", text: "Начало композиции. Слушаем пространство и первое появление ритма.", mark: "INTRO" },
@@ -24,60 +27,9 @@ export default function SongAnalysisPage() {
           background: var(--cream);
           color: var(--black);
           font-family: Arial, Helvetica, sans-serif;
-          overflow: hidden;
+          overflow: clip; /* clip, не hidden: иначе не работает sticky-шапка */
         }
         * { box-sizing: border-box; }
-
-        .header {
-          height: 92px;
-          padding: 0 5vw;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          border-bottom: 1px solid rgba(23,23,23,.16);
-          background: var(--cream);
-        }
-        .logo {
-          text-decoration: none;
-          color: var(--black);
-          line-height: .85;
-          display: flex;
-          flex-direction: column;
-        }
-        .logo strong {
-          font-size: 28px;
-          letter-spacing: -1.8px;
-          font-weight: 900;
-        }
-        .logo strong span { color: var(--pink); }
-        .logo small {
-          margin-top: 9px;
-          font-size: 8px;
-          letter-spacing: 2px;
-          font-weight: 700;
-        }
-        .nav {
-          display: flex;
-          gap: 27px;
-          align-items: center;
-        }
-        .nav a {
-          color: var(--black);
-          text-decoration: none;
-          font-size: 11px;
-          font-weight: 800;
-          letter-spacing: 1px;
-        }
-        .nav a:hover { color: var(--pink); }
-        .signup {
-          text-decoration: none;
-          color: white;
-          background: var(--pink);
-          padding: 15px 20px;
-          font-size: 11px;
-          font-weight: 900;
-          letter-spacing: 1px;
-        }
 
         .hero {
           min-height: 500px;
@@ -406,30 +358,8 @@ export default function SongAnalysisPage() {
           font-size: 13px;
         }
 
-        .footer {
-          background: var(--black);
-          color: white;
-          padding: 75px 7vw;
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
-        }
-        .footer-title {
-          font-size: clamp(48px, 7vw, 95px);
-          line-height: .8;
-          letter-spacing: -5px;
-          font-weight: 950;
-        }
-        .footer-title span { color: var(--pink); }
-        .footer small {
-          font-size: 9px;
-          letter-spacing: 1.5px;
-          color: #aaa;
-        }
-
         @media (max-width: 1100px) {
-          .nav { gap: 15px; }
-          .nav a { font-size: 9px; }
+
           .hero { gap: 35px; }
           .layers-grid { grid-template-columns: repeat(3, 1fr); }
           .layer:nth-child(3) { border-right: 0; }
@@ -439,7 +369,7 @@ export default function SongAnalysisPage() {
         }
 
         @media (max-width: 900px) {
-          .nav { display: none; }
+
           .hero {
             grid-template-columns: 1fr;
             padding-top: 60px;
@@ -455,19 +385,7 @@ export default function SongAnalysisPage() {
         }
 
         @media (max-width: 600px) {
-          .header {
-            height: 76px;
-            padding: 0 20px;
-          }
-          .logo strong { font-size: 23px; }
-          .logo small {
-            font-size: 6px;
-            letter-spacing: 1.4px;
-          }
-          .signup {
-            padding: 12px 13px;
-            font-size: 9px;
-          }
+
           .hero {
             padding: 55px 20px 65px;
             gap: 45px;
@@ -499,34 +417,11 @@ export default function SongAnalysisPage() {
           .layer:nth-child(even) { border-right: 0 !important; }
           .layer h4 { margin-top: 25px; }
           .dance-item { font-size: 11px; }
-          .footer {
-            display: block;
-            padding: 55px 20px;
-          }
-          .footer small {
-            display: block;
-            margin-top: 35px;
-          }
+
         }
       `}</style>
 
-      <header className="header">
-        <a href="/" className="logo">
-          <strong>STEP TAP<span>.</span></strong>
-          <small>[ ТАНЦЕВАЛЬНАЯ ШКОЛА ]</small>
-        </a>
-
-        <nav className="nav">
-          <a href="/">ГЛАВНАЯ</a>
-          <a href="/about">О ШКОЛЕ</a>
-          <a href="/directions">НАПРАВЛЕНИЯ</a>
-          <a href="/schedule">РАСПИСАНИЕ</a>
-          <a href="/gallery">ГАЛЕРЕЯ</a>
-          <a href="/contacts">КОНТАКТЫ</a>
-        </nav>
-
-        <a href="/signup" className="signup">ЗАПИСАТЬСЯ →</a>
-      </header>
+      <SiteHeader />
 
       <section className="hero">
         <div className="hero-content">
@@ -756,13 +651,7 @@ export default function SongAnalysisPage() {
         </div>
       </section>
 
-      <footer className="footer">
-        <div className="footer-title">
-          STEP TAP<span>.</span>
-        </div>
-
-        <small>МУЗЫКА · КОНТАКТ · УВЕРЕННОСТЬ</small>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
       { source: "/signup", destination: "/#contacts", permanent: false },
       { source: "/contacts", destination: "/#contacts", permanent: false },
       { source: "/events", destination: "/schedule#events", permanent: false },
+      // Карточки направлений: своих страниц пока нет.
+      { source: "/directions/bachata/:style", destination: "/", permanent: false },
+      { source: "/directions/dancehall", destination: "/directions", permanent: false },
+      { source: "/directions/latina", destination: "/directions", permanent: false },
     ];
   },
 };

@@ -1,18 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { navItems, type NavHref } from "./nav-items";
+import { mainNav, signupHref } from "@/data/nav";
+import { siteName, siteTagline } from "@/data/site";
 import "./site-chrome.css";
 
-export function SiteHeader({ active }: { active?: NavHref }) {
+/** Общая шапка всех страниц, кроме главной. Активный пункт определяется по адресу. */
+export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
-  const links = navItems.map((item) => (
+  // Пункт активен и на вложенных страницах (например, /gallery/album → ГАЛЕРЕЯ)
+  const isActive = (href: string) =>
+    pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
+
+  const links = mainNav.map((item) => (
     <Link
       key={item.href}
       href={item.href}
-      className={item.href === active ? "sc-active" : undefined}
+      className={isActive(item.href) ? "sc-active" : undefined}
       onClick={() => setOpen(false)}
     >
       {item.label}
@@ -21,11 +29,12 @@ export function SiteHeader({ active }: { active?: NavHref }) {
 
   return (
     <header className={`sc-header ${open ? "is-open" : ""}`} data-glass-header>
-      <Link href="/" className="sc-logo" aria-label="STEP TAP — на главную">
+      <Link href="/" className="sc-logo" aria-label={`${siteName} — на главную`}>
         <strong>
-          STEP TAP<span>.</span>
+          {siteName}
+          <span>.</span>
         </strong>
-        <small>[ ТАНЦЕВАЛЬНАЯ ШКОЛА ]</small>
+        <small>{siteTagline}</small>
       </Link>
 
       <nav className="sc-nav" aria-label="Главное меню">
@@ -33,7 +42,7 @@ export function SiteHeader({ active }: { active?: NavHref }) {
       </nav>
 
       <div className="sc-actions">
-        <Link href="/signup" className="sc-signup">
+        <Link href={signupHref} className="sc-signup">
           ЗАПИСАТЬСЯ <b>→</b>
         </Link>
 

@@ -1,34 +1,16 @@
 "use client";
 
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import Link from "next/link";
+import { signupHref } from "@/data/nav";
+
 import Image from "next/image";
 
 export default function DirectionsPage() {
   return (
     <main className="directions-page">
-      {/* HEADER */}
-      <header className="st-header">
-        <a href="/" className="st-logo" aria-label="STEP TAP — на главную">
-          <strong>
-            STEP TAP<span>.</span>
-          </strong>
-          <small>[ ТАНЦЕВАЛЬНАЯ ШКОЛА ]</small>
-        </a>
-
-        <nav className="st-nav">
-          <a href="/">ГЛАВНАЯ</a>
-          <a href="/about">О ШКОЛЕ</a>
-          <a href="/directions" className="st-active">
-            НАПРАВЛЕНИЯ
-          </a>
-          <a href="/schedule">РАСПИСАНИЕ</a>
-          <a href="/gallery">ГАЛЕРЕЯ</a>
-          <a href="/contacts">КОНТАКТЫ</a>
-        </nav>
-
-        <a href="/signup" className="st-signup">
-          ЗАПИСАТЬСЯ <b>→</b>
-        </a>
-      </header>
+      <SiteHeader />
 
       {/* HERO */}
       <section className="directions-hero">
@@ -81,7 +63,7 @@ export default function DirectionsPage() {
         </div>
 
         <div className="bachata-grid">
-          <a href="/directions/bachata/pair" className="direction-card card-large">
+          <Link href="/directions/bachata/pair" className="direction-card card-large">
             <div className="card-number">01</div>
 
             <div className="card-content">
@@ -92,9 +74,9 @@ export default function DirectionsPage() {
             <div className="card-arrow">→</div>
 
             <div className="card-circle">КОНТАКТ</div>
-          </a>
+          </Link>
 
-          <a href="/directions/bachata/lady" className="direction-card card-pink">
+          <Link href="/directions/bachata/lady" className="direction-card card-pink">
             <div className="card-number">02</div>
 
             <div className="card-content">
@@ -111,9 +93,9 @@ export default function DirectionsPage() {
               <br />
               МУЗЫКА
             </div>
-          </a>
+          </Link>
 
-          <a href="/directions/bachata/mens-style" className="direction-card card-dark">
+          <Link href="/directions/bachata/mens-style" className="direction-card card-dark">
             <div className="card-number">03</div>
 
             <div className="card-content">
@@ -130,7 +112,7 @@ export default function DirectionsPage() {
               <br />
               ПОДАЧА
             </div>
-          </a>
+          </Link>
 
           <a
             href="/directions/bachata/experimental"
@@ -177,7 +159,7 @@ export default function DirectionsPage() {
         </div>
 
         <div className="other-list">
-          <a href="/directions/dancehall" className="other-card dancehall-card">
+          <Link href="/directions/dancehall" className="other-card dancehall-card">
             <div className="other-card-top">
               <span>02</span>
               <span>→</span>
@@ -193,9 +175,9 @@ export default function DirectionsPage() {
               <div />
               <div />
             </div>
-          </a>
+          </Link>
 
-          <a href="/directions/latina" className="other-card latina-card">
+          <Link href="/directions/latina" className="other-card latina-card">
             <div className="other-card-top">
               <span>03</span>
               <span>→</span>
@@ -210,7 +192,7 @@ export default function DirectionsPage() {
               <span>ТАНЦУЙ</span>
               <span>ЧУВСТВУЙ</span>
             </div>
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -241,9 +223,9 @@ export default function DirectionsPage() {
             выбрать направление.
           </p>
 
-          <a href="/signup" className="choice-button">
+          <Link href={signupHref} className="choice-button">
             ПОДОБРАТЬ НАПРАВЛЕНИЕ →
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -264,9 +246,9 @@ export default function DirectionsPage() {
             и приходи на первое занятие.
           </p>
 
-          <a href="/signup" className="final-button">
+          <Link href={signupHref} className="final-button">
             ЗАПИСАТЬСЯ <span>→</span>
-          </a>
+          </Link>
         </div>
 
         <div className="final-logo">
@@ -284,79 +266,7 @@ export default function DirectionsPage() {
           background: #f5f0ea;
           color: #111111;
           min-height: 100vh;
-          overflow: hidden;
-        }
-
-        .st-header {
-          height: 68px;
-          padding: 0 42px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          background: #f5f0ea;
-          border-bottom: 1px solid rgba(17, 17, 17, 0.08);
-          position: relative;
-          z-index: 20;
-        }
-
-        .st-logo {
-          width: 180px;
-          text-decoration: none;
-          color: #111111;
-          display: flex;
-          flex-direction: column;
-          line-height: 1;
-        }
-
-        .st-logo strong {
-          font-size: 25px;
-          font-weight: 950;
-          letter-spacing: -1.7px;
-        }
-
-        .st-logo strong span {
-          color: #d45f88;
-        }
-
-        .st-logo small {
-          margin-top: 5px;
-          font-size: 7px;
-          font-weight: 700;
-          letter-spacing: 1.5px;
-        }
-
-        .st-nav {
-          display: flex;
-          align-items: center;
-          gap: 32px;
-        }
-
-        .st-nav a {
-          color: #111111;
-          text-decoration: none;
-          font-size: 10px;
-          font-weight: 800;
-          letter-spacing: 0.2px;
-          transition: opacity 0.2s ease;
-        }
-
-        .st-nav a:hover {
-          opacity: 0.55;
-        }
-
-        .st-nav .st-active {
-          color: #d45f88;
-        }
-
-        .st-signup {
-          padding: 14px 24px;
-          background: #ee5b91;
-          color: white;
-          text-decoration: none;
-          font-size: 10px;
-          font-weight: 900;
-          border-radius: 4px;
-          white-space: nowrap;
+          overflow: clip; /* clip, не hidden: иначе не работает sticky-шапка */
         }
 
         .directions-hero {
@@ -839,13 +749,6 @@ export default function DirectionsPage() {
         }
 
         @media (max-width: 1000px) {
-          .st-header {
-            padding: 0 24px;
-          }
-
-          .st-nav {
-            gap: 16px;
-          }
 
           .directions-hero {
             padding-left: 5vw;
@@ -864,33 +767,6 @@ export default function DirectionsPage() {
         }
 
         @media (max-width: 760px) {
-          .st-header {
-            height: auto;
-            min-height: 68px;
-            padding: 15px 20px;
-            flex-wrap: wrap;
-            gap: 15px;
-          }
-
-          .st-logo {
-            width: auto;
-          }
-
-          .st-nav {
-            order: 3;
-            width: 100%;
-            overflow-x: auto;
-            padding-bottom: 4px;
-            gap: 20px;
-          }
-
-          .st-nav a {
-            white-space: nowrap;
-          }
-
-          .st-signup {
-            margin-left: auto;
-          }
 
           .directions-hero {
             min-height: auto;
@@ -999,6 +875,7 @@ export default function DirectionsPage() {
           }
         }
       `}</style>
+      <SiteFooter />
     </main>
   );
 }

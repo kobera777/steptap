@@ -1,5 +1,10 @@
 "use client";
 
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import Link from "next/link";
+import { signupHref } from "@/data/nav";
+
 import { useMemo, useState } from "react";
 
 type Level =
@@ -315,30 +320,7 @@ export default function SchedulePage() {
   return (
     <main className="schedule-page">
 
-      {/* HEADER */}
-      <header className="st-header">
-        <a href="/" className="st-logo">
-          <strong>
-            STEP TAP<span>.</span>
-          </strong>
-          <small>[ ТАНЦЕВАЛЬНАЯ ШКОЛА ]</small>
-        </a>
-
-        <nav className="st-nav">
-          <a href="/">ГЛАВНАЯ</a>
-          <a href="/about">О ШКОЛЕ</a>
-          <a href="/schedule" className="st-active">
-            РАСПИСАНИЕ
-          </a>
-          <a href="/gallery">ГАЛЕРЕЯ</a>
-          <a href="/events">СОБЫТИЯ</a>
-          <a href="/contacts">КОНТАКТЫ</a>
-        </nav>
-
-        <a href="/signup" className="st-signup">
-          ЗАПИСАТЬСЯ <b>→</b>
-        </a>
-      </header>
+      <SiteHeader />
 
       <section className="schedule-hero">
         <div className="schedule-hero-copy">
@@ -810,121 +792,10 @@ export default function SchedulePage() {
           </h2>
         </div>
 
-        <a href="/signup">
-          ПОДОБРАТЬ ГРУППУ →
-        </a>
+        <Link href={signupHref}>ПОДОБРАТЬ ГРУППУ →</Link>
       </section>
 
-      <style jsx>{`
-        .st-header {
-          width: 100%;
-          height: 68px;
-          position: relative;
-          z-index: 100;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0 42px;
-          background: #f4f1ea;
-          border-bottom: 1px solid rgba(17, 17, 17, 0.14);
-        }
-
-        .st-logo {
-          width: 180px;
-          display: flex;
-          flex-direction: column;
-          line-height: 1;
-          color: #111111;
-          text-decoration: none;
-        }
-
-        .st-logo strong {
-          font-size: 25px;
-          font-weight: 950;
-          letter-spacing: -1.7px;
-        }
-
-        .st-logo strong span {
-          color: #D45F88;
-        }
-
-        .st-logo small {
-          margin-top: 5px;
-          font-size: 7px;
-          font-weight: 700;
-          letter-spacing: 1.5px;
-        }
-
-        .st-nav {
-          display: flex;
-          align-items: center;
-          gap: 38px;
-        }
-
-        .st-nav a {
-          position: relative;
-          color: #111111;
-          text-decoration: none;
-          font-size: 10px;
-          font-weight: 800;
-          white-space: nowrap;
-        }
-
-        .st-nav .st-active::after {
-          content: "";
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: -13px;
-          height: 3px;
-          background: #D45F88;
-        }
-
-        .st-signup {
-          padding: 14px 24px;
-          background: #ee5b91;
-          color: #111111;
-          text-decoration: none;
-          font-size: 10px;
-          font-weight: 900;
-          border-radius: 4px;
-        }
-
-        .st-signup b {
-          margin-left: 10px;
-          font-size: 15px;
-        }
-
-        @media (max-width: 1100px) {
-          .st-nav {
-            gap: 20px;
-          }
-
-          .st-header {
-            padding: 0 25px;
-          }
-        }
-
-        @media (max-width: 800px) {
-          .st-header {
-            height: 62px;
-            padding: 0 18px;
-          }
-
-          .st-nav {
-            display: none;
-          }
-
-          .st-logo {
-            width: auto;
-          }
-
-          .st-signup {
-            padding: 11px 14px;
-            font-size: 9px;
-          }
-        }
-      `}</style>
+      <SiteFooter />
     </main>
   );
 }

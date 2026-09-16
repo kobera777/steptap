@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { AlbumGrid } from "@/components/gallery/AlbumGrid";
 import { getAlbums } from "@/data/gallery";
 import "./gallery.css";
@@ -18,7 +18,7 @@ export default function GalleryPage() {
 
   return (
     <main className="gal-page">
-      <SiteHeader active="/gallery" />
+      <SiteHeader />
 
       {/* HERO */}
       <section className="gal-hero">

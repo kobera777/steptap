@@ -1,5 +1,10 @@
 "use client";
 
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import Link from "next/link";
+import { signupHref } from "@/data/nav";
+
 import Image from "next/image";
 
 const values = [
@@ -39,35 +44,7 @@ export default function AboutPage() {
   return (
     <main className="st-about">
 
-      {/* HEADER */}
-
-      <header className="st-header">
-        <a href="/" className="st-logo">
-          <strong>
-            STEP TAP<span>.</span>
-          </strong>
-
-          <small>[ ТАНЦЕВАЛЬНАЯ ШКОЛА ]</small>
-        </a>
-
-        <nav className="st-nav">
-          <a href="/">ГЛАВНАЯ</a>
-
-          <a href="/about" className="st-active">
-            О ШКОЛЕ
-          </a>
-
-          <a href="/schedule">РАСПИСАНИЕ</a>
-
-          <a href="/events">СОБЫТИЯ</a>
-
-          <a href="/contacts">КОНТАКТЫ</a>
-        </nav>
-
-        <a href="/signup" className="st-signup">
-          ЗАПИСАТЬСЯ <b>→</b>
-        </a>
-      </header>
+      <SiteHeader />
 
 
       {/* HERO */}
@@ -98,10 +75,10 @@ export default function AboutPage() {
           </p>
 
           <div className="st-hero-bottom">
-            <a href="/signup" className="st-pink-button">
+            <Link href={signupHref} className="st-pink-button">
               СТАТЬ ЧАСТЬЮ СЕМЬИ
               <span>→</span>
-            </a>
+            </Link>
 
             <div className="st-tags">
               ЛЮДИ · МУЗЫКА · ДВИЖЕНИЕ
@@ -458,51 +435,18 @@ export default function AboutPage() {
         </div>
 
 
-        <a
-          href="/signup"
+        <Link
+          href={signupHref}
           className="st-dark-button"
         >
           СТАТЬ ЧАСТЬЮ STEP TAP
           <span>→</span>
-        </a>
+        </Link>
 
       </section>
 
 
-      {/* FOOTER */}
-
-      <footer className="st-footer">
-
-        <a
-          href="/"
-          className="st-footer-logo"
-        >
-          <strong>
-            STEP TAP<span>.</span>
-          </strong>
-
-          <small>
-            [ ТАНЦЕВАЛЬНАЯ ШКОЛА ]
-          </small>
-        </a>
-
-
-        <div className="st-footer-nav">
-          <a href="/">ГЛАВНАЯ</a>
-          <a href="/about">О ШКОЛЕ</a>
-          <a href="/schedule">РАСПИСАНИЕ</a>
-          <a href="/events">СОБЫТИЯ</a>
-          <a href="/contacts">КОНТАКТЫ</a>
-        </div>
-
-
-        <div className="st-social">
-          <a href="#">◎</a>
-          <a href="#">▶</a>
-          <a href="#">➤</a>
-        </div>
-
-      </footer>
+      <SiteFooter />
 
 
       {/* STYLES */}
@@ -512,7 +456,6 @@ export default function AboutPage() {
         * {
           box-sizing: border-box;
         }
-
 
         .st-about {
           --black: #111111;
@@ -527,7 +470,7 @@ export default function AboutPage() {
           margin: 0;
           padding: 0;
 
-          overflow-x: hidden;
+          overflow-x: clip; /* clip, не hidden: иначе не работает sticky-шапка */
 
           color: var(--black);
           background: var(--cream);
@@ -538,120 +481,10 @@ export default function AboutPage() {
             sans-serif;
         }
 
-
         .st-about a {
           color: inherit;
           text-decoration: none;
         }
-
-
-        /* HEADER */
-
-        .st-header {
-          width: 100%;
-          height: 68px;
-
-          position: relative;
-          z-index: 100;
-
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-
-          padding: 0 42px;
-
-          background: var(--cream);
-
-          border-bottom:
-            1px solid rgba(17, 17, 17, 0.14);
-        }
-
-
-        .st-logo {
-          width: 180px;
-
-          display: flex;
-          flex-direction: column;
-
-          line-height: 1;
-        }
-
-
-        .st-logo strong {
-          font-size: 25px;
-          font-weight: 950;
-
-          letter-spacing: -1.7px;
-        }
-
-
-        .st-logo strong span,
-        .st-footer-logo strong span {
-          color: var(--pink-strong);
-        }
-
-
-        .st-logo small {
-          margin-top: 5px;
-
-          font-size: 7px;
-          font-weight: 700;
-
-          letter-spacing: 1.5px;
-        }
-
-
-        .st-nav {
-          display: flex;
-          align-items: center;
-
-          gap: 38px;
-        }
-
-
-        .st-nav a {
-          position: relative;
-
-          font-size: 10px;
-          font-weight: 800;
-
-          white-space: nowrap;
-        }
-
-
-        .st-nav .st-active::after {
-          content: "";
-
-          position: absolute;
-
-          left: 0;
-          right: 0;
-          bottom: -13px;
-
-          height: 3px;
-
-          background: var(--pink-strong);
-        }
-
-
-        .st-signup {
-          padding: 14px 24px;
-
-          background: var(--pink);
-
-          font-size: 10px;
-          font-weight: 900;
-
-          border-radius: 4px;
-        }
-
-
-        .st-signup b {
-          margin-left: 10px;
-
-          font-size: 15px;
-        }
-
 
         /* GENERAL */
 
@@ -661,7 +494,6 @@ export default function AboutPage() {
           font-size: 12px;
           font-weight: 900;
         }
-
 
         /* HERO */
 
@@ -681,7 +513,6 @@ export default function AboutPage() {
             1px solid rgba(17, 17, 17, 0.12);
         }
 
-
         .st-hero-left {
           position: relative;
 
@@ -693,7 +524,6 @@ export default function AboutPage() {
             35px
             52px;
         }
-
 
         .st-hero-left h1 {
           margin:
@@ -711,7 +541,6 @@ export default function AboutPage() {
           font-weight: 950;
         }
 
-
         .st-hero-lead {
           max-width: 470px;
 
@@ -727,7 +556,6 @@ export default function AboutPage() {
           font-weight: 750;
         }
 
-
         .st-hero-text {
           max-width: 480px;
 
@@ -738,7 +566,6 @@ export default function AboutPage() {
           line-height: 1.48;
         }
 
-
         .st-hero-bottom {
           display: flex;
 
@@ -748,7 +575,6 @@ export default function AboutPage() {
 
           margin-top: 32px;
         }
-
 
         .st-pink-button {
           display: inline-flex;
@@ -766,13 +592,11 @@ export default function AboutPage() {
           font-weight: 900;
         }
 
-
         .st-pink-button span {
           margin-left: 10px;
 
           font-size: 16px;
         }
-
 
         .st-tags {
           padding-left: 18px;
@@ -787,7 +611,6 @@ export default function AboutPage() {
           white-space: nowrap;
         }
 
-
         /* HERO PHOTO */
 
         .st-hero-right {
@@ -799,7 +622,6 @@ export default function AboutPage() {
 
           background: var(--cream);
         }
-
 
         .st-photo-glow {
           position: absolute;
@@ -813,7 +635,6 @@ export default function AboutPage() {
               transparent 65%
             );
         }
-
 
         .st-photo {
           position: absolute;
@@ -832,7 +653,6 @@ export default function AboutPage() {
           pointer-events: none;
         }
 
-
         .st-photo img {
           object-fit: contain;
 
@@ -850,7 +670,6 @@ export default function AboutPage() {
             );
         }
 
-
         /* STORY */
 
         .st-story {
@@ -863,7 +682,6 @@ export default function AboutPage() {
           background: var(--white);
         }
 
-
         .st-story-art {
           position: relative;
 
@@ -873,7 +691,6 @@ export default function AboutPage() {
 
           background: var(--cream);
         }
-
 
         .st-art-big-circle {
           position: absolute;
@@ -890,7 +707,6 @@ export default function AboutPage() {
             rgba(212, 95, 136, 0.22);
         }
 
-
         .st-art-small-circle {
           position: absolute;
 
@@ -906,7 +722,6 @@ export default function AboutPage() {
           border-radius: 50%;
         }
 
-
         .st-art-pink {
           position: absolute;
 
@@ -921,7 +736,6 @@ export default function AboutPage() {
           transform:
             rotate(31deg);
         }
-
 
         .st-art-line {
           position: absolute;
@@ -941,7 +755,6 @@ export default function AboutPage() {
             rotate(-18deg);
         }
 
-
         .st-art-logo {
           position: absolute;
 
@@ -953,7 +766,6 @@ export default function AboutPage() {
           transform:
             translateY(-50%);
         }
-
 
         .st-art-logo strong {
           display: block;
@@ -967,11 +779,9 @@ export default function AboutPage() {
           letter-spacing: -3px;
         }
 
-
         .st-art-logo strong span {
           color: var(--pink-strong);
         }
-
 
         .st-art-logo small {
           display: block;
@@ -982,7 +792,6 @@ export default function AboutPage() {
 
           letter-spacing: 2.3px;
         }
-
 
         .st-art-script {
           position: absolute;
@@ -1006,7 +815,6 @@ export default function AboutPage() {
             rotate(-5deg);
         }
 
-
         .st-art-script::after {
           content: "";
 
@@ -1019,7 +827,6 @@ export default function AboutPage() {
 
           background: #111;
         }
-
 
         .st-art-words {
           position: absolute;
@@ -1038,7 +845,6 @@ export default function AboutPage() {
           line-height: 1.55;
         }
 
-
         /* STORY CONTENT */
 
         .st-story-content {
@@ -1050,7 +856,6 @@ export default function AboutPage() {
             40px
             40px;
         }
-
 
         .st-story-content h2 {
           margin:
@@ -1066,11 +871,9 @@ export default function AboutPage() {
           letter-spacing: -2.5px;
         }
 
-
         .st-story-copy {
           max-width: 570px;
         }
-
 
         .st-story-copy p {
           margin:
@@ -1082,7 +885,6 @@ export default function AboutPage() {
 
           line-height: 1.42;
         }
-
 
         .st-date {
           position: absolute;
@@ -1101,7 +903,6 @@ export default function AboutPage() {
             1px solid rgba(17, 17, 17, 0.25);
         }
 
-
         .st-date strong {
           display: block;
 
@@ -1109,7 +910,6 @@ export default function AboutPage() {
 
           line-height: 0.9;
         }
-
 
         .st-date span {
           display: block;
@@ -1122,7 +922,6 @@ export default function AboutPage() {
 
           line-height: 1.05;
         }
-
 
         .st-date i {
           display: block;
@@ -1137,13 +936,11 @@ export default function AboutPage() {
           background: #111;
         }
 
-
         .st-date small {
           font-size: 8px;
 
           line-height: 1.3;
         }
-
 
         /* VALUES */
 
@@ -1162,7 +959,6 @@ export default function AboutPage() {
             1px solid rgba(17, 17, 17, 0.1);
         }
 
-
         .st-values-title h2 {
           margin:
             10px
@@ -1177,14 +973,12 @@ export default function AboutPage() {
           letter-spacing: -2.3px;
         }
 
-
         .st-values-grid {
           display: grid;
 
           grid-template-columns:
             repeat(4, 1fr);
         }
-
 
         .st-value {
           min-height: 130px;
@@ -1197,11 +991,9 @@ export default function AboutPage() {
             1px solid rgba(17, 17, 17, 0.2);
         }
 
-
         .st-value:first-child {
           border-left: 0;
         }
-
 
         .st-value-icon {
           height: 42px;
@@ -1210,7 +1002,6 @@ export default function AboutPage() {
 
           line-height: 1;
         }
-
 
         .st-value h3 {
           margin:
@@ -1223,7 +1014,6 @@ export default function AboutPage() {
           font-weight: 900;
         }
 
-
         .st-value p {
           max-width: 175px;
 
@@ -1233,7 +1023,6 @@ export default function AboutPage() {
 
           line-height: 1.4;
         }
-
 
         /* INFO */
 
@@ -1255,7 +1044,6 @@ export default function AboutPage() {
             1px solid rgba(17, 17, 17, 0.12);
         }
 
-
         .st-info-title h2 {
           margin:
             10px
@@ -1272,7 +1060,6 @@ export default function AboutPage() {
           max-width: 360px;
         }
 
-
         .st-info-text {
           padding:
             0
@@ -1280,7 +1067,6 @@ export default function AboutPage() {
             0
             30px;
         }
-
 
         .st-info-text p {
           max-width: 650px;
@@ -1294,7 +1080,6 @@ export default function AboutPage() {
 
           line-height: 1.48;
         }
-
 
         .st-info-side {
           display: flex;
@@ -1317,7 +1102,6 @@ export default function AboutPage() {
           line-height: 1.35;
         }
 
-
         .st-info-side i {
           width: 30px;
           height: 1px;
@@ -1327,11 +1111,9 @@ export default function AboutPage() {
           background: #111;
         }
 
-
         .st-approach {
           background: var(--cream);
         }
-
 
         /* LIFE */
 
@@ -1352,7 +1134,6 @@ export default function AboutPage() {
             1px solid rgba(17, 17, 17, 0.12);
         }
 
-
         .st-life-title h2 {
           margin:
             10px
@@ -1367,14 +1148,12 @@ export default function AboutPage() {
           letter-spacing: -2.2px;
         }
 
-
         .st-life-grid {
           display: grid;
 
           grid-template-columns:
             repeat(7, 1fr);
         }
-
 
         .st-life-item {
           min-height: 100px;
@@ -1395,13 +1174,11 @@ export default function AboutPage() {
             1px solid rgba(17, 17, 17, 0.18);
         }
 
-
         .st-life-item div {
           height: 38px;
 
           font-size: 29px;
         }
-
 
         .st-life-item span {
           max-width: 95px;
@@ -1414,7 +1191,6 @@ export default function AboutPage() {
 
           line-height: 1.2;
         }
-
 
         /* DREAM */
 
@@ -1437,7 +1213,6 @@ export default function AboutPage() {
           background: var(--pink);
         }
 
-
         .st-dream-title h2 {
           margin:
             10px
@@ -1452,14 +1227,12 @@ export default function AboutPage() {
           letter-spacing: -2.7px;
         }
 
-
         .st-dream-text {
           padding-left: 20px;
 
           border-left:
             1px solid rgba(17, 17, 17, 0.3);
         }
-
 
         .st-dream-text p {
           max-width: 520px;
@@ -1474,11 +1247,9 @@ export default function AboutPage() {
           line-height: 1.45;
         }
 
-
         .st-dream-text strong {
           font-size: 12px;
         }
-
 
         .st-dark-button {
           justify-self: end;
@@ -1496,110 +1267,15 @@ export default function AboutPage() {
           font-weight: 900;
         }
 
-
         .st-dark-button span {
           margin-left: 8px;
 
           font-size: 15px;
         }
 
-
-        /* FOOTER */
-
-        .st-footer {
-          min-height: 110px;
-
-          display: grid;
-
-          grid-template-columns:
-            1fr
-            auto
-            1fr;
-
-          align-items: center;
-
-          gap: 30px;
-
-          padding:
-            28px
-            52px;
-
-          background: var(--white);
-        }
-
-
-        .st-footer-logo {
-          display: flex;
-
-          flex-direction: column;
-
-          line-height: 1;
-        }
-
-
-        .st-footer-logo strong {
-          font-size: 23px;
-
-          font-weight: 950;
-
-          letter-spacing: -1.5px;
-        }
-
-
-        .st-footer-logo small {
-          margin-top: 5px;
-
-          font-size: 7px;
-
-          font-weight: 700;
-
-          letter-spacing: 1.4px;
-        }
-
-
-        .st-footer-nav {
-          display: flex;
-
-          gap: 27px;
-        }
-
-
-        .st-footer-nav a {
-          font-size: 8px;
-
-          font-weight: 800;
-        }
-
-
-        .st-social {
-          justify-self: end;
-
-          display: flex;
-
-          gap: 19px;
-        }
-
-
-        .st-social a {
-          font-size: 21px;
-
-          font-weight: 700;
-        }
-
-
         /* TABLET */
 
         @media (max-width: 1100px) {
-
-          .st-nav {
-            gap: 20px;
-          }
-
-          .st-header {
-            padding:
-              0
-              25px;
-          }
 
           .st-hero-left {
             padding-left: 35px;
@@ -1636,34 +1312,9 @@ export default function AboutPage() {
           }
         }
 
-
         /* MOBILE */
 
         @media (max-width: 800px) {
-
-          .st-header {
-            height: 62px;
-
-            padding:
-              0
-              18px;
-          }
-
-          .st-nav {
-            display: none;
-          }
-
-          .st-logo {
-            width: auto;
-          }
-
-          .st-signup {
-            padding:
-              11px
-              14px;
-
-            font-size: 9px;
-          }
 
           .st-hero {
             height: auto;
@@ -1877,31 +1528,7 @@ export default function AboutPage() {
             display: inline-block;
           }
 
-          .st-footer {
-            display: flex;
-
-            flex-direction: column;
-
-            align-items: flex-start;
-
-            padding:
-              30px
-              22px;
-          }
-
-          .st-footer-nav {
-            flex-wrap: wrap;
-
-            gap:
-              14px
-              20px;
-          }
-
-          .st-social {
-            justify-self: auto;
-          }
         }
-
 
         /* SMALL MOBILE */
 
