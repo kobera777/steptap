@@ -1,0 +1,12 @@
+/* Палитра и шрифты сайта — единственное место, где они задаются. */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
+
+:root {
+  --black: #111111;
+  --cream: #f4f1ea;
+  --white: #ffffff;
+  --pink: #d45f88;
+  --soft-pink: #d45f88;
+  --line: #1a1a1a;
+  --muted: #6f6b65;

@@ -55,8 +55,10 @@
 /* ---------- Параллакс ---------- */
 
 [data-parallax] {
-  transform: translate3d(0, var(--parallax, 0px), 0);
-  will-change: transform;
+  /* Отдельное свойство translate, а не transform: не ломает собственные
+     rotate()/translate() элемента (розовая записка, квадраты). */
+  translate: 0 var(--parallax, 0px);
+  will-change: translate;
 }
 
 /* ---------- Наклон карточек за курсором ---------- */
@@ -235,7 +237,10 @@
     transition: none;
   }
 
-  [data-parallax],
+  [data-parallax] {
+    translate: none;
+  }
+
   [data-tilt] {
     transform: none;
     transition: none;

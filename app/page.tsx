@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { siteContacts, telHref } from "@/data/site";
+import "./home.css";
 
 const faqs = [
   {

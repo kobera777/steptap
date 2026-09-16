@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "./styles/tokens.css";
+import "./styles/base.css";
 import "./motion.css";
 import { LiquidGlassFilter, MotionEffects } from "@/components/motion/MotionEffects";
 

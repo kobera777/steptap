@@ -1,0 +1,523 @@
+/* Страница «РАЗБОР ПЕСНИ» — все стили только здесь. Префикс классов: .song-page */
+
+/* Унаследовано с главной страницы (раньше лежало в общем globals.css).
+   Страница опирается на эти правила; свои правила ниже их переопределяют. */
+
+.song-page .hero {
+  width: 100%;
+  min-height: clamp(520px, 50vw, 740px);
+  display: grid;
+  grid-template-columns: 43% 57%;
+  background: var(--cream);
+}
+
+.song-page .hero-copy {
+  min-width: 0;
+  padding: 55px 45px 55px 6.5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.song-page .hero-copy h1 {
+  margin: 0;
+  font-family: "Manrope", Arial, sans-serif;
+  font-size: clamp(68px, 7.5vw, 112px);
+  line-height: 0.82;
+  letter-spacing: -0.075em;
+  font-weight: 800;
+}
+
+@media (max-width: 1200px) {
+  .song-page .hero {
+    grid-template-columns: 48% 52%;
+    min-height: clamp(460px, 46vw, 600px);
+  }
+
+  .song-page .hero-copy {
+    padding-left: 5vw;
+  }
+}
+
+@media (max-width: 900px) {
+  .song-page .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .song-page .hero-copy {
+    padding: 60px 7vw 45px;
+  }
+}
+
+@media (max-width: 680px) {
+  .song-page .hero-copy {
+    padding: 48px 22px 38px;
+  }
+
+  .song-page .hero-copy h1 {
+    font-size: clamp(62px, 19vw, 92px);
+  }
+}
+
+.song-page {
+  --pink: #d45f88;
+  --cream: #f4eee5;
+  --paper: #fbf8f3;
+  --black: #171717;
+  min-height: 100vh;
+  background: var(--cream);
+  color: var(--black);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: clip; /* clip, не hidden: иначе не работает sticky-шапка */
+}
+.song-page .hero {
+  min-height: 500px;
+  padding: 76px 7vw 82px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 60px;
+  align-items: center;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.16);
+}
+.song-page .hero:before {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border: 1px solid rgba(23, 23, 23, 0.18);
+  border-radius: 50%;
+  right: 4%;
+  top: 65px;
+}
+.song-page .hero:after {
+  content: "";
+  position: absolute;
+  width: 125px;
+  height: 125px;
+  border: 1px solid var(--pink);
+  transform: rotate(18deg);
+  right: 11%;
+  top: 118px;
+}
+.song-page .hero-content {
+  position: relative;
+  z-index: 2;
+}
+.song-page .eyebrow {
+  color: var(--pink);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 22px;
+}
+h1 {
+  font-size: clamp(68px, 10vw, 150px);
+  line-height: 0.79;
+  letter-spacing: -7px;
+  margin: 0;
+  font-weight: 950;
+  text-transform: uppercase;
+  max-width: 850px;
+}
+h1 span {
+  display: block;
+  color: var(--pink);
+}
+.song-page .hero-copy {
+  max-width: 610px;
+  margin-top: 30px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.song-page .demo-card {
+  position: relative;
+  z-index: 2;
+  background: var(--black);
+  color: white;
+  padding: 38px;
+  min-height: 290px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.song-page .demo-card .tiny {
+  color: #d7d0c8;
+  font-size: 9px;
+  letter-spacing: 2px;
+  font-weight: 800;
+}
+.song-page .demo-card h2 {
+  font-size: 35px;
+  line-height: 1;
+  letter-spacing: -1.5px;
+  margin: 14px 0 5px;
+}
+.song-page .artist {
+  color: var(--pink);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.song-page .play {
+  width: 100%;
+  border: 0;
+  background: var(--pink);
+  color: white;
+  padding: 17px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+}
+
+.song-page .section {
+  padding: 86px 7vw;
+}
+.song-page .section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+  margin-bottom: 48px;
+}
+.song-page .section-label {
+  color: var(--pink);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+.song-page .section h3 {
+  margin: 10px 0 0;
+  font-size: clamp(42px, 6vw, 78px);
+  line-height: 0.9;
+  letter-spacing: -4px;
+  text-transform: uppercase;
+}
+
+.song-page .meaning {
+  background: var(--paper);
+}
+.song-page .meaning-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr;
+  gap: 70px;
+  align-items: start;
+}
+.song-page .meaning-text {
+  font-size: 21px;
+  line-height: 1.55;
+  max-width: 900px;
+  margin: 0;
+}
+.song-page .pink-note {
+  background: var(--pink);
+  color: white;
+  min-height: 190px;
+  padding: 28px;
+  display: flex;
+  align-items: flex-end;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  transform: rotate(-3deg);
+}
+
+.song-page .timeline {
+  background: var(--black);
+  color: white;
+}
+.song-page .timeline .section-label {
+  color: #f1a1bc;
+}
+.song-page .timeline .section h3 {
+  color: white;
+}
+.song-page .timeline-description {
+  max-width: 360px;
+  color: #d7d0c8;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.song-page .track-wrap {
+  margin-top: 60px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+}
+.song-page .track {
+  min-width: 980px;
+  position: relative;
+  height: 115px;
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+.song-page .track-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 57px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.28);
+}
+.song-page .point {
+  position: absolute;
+  top: 43px;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--pink);
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 12px;
+  color: white;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+.song-page .point:hover {
+  transform: translateX(-50%) scale(1.25);
+  background: var(--pink);
+}
+.song-page .point:after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 23px;
+  background: var(--pink);
+  top: -24px;
+}
+.song-page .time {
+  position: absolute;
+  top: 77px;
+  transform: translateX(-50%);
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #d7d0c8;
+}
+.song-page .legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 35px;
+  font-size: 11px;
+  color: #d7d0c8;
+  letter-spacing: 0.7px;
+}
+
+.song-page .analysis {
+  background: var(--cream);
+}
+.song-page .accent-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(23, 23, 23, 0.22);
+  border: 1px solid rgba(23, 23, 23, 0.22);
+}
+.song-page .accent {
+  background: var(--cream);
+  padding: 28px 30px 32px;
+  min-height: 170px;
+  position: relative;
+}
+.song-page .accent:nth-child(even) {
+  background: var(--paper);
+}
+.song-page .accent-time {
+  color: var(--pink);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.song-page .accent-mark {
+  position: absolute;
+  right: 26px;
+  top: 25px;
+  font-size: 20px;
+}
+.song-page .accent h4 {
+  margin: 26px 0 9px;
+  font-size: 23px;
+  letter-spacing: -0.8px;
+  text-transform: uppercase;
+}
+.song-page .accent p {
+  margin: 0;
+  max-width: 620px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #55514d;
+}
+
+.song-page .layers {
+  background: var(--paper);
+}
+.song-page .layers-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(23, 23, 23, 0.25);
+  border-bottom: 1px solid rgba(23, 23, 23, 0.25);
+}
+.song-page .layer {
+  min-height: 160px;
+  padding: 25px 20px;
+  border-right: 1px solid rgba(23, 23, 23, 0.2);
+}
+.song-page .layer:last-child {
+  border-right: 0;
+}
+.song-page .layer-no {
+  color: var(--pink);
+  font-size: 11px;
+  font-weight: 900;
+}
+.song-page .layer h4 {
+  margin: 38px 0 8px;
+  font-size: 17px;
+  text-transform: uppercase;
+}
+.song-page .layer p {
+  margin: 0;
+  color: #6a6560;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.song-page .dance {
+  background: var(--pink);
+  color: white;
+  min-height: 420px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+.song-page .dance .section-label {
+  color: white;
+  opacity: 0.8;
+}
+.song-page .dance h3 {
+  color: white;
+}
+.song-page .dance-copy {
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 650px;
+  margin: 25px 0 0;
+}
+.song-page .dance-list {
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+.song-page .dance-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 19px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  font-weight: 800;
+  font-size: 13px;
+}
+
+@media (max-width: 1100px) {
+  .song-page .hero {
+    gap: 35px;
+  }
+  .song-page .layers-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .song-page .layer:nth-child(3) {
+    border-right: 0;
+  }
+  .song-page .layer:nth-child(-n + 3) {
+    border-bottom: 1px solid rgba(23, 23, 23, 0.2);
+  }
+}
+
+@media (max-width: 900px) {
+  .song-page .hero {
+    grid-template-columns: 1fr;
+    padding-top: 60px;
+  }
+  .song-page .hero:before,
+  .song-page .hero:after {
+    opacity: 0.25;
+  }
+  .song-page .meaning-grid,
+  .song-page .dance {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .song-page .dance {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .song-page .hero {
+    padding: 55px 20px 65px;
+    gap: 45px;
+  }
+  h1 {
+    font-size: 65px;
+    letter-spacing: -4px;
+  }
+  .song-page .hero-copy {
+    font-size: 14px;
+  }
+  .song-page .demo-card {
+    padding: 25px;
+  }
+  .song-page .demo-card h2 {
+    font-size: 31px;
+  }
+  .song-page .section {
+    padding: 65px 20px;
+  }
+  .song-page .section h3 {
+    letter-spacing: -2px;
+  }
+  .song-page .section-head {
+    display: block;
+  }
+  .song-page .section-head .section-label {
+    display: block;
+    margin-bottom: 15px;
+  }
+  .song-page .timeline-description {
+    margin-top: 25px;
+  }
+  .song-page .meaning-text {
+    font-size: 17px;
+  }
+  .song-page .pink-note {
+    min-height: 150px;
+  }
+  .song-page .accent-grid {
+    grid-template-columns: 1fr;
+  }
+  .song-page .accent {
+    min-height: 155px;
+  }
+  .song-page .layers-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .song-page .layer {
+    border-right: 1px solid rgba(23, 23, 23, 0.2) !important;
+    border-bottom: 1px solid rgba(23, 23, 23, 0.2);
+  }
+  .song-page .layer:nth-child(even) {
+    border-right: 0 !important;
+  }
+  .song-page .layer h4 {
+    margin-top: 25px;
+  }
+  .song-page .dance-item {
+    font-size: 11px;
+  }
+}
