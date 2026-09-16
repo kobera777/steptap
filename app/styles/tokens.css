@@ -3,8 +3,6 @@
    В остальных файлах только var(--…). Никаких hex-кодов «россыпью».
 ================================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
-
 :root {
   /* ---- Цвета ---- */
   --color-black: #111111;
@@ -20,8 +18,13 @@
      (#f4eee5 / #171717) — см. app/song-analysis/song-analysis.css. */
 
   /* ---- Шрифты ----
-     DM Sans не содержит кириллицу: русский текст в --font-body рендерится Arial,
-     латиница («STEP TAP», цифры) — DM Sans. Manrope кириллицу содержит. */
+     DM Sans и Manrope скачиваются при сборке через next/font (app/layout.tsx) и
+     регистрируются как @font-face с этими же именами. Здесь они названы напрямую,
+     а не через переменные next/font: Turbopack игнорирует adjustFontFallback:false и
+     подставил бы «DM Sans Fallback» (Arial с size-adjust), который сдвигает русский
+     текст. DM Sans не содержит кириллицу: русский текст в --font-body рендерится
+     Arial, латиница («STEP TAP», цифры) — DM Sans. Manrope кириллицу содержит.
+     Arial в списке обязателен. */
   --font-body: "DM Sans", Arial, sans-serif;
   --font-display: "Manrope", Arial, sans-serif;
   --font-ui: Arial, Helvetica, sans-serif;
