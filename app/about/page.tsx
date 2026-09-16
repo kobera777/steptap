@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import Link from "next/link";
@@ -5,6 +6,11 @@ import { signupHref } from "@/data/nav";
 
 import Image from "next/image";
 import "./about.css";
+
+export const metadata: Metadata = {
+  title: "О школе",
+  description: "STEP TAP — школа танца: история, ценности, преподаватели и жизнь школы.",
+};
 
 const values = [
   {

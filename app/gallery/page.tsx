@@ -8,7 +8,7 @@ import { getAlbums } from "@/data/gallery";
 import "./gallery.css";
 
 export const metadata: Metadata = {
-  title: "Галерея — STEP TAP",
+  title: "Галерея",
   description:
     "Фото и видео с занятий, вечеринок, мастер-классов и концертов школы танца STEP TAP.",
 };

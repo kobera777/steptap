@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import "./song-analysis.css";
+
+export const metadata: Metadata = {
+  title: "Разбор песни",
+  description:
+    "Музыкальный разбор бачаты: акценты, паузы и структура трека, чтобы слышать музыку и танцевать в ней.",
+};
 
 export default function SongAnalysisPage() {
   const accents = [

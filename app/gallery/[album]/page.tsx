@@ -26,10 +26,10 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { album: slug } = await props.params;
   const album = getAlbum(slug);
-  if (!album) return { title: "Альбом не найден — STEP TAP" };
+  if (!album) return { title: "Альбом не найден" };
 
   return {
-    title: `${album.title} — Галерея STEP TAP`,
+    title: `${album.title} — Галерея`,
     description: album.description,
     openGraph: { images: [album.cover] },
   };

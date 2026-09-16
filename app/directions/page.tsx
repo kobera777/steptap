@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import Link from "next/link";
@@ -5,6 +6,12 @@ import { signupHref } from "@/data/nav";
 
 import Image from "next/image";
 import "./directions.css";
+
+export const metadata: Metadata = {
+  title: "Направления",
+  description:
+    "Направления школы танца STEP TAP: бачата в паре, бачата леди, мужской стиль, экспериментальная, дэнсхолл и латина.",
+};
 
 export default function DirectionsPage() {
   return (
