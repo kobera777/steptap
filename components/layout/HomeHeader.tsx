@@ -71,7 +71,7 @@ export function HomeHeader() {
 
       <nav
         id="mobile-nav"
-        className="mobile-nav glass glass-dark"
+        className="mobile-nav glass glass-solid"
         aria-label="Мобильное меню"
         onClick={() => setMenuOpen(false)}
       >

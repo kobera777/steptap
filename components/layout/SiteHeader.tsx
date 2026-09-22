@@ -58,7 +58,11 @@ export function SiteHeader() {
         </button>
       </div>
 
-      <nav id="sc-mobile-menu" className="sc-mobile glass" aria-label="Мобильное меню">
+      <nav
+        id="sc-mobile-menu"
+        className="sc-mobile glass glass-solid"
+        aria-label="Мобильное меню"
+      >
         {links}
       </nav>
     </header>
