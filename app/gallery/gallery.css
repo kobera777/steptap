@@ -24,7 +24,7 @@
   margin: 0 0 22px;
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: var(--tracking-label);
 }
 
 .gal-kicker.is-pink {
@@ -44,10 +44,12 @@
 
 .gal-hero h1 {
   margin: 0;
-  font-size: clamp(64px, 9vw, 150px);
+  /* 8vw, а не 9vw: слово «МОМЕНТЫ.» при 9vw вылезало из своей колонки
+     и наезжало на розовый квадрат справа. */
+  font-size: clamp(64px, 8vw, 150px);
   line-height: 0.82;
-  letter-spacing: -6px;
-  font-weight: 950;
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
 }
 
 .gal-hero h1 span {
@@ -99,9 +101,9 @@
 .gal-hero-text {
   margin: 0;
   font-size: 22px;
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1.1;
-  letter-spacing: -0.5px;
+  letter-spacing: var(--tracking-heading);
 }
 
 .gal-hero-text small {
@@ -131,7 +133,7 @@
   width: fit-content;
   max-width: 100%;
   padding: 8px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   pointer-events: auto;
 }
 
@@ -140,14 +142,14 @@
   align-items: center;
   gap: 8px;
   padding: 11px 16px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: transparent;
   border: 1px solid rgba(17, 17, 17, 0.35);
   color: var(--black);
   font: inherit;
   font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 1px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
   cursor: pointer;
   transition:
     background 0.2s ease,
@@ -183,6 +185,7 @@
 }
 
 .gal-album {
+  border-radius: var(--radius-card);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -225,14 +228,15 @@
   left: 16px;
   top: 16px;
   padding: 8px 12px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   color: var(--black);
   font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 1px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
 }
 
 .gal-album-category {
+  border-radius: var(--radius-pill);
   position: absolute;
   right: 16px;
   top: 16px;
@@ -240,8 +244,8 @@
   background: var(--pink);
   color: var(--color-white);
   font-size: 9px;
-  font-weight: 900;
-  letter-spacing: 1.5px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
 }
 
 .gal-album-body {
@@ -256,9 +260,9 @@
   margin: 0 0 10px;
   font-size: 22px;
   line-height: 0.95;
-  letter-spacing: -1px;
-  font-weight: 950;
-  text-transform: uppercase;
+  letter-spacing: var(--tracking-heading);
+  font-weight: 800;
+  /* Длинные фразы прописными по-русски читаются плохо — оставляем как есть. */
 }
 
 .gal-album.is-featured .gal-album-body h3 {
@@ -268,7 +272,7 @@
 .gal-album-body small {
   font-size: 9px;
   font-weight: 800;
-  letter-spacing: 1.5px;
+  letter-spacing: var(--tracking-label);
   opacity: 0.6;
 }
 
@@ -304,7 +308,7 @@
   margin-bottom: 36px;
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: var(--tracking-label);
 }
 
 .gal-album-hero-grid {
@@ -319,9 +323,9 @@
   max-width: 14ch;
   font-size: clamp(40px, 6vw, 92px);
   line-height: 0.85;
-  letter-spacing: -3.5px;
-  font-weight: 950;
-  text-transform: uppercase;
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
+  /* Длинные фразы прописными по-русски читаются плохо — оставляем как есть. */
 }
 
 .gal-album-meta {
@@ -332,11 +336,12 @@
 }
 
 .gal-album-meta span {
+  border-radius: var(--radius-pill);
   padding: 8px 10px;
   border: 1px solid var(--black);
   font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 1px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
 }
 
 .gal-album-meta span.is-pink {
@@ -358,7 +363,7 @@
   margin-top: 22px;
   font-size: 9px;
   font-weight: 800;
-  letter-spacing: 1.5px;
+  letter-spacing: var(--tracking-label);
   opacity: 0.6;
 }
 
@@ -380,14 +385,14 @@
   margin: 0;
   font-size: clamp(30px, 3.5vw, 48px);
   line-height: 0.9;
-  letter-spacing: -2px;
-  font-weight: 950;
+  letter-spacing: var(--tracking-heading);
+  font-weight: 800;
 }
 
 .gal-section-head small {
   font-size: 9px;
   font-weight: 800;
-  letter-spacing: 1.5px;
+  letter-spacing: var(--tracking-label);
   opacity: 0.6;
   white-space: nowrap;
 }
@@ -406,6 +411,7 @@
 }
 
 .gal-video-frame {
+  border-radius: var(--radius-card);
   position: relative;
   aspect-ratio: 16 / 9;
   background: #1a1a1a;
@@ -448,7 +454,7 @@
 .gal-video-placeholder span {
   font-size: 9px;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: var(--tracking-label);
   opacity: 0.7;
 }
 
@@ -465,7 +471,7 @@
 .gal-video-caption small {
   font-size: 9px;
   font-weight: 800;
-  letter-spacing: 1.5px;
+  letter-spacing: var(--tracking-label);
   opacity: 0.6;
 }
 
@@ -477,6 +483,7 @@
 }
 
 .gal-photo {
+  border-radius: var(--radius-card);
   display: block;
   width: 100%;
   margin: 0 0 18px;
@@ -534,16 +541,16 @@
 .gal-adjacent span {
   font-size: 9px;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: var(--tracking-label);
   opacity: 0.6;
 }
 
 .gal-adjacent strong {
   font-size: 18px;
   line-height: 1;
-  letter-spacing: -0.8px;
-  font-weight: 950;
-  text-transform: uppercase;
+  letter-spacing: var(--tracking-heading);
+  font-weight: 800;
+  /* Длинные фразы прописными по-русски читаются плохо — оставляем как есть. */
 }
 
 /* ---------- ФИНАЛЬНЫЙ CTA ---------- */
@@ -562,8 +569,8 @@
   margin: 0 0 25px;
   font-size: clamp(56px, 9vw, 125px);
   line-height: 0.8;
-  letter-spacing: -5px;
-  font-weight: 950;
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
 }
 
 .gal-final > div > p:not(.gal-kicker) {
@@ -573,14 +580,15 @@
 }
 
 .gal-final-button {
+  border-radius: var(--radius-pill);
   display: inline-flex;
   gap: 18px;
   align-items: center;
   padding: 16px 23px;
-  background: #ee5b91;
+  background: var(--color-pink);
   color: var(--color-white) !important;
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .gal-final-logo {
@@ -633,7 +641,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   color: var(--color-white);
   font: inherit;
   cursor: pointer;
@@ -706,10 +714,10 @@
   bottom: 22px;
   transform: translateX(-50%);
   padding: 8px 14px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: var(--tracking-label);
 }
 
 .gal-lightbox-counter span {
@@ -750,7 +758,7 @@
 
   .gal-hero h1 {
     font-size: clamp(44px, 13.5vw, 80px);
-    letter-spacing: -3px;
+    letter-spacing: var(--tracking-display);
   }
 
   .gal-hero-right {
@@ -795,7 +803,7 @@
   }
 
   .gal-album-hero h1 {
-    letter-spacing: -2px;
+    letter-spacing: var(--tracking-heading);
   }
 
   .gal-section {
@@ -841,7 +849,7 @@
 
   .gal-final h2 {
     font-size: clamp(40px, 12vw, 56px);
-    letter-spacing: -2.5px;
+    letter-spacing: var(--tracking-display);
   }
 
   .gal-final-logo {

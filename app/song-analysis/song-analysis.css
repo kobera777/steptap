@@ -25,7 +25,7 @@
   font-family: var(--font-display);
   font-size: clamp(68px, 7.5vw, 112px);
   line-height: 0.82;
-  letter-spacing: -0.075em;
+  letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
 
@@ -108,16 +108,16 @@
 .song-page .eyebrow {
   color: var(--pink);
   font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 2px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
   margin-bottom: 22px;
 }
-h1 {
+.song-page h1 {
   font-size: clamp(68px, 10vw, 150px);
   line-height: 0.79;
-  letter-spacing: -7px;
+  letter-spacing: var(--tracking-display);
   margin: 0;
-  font-weight: 950;
+  font-weight: 800;
   text-transform: uppercase;
   max-width: 850px;
 }
@@ -146,29 +146,30 @@ h1 span {
 .song-page .demo-card .tiny {
   color: #d7d0c8;
   font-size: 9px;
-  letter-spacing: 2px;
+  letter-spacing: var(--tracking-label);
   font-weight: 800;
 }
 .song-page .demo-card h2 {
   font-size: 35px;
   line-height: 1;
-  letter-spacing: -1.5px;
+  letter-spacing: var(--tracking-heading);
   margin: 14px 0 5px;
 }
 .song-page .artist {
   color: var(--pink);
   font-size: 13px;
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: var(--tracking-label);
 }
 .song-page .play {
+  border-radius: var(--radius-pill);
   width: 100%;
   border: 0;
   background: var(--pink);
   color: white;
   padding: 17px;
-  font-weight: 900;
-  letter-spacing: 1.5px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
   cursor: pointer;
 }
 
@@ -185,14 +186,14 @@ h1 span {
 .song-page .section-label {
   color: var(--pink);
   font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 2px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
 }
 .song-page .section h3 {
   margin: 10px 0 0;
   font-size: clamp(42px, 6vw, 78px);
   line-height: 0.9;
-  letter-spacing: -4px;
+  letter-spacing: var(--tracking-display);
   text-transform: uppercase;
 }
 
@@ -219,9 +220,9 @@ h1 span {
   display: flex;
   align-items: flex-end;
   font-size: 24px;
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1;
-  text-transform: uppercase;
+  /* Длинные фразы прописными по-русски читаются плохо — оставляем как есть. */
   transform: rotate(-3deg);
 }
 
@@ -296,7 +297,7 @@ h1 span {
   top: 77px;
   transform: translateX(-50%);
   font-size: 10px;
-  letter-spacing: 1px;
+  letter-spacing: var(--tracking-label);
   color: #d7d0c8;
 }
 .song-page .legend {
@@ -306,7 +307,7 @@ h1 span {
   margin-top: 35px;
   font-size: 11px;
   color: #d7d0c8;
-  letter-spacing: 0.7px;
+  letter-spacing: var(--tracking-ui);
 }
 
 .song-page .analysis {
@@ -331,8 +332,8 @@ h1 span {
 .song-page .accent-time {
   color: var(--pink);
   font-size: 13px;
-  font-weight: 900;
-  letter-spacing: 1px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
 }
 .song-page .accent-mark {
   position: absolute;
@@ -343,7 +344,7 @@ h1 span {
 .song-page .accent h4 {
   margin: 26px 0 9px;
   font-size: 23px;
-  letter-spacing: -0.8px;
+  letter-spacing: var(--tracking-heading);
   text-transform: uppercase;
 }
 .song-page .accent p {
@@ -375,7 +376,7 @@ h1 span {
 .song-page .layer-no {
   color: var(--pink);
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 800;
 }
 .song-page .layer h4 {
   margin: 38px 0 8px;
@@ -465,7 +466,7 @@ h1 span {
   }
   h1 {
     font-size: 65px;
-    letter-spacing: -4px;
+    letter-spacing: var(--tracking-display);
   }
   .song-page .hero-copy {
     font-size: 14px;
@@ -480,7 +481,7 @@ h1 span {
     padding: 65px 20px;
   }
   .song-page .section h3 {
-    letter-spacing: -2px;
+    letter-spacing: var(--tracking-heading);
   }
   .song-page .section-head {
     display: block;

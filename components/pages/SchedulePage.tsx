@@ -97,62 +97,22 @@ export function SchedulePage() {
 
       <section className="schedule-calendar-section">
         <div className="schedule-calendar-top">
-          <button
-            className="schedule-arrow"
-            type="button"
-            aria-label="Предыдущий месяц"
-            style={{
-              position: "relative",
-              left: "-70px",
-            }}
-          >
+          <button className="schedule-arrow" type="button" aria-label="Предыдущий месяц">
             ←
           </button>
 
-          <h2
-            style={{
-              position: "relative",
-              left: "-70px",
-            }}
-          >
+          <h2>
             СЕНТЯБРЬ <span>2026</span>
           </h2>
 
-          <button
-            className="schedule-arrow"
-            type="button"
-            aria-label="Следующий месяц"
-            style={{
-              position: "relative",
-              left: "-70px",
-            }}
-          >
+          <button className="schedule-arrow" type="button" aria-label="Следующий месяц">
             →
           </button>
 
-          <div
-            className="schedule-top-legend"
-            style={{
-              position: "relative",
-              left: "-40px",
-            }}
-          >
+          <div className="schedule-top-legend">
             {(Object.keys(levelInfo) as Level[]).map((level) => (
               <div key={level} className="schedule-top-legend-item">
-                <span
-                  className={`schedule-legend-dot ${levelInfo[level].className}`}
-                  style={
-                    level === "pro"
-                      ? {
-                          backgroundColor: "#B8A1E3",
-                        }
-                      : level === "profi"
-                        ? {
-                            backgroundColor: "#34343A",
-                          }
-                        : undefined
-                  }
-                />
+                <span className={`schedule-legend-dot ${levelInfo[level].className}`} />
 
                 <div>
                   <strong>{levelInfo[level].label}</strong>
@@ -163,13 +123,7 @@ export function SchedulePage() {
             ))}
           </div>
 
-          <div
-            className="schedule-view-switcher"
-            style={{
-              position: "relative",
-              left: "30px",
-            }}
-          >
+          <div className="schedule-view-switcher">
             <button
               type="button"
               className={view === "month" ? "is-active" : ""}
@@ -332,13 +286,6 @@ export function SchedulePage() {
                         <article
                           key={item.id}
                           className={`schedule-list-card ${levelInfo[item.level].className}`}
-                          style={
-                            item.level === "pro"
-                              ? { backgroundColor: "#B8A1E3" }
-                              : item.level === "profi"
-                                ? { backgroundColor: "#34343A", color: "#FFFFFF" }
-                                : undefined
-                          }
                         >
                           <b>
                             {item.start}

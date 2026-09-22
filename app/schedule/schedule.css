@@ -9,7 +9,7 @@
   font-size: 11px;
   line-height: 1.2;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
 
@@ -42,7 +42,7 @@
   font-size: 11px;
   line-height: 1.2;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--tracking-ui);
   text-transform: uppercase;
 }
 
@@ -51,7 +51,7 @@
   font-family: var(--font-display);
   font-size: clamp(62px, 7vw, 104px);
   line-height: 0.82;
-  letter-spacing: -0.075em;
+  letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
 
@@ -106,7 +106,7 @@
   font-size: 10px;
   line-height: 1;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--tracking-ui);
 }
 
 .schedule-hero-words i {
@@ -138,13 +138,22 @@
   font-family: var(--font-display);
   font-size: clamp(28px, 3vw, 42px);
   line-height: 1;
-  letter-spacing: -0.055em;
+  letter-spacing: var(--tracking-display);
   font-weight: 800;
   white-space: nowrap;
 }
 
 .schedule-calendar-top h2 span {
   color: var(--pink);
+}
+
+/* Блок навигации по месяцу сдвинут влево, чтобы встать по сетке календаря.
+   Раньше сдвиг был прописан прямо в разметке (style left:-70px) и на телефоне
+   уезжал за край экрана — теперь он живёт здесь и на узких экранах отключается. */
+.schedule-calendar-top > .schedule-arrow,
+.schedule-calendar-top > h2 {
+  position: relative;
+  left: -70px;
 }
 
 .schedule-arrow {
@@ -166,9 +175,9 @@
 
 /* TOP LEGEND */
 
-/* TOP LEGEND */
-
 .schedule-top-legend {
+  position: relative;
+  left: -40px;
   min-width: 0;
   display: flex;
   align-items: flex-start;
@@ -190,7 +199,7 @@
   width: 24px;
   height: 24px;
   flex: 0 0 24px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
 }
 
 .schedule-top-legend-item strong {
@@ -211,16 +220,21 @@
 /* VIEW SWITCHER */
 
 .schedule-view-switcher {
+  position: relative;
+  left: 30px;
   justify-self: end;
   display: flex;
   align-items: stretch;
   overflow: hidden;
   border: 1px solid rgba(17, 17, 17, 0.1);
-  border-radius: 7px;
+  border-radius: var(--radius-pill);
   background: #f3f1ed;
 }
 
 .schedule-view-switcher button {
+  /* Прописная кириллица в мелком кегле требует разрядки. */
+  letter-spacing: var(--tracking-ui);
+  border-radius: var(--radius-pill);
   min-width: 68px;
   min-height: 30px;
   padding: 7px 11px;
@@ -332,7 +346,7 @@
   position: absolute;
   box-sizing: border-box;
   padding: 10px 10px 8px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   color: var(--black);
   overflow: hidden;
 }
@@ -346,6 +360,8 @@
 }
 
 .schedule-card h3 {
+  /* Прописная кириллица в мелком кегле требует разрядки. */
+  letter-spacing: var(--tracking-ui);
   margin: 0 0 5px;
   font-family: var(--font-display);
   font-size: 10px;
@@ -393,6 +409,17 @@
   background: #eadbc6;
 }
 
+.schedule-card-pro,
+.schedule-legend-dot.schedule-card-pro {
+  background: #b8a1e3;
+}
+
+.schedule-card-profi,
+.schedule-legend-dot.schedule-card-profi {
+  background: #34343a;
+  color: var(--color-white);
+}
+
 /* WEEK VIEW */
 
 .schedule-week-view {
@@ -403,7 +430,7 @@
   padding: 12px 0;
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--tracking-ui);
 }
 
 .schedule-week-row {
@@ -433,7 +460,7 @@
 .schedule-list-card {
   min-width: 170px;
   padding: 10px 12px;
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
 }
 
 .schedule-list-card b {
@@ -441,6 +468,8 @@
 }
 
 .schedule-list-card span {
+  /* Прописная кириллица в мелком кегле требует разрядки. */
+  letter-spacing: var(--tracking-ui);
   display: block;
   margin-top: 4px;
   font-size: 10px;
@@ -508,7 +537,7 @@
   font-family: var(--font-display);
   font-size: clamp(46px, 5vw, 76px);
   line-height: 0.86;
-  letter-spacing: -0.07em;
+  letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
 
@@ -560,7 +589,7 @@
   margin: 0 0 8px;
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--tracking-label);
 }
 
 .schedule-final-cta h2 {
@@ -568,18 +597,19 @@
   font-family: var(--font-display);
   font-size: clamp(50px, 6vw, 82px);
   line-height: 0.82;
-  letter-spacing: -0.075em;
+  letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
 
 .schedule-final-cta a {
+  border-radius: var(--radius-pill);
   display: inline-flex;
   align-items: center;
   padding: 14px 18px;
   border: 1px solid var(--black);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--tracking-ui);
   text-transform: uppercase;
 }
 
@@ -614,6 +644,13 @@
 
   .schedule-calendar-top {
     grid-template-columns: 36px auto 36px 1fr;
+  }
+
+  .schedule-calendar-top > .schedule-arrow,
+  .schedule-calendar-top > h2,
+  .schedule-top-legend,
+  .schedule-view-switcher {
+    left: 0;
   }
 
   .schedule-top-legend {
@@ -757,7 +794,8 @@
   }
 
   .schedule-events h2 {
-    font-size: clamp(46px, 15vw, 68px);
+    /* 15vw давало «БЛИЖАЙШИЕ» шире экрана — слово упиралось в край. */
+    font-size: clamp(38px, 13vw, 68px);
   }
 
   .schedule-final-cta h2 {

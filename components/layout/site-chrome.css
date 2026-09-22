@@ -62,8 +62,8 @@
 
 .sc-logo strong {
   font-size: 25px;
-  font-weight: 950;
-  letter-spacing: -1.7px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-heading);
 }
 
 .sc-logo strong span,
@@ -75,7 +75,7 @@
   margin-top: 5px;
   font-size: 7px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: var(--tracking-label);
 }
 
 .sc-nav {
@@ -111,8 +111,8 @@
   padding: 14px 24px;
   background: var(--sc-pink);
   font-size: 10px;
-  font-weight: 900;
-  border-radius: 4px;
+  font-weight: 800;
+  border-radius: var(--radius-pill);
   white-space: nowrap;
   transition:
     transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
@@ -132,6 +132,7 @@
 /* Кнопка мобильного меню */
 
 .sc-burger {
+  border-radius: var(--radius-pill);
   display: none;
   align-items: center;
   gap: 8px;
@@ -142,8 +143,8 @@
   color: var(--sc-black);
   font: inherit;
   font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 1px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
   cursor: pointer;
 }
 
@@ -171,7 +172,7 @@
   right: 0;
   top: 100%;
   padding: 10px 18px 22px;
-  border-radius: 0 0 18px 18px;
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
   flex-direction: column;
   animation: sc-mobile-in 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
@@ -191,8 +192,8 @@
   padding: 15px 0;
   border-bottom: 1px solid rgba(17, 17, 17, 0.14);
   font-size: 13px;
-  font-weight: 900;
-  letter-spacing: 1px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
 }
 
 .sc-mobile a.sc-active {
@@ -228,15 +229,15 @@
 
 .sc-footer-logo strong {
   font-size: 23px;
-  font-weight: 950;
-  letter-spacing: -1.5px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-heading);
 }
 
 .sc-footer-logo small {
   margin-top: 5px;
   font-size: 7px;
   font-weight: 700;
-  letter-spacing: 1.4px;
+  letter-spacing: var(--tracking-label);
 }
 
 .sc-footer-nav {

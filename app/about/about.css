@@ -32,7 +32,7 @@
   color: var(--pink-strong);
 
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 /* HERO */
@@ -67,9 +67,9 @@
 
   line-height: 0.84;
 
-  letter-spacing: -4px;
+  letter-spacing: var(--tracking-display);
 
-  font-weight: 950;
+  font-weight: 800;
 }
 
 .st-hero-lead {
@@ -81,7 +81,7 @@
 
   line-height: 1.17;
 
-  font-weight: 750;
+  font-weight: 700;
 }
 
 .st-hero-text {
@@ -105,6 +105,7 @@
 }
 
 .st-pink-button {
+  border-radius: var(--radius-pill);
   display: inline-flex;
 
   align-items: center;
@@ -115,7 +116,7 @@
 
   font-size: 10px;
 
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .st-pink-button span {
@@ -289,9 +290,9 @@
 
   line-height: 0.9;
 
-  font-weight: 950;
+  font-weight: 800;
 
-  letter-spacing: -3px;
+  letter-spacing: var(--tracking-display);
 }
 
 .st-art-logo strong span {
@@ -305,7 +306,7 @@
 
   font-size: 9px;
 
-  letter-spacing: 2.3px;
+  letter-spacing: var(--tracking-label);
 }
 
 .st-art-script {
@@ -372,7 +373,7 @@
 
   line-height: 0.9;
 
-  letter-spacing: -2.5px;
+  letter-spacing: var(--tracking-display);
 }
 
 .st-story-copy {
@@ -417,7 +418,7 @@
 
   font-size: 10px;
 
-  font-weight: 900;
+  font-weight: 800;
 
   line-height: 1.05;
 }
@@ -460,7 +461,7 @@
 
   line-height: 0.92;
 
-  letter-spacing: -2.3px;
+  letter-spacing: var(--tracking-display);
 }
 
 .st-values-grid {
@@ -494,7 +495,7 @@
 
   font-size: 11px;
 
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .st-value p {
@@ -531,7 +532,7 @@
 
   line-height: 0.92;
 
-  letter-spacing: -2.2px;
+  letter-spacing: var(--tracking-display);
 
   max-width: 360px;
 }
@@ -606,7 +607,7 @@
 
   line-height: 0.92;
 
-  letter-spacing: -2.2px;
+  letter-spacing: var(--tracking-display);
 }
 
 .st-life-grid {
@@ -677,7 +678,7 @@
 
   line-height: 0.87;
 
-  letter-spacing: -2.7px;
+  letter-spacing: var(--tracking-display);
 }
 
 .st-dream-text {
@@ -701,6 +702,7 @@
 }
 
 .st-dark-button {
+  border-radius: var(--radius-pill);
   justify-self: end;
 
   padding: 15px 20px;
@@ -711,7 +713,7 @@
 
   font-size: 10px;
 
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .st-dark-button span {
@@ -778,7 +780,7 @@
 
     font-size: 56px;
 
-    letter-spacing: -3px;
+    letter-spacing: var(--tracking-display);
   }
 
   .st-hero-lead {
@@ -887,7 +889,9 @@
   .st-info-title h2 {
     margin-bottom: 25px;
 
-    font-size: 40px;
+    /* Фиксированные 40px не влезали: слово «ПРОФЕССИОНАЛЫ» шире экрана телефона
+       и вылезало за край. Теперь кегль тянется за шириной экрана. */
+    font-size: clamp(28px, 8.6vw, 40px);
 
     max-width: none;
   }

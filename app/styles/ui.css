@@ -1,0 +1,111 @@
+/* ==================================================
+   ОБЩИЕ ПРАВИЛА ИНТЕРФЕЙСА
+   Подключается в app/layout.tsx после base.css.
+   Здесь только то, что одинаково на всех страницах:
+   поведение кнопок и фокус с клавиатуры.
+================================================== */
+
+/* ---------- Кнопки: единое поведение ----------
+   Внешний вид (цвет, размер) остаётся в CSS своей страницы — здесь общая
+   механика: кнопка не «прыгает» текстом, не выделяется при двойном клике,
+   одинаково реагирует на нажатие. */
+
+.primary-button,
+.outline-button,
+.header-action,
+.mobile-nav .mobile-nav-action,
+.contacts-actions a,
+.sc-signup,
+.st-pink-button,
+.st-dark-button,
+.directions-page .choice-button,
+.directions-page .final-button,
+.gal-final-button,
+.schedule-final-cta a,
+.song-page .play {
+  -webkit-user-select: none;
+  user-select: none;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.15s ease;
+}
+
+/* Нажатие: лёгкое «утопание». */
+.primary-button:active,
+.outline-button:active,
+.header-action:active,
+.mobile-nav .mobile-nav-action:active,
+.contacts-actions a:active,
+.sc-signup:active,
+.st-pink-button:active,
+.st-dark-button:active,
+.directions-page .choice-button:active,
+.directions-page .final-button:active,
+.gal-final-button:active,
+.schedule-final-cta a:active,
+.song-page .play:active,
+.gal-filters button:active,
+.schedule-view-switcher button:active {
+  transform: translateY(1px);
+}
+
+/* ---------- Фокус с клавиатуры ----------
+   Раньше на весь сайт было одно правило фокуса: человек, который ходит по сайту
+   клавишей Tab (в том числе с ограничениями по зрению или моторике), не видел,
+   где он находится. Кольцо появляется только при навигации с клавиатуры
+   (:focus-visible), мышь его не показывает. */
+
+:focus-visible {
+  outline: 2px solid var(--color-pink);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* На тёмном фоне розовое кольцо читается хуже — там белое. */
+.site-header :focus-visible,
+.marquee :focus-visible,
+.final-cta-pink :focus-visible,
+.gal-lightbox :focus-visible,
+.dancehall-card:focus-visible,
+.card-dark:focus-visible {
+  outline-color: var(--color-white);
+}
+
+/* У круглых и «таблеточных» элементов кольцо повторяет их форму. */
+.primary-button:focus-visible,
+.outline-button:focus-visible,
+.header-action:focus-visible,
+.mobile-nav .mobile-nav-action:focus-visible,
+.contacts-actions a:focus-visible,
+.sc-signup:focus-visible,
+.sc-burger:focus-visible,
+.menu-toggle:focus-visible,
+.st-pink-button:focus-visible,
+.st-dark-button:focus-visible,
+.directions-page .choice-button:focus-visible,
+.directions-page .final-button:focus-visible,
+.gal-final-button:focus-visible,
+.gal-filters button:focus-visible,
+.gal-lightbox button:focus-visible,
+.schedule-final-cta a:focus-visible,
+.schedule-arrow:focus-visible,
+.schedule-view-switcher button:focus-visible,
+.song-page .play:focus-visible,
+.video-arrows button:focus-visible {
+  border-radius: var(--radius-pill);
+}
+
+.gal-album:focus-visible,
+.gal-photo:focus-visible,
+.directions-page .direction-card:focus-visible,
+.directions-page .other-card:focus-visible {
+  border-radius: var(--radius-card);
+}
+
+/* Ссылка «сразу к содержимому» не нужна: у сайта простая структура,
+   но заголовок не должен перекрывать якорь при переходе по #ссылке. */
+:target {
+  scroll-margin-top: 90px;
+}
