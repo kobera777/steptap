@@ -1,0 +1,500 @@
+/* Страница «ЦЕНЫ» — все стили только здесь. Префикс классов: .pr- */
+
+.pr-page {
+  background: var(--color-cream-2);
+  color: var(--color-black);
+  min-height: 100vh;
+  overflow: clip; /* clip, не hidden: иначе не работает sticky-шапка */
+  font-family: var(--font-ui);
+}
+
+.pr-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.pr-kicker {
+  margin: 0 0 16px;
+  color: var(--color-pink);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/* ---------- HERO ---------- */
+
+.pr-hero {
+  padding: 80px 7vw 70px;
+  display: grid;
+  grid-template-columns: 1fr 0.85fr;
+  align-items: end;
+  gap: 5vw;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+}
+
+.pr-hero h1 {
+  margin: 0;
+  font-size: clamp(64px, 8vw, 130px);
+  line-height: 0.85;
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
+}
+
+.pr-hero h1 span {
+  color: var(--color-pink);
+}
+
+.pr-hero-text p {
+  max-width: 420px;
+  margin: 0 0 26px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ---------- Кнопки ---------- */
+
+.pr-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  border-radius: var(--radius-pill);
+  background: var(--color-pink);
+  color: var(--color-white);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
+}
+
+.pr-button:hover {
+  background: var(--color-black);
+}
+
+.pr-button span {
+  font-size: 15px;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.pr-button:hover span {
+  transform: translateX(6px);
+}
+
+.pr-button-dark {
+  margin-top: 40px;
+  background: transparent;
+  color: var(--color-black);
+  border: 1px solid var(--color-black);
+}
+
+.pr-button-dark:hover {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+/* ---------- Секции ---------- */
+
+.pr-section {
+  padding: 90px 7vw;
+}
+
+.pr-section-alt {
+  background: var(--color-paper);
+  border-top: 1px solid rgba(17, 17, 17, 0.1);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+}
+
+.pr-head {
+  max-width: 640px;
+  margin-bottom: 45px;
+}
+
+.pr-head h2 {
+  margin: 0;
+  font-size: clamp(38px, 5vw, 76px);
+  line-height: 0.88;
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
+}
+
+.pr-lead {
+  max-width: 520px;
+  margin: 22px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+
+.pr-sub {
+  margin: 0 0 6px;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.05;
+  letter-spacing: var(--tracking-heading);
+  font-weight: 800;
+}
+
+.pr-sub-note {
+  margin: 0 0 22px;
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* ---------- Карточки абонементов (групповые) ---------- */
+
+.pr-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+}
+
+.pr-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 24px 24px;
+  border: 1px solid rgba(17, 17, 17, 0.16);
+  border-radius: var(--radius-card);
+  background: var(--color-paper);
+}
+
+.pr-card.is-featured {
+  background: var(--color-pink);
+  border-color: var(--color-pink);
+  color: var(--color-white);
+}
+
+.pr-badge {
+  position: absolute;
+  top: -11px;
+  left: 24px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-black);
+  color: var(--color-white);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
+}
+
+.pr-card h3 {
+  margin: 0 0 14px;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
+}
+
+.pr-price {
+  margin: 0;
+  font-size: clamp(30px, 3vw, 40px);
+  line-height: 1;
+  letter-spacing: var(--tracking-heading);
+  font-weight: 800;
+}
+
+.pr-per {
+  margin: 8px 0 0;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.pr-note {
+  margin: 14px 0 0;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.pr-card-button {
+  margin-top: auto;
+  padding-top: 22px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
+}
+
+.pr-card-button span {
+  display: inline-block;
+  margin-left: 8px;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.pr-card-button:hover span {
+  transform: translateX(6px);
+}
+
+/* ---------- Таблица ---------- */
+
+.pr-table-wrap {
+  overflow-x: auto;
+}
+
+.pr-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.pr-table th,
+.pr-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+  vertical-align: top;
+}
+
+.pr-table thead th {
+  background: var(--color-black);
+  color: var(--color-white);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pr-table thead th:first-child {
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+.pr-table thead th:last-child {
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.pr-table tbody th {
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.pr-table td b {
+  display: block;
+  font-size: 16px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.pr-table td small {
+  display: block;
+  margin-top: 3px;
+  color: var(--color-muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.pr-table tbody tr:hover {
+  background: rgba(212, 95, 136, 0.06);
+}
+
+/* Карточки-дубли таблиц прячем, пока экран широкий */
+.pr-tiers,
+.pr-rates {
+  display: none;
+}
+
+/* ---------- Залы ---------- */
+
+.pr-halls {
+  margin-bottom: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.pr-hall-photo {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  margin-bottom: 16px;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: #f0e8df;
+}
+
+.pr-hall-photo img {
+  object-fit: cover;
+}
+
+.pr-hall h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-heading);
+}
+
+.pr-hall p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* ---------- Блоки аренды ---------- */
+
+.pr-rental-block {
+  margin-bottom: 55px;
+}
+
+.pr-group-rates {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+}
+
+.pr-group-rates li {
+  padding: 22px;
+  border: 1px solid rgba(17, 17, 17, 0.16);
+  border-radius: var(--radius-card);
+  background: var(--color-paper);
+}
+
+.pr-group-rates li.is-off {
+  background: transparent;
+  color: var(--color-muted);
+}
+
+.pr-group-rates span {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pr-group-rates b {
+  display: block;
+  margin: 10px 0 4px;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: var(--tracking-heading);
+  font-weight: 800;
+}
+
+.pr-group-rates small {
+  font-size: 11px;
+  color: var(--color-muted);
+}
+
+/* ---------- Правила ---------- */
+
+.pr-rules ol {
+  max-width: 720px;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.pr-rules li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ==================================================
+   ПЛАНШЕТ И ТЕЛЕФОН
+================================================== */
+
+@media (max-width: 900px) {
+  .pr-hero {
+    padding: 55px 20px 45px;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 28px;
+  }
+
+  .pr-section {
+    padding: 60px 20px;
+  }
+
+  .pr-head {
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 680px) {
+  .pr-head h2 {
+    /* Слово «ИНДИВИДУАЛЬНЫЕ» не влезало в экран телефона при 38px. */
+    font-size: clamp(26px, 8vw, 38px);
+  }
+
+  /* Таблицы на телефоне не читаются — показываем карточки. */
+  .pr-table-wrap {
+    display: none;
+  }
+
+  .pr-tiers,
+  .pr-rates {
+    display: grid;
+    gap: 14px;
+  }
+
+  .pr-tier,
+  .pr-rate {
+    padding: 22px;
+    border: 1px solid rgba(17, 17, 17, 0.16);
+    border-radius: var(--radius-card);
+    background: var(--color-paper);
+  }
+
+  .pr-tier h3,
+  .pr-rate h4 {
+    margin: 0 0 14px;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: var(--tracking-heading);
+  }
+
+  .pr-rate h4 {
+    margin-bottom: 2px;
+  }
+
+  .pr-rate-note {
+    margin: 0 0 14px;
+    color: var(--color-muted);
+    font-size: 11px;
+  }
+
+  .pr-tier dl,
+  .pr-rate dl {
+    margin: 0;
+  }
+
+  .pr-tier dl > div,
+  .pr-rate dl > div {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    border-top: 1px solid rgba(17, 17, 17, 0.1);
+  }
+
+  .pr-tier dt,
+  .pr-rate dt {
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
+  .pr-tier dd,
+  .pr-rate dd {
+    margin: 0;
+    text-align: right;
+    font-size: 16px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .pr-tier dd small {
+    display: block;
+    margin-top: 2px;
+    color: var(--color-muted);
+    font-size: 11px;
+    font-weight: 400;
+  }
+
+  .pr-button-dark {
+    width: 100%;
+    justify-content: center;
+  }
+}

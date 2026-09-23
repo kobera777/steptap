@@ -13,6 +13,7 @@ export const mainNav: NavItem[] = [
   { href: "/about", label: "О ШКОЛЕ" },
   { href: "/directions", label: "НАПРАВЛЕНИЯ" },
   { href: "/schedule", label: "РАСПИСАНИЕ" },
+  { href: "/prices", label: "ЦЕНЫ" },
   { href: "/gallery", label: "ГАЛЕРЕЯ" },
   { href: "/#contacts", label: "КОНТАКТЫ" },
 ];
@@ -44,8 +45,9 @@ export const homeNav: HomeNavItem[] = [
     ],
   },
   { href: "/schedule", label: "РАСПИСАНИЕ" },
+  { href: "/prices", label: "ЦЕНЫ" },
   { href: "/gallery", label: "ГАЛЕРЕЯ" },
-  { href: "#rental", label: "АРЕНДА" },
+  { href: "/prices#rental", label: "АРЕНДА" },
   { href: "#contacts", label: "КОНТАКТЫ" },
 ];
 
