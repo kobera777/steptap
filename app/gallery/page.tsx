@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { AlbumGrid } from "@/components/gallery/AlbumGrid";
 import { getAlbums } from "@/data/gallery";
 import "./gallery.css";
+import { SignupLink } from "@/components/layout/SignupLink";
 
 export const metadata: Metadata = {
   title: "Галерея",
@@ -68,9 +69,9 @@ export default function GalleryPage() {
             <br />
             следующий альбом будет с тобой.
           </p>
-          <Link href="/signup" className="gal-final-button">
+          <SignupLink className="gal-final-button">
             ЗАПИСАТЬСЯ <span>→</span>
-          </Link>
+          </SignupLink>
         </div>
 
         <div className="gal-final-logo" data-reveal="scale" data-reveal-delay="2">

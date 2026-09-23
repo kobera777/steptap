@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { mainNav, signupHref } from "@/data/nav";
+import { mainNav } from "@/data/nav";
 import { siteName, siteTagline } from "@/data/site";
 import "./site-chrome.css";
+import { SignupLink } from "@/components/layout/SignupLink";
 
 /** Общая шапка всех страниц, кроме главной. Активный пункт определяется по адресу. */
 export function SiteHeader() {
@@ -42,9 +43,9 @@ export function SiteHeader() {
       </nav>
 
       <div className="sc-actions">
-        <Link href={signupHref} className="sc-signup">
+        <SignupLink className="sc-signup">
           ЗАПИСАТЬСЯ <b>→</b>
-        </Link>
+        </SignupLink>
 
         <button
           type="button"

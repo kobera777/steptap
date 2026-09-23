@@ -1,3 +1,5 @@
+import { signupChatUrl } from "@/data/site";
+
 /**
  * Меню сайта — единственное место, где оно задаётся.
  * Отсюда берут пункты общая шапка (SiteHeader), подвал (SiteFooter) и sitemap.
@@ -18,9 +20,6 @@ export const mainNav: NavItem[] = [
   { href: "/#contacts", label: "КОНТАКТЫ" },
 ];
 
-/** Куда ведёт кнопка «Записаться» по всему сайту. */
-export const signupHref = "/#trial";
-
 /** Пункт меню главной: может иметь вложенный список. #якорь — раздел на самой главной. */
 export type HomeNavItem = NavItem & { children?: NavItem[] };
 
@@ -40,8 +39,8 @@ export const homeNav: HomeNavItem[] = [
     label: "ЗАНЯТИЯ",
     children: [
       { href: "#levels", label: "Групповые занятия" },
-      { href: "#trial", label: "Индивидуальные занятия" },
-      { href: "#trial", label: "Пробный урок" },
+      { href: "/prices#individual", label: "Индивидуальные занятия" },
+      { href: signupChatUrl(), label: "Записаться на пробное" },
     ],
   },
   { href: "/schedule", label: "РАСПИСАНИЕ" },
@@ -50,6 +49,3 @@ export const homeNav: HomeNavItem[] = [
   { href: "/prices#rental", label: "АРЕНДА" },
   { href: "#contacts", label: "КОНТАКТЫ" },
 ];
-
-/** Кнопка «Записаться» на самой главной ведёт на её раздел, без перехода. */
-export const homeSignupHref = "#trial";

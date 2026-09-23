@@ -16,6 +16,7 @@ import {
   type GalleryVideo,
 } from "@/data/gallery";
 import "../gallery.css";
+import { SignupLink } from "@/components/layout/SignupLink";
 
 export function generateStaticParams() {
   return albums.map((album) => ({ album: album.slug }));
@@ -139,9 +140,9 @@ export default async function AlbumPage(props: PageProps<"/gallery/[album]">) {
             <br />
             поможем подобрать подходящую группу.
           </p>
-          <Link href="/signup" className="gal-final-button">
+          <SignupLink className="gal-final-button">
             ЗАПИСАТЬСЯ <span>→</span>
-          </Link>
+          </SignupLink>
         </div>
 
         <div className="gal-final-logo" data-reveal="scale" data-reveal-delay="2">

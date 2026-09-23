@@ -24,7 +24,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(68px, 7.5vw, 112px);
-  line-height: 0.82;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -114,7 +114,7 @@
 }
 .song-page h1 {
   font-size: clamp(68px, 10vw, 150px);
-  line-height: 0.79;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   margin: 0;
   font-weight: 800;
@@ -192,7 +192,7 @@ h1 span {
 .song-page .section h3 {
   margin: 10px 0 0;
   font-size: clamp(42px, 6vw, 78px);
-  line-height: 0.9;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   text-transform: uppercase;
 }

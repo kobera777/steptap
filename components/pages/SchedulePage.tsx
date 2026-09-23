@@ -3,7 +3,6 @@
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import Link from "next/link";
-import { signupHref } from "@/data/nav";
 import {
   classes,
   days,
@@ -14,6 +13,7 @@ import {
 } from "@/data/schedule";
 
 import { useMemo, useState } from "react";
+import { SignupLink } from "@/components/layout/SignupLink";
 
 function timeToMinutes(time: string) {
   const [hours, minutes] = time.split(":").map(Number);
@@ -389,7 +389,7 @@ export function SchedulePage() {
           </h2>
         </div>
 
-        <Link href={signupHref}>ПОДОБРАТЬ ГРУППУ →</Link>
+        <SignupLink>ПОДОБРАТЬ ГРУППУ →</SignupLink>
       </section>
 
       <SiteFooter />

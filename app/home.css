@@ -184,7 +184,10 @@
   gap: 13px;
   padding: 12px 20px;
   border-radius: var(--radius-pill);
-  color: var(--white);
+  /* Розовая, как кнопка «Записаться» на внутренних страницах (.sc-signup):
+     одна и та же кнопка на всём сайте. */
+  background: var(--color-pink);
+  color: var(--color-black);
   font-size: 11px;
   line-height: 1;
   font-weight: 700;
@@ -200,8 +203,8 @@
 }
 
 .header-action:hover {
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--black);
+  background: var(--color-black);
+  color: var(--color-white);
 }
 
 /* ==================================================
@@ -283,7 +286,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(68px, 7.5vw, 112px);
-  line-height: 0.82;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -361,7 +364,9 @@
   right: 28px;
   bottom: 28px;
   max-width: 190px;
-  color: var(--pink);
+  /* Чёрный, а не розовый: надпись лежит поверх фотографии и на светлой
+     одежде розовый по розовому не читался. */
+  color: var(--color-black);
   font-family: var(--font-serif);
   font-size: 23px;
   line-height: 0.95;
@@ -391,7 +396,7 @@
   margin: 0 0 27px;
   font-family: var(--font-display);
   font-size: clamp(43px, 5vw, 76px);
-  line-height: 0.9;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -479,7 +484,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(43px, 5.3vw, 76px);
-  line-height: 0.86;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -650,7 +655,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(43px, 5vw, 76px);
-  line-height: 0.88;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -713,7 +718,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(45px, 5vw, 78px);
-  line-height: 0.88;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -807,7 +812,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(44px, 5vw, 74px);
-  line-height: 0.83;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -907,7 +912,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(45px, 5vw, 78px);
-  line-height: 0.88;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -1021,7 +1026,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(45px, 5vw, 78px);
-  line-height: 0.85;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -1213,7 +1218,8 @@
   .features-title,
   .levels-section,
   .faq-section {
-    grid-template-columns: 1fr;
+    /* minmax(0, …): длинное слово не должно растягивать колонку шире экрана. */
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .features-title {
@@ -1312,7 +1318,9 @@
   .features-title h2,
   .levels-section h2,
   .faq-heading h2 {
-    font-size: clamp(42px, 14vw, 68px);
+    /* 12.5vw, а не 14vw: при 14vw слово «СВОБОДНОМУ» шире экрана телефона
+       и заголовок вылезал за правый край. */
+    font-size: clamp(38px, 12.5vw, 68px);
   }
 
   .geometry {
@@ -1606,7 +1614,7 @@
   margin: 0 0 22px;
   font-family: var(--font-display);
   font-size: clamp(44px, 5vw, 74px);
-  line-height: 0.85;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -1711,7 +1719,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(48px, 6.5vw, 96px);
-  line-height: 0.83;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }

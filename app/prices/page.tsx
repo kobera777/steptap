@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { signupHref } from "@/data/nav";
 import {
   groupPlans,
   halls,
@@ -14,6 +13,7 @@ import {
   rub,
 } from "@/data/prices";
 import "./prices.css";
+import { SignupLink } from "@/components/layout/SignupLink";
 
 export const metadata: Metadata = {
   title: "Цены",
@@ -44,9 +44,9 @@ export default function PricesPage() {
             Абонемент выгоднее разового занятия: чем больше занятий, тем ниже цена
             каждого.
           </p>
-          <Link className="pr-button" href={signupHref}>
+          <SignupLink className="pr-button">
             ЗАПИСАТЬСЯ <span>→</span>
-          </Link>
+          </SignupLink>
         </div>
       </section>
 
@@ -71,9 +71,9 @@ export default function PricesPage() {
                 <p className="pr-price">{rub(plan.total)}</p>
                 <p className="pr-per">{rub(plan.perLesson)} за занятие</p>
                 {plan.note && <p className="pr-note">{plan.note}</p>}
-                <Link className="pr-card-button" href={signupHref}>
+                <SignupLink className="pr-card-button">
                   ЗАПИСАТЬСЯ <span>→</span>
-                </Link>
+                </SignupLink>
               </article>
             ))}
           </div>
@@ -155,9 +155,9 @@ export default function PricesPage() {
           ))}
         </div>
 
-        <Link className="pr-button pr-button-dark" href={signupHref} data-reveal>
+        <SignupLink className="pr-button pr-button-dark" data-reveal>
           ЗАПИСАТЬСЯ НА ИНДИВИДУАЛЬНОЕ <span>→</span>
-        </Link>
+        </SignupLink>
       </section>
 
       {/* АРЕНДА ЗАЛОВ */}
@@ -279,9 +279,9 @@ export default function PricesPage() {
           </ol>
         </div>
 
-        <Link className="pr-button pr-button-dark" href={signupHref} data-reveal>
+        <SignupLink className="pr-button pr-button-dark" data-reveal>
           ЗАБРОНИРОВАТЬ ЗАЛ <span>→</span>
-        </Link>
+        </SignupLink>
       </section>
 
       <SiteFooter />

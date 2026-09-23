@@ -3,9 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { homeNav, homeSignupHref, type HomeNavItem } from "@/data/nav";
+import { homeNav, type HomeNavItem } from "@/data/nav";
 import { siteName } from "@/data/site";
 import { NavDropdown } from "./NavDropdown";
+import { SignupLink } from "@/components/layout/SignupLink";
 
 /** Ссылка меню: внутри страницы (#якорь) — обычный <a>, на другую страницу — <Link>. */
 function NavLink({ item, onClick }: { item: HomeNavItem; onClick?: () => void }) {
@@ -54,9 +55,9 @@ export function HomeHeader() {
         )}
       </nav>
 
-      <a className="header-action glass glass-dark" href={homeSignupHref}>
+      <SignupLink className="header-action">
         ЗАПИСАТЬСЯ <span>→</span>
-      </a>
+      </SignupLink>
 
       <button
         type="button"
@@ -78,9 +79,7 @@ export function HomeHeader() {
         {homeNav.map((item) => (
           <NavLink key={item.label} item={item} />
         ))}
-        <a href={homeSignupHref} className="mobile-nav-action">
-          ЗАПИСАТЬСЯ →
-        </a>
+        <SignupLink className="mobile-nav-action">ЗАПИСАТЬСЯ →</SignupLink>
       </nav>
     </header>
   );

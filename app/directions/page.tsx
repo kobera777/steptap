@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import Link from "next/link";
-import { signupHref } from "@/data/nav";
 import { bachataCards, otherCards } from "@/data/directions";
 import { Fragment } from "react";
 
 import Image from "next/image";
 import "./directions.css";
+import { SignupLink } from "@/components/layout/SignupLink";
 
 export const metadata: Metadata = {
   title: "Направления",
@@ -196,9 +196,7 @@ export default function DirectionsPage() {
             выбрать направление.
           </p>
 
-          <Link href={signupHref} className="choice-button">
-            ПОДОБРАТЬ НАПРАВЛЕНИЕ →
-          </Link>
+          <SignupLink className="choice-button">ПОДОБРАТЬ НАПРАВЛЕНИЕ →</SignupLink>
         </div>
       </section>
 
@@ -218,9 +216,9 @@ export default function DirectionsPage() {
             <br />и приходи на первое занятие.
           </p>
 
-          <Link href={signupHref} className="final-button">
+          <SignupLink className="final-button">
             ЗАПИСАТЬСЯ <span>→</span>
-          </Link>
+          </SignupLink>
         </div>
 
         <div className="final-logo">

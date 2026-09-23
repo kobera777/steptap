@@ -96,7 +96,7 @@
 .directions-page .directions-hero h1 {
   margin: 0;
   font-size: clamp(72px, 10vw, 150px);
-  line-height: 0.82;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -169,7 +169,7 @@
 .directions-page .direction-intro h2 {
   margin: 0;
   font-size: clamp(64px, 9vw, 130px);
-  line-height: 0.8;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -251,7 +251,7 @@
 .directions-page .card-content h3 {
   margin: 0;
   font-size: clamp(40px, 5vw, 70px);
-  line-height: 0.85;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -324,7 +324,7 @@
 .directions-page .other-heading h2 {
   margin: 0 0 30px;
   font-size: clamp(55px, 7vw, 105px);
-  line-height: 0.82;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -387,7 +387,7 @@
   margin: 0;
   /* Кегль подобран так, чтобы «ДЭНСХОЛЛ» целиком помещался в карточку. */
   font-size: clamp(34px, 3.6vw, 64px);
-  line-height: 0.8;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -450,7 +450,7 @@
 .directions-page .choice-pink h2 {
   margin: 0;
   font-size: clamp(65px, 9vw, 130px);
-  line-height: 0.8;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -525,7 +525,7 @@
 .directions-page .final-copy h2 {
   margin: 0 0 25px;
   font-size: clamp(65px, 9vw, 125px);
-  line-height: 0.8;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }

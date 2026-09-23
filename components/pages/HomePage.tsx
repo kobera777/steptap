@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { HomeHeader } from "@/components/layout/HomeHeader";
 import { faqs, features, homeLevels, marqueeWords, rentalItems } from "@/data/home";
-import { homeSignupHref } from "@/data/nav";
 import { siteContacts, telHref } from "@/data/site";
+import { SignupLink } from "@/components/layout/SignupLink";
 
 /** Главная страница (клиентский компонент: FAQ, меню, выпадающие списки). */
 export function HomePage() {
@@ -38,9 +38,9 @@ export function HomePage() {
             наслаждаться и быть собой.
           </p>
 
-          <a className="primary-button" href="#trial" data-reveal data-reveal-delay="4">
+          <SignupLink className="primary-button" data-reveal data-reveal-delay="4">
             ЗАПИСАТЬСЯ <span>→</span>
-          </a>
+          </SignupLink>
         </div>
 
         <div className="hero-photo" data-reveal="scale" data-reveal-delay="2">
@@ -228,11 +228,11 @@ export function HomePage() {
 
         <div className="levels-list" data-reveal="right" data-reveal-delay="1">
           {homeLevels.map((level) => (
-            <a key={level.number} href={homeSignupHref}>
+            <SignupLink key={level.number}>
               <span>{level.number}</span>
               <strong>{level.title}</strong>
               <span>→</span>
-            </a>
+            </SignupLink>
           ))}
         </div>
       </section>
@@ -255,9 +255,7 @@ export function HomePage() {
             Поможем подобрать подходящий уровень, даже если ты никогда раньше не танцевал.
           </p>
 
-          <a className="outline-button" href="#trial">
-            ПОДОБРАТЬ ГРУППУ →
-          </a>
+          <SignupLink className="outline-button">ПОДОБРАТЬ ГРУППУ →</SignupLink>
         </div>
 
         <div className="group-cta-art" data-reveal="scale" data-reveal-delay="2">

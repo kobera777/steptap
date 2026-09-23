@@ -47,7 +47,7 @@
   /* 8vw, а не 9vw: слово «МОМЕНТЫ.» при 9vw вылезало из своей колонки
      и наезжало на розовый квадрат справа. */
   font-size: clamp(64px, 8vw, 150px);
-  line-height: 0.82;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -322,7 +322,7 @@
   margin: 0;
   max-width: 14ch;
   font-size: clamp(40px, 6vw, 92px);
-  line-height: 0.85;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
   /* Длинные фразы прописными по-русски читаются плохо — оставляем как есть. */
@@ -384,7 +384,7 @@
 .gal-section-head h2 {
   margin: 0;
   font-size: clamp(30px, 3.5vw, 48px);
-  line-height: 0.9;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-heading);
   font-weight: 800;
 }
@@ -568,7 +568,7 @@
 .gal-final h2 {
   margin: 0 0 25px;
   font-size: clamp(56px, 9vw, 125px);
-  line-height: 0.8;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }

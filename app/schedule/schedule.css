@@ -50,7 +50,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(62px, 7vw, 104px);
-  line-height: 0.82;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -536,7 +536,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(46px, 5vw, 76px);
-  line-height: 0.86;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
@@ -596,7 +596,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(50px, 6vw, 82px);
-  line-height: 0.82;
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }

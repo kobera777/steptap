@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import Link from "next/link";
-import { signupHref } from "@/data/nav";
 import { lifeItems, values } from "@/data/about";
 
 import Image from "next/image";
 import "./about.css";
+import { SignupLink } from "@/components/layout/SignupLink";
 
 export const metadata: Metadata = {
   title: "О школе",
@@ -42,10 +42,10 @@ export default function AboutPage() {
           </p>
 
           <div className="st-hero-bottom">
-            <Link href={signupHref} className="st-pink-button">
+            <SignupLink className="st-pink-button">
               СТАТЬ ЧАСТЬЮ СЕМЬИ
               <span>→</span>
-            </Link>
+            </SignupLink>
 
             <div className="st-tags">ЛЮДИ · МУЗЫКА · ДВИЖЕНИЕ</div>
           </div>
@@ -291,10 +291,10 @@ export default function AboutPage() {
           <strong>Это только начало. ♡</strong>
         </div>
 
-        <Link href={signupHref} className="st-dark-button">
+        <SignupLink className="st-dark-button">
           СТАТЬ ЧАСТЬЮ STEP TAP
           <span>→</span>
-        </Link>
+        </SignupLink>
       </section>
 
       <SiteFooter />
