@@ -55,7 +55,7 @@ export default function AboutPage() {
           <div className="st-photo-glow" />
 
           <div className="st-photo">
-            <Image src="/about-hero.png" alt="STEP TAP" fill priority sizes="50vw" />
+            <Image src="/about-hero.webp" alt="STEP TAP" fill priority sizes="50vw" />
           </div>
         </div>
       </section>

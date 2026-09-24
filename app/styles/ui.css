@@ -109,3 +109,177 @@
 :target {
   scroll-margin-top: 90px;
 }
+
+/* ==================================================
+   КНОПКИ: единый размер, «подъём» и стрелка
+   Раньше у каждой из ~13 кнопок был свой размер шрифта (10–12px), свой отступ
+   и своя реакция на наведение. Здесь общий каркас; цвета и формы остаются в
+   CSS своих страниц — их этот блок не трогает.
+
+   Префикс :root поднимает специфичность на один класс: файлы страниц
+   подключаются после этого и иначе перебивали бы общие правила.
+================================================== */
+
+:root
+  :is(
+    .primary-button,
+    .outline-button,
+    .header-action,
+    .contacts-actions a,
+    .sc-signup,
+    .st-pink-button,
+    .st-dark-button,
+    .directions-page .choice-button,
+    .directions-page .final-button,
+    .gal-final-button,
+    .schedule-final-cta a,
+    .mobile-nav .mobile-nav-action
+  ) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: var(--btn-min-height);
+  padding-block: 0; /* высоту задаёт min-height: все кнопки ровно одного роста */
+  padding-inline: var(--btn-pad-x);
+  font-size: var(--btn-font-size);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: var(--tracking-ui);
+  white-space: nowrap;
+  --btn-glow: var(--btn-glow-dark);
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* Розовые кнопки светятся розовым. Исключение — .primary-button и .header-action:
+   при наведении они становятся чёрными, поэтому у них тень тёмная (по умолчанию). */
+:root
+  :is(
+    .sc-signup,
+    .st-pink-button,
+    .directions-page .final-button,
+    .gal-final-button,
+    .mobile-nav .mobile-nav-action
+  ) {
+  --btn-glow: var(--btn-glow-pink);
+}
+
+/* Кнопка внутри меню на телефоне занимает всю ширину панели. */
+:root .mobile-nav .mobile-nav-action {
+  width: 100%;
+}
+
+/* Стрелка: один размер и положение на всём сайте, без ручных отступов. */
+:root
+  :is(
+    .primary-button,
+    .header-action,
+    .contacts-actions a,
+    .sc-signup,
+    .st-pink-button,
+    .st-dark-button,
+    .gal-final-button,
+    .directions-page .final-button
+  )
+  > :is(span, b) {
+  display: inline-block;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Наведение: кнопка приподнимается и отбрасывает мягкую тень.
+   Только там, где есть мышь: на телефоне :hover «залипает» после касания. */
+@media (hover: hover) {
+  :root
+    :is(
+      .primary-button,
+      .outline-button,
+      .header-action,
+      .contacts-actions a,
+      .sc-signup,
+      .st-pink-button,
+      .st-dark-button,
+      .directions-page .choice-button,
+      .directions-page .final-button,
+      .gal-final-button,
+      .schedule-final-cta a,
+      .song-page .play
+    ):hover {
+    transform: translateY(var(--btn-lift));
+    box-shadow: 0 10px 24px var(--btn-glow, var(--btn-glow-dark));
+  }
+
+  :root
+    :is(
+      .primary-button,
+      .header-action,
+      .contacts-actions a,
+      .sc-signup,
+      .st-pink-button,
+      .st-dark-button,
+      .gal-final-button,
+      .directions-page .final-button
+    ):hover
+    > :is(span, b) {
+    transform: translateX(6px);
+  }
+}
+
+/* Нажатие: «утопание» поверх подъёма и без тени. Стоит после :hover. */
+:root
+  :is(
+    .primary-button,
+    .outline-button,
+    .header-action,
+    .contacts-actions a,
+    .sc-signup,
+    .st-pink-button,
+    .st-dark-button,
+    .directions-page .choice-button,
+    .directions-page .final-button,
+    .gal-final-button,
+    .schedule-final-cta a,
+    .song-page .play
+  ):active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* Кнопка «Разбор песни» на всю ширину: только высота и подъём. */
+:root .song-page .play {
+  min-height: var(--btn-min-height);
+  font-size: var(--btn-font-size);
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+/* Без анимаций для тех, кто их отключил. */
+@media (prefers-reduced-motion: reduce) {
+  :root
+    :is(
+      .primary-button,
+      .outline-button,
+      .header-action,
+      .contacts-actions a,
+      .sc-signup,
+      .st-pink-button,
+      .st-dark-button,
+      .directions-page .choice-button,
+      .directions-page .final-button,
+      .gal-final-button,
+      .schedule-final-cta a,
+      .song-page .play
+    ):hover {
+    transform: none;
+  }
+}

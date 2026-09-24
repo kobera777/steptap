@@ -39,11 +39,31 @@ export function MotionEffects() {
       cleanups.push(() => io.disconnect());
     }
 
-    /* ---------- header + parallax (один обработчик скролла) ---------- */
+    /* ---------- header + parallax (один обработчик скролла) ----------
+       Параллакс считаем только для элементов, которые сейчас на экране
+       (IntersectionObserver): раньше getBoundingClientRect() вызывался для всех
+       элементов на каждый кадр скролла, что заставляло браузер пересчитывать вёрстку. */
     const headers = document.querySelectorAll<HTMLElement>("[data-glass-header]");
     const parallaxEls = Array.from(
       document.querySelectorAll<HTMLElement>("[data-parallax]"),
     );
+    const visibleParallax = new Set<HTMLElement>();
+
+    if (!reduced && "IntersectionObserver" in window && parallaxEls.length) {
+      const pio = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            const el = entry.target as HTMLElement;
+            if (entry.isIntersecting) visibleParallax.add(el);
+            else visibleParallax.delete(el);
+          }
+        },
+        { rootMargin: "100px 0px" },
+      );
+      parallaxEls.forEach((el) => pio.observe(el));
+      cleanups.push(() => pio.disconnect());
+    }
+
     let ticking = false;
 
     const onScroll = () => {
@@ -55,7 +75,7 @@ export function MotionEffects() {
 
         if (!reduced) {
           const vh = window.innerHeight;
-          for (const el of parallaxEls) {
+          for (const el of visibleParallax) {
             const rect = el.getBoundingClientRect();
             // Смещение считаем от центра экрана, чтобы в «покое» элемент стоял на месте
             const progress = (rect.top + rect.height / 2 - vh / 2) / vh;
@@ -70,13 +90,27 @@ export function MotionEffects() {
       });
     };
 
-    onScroll();
+    // Первый расчёт — после того, как observer сообщит, какие элементы видны.
+    const firstPaint = requestAnimationFrame(() => requestAnimationFrame(onScroll));
+    cleanups.push(() => cancelAnimationFrame(firstPaint));
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     cleanups.push(() => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     });
+
+    /* ---------- marquee: не крутим анимацию, пока строка вне экрана ---------- */
+    const marquees = document.querySelectorAll<HTMLElement>(".marquee-track");
+    if (!reduced && marquees.length && "IntersectionObserver" in window) {
+      const mio = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          entry.target.classList.toggle("is-offscreen", !entry.isIntersecting);
+        }
+      });
+      marquees.forEach((el) => mio.observe(el));
+      cleanups.push(() => mio.disconnect());
+    }
 
     /* ---------- tilt ---------- */
     if (!reduced && window.matchMedia("(hover: hover)").matches) {
@@ -108,39 +142,4 @@ export function MotionEffects() {
   }, [pathname]);
 
   return null;
-}
-
-/**
- * SVG-фильтр для «жидкого стекла»: лёгкое искажение фона по краям,
- * как у Liquid Glass в iOS 26. Подключается через backdrop-filter: url(#liquid-glass).
- */
-export function LiquidGlassFilter() {
-  return (
-    <svg aria-hidden="true" width="0" height="0" style={{ position: "absolute" }}>
-      <filter
-        id="liquid-glass"
-        x="-5%"
-        y="-5%"
-        width="110%"
-        height="110%"
-        colorInterpolationFilters="sRGB"
-      >
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.006 0.014"
-          numOctaves="2"
-          seed="7"
-          result="noise"
-        />
-        <feGaussianBlur in="noise" stdDeviation="3" result="soft" />
-        <feDisplacementMap
-          in="SourceGraphic"
-          in2="soft"
-          scale="18"
-          xChannelSelector="R"
-          yChannelSelector="G"
-        />
-      </filter>
-    </svg>
-  );
 }

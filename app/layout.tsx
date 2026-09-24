@@ -5,7 +5,7 @@ import "./styles/tokens.css";
 import "./styles/base.css";
 import "./styles/ui.css";
 import "./motion.css";
-import { LiquidGlassFilter, MotionEffects } from "@/components/motion/MotionEffects";
+import { MotionEffects } from "@/components/motion/MotionEffects";
 
 /* Единственный шрифт сайта. Скачивается при сборке и отдаётся с нашего домена
    (без запросов к Google). Переменное начертание: один файл на подмножество
@@ -44,7 +44,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ru" className={manrope.variable}>
       <body>
-        <LiquidGlassFilter />
         {children}
         <MotionEffects />
       </body>
