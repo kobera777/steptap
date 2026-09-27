@@ -5,7 +5,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { HomeHeader } from "@/components/layout/HomeHeader";
 import { faqs, features, homeLevels, marqueeWords, rentalItems } from "@/data/home";
-import { siteContacts, telHref } from "@/data/site";
+import {
+  siteContacts,
+  socialLinks,
+  telHref,
+  yandexMapEmbedUrl,
+  yandexMapPageUrl,
+} from "@/data/site";
+import { SocialIcon } from "@/components/ui/SocialIcon";
 import { SignupLink } from "@/components/layout/SignupLink";
 
 /** Главная страница (клиентский компонент: FAQ, меню, выпадающие списки). */
@@ -418,26 +425,36 @@ export function HomePage() {
         </div>
 
         <div className="contacts-actions" data-reveal data-reveal-delay="2">
-          {siteContacts.telegram && (
-            <a href={siteContacts.telegram} target="_blank" rel="noreferrer">
-              TELEGRAM <span>→</span>
+          {socialLinks().map((item) => (
+            <a key={item.key} href={item.href} target="_blank" rel="noreferrer">
+              <SocialIcon name={item.key} />
+              {item.label.toUpperCase()} <span>→</span>
             </a>
-          )}
-          {siteContacts.whatsapp && (
-            <a href={siteContacts.whatsapp} target="_blank" rel="noreferrer">
-              WHATSAPP <span>→</span>
+          ))}
+        </div>
+
+        {/* Карта. loading="lazy" — виджет Яндекса не грузится, пока до него
+            не долистают: главная страница от него не тормозит. */}
+        <div className="contacts-map" data-reveal data-reveal-delay="3">
+          <div className="contacts-map-frame">
+            <iframe
+              src={yandexMapEmbedUrl()}
+              title={`STEP TAP на карте — ${siteContacts.address}`}
+              loading="lazy"
+              allowFullScreen
+            />
+          </div>
+
+          <div className="contacts-map-foot">
+            <p>
+              {siteContacts.address}
+              {siteContacts.addressNote && <span>{siteContacts.addressNote}</span>}
+            </p>
+
+            <a href={yandexMapPageUrl()} target="_blank" rel="noreferrer">
+              КАК ДОБРАТЬСЯ <span>→</span>
             </a>
-          )}
-          {siteContacts.instagram && (
-            <a href={siteContacts.instagram} target="_blank" rel="noreferrer">
-              INSTAGRAM <span>→</span>
-            </a>
-          )}
-          {siteContacts.youtube && (
-            <a href={siteContacts.youtube} target="_blank" rel="noreferrer">
-              YOUTUBE <span>→</span>
-            </a>
-          )}
+          </div>
         </div>
       </section>
     </main>

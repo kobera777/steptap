@@ -1,15 +1,19 @@
 import Link from "next/link";
 import { mainNav } from "@/data/nav";
-import { siteContacts, siteLegal, siteName, siteTagline, telHref } from "@/data/site";
+import {
+  siteContacts,
+  siteLegal,
+  siteName,
+  siteTagline,
+  socialLinks,
+  telHref,
+} from "@/data/site";
+import { SocialIcon } from "@/components/ui/SocialIcon";
 import "./site-chrome.css";
 
 /** Общий подвал всех страниц. Контакты и реквизиты берутся из data/site.ts. */
 export function SiteFooter() {
-  const social = [
-    { href: siteContacts.instagram, label: "Instagram", icon: "◎" },
-    { href: siteContacts.youtube, label: "YouTube", icon: "▶" },
-    { href: siteContacts.telegram, label: "Telegram", icon: "➤" },
-  ].filter((item) => item.href);
+  const social = socialLinks();
 
   const address = [siteContacts.address, siteContacts.addressNote]
     .filter(Boolean)
@@ -38,13 +42,14 @@ export function SiteFooter() {
           <div className="sc-social">
             {social.map((item) => (
               <a
-                key={item.label}
+                key={item.key}
                 href={item.href}
                 aria-label={item.label}
+                title={item.label}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {item.icon}
+                <SocialIcon name={item.key} />
               </a>
             ))}
           </div>

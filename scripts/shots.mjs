@@ -67,6 +67,12 @@ async function capture(name, url) {
     locale: "ru-RU",
   });
 
+  // El widget de Yandex (mapa de Contactos) nunca deja la red en reposo: sigue
+  // pidiendo datos de tráfico, así que `networkidle` no llegaba y cada captura
+  // de la portada tardaba diez minutos. Se bloquea: en la foto el iframe va
+  // oculto de todos modos, y así el resultado tampoco depende de un tercero.
+  await context.route(/yandex\.(ru|com|net)/, (route) => route.abort());
+
   console.log(
     `Capturando ${routes.length} páginas × ${WIDTHS.length} anchos → shots/${name}/`,
   );

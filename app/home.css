@@ -1693,6 +1693,89 @@
   color: var(--black);
 }
 
+/* Значок соцсети внутри «таблетки»: чуть крупнее подписи, иначе логотип
+   не читается на 11px. */
+.contacts-actions a .social-icon {
+  font-size: 16px;
+}
+
+/* ---- карта ---- */
+
+.contacts-map {
+  margin-top: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.contacts-map-frame {
+  aspect-ratio: 16 / 7;
+}
+
+.contacts-map-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  /* Сайт чёрно-белый — карта тоже. Цвет возвращается, когда с картой
+     начинают работать: так на ней проще что-то разглядеть. */
+  filter: grayscale(1);
+  transition: filter 0.35s ease;
+}
+
+.contacts-map:hover .contacts-map-frame iframe,
+.contacts-map-frame:focus-within iframe {
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contacts-map-frame iframe {
+    transition: none;
+  }
+}
+
+.contacts-map-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.contacts-map-foot p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.contacts-map-foot p span {
+  display: block;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.contacts-map-foot a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 22px;
+  border-radius: var(--radius-pill);
+  background: var(--pink);
+  color: var(--black);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: var(--tracking-ui);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.contacts-map-foot a:hover,
+.contacts-map-foot a:focus-visible {
+  background: var(--white);
+}
+
 /* ---- responsive: rental / contacts / moments ---- */
 
 @media (max-width: 900px) {
@@ -1702,6 +1785,10 @@
 
   .rental-art {
     min-height: 300px;
+  }
+
+  .contacts-map-frame {
+    aspect-ratio: 4 / 3;
   }
 
   .contacts-heading {

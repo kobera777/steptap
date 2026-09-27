@@ -316,8 +316,16 @@
 }
 
 .sc-social a {
-  font-size: 21px;
-  font-weight: 700;
+  display: inline-flex;
+  font-size: 19px;
+  line-height: 1;
+  color: var(--sc-black);
+  transition: color 0.2s ease;
+}
+
+.sc-social a:hover,
+.sc-social a:focus-visible {
+  color: var(--sc-pink);
 }
 
 /* Планшет */
