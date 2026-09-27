@@ -221,7 +221,10 @@
   line-height: 1.45;
 }
 
-/* ---------- Карточки абонементов (групповые) ---------- */
+/* ---------- Карточки абонементов (групповые) ----------
+   Правило для всей страницы: крупнее всего — то, что покупают
+   («8 занятий», «Тренер», «Большой зал»), а не цена. Цена читается
+   следом: она не уходит в серое, просто перестаёт кричать. */
 
 .pr-cards {
   display: grid;
@@ -263,19 +266,19 @@
 }
 
 .pr-card h3 {
-  margin: 0 0 14px;
-  font-size: 15px;
+  margin: 0 0 12px;
+  font-size: clamp(20px, 1.9vw, 25px);
+  line-height: 1.1;
   font-weight: 800;
-  letter-spacing: var(--tracking-ui);
-  text-transform: uppercase;
+  letter-spacing: var(--tracking-heading);
 }
 
 .pr-price {
   margin: 0;
-  font-size: clamp(30px, 3vw, 40px);
-  line-height: 1;
+  font-size: 20px;
+  line-height: 1.1;
   letter-spacing: var(--tracking-heading);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 /* Знак «≈» у 8 000 / 12: он не должен быть таким же крупным, как цифры. */
@@ -361,7 +364,7 @@
 .pr-table thead th {
   background: var(--color-black);
   color: var(--color-white);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: var(--tracking-ui);
   text-transform: uppercase;
@@ -377,15 +380,16 @@
 }
 
 .pr-table tbody th {
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 800;
+  letter-spacing: var(--tracking-heading);
   white-space: nowrap;
 }
 
-.pr-table td b {
+.pr-table td span {
   display: block;
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 15px;
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -544,19 +548,20 @@
   color: var(--color-muted);
 }
 
-.pr-group-rates span {
+.pr-group-rates strong {
   display: block;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.pr-group-rates b {
-  display: block;
-  margin: 10px 0 4px;
-  font-size: 28px;
-  line-height: 1;
+  font-size: 19px;
+  line-height: 1.2;
   letter-spacing: var(--tracking-heading);
   font-weight: 800;
+}
+
+.pr-group-rates span {
+  display: block;
+  margin: 10px 0 4px;
+  font-size: 18px;
+  line-height: 1.1;
+  font-weight: 600;
 }
 
 .pr-group-rates small {
@@ -642,7 +647,7 @@
   .pr-tier h3,
   .pr-rate h4 {
     margin: 0 0 14px;
-    font-size: 17px;
+    font-size: 21px;
     font-weight: 800;
     letter-spacing: var(--tracking-heading);
   }
@@ -672,18 +677,21 @@
     border-top: 1px solid rgba(17, 17, 17, 0.1);
   }
 
+  /* На телефоне это было заметнее всего: «Разовое» — 12px серым,
+     «2000 ₽» — 16px жирным. Теперь наоборот по весу. */
   .pr-tier dt,
   .pr-rate dt {
-    font-size: 12px;
-    color: var(--color-muted);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-black);
   }
 
   .pr-tier dd,
   .pr-rate dd {
     margin: 0;
     text-align: right;
-    font-size: 16px;
-    font-weight: 800;
+    font-size: 15px;
+    font-weight: 500;
     white-space: nowrap;
   }
 

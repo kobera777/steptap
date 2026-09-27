@@ -8,6 +8,7 @@ import {
   halls,
   individualTiers,
   isApproximate,
+  packPerLesson,
   perLesson,
   rentalGroup,
   rentalIndividual,
@@ -175,12 +176,12 @@ export default function PricesPage() {
                 <tr key={tier.category}>
                   <th scope="row">{tier.category}</th>
                   <td>
-                    <b>{rub(tier.single)}</b>
+                    <span>{rub(tier.single)}</span>
                   </td>
                   {tier.packs.map((pack) => (
                     <td key={pack.lessons}>
-                      <b>{rub(pack.total)}</b>
-                      <small>{rub(pack.perLesson)} за занятие</small>
+                      <span>{rub(pack.total)}</span>
+                      <small>{rub(packPerLesson(pack))} за занятие</small>
                     </td>
                   ))}
                 </tr>
@@ -209,7 +210,7 @@ export default function PricesPage() {
                     <dt>{pack.lessons} занятий</dt>
                     <dd>
                       {rub(pack.total)}
-                      <small>{rub(pack.perLesson)} за занятие</small>
+                      <small>{rub(packPerLesson(pack))} за занятие</small>
                     </dd>
                   </div>
                 ))}
@@ -277,13 +278,13 @@ export default function PricesPage() {
                   <tr key={rate.time}>
                     <th scope="row">{rate.time}</th>
                     <td>
-                      <b>{rub(rate.big)}</b>
+                      <span>{rub(rate.big)}</span>
                     </td>
                     <td>
-                      <b>{rub(rate.medium)}</b>
+                      <span>{rub(rate.medium)}</span>
                     </td>
                     <td>
-                      <b>{rub(rate.small)}</b>
+                      <span>{rub(rate.small)}</span>
                     </td>
                     <td>{rate.note}</td>
                   </tr>
@@ -324,8 +325,8 @@ export default function PricesPage() {
           <ul className="pr-group-rates">
             {rentalGroup.map((rate) => (
               <li key={rate.time} className={rate.price === null ? "is-off" : undefined}>
-                <span>{rate.time}</span>
-                <b>{rate.price === null ? "—" : rub(rate.price)}</b>
+                <strong>{rate.time}</strong>
+                <span>{rate.price === null ? "—" : rub(rate.price)}</span>
                 <small>{rate.status}</small>
               </li>
             ))}

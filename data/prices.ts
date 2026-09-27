@@ -65,59 +65,70 @@ export function discountPercent(plan: GroupPlan) {
    ИНДИВИДУАЛЬНЫЕ ЗАНЯТИЯ
    ================================================== */
 
+export type IndividualPack = { lessons: number; total: number };
+
 export type IndividualTier = {
   /** Категория тренера. */
   category: string;
   /** Разовое занятие. */
   single: number;
-  /** Абонементы: количество занятий, полная сумма, цена за занятие. */
-  packs: { lessons: number; total: number; perLesson: number }[];
+  /** Абонементы: количество занятий и полная сумма. */
+  packs: IndividualPack[];
 };
+
+/**
+ * Цена одного занятия в абонементе — считается, а не пишется руками.
+ * Раньше она стояла рядом числом: стоило поменять сумму, и два числа
+ * начинали противоречить друг другу, а заметить это было некому.
+ */
+export function packPerLesson(pack: IndividualPack) {
+  return Math.round(pack.total / pack.lessons);
+}
 
 export const individualTiers: IndividualTier[] = [
   {
     category: "Тренер",
     single: 2000,
     packs: [
-      { lessons: 4, total: 7600, perLesson: 1900 },
-      { lessons: 8, total: 14400, perLesson: 1800 },
-      { lessons: 12, total: 21000, perLesson: 1750 },
+      { lessons: 4, total: 7600 },
+      { lessons: 8, total: 14400 },
+      { lessons: 12, total: 21000 },
     ],
   },
   {
     category: "Топ-тренер",
     single: 2500,
     packs: [
-      { lessons: 4, total: 9600, perLesson: 2400 },
-      { lessons: 8, total: 18400, perLesson: 2300 },
-      { lessons: 12, total: 27000, perLesson: 2250 },
+      { lessons: 4, total: 9600 },
+      { lessons: 8, total: 18400 },
+      { lessons: 12, total: 27000 },
     ],
   },
   {
     category: "Мастер-тренер",
     single: 3000,
     packs: [
-      { lessons: 4, total: 11400, perLesson: 2850 },
-      { lessons: 8, total: 21600, perLesson: 2700 },
-      { lessons: 12, total: 31200, perLesson: 2600 },
+      { lessons: 4, total: 11400 },
+      { lessons: 8, total: 21600 },
+      { lessons: 12, total: 31200 },
     ],
   },
   {
     category: "VIP-тренер",
     single: 3500,
     packs: [
-      { lessons: 4, total: 13400, perLesson: 3350 },
-      { lessons: 8, total: 25600, perLesson: 3200 },
-      { lessons: 12, total: 37200, perLesson: 3100 },
+      { lessons: 4, total: 13400 },
+      { lessons: 8, total: 25600 },
+      { lessons: 12, total: 37200 },
     ],
   },
   {
     category: "Премиум",
     single: 4000,
     packs: [
-      { lessons: 4, total: 15200, perLesson: 3800 },
-      { lessons: 8, total: 29600, perLesson: 3700 },
-      { lessons: 12, total: 42000, perLesson: 3500 },
+      { lessons: 4, total: 15200 },
+      { lessons: 8, total: 29600 },
+      { lessons: 12, total: 42000 },
     ],
   },
 ];
