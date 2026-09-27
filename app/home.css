@@ -521,48 +521,22 @@
   box-shadow: none;
 }
 
-.video-placeholder::before,
-.video-placeholder::after {
-  content: "";
-  position: absolute;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-}
-
-.video-placeholder::before {
-  width: 70%;
-  height: 140%;
-  left: 25%;
-  top: 15%;
-}
-
-.video-placeholder::after {
-  width: 48%;
-  height: 95%;
-  left: 38%;
-  top: 34%;
-}
-
-.video-play {
-  position: absolute;
-  z-index: 3;
-  top: 50%;
-  left: 50%;
-  width: 58px;
-  height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--white);
-  border-radius: 50%;
-  color: var(--white);
-  font-size: 17px;
-  transform: translate(-50%, -50%);
+/* Сам ролик. Раньше здесь была нарисованная «заглушка» плеера:
+   кнопка ▶, выдуманный таймкод и стрелки, которые никуда не вели. */
+.moments-video {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--color-black);
 }
 
 .video-brand {
   position: absolute;
   z-index: 4;
+  pointer-events: none;
   top: 15px;
   left: 16px;
   width: 68px;
@@ -576,62 +550,6 @@
   display: block;
   width: 100%;
   height: auto;
-}
-
-.video-controls {
-  position: absolute;
-  z-index: 3;
-  left: 16px;
-  right: 16px;
-  bottom: 13px;
-  display: flex;
-  justify-content: space-between;
-  color: var(--white);
-  font-size: 10px;
-}
-
-.video-arrows {
-  position: absolute;
-  left: -82px;
-  bottom: 0;
-  display: flex;
-  gap: 6px;
-  z-index: 5;
-}
-
-.video-arrows button {
-  border-radius: var(--radius-pill);
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--black);
-  background: transparent;
-  color: var(--black);
-  font-size: 15px;
-}
-
-.video-arrows button:hover {
-  background: var(--black);
-  color: var(--white);
-}
-
-.dance-badge {
-  position: absolute;
-  right: -55px;
-  bottom: -38px;
-  width: 105px;
-  height: 105px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-  border-radius: 50%;
-  background: var(--pink);
-  color: var(--black);
-  font-size: 9px;
-  line-height: 1.15;
-  font-weight: 700;
-  text-align: center;
-  text-transform: uppercase;
 }
 
 /* ==================================================
@@ -1148,10 +1066,6 @@
   .video-frame {
     width: min(650px, 70%);
   }
-
-  .video-arrows {
-    left: -76px;
-  }
 }
 
 /* ==================================================
@@ -1241,10 +1155,6 @@
 
   .video-frame {
     width: min(650px, 82%);
-  }
-
-  .video-arrows {
-    left: -76px;
   }
 }
 
@@ -1352,13 +1262,16 @@
   }
 
   .video-frame {
-    width: 88%;
-    margin-left: 12%;
+    /* Отступ слева был нужен под стрелки «вперёд/назад», которых больше нет:
+       на телефоне ролик занимает всю ширину колонки. */
+    width: 100%;
+    margin-left: 0;
     margin-right: 0;
   }
 
   .video-placeholder {
-    aspect-ratio: 4 / 3;
+    /* было 4/3 под рисованную заглушку; у ролика кадр 16/9,
+       иначе его обрезало бы сверху и снизу. */
     box-shadow: none;
   }
 
@@ -1366,39 +1279,6 @@
     top: 11px;
     left: 11px;
     width: 57px;
-  }
-
-  .video-play {
-    width: 50px;
-    height: 50px;
-    font-size: 15px;
-  }
-
-  .video-controls {
-    left: 11px;
-    right: 11px;
-    bottom: 10px;
-    font-size: 9px;
-  }
-
-  .video-arrows {
-    left: -48px;
-    bottom: 0;
-    gap: 5px;
-  }
-
-  .video-arrows button {
-    width: 32px;
-    height: 32px;
-  }
-
-  .dance-badge {
-    right: -5px;
-    bottom: -34px;
-    width: 92px;
-    height: 92px;
-    padding: 15px;
-    font-size: 8px;
   }
 
   .features-title {

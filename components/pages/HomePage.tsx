@@ -155,26 +155,18 @@ export function HomePage() {
 
         <div className="video-frame" data-reveal="scale" data-reveal-delay="1">
           <div className="video-placeholder">
-            <div className="video-play">▶</div>
+            {/* preload="none": до нажатия «play» грузится только обложка,
+                чтобы главная страница открывалась быстро. */}
+            <video
+              className="moments-video"
+              src="/video/momenty.mp4"
+              poster="/video/momenty-poster.webp"
+              preload="none"
+              controls
+              playsInline
+            />
 
             <div className="video-brand">STEP TAP.</div>
-
-            <div className="video-controls">
-              <span>0:00 / 0:30</span>
-              <span>🔊</span>
-              <span>⛶</span>
-            </div>
-          </div>
-
-          <div className="video-arrows">
-            <button aria-label="Предыдущее">←</button>
-            <button aria-label="Следующее">→</button>
-          </div>
-
-          <div className="dance-badge">
-            ТАНЕЦ
-            <br />
-            ОБЪЕДИНЯЕТ
           </div>
         </div>
 
