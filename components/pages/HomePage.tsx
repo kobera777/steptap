@@ -1,10 +1,7 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { HomeHeader } from "@/components/layout/HomeHeader";
-import { faqs, features, homeLevels, marqueeWords, rentalItems } from "@/data/home";
+import { features, homeLevels, marqueeWords, rentalItems } from "@/data/home";
 import {
   siteContacts,
   socialLinks,
@@ -12,13 +9,12 @@ import {
   yandexMapEmbedUrl,
   yandexMapPageUrl,
 } from "@/data/site";
+import { FaqList } from "@/components/home/FaqList";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { SignupLink } from "@/components/layout/SignupLink";
 
-/** Главная страница (клиентский компонент: FAQ, меню, выпадающие списки). */
+/** Главная страница — серверный компонент; интерактивен только FaqList. */
 export function HomePage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
   return (
     <main className="site-shell">
       <HomeHeader />
@@ -57,7 +53,7 @@ export function HomePage() {
             aria-hidden="true"
             fill
             priority
-            quality={90}
+            quality={75}
             sizes="(max-width: 900px) 100vw, 50vw"
           />
 
@@ -69,7 +65,7 @@ export function HomePage() {
             alt="STEP TAP — бачата"
             fill
             priority
-            quality={90}
+            quality={75}
             sizes="(max-width: 900px) 100vw, 50vw"
           />
 
@@ -280,31 +276,7 @@ export function HomePage() {
           </h2>
         </div>
 
-        <div className="faq-list" data-reveal data-reveal-delay="1">
-          {faqs.map((faq, index) => {
-            const open = openFaq === index;
-            return (
-              <div className={`faq-item ${open ? "is-open" : ""}`} key={faq.question}>
-                <button
-                  type="button"
-                  className="faq-question"
-                  aria-expanded={open}
-                  aria-controls={`faq-answer-${index}`}
-                  onClick={() => setOpenFaq(open ? null : index)}
-                >
-                  <span>{faq.question}</span>
-                  <strong aria-hidden="true">+</strong>
-                </button>
-
-                <div id={`faq-answer-${index}`} className="faq-answer" role="region">
-                  <div>
-                    <p>{faq.answer}</p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <FaqList />
       </section>
 
       {/* RENTAL */}
