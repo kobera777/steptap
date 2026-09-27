@@ -22,7 +22,15 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const shotsDir = path.join(root, "shots");
 
 /** Páginas que se capturan. El primer álbum de la galería se lee de data/gallery.ts. */
-const ROUTES = ["/", "/about", "/directions", "/schedule", "/song-analysis", "/gallery"];
+const ROUTES = [
+  "/",
+  "/about",
+  "/directions",
+  "/schedule",
+  "/prices",
+  "/song-analysis",
+  "/gallery",
+];
 /** Anchos de pantalla: escritorio, tableta, móvil. */
 const WIDTHS = [1280, 768, 375];
 const PORT = 3999;
@@ -80,7 +88,7 @@ async function capture(name, url) {
     for (const width of WIDTHS) {
       const page = await context.newPage();
       await page.setViewportSize({ width, height: 900 });
-      await page.goto(url + route, { waitUntil: "networkidle" });
+      await page.goto(url + route, { waitUntil: "load", timeout: 45000 });
       // Contenido que cambia solo (vídeos incrustados) se tapa; el cursor no se ve.
       await page.addStyleTag({
         content:
@@ -97,7 +105,12 @@ async function capture(name, url) {
         window.scrollTo(0, 0);
         await new Promise((r) => setTimeout(r, 300));
       });
-      await page.waitForLoadState("networkidle");
+      // networkidle — вещь ненадёжная: одна страница, которая никак не
+      // успокоится, раньше роняла весь прогон, и снимков не оставалось
+      // вообще. Ждём, сколько ждётся, и всё равно делаем снимок.
+      await page
+        .waitForLoadState("networkidle", { timeout: 10000 })
+        .catch(() => console.log(`    (сеть не успокоилась: ${route} ${width}px)`));
       const file = path.join(outDir, `${fileName(route)}-${width}.png`);
       await page.screenshot({ path: file, fullPage: true, animations: "disabled" });
       console.log(`  ✓ ${route.padEnd(40)} ${width}px`);

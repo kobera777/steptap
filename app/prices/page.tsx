@@ -3,14 +3,18 @@ import Image from "next/image";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import {
+  discountPercent,
   groupPlans,
   halls,
   individualTiers,
+  isApproximate,
+  perLesson,
   rentalGroup,
   rentalIndividual,
   rentalRules,
   rub,
 } from "@/data/prices";
+import { features } from "@/data/home";
 import "./prices.css";
 import { SignupLink } from "@/components/layout/SignupLink";
 
@@ -40,12 +44,54 @@ export default function PricesPage() {
 
         <div className="pr-hero-text" data-reveal="right" data-reveal-delay="2">
           <p>
-            Абонемент выгоднее разового занятия: чем больше занятий, тем ниже цена
-            каждого.
+            Приходите посмотреть, как всё устроено: первое занятие ничего не стоит. А
+            дальше — чем больше занятий в абонементе, тем дешевле каждое.
+          </p>
+          <SignupLink className="pr-button">
+            ЗАПИСАТЬСЯ НА ПРОБНОЕ <span>→</span>
+          </SignupLink>
+        </div>
+      </section>
+
+      {/* ПРОБНОЕ ЗАНЯТИЕ — первое число на странице должно быть нулём,
+          а не суммой абонемента. */}
+      <section className="pr-trial" data-reveal>
+        <div className="pr-trial-main">
+          <p className="pr-kicker">С ЧЕГО НАЧАТЬ</p>
+          <p className="pr-trial-price">Бесплатно</p>
+          <h2>Первое занятие</h2>
+        </div>
+
+        <div className="pr-trial-text">
+          <p>
+            Ничего не нужно платить и ничего не нужно уметь. Приходите, попробуйте и
+            решайте после — абонемент никуда не денется.
           </p>
           <SignupLink className="pr-button">
             ЗАПИСАТЬСЯ <span>→</span>
           </SignupLink>
+        </div>
+      </section>
+
+      {/* ЧТО ВХОДИТ В ЗАНЯТИЕ — сначала про занятие, потом про деньги. */}
+      <section className="pr-includes">
+        <div className="pr-head" data-reveal>
+          <p className="pr-kicker">ЧТО ВХОДИТ В ЗАНЯТИЕ</p>
+        </div>
+
+        <div className="pr-includes-grid">
+          {features.map((feature, index) => (
+            <article
+              key={feature.number}
+              className="pr-include"
+              data-reveal
+              data-reveal-delay={String(index + 1)}
+            >
+              <span>{feature.number}</span>
+              <h3>{feature.title}</h3>
+              <p>{feature.lines.join(" ")}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -67,8 +113,26 @@ export default function PricesPage() {
               >
                 {plan.featured && <span className="pr-badge">Популярный</span>}
                 <h3>{plan.title}</h3>
-                <p className="pr-price">{rub(plan.total)}</p>
-                <p className="pr-per">{rub(plan.perLesson)} за занятие</p>
+
+                {/* Крупно — цена одного занятия, а не сумма абонемента:
+                    «600 ₽» и «9 600 ₽» — это одно и то же предложение,
+                    но читаются они совершенно по-разному. Полная сумма
+                    стоит тут же, ниже: ничего не спрятано. */}
+                <p className="pr-price">
+                  {isApproximate(plan) && <i>≈ </i>}
+                  {rub(perLesson(plan))}
+                </p>
+                <p className="pr-per">за занятие</p>
+
+                <p className="pr-total">
+                  {plan.lessons > 1
+                    ? `${rub(plan.total)} за ${plan.title.toLowerCase()}`
+                    : "Одно занятие без абонемента"}
+                </p>
+
+                {discountPercent(plan) > 0 && (
+                  <p className="pr-save">−{discountPercent(plan)}% к разовому</p>
+                )}
                 {plan.note && <p className="pr-note">{plan.note}</p>}
                 <SignupLink className="pr-card-button">
                   ЗАПИСАТЬСЯ <span>→</span>

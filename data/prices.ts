@@ -18,10 +18,10 @@ export function rub(sum: number) {
 export type GroupPlan = {
   /** Название: «Разовое», «4 занятия»… */
   title: string;
+  /** Сколько занятий входит в абонемент. */
+  lessons: number;
   /** Полная стоимость абонемента в рублях. */
   total: number;
-  /** Цена одного занятия внутри абонемента. */
-  perLesson: number;
   /** Подпись справа: «Максимальная выгода» и т. п. */
   note?: string;
   /** true — карточка выделяется как популярная. */
@@ -29,18 +29,37 @@ export type GroupPlan = {
 };
 
 /**
- * ⚠️ ЗАПОЛНИТЬ. На присланном фото таблица групповых занятий обрезана:
- * видна только последняя строка (16 занятий — 9 600 ₽, 600 ₽ за занятие).
- * Пока массив пустой, блок «Групповые занятия» на сайте не показывается —
- * лучше ничего, чем половина таблицы. Добавьте строки 4–10 из таблицы:
+ * Источник: лицевая сторона прайс-листа, раздел «Групповые занятия».
+ * Разовое занятие — 900 ₽ (в таблице было 1 100 ₽, владелец изменил цену).
  *
- *   { title: "Разовое",    total: 0,    perLesson: 0 },
- *   { title: "4 занятия",  total: 0,    perLesson: 0 },
- *   { title: "8 занятий",  total: 0,    perLesson: 0, featured: true },
- *   { title: "12 занятий", total: 0,    perLesson: 0 },
- *   { title: "16 занятий", total: 9600, perLesson: 600, note: "Максимальная выгода" },
+ * Цена за занятие и выгода НЕ записываются руками: они считаются из total
+ * и lessons (см. perLesson и discountPercent ниже). Иначе рано или поздно
+ * два числа начнут противоречить друг другу.
  */
-export const groupPlans: GroupPlan[] = [];
+export const groupPlans: GroupPlan[] = [
+  { title: "Разовое занятие", lessons: 1, total: 900 },
+  { title: "4 занятия", lessons: 4, total: 3400 },
+  { title: "8 занятий", lessons: 8, total: 5600, featured: true },
+  { title: "12 занятий", lessons: 12, total: 8000 },
+  { title: "16 занятий", lessons: 16, total: 9600, note: "Максимальная выгода" },
+];
+
+/** Цена одного занятия внутри абонемента. */
+export function perLesson(plan: GroupPlan) {
+  return Math.round(plan.total / plan.lessons);
+}
+
+/** true — сумма не делится нацело, цену показываем со знаком «≈». */
+export function isApproximate(plan: GroupPlan) {
+  return plan.total % plan.lessons !== 0;
+}
+
+/** Насколько занятие дешевле разового, в процентах. 0 — для самого разового. */
+export function discountPercent(plan: GroupPlan) {
+  const single = groupPlans[0];
+  if (!single || plan === single) return 0;
+  return Math.round((1 - perLesson(plan) / perLesson(single)) * 100);
+}
 
 /* ==================================================
    ИНДИВИДУАЛЬНЫЕ ЗАНЯТИЯ

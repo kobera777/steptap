@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HomeHeader } from "@/components/layout/HomeHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { features, homeLevels, marqueeWords, rentalItems } from "@/data/home";
 import {
   siteContacts,
@@ -429,6 +430,8 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      <SiteFooter />
     </main>
   );
 }

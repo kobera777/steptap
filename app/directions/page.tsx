@@ -15,6 +15,15 @@ export const metadata: Metadata = {
     "Направления школы танца STEP TAP: бачата в паре, бачата леди, мужской стиль, экспериментальная, дэнсхолл и латина.",
 };
 
+/**
+ * Длина самого длинного слова в названии. По ней подбирается кегль:
+ * «ЭКСПЕРИМЕНТАЛЬНАЯ» — одно слово из 17 букв, его нельзя перенести,
+ * и тем же кеглем, что «ЛЕДИ», оно вылезает за карточку.
+ */
+function longestWord(title: string) {
+  return Math.max(...title.split(" ").map((word) => word.length));
+}
+
 /** Слова из декора карточки — теперь они стоят подписью над названием. */
 function decorWords(decor: CardDecor) {
   const words = decor.kind === "circle" ? [decor.text] : decor.lines;
@@ -79,7 +88,7 @@ export default function DirectionsPage() {
         <div className="bachata-grid">
           {bachataCards.map((card) => (
             <Link
-              key={card.href}
+              key={card.title}
               href={card.href}
               className={`direction-card ${card.variant}`}
             >
@@ -97,7 +106,9 @@ export default function DirectionsPage() {
                   </ul>
 
                   <p>{card.kicker}</p>
-                  <h3>{card.title}</h3>
+                  <h3 className={longestWord(card.title) >= 12 ? "is-long" : undefined}>
+                    {card.title}
+                  </h3>
                 </div>
               </div>
 
@@ -138,7 +149,7 @@ export default function DirectionsPage() {
         <div className="other-list">
           {otherCards.map((card) => (
             <Link
-              key={card.href}
+              key={card.title}
               href={card.href}
               className={`other-card ${card.variant}`}
             >

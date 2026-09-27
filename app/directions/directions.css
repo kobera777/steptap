@@ -344,9 +344,16 @@
 .directions-page .card-content h3 {
   margin: 0;
   font-size: clamp(40px, 4.6vw, 64px);
+  overflow-wrap: anywhere;
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
+}
+
+/* Длинные названия в одно слово («ЭКСПЕРИМЕНТАЛЬНАЯ») — кегль меньше:
+   перенести такое слово нельзя, а прежним кеглем оно не помещалось. */
+.directions-page .card-content h3.is-long {
+  font-size: clamp(22px, 2.6vw, 36px);
 }
 
 .directions-page .card-arrow {

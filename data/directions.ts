@@ -1,6 +1,13 @@
 /**
  * Карточки страницы «Направления».
  * variant — класс оформления карточки (цвет/размер), см. app/directions/directions.css.
+ *
+ * kicker — общее слово («БАЧАТА»), title — то, что отличает направление.
+ * Крупным всегда идёт title: человек ищет глазами «Парная», «Леди»,
+ * «Мужской стиль», а не слово «бачата», которое одинаково у всех.
+ *
+ * href у всех ведёт на цены: своих страниц у направлений пока нет, а
+ * раньше карточки возвращали человека туда же, где он стоял.
  */
 
 export type CardDecor =
@@ -29,11 +36,11 @@ export type BachataCard = {
 
 export const bachataCards: BachataCard[] = [
   {
-    href: "/directions/bachata/pair",
+    href: "/prices#group",
     variant: "card-large",
     number: "01",
-    kicker: "ПАРНАЯ",
-    title: "БАЧАТА",
+    kicker: "БАЧАТА",
+    title: "ПАРНАЯ",
     decor: { kind: "circle", text: "КОНТАКТ" },
     photo: {
       src: "/directions/pareja.webp",
@@ -41,7 +48,7 @@ export const bachataCards: BachataCard[] = [
     },
   },
   {
-    href: "/directions/bachata/lady",
+    href: "/prices#group",
     variant: "card-pink",
     number: "02",
     kicker: "БАЧАТА",
@@ -53,11 +60,11 @@ export const bachataCards: BachataCard[] = [
     },
   },
   {
-    href: "/directions/bachata/mens-style",
+    href: "/prices#group",
     variant: "card-dark",
     number: "03",
-    kicker: "МУЖСКОЙ",
-    title: "СТИЛЬ",
+    kicker: "БАЧАТА",
+    title: "МУЖСКОЙ СТИЛЬ",
     decor: { kind: "note", lines: ["ТЕХНИКА", "ФУТВОРК", "ПОДАЧА"] },
     photo: {
       src: "/directions/estilo-masculino.webp",
@@ -65,11 +72,11 @@ export const bachataCards: BachataCard[] = [
     },
   },
   {
-    href: "/directions/bachata/experimental",
+    href: "/prices#group",
     variant: "card-outline",
     number: "04",
-    kicker: "ЭКСПЕРИМЕНТАЛЬНАЯ",
-    title: "БАЧАТА",
+    kicker: "БАЧАТА",
+    title: "ЭКСПЕРИМЕНТАЛЬНАЯ",
     decor: { kind: "outline", lines: ["ЭКСПЕРИМЕНТ", "×", "ДВИЖЕНИЕ"] },
     photo: {
       src: "/directions/experimental.webp",
@@ -90,14 +97,14 @@ export type OtherCard = {
 
 export const otherCards: OtherCard[] = [
   {
-    href: "/directions/dancehall",
+    href: "/prices#group",
     variant: "dancehall-card",
     number: "02",
     kicker: "ЭНЕРГИЯ / РИТМ / СВОБОДА",
     title: "ДЭНСХОЛЛ",
   },
   {
-    href: "/directions/latina",
+    href: "/prices#group",
     variant: "latina-card",
     number: "03",
     kicker: "МУЗЫКА / ДВИЖЕНИЕ / ХАРАКТЕР",
