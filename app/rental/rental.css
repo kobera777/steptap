@@ -1,0 +1,39 @@
+/* Страница «АРЕНДА ЗАЛОВ».
+   Оформление берётся со страницы цен (app/prices/prices.css): те же таблицы,
+   карточки тарифов и розовые рамки. Здесь — только своё. Префикс: .rn- */
+
+/* Переход к занятиям для тех, кто пришёл сюда по ошибке. */
+.rn-crosslink {
+  padding: 0 7vw 80px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+}
+
+.rn-crosslink p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--color-muted);
+}
+
+.rn-crosslink a {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-pink);
+  padding-bottom: 2px;
+  transition: color 0.2s ease;
+}
+
+.rn-crosslink a:hover,
+.rn-crosslink a:focus-visible {
+  color: var(--color-pink);
+}
+
+@media (max-width: 900px) {
+  .rn-crosslink {
+    padding: 0 20px 60px;
+  }
+}

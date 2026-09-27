@@ -28,6 +28,7 @@ const ROUTES = [
   "/directions",
   "/schedule",
   "/prices",
+  "/rental",
   "/song-analysis",
   "/gallery",
 ];

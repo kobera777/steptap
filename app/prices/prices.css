@@ -486,6 +486,65 @@
   border-bottom: 0;
 }
 
+/* ---------- Финал страницы ----------
+   Раньше прайс заканчивался кнопкой «Забронировать зал»: последнее, что читал
+   будущий ученик, было предложение не для него. Теперь — снова про пробное. */
+
+.pr-closing {
+  padding: 70px 7vw;
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  align-items: center;
+  gap: 5vw;
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.pr-closing h2 {
+  margin: 10px 0 0;
+  font-size: clamp(30px, 3.6vw, 52px);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
+}
+
+.pr-closing-text p {
+  max-width: 420px;
+  margin: 0 0 26px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.pr-crosslink {
+  padding: 34px 7vw 70px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+}
+
+.pr-crosslink p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--color-muted);
+}
+
+.pr-crosslink a {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-pink);
+  padding-bottom: 2px;
+  transition: color 0.2s ease;
+}
+
+.pr-crosslink a:hover,
+.pr-crosslink a:focus-visible {
+  color: var(--color-pink);
+}
+
 /* ---------- Залы ---------- */
 
 .pr-halls {
@@ -589,8 +648,17 @@
 
 @media (max-width: 900px) {
   .pr-trial,
+  .pr-closing,
   .pr-includes-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pr-closing {
+    gap: 30px;
+  }
+
+  .pr-crosslink {
+    padding: 30px 20px 60px;
   }
 
   .pr-trial {
