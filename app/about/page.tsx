@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import Link from "next/link";
 import { lifeItems, values } from "@/data/about";
 
 import Image from "next/image";

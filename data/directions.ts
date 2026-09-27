@@ -8,6 +8,9 @@ export type CardDecor =
   | { kind: "note"; lines: string[] }
   | { kind: "outline"; lines: string[] };
 
+/** Фотография на карточке направления (файлы лежат в public/directions). */
+export type CardPhoto = { src: string; alt: string };
+
 export type BachataCard = {
   href: string;
   variant: "card-large" | "card-pink" | "card-dark" | "card-outline";
@@ -15,6 +18,13 @@ export type BachataCard = {
   kicker: string;
   title: string;
   decor: CardDecor;
+  /**
+   * Снимок школы: какая фотография на какой карточке — сказал владелец.
+   * Файлы лежат в public/directions и уже обрезаны в квадрат под плитку.
+   * Чтобы поменять фотографии местами, достаточно переставить здесь
+   * строки `src` — вёрстку трогать не нужно.
+   */
+  photo: CardPhoto;
 };
 
 export const bachataCards: BachataCard[] = [
@@ -25,6 +35,10 @@ export const bachataCards: BachataCard[] = [
     kicker: "ПАРНАЯ",
     title: "БАЧАТА",
     decor: { kind: "circle", text: "КОНТАКТ" },
+    photo: {
+      src: "/directions/pareja.webp",
+      alt: "Пара танцует бачату в школе STEP TAP",
+    },
   },
   {
     href: "/directions/bachata/lady",
@@ -33,6 +47,10 @@ export const bachataCards: BachataCard[] = [
     kicker: "БАЧАТА",
     title: "ЛЕДИ",
     decor: { kind: "note", lines: ["ПЛАСТИКА", "ПОДАЧА", "МУЗЫКА"] },
+    photo: {
+      src: "/directions/lady.webp",
+      alt: "Две танцовщицы STEP TAP на занятии «бачата леди»",
+    },
   },
   {
     href: "/directions/bachata/mens-style",
@@ -41,6 +59,10 @@ export const bachataCards: BachataCard[] = [
     kicker: "МУЖСКОЙ",
     title: "СТИЛЬ",
     decor: { kind: "note", lines: ["ТЕХНИКА", "ФУТВОРК", "ПОДАЧА"] },
+    photo: {
+      src: "/directions/estilo-masculino.webp",
+      alt: "Преподаватель мужского стиля бачаты в STEP TAP",
+    },
   },
   {
     href: "/directions/bachata/experimental",
@@ -49,6 +71,10 @@ export const bachataCards: BachataCard[] = [
     kicker: "ЭКСПЕРИМЕНТАЛЬНАЯ",
     title: "БАЧАТА",
     decor: { kind: "outline", lines: ["ЭКСПЕРИМЕНТ", "×", "ДВИЖЕНИЕ"] },
+    photo: {
+      src: "/directions/experimental.webp",
+      alt: "Танцовщица STEP TAP на занятии экспериментальной бачатой",
+    },
   },
 ];
 

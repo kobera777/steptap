@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import Link from "next/link";
+import type { CardDecor } from "@/data/directions";
 import { bachataCards, otherCards } from "@/data/directions";
-import { Fragment } from "react";
 
 import Image from "next/image";
 import "./directions.css";
@@ -14,6 +14,12 @@ export const metadata: Metadata = {
   description:
     "Направления школы танца STEP TAP: бачата в паре, бачата леди, мужской стиль, экспериментальная, дэнсхолл и латина.",
 };
+
+/** Слова из декора карточки — теперь они стоят подписью над названием. */
+function decorWords(decor: CardDecor) {
+  const words = decor.kind === "circle" ? [decor.text] : decor.lines;
+  return words.filter((word) => word !== "×");
+}
 
 export default function DirectionsPage() {
   return (
@@ -77,38 +83,33 @@ export default function DirectionsPage() {
               href={card.href}
               className={`direction-card ${card.variant}`}
             >
-              <div className="card-number">{card.number}</div>
+              <div className="card-body">
+                <div className="card-top">
+                  <span className="card-number">{card.number}</span>
+                  <span className="card-arrow">→</span>
+                </div>
 
-              <div className="card-content">
-                <p>{card.kicker}</p>
-                <h3>{card.title}</h3>
+                <div className="card-content">
+                  <ul className="card-tags">
+                    {decorWords(card.decor).map((word) => (
+                      <li key={word}>{word}</li>
+                    ))}
+                  </ul>
+
+                  <p>{card.kicker}</p>
+                  <h3>{card.title}</h3>
+                </div>
               </div>
 
-              <div className="card-arrow">→</div>
-
-              {card.decor.kind === "circle" && (
-                <div className="card-circle">{card.decor.text}</div>
-              )}
-              {card.decor.kind === "note" && (
-                <div className="card-note">
-                  {card.decor.lines.map((line, index) => (
-                    <Fragment key={line}>
-                      {index > 0 && <br />}
-                      {line}
-                    </Fragment>
-                  ))}
-                </div>
-              )}
-              {card.decor.kind === "outline" && (
-                <div className="outline-circle">
-                  {card.decor.lines.map((line, index) => (
-                    <Fragment key={line}>
-                      {index > 0 && <br />}
-                      {line}
-                    </Fragment>
-                  ))}
-                </div>
-              )}
+              <div className="card-photo">
+                <Image
+                  src={card.photo.src}
+                  alt={card.photo.alt}
+                  width={1200}
+                  height={1200}
+                  sizes="(max-width: 760px) 90vw, 43vw"
+                />
+              </div>
             </Link>
           ))}
         </div>

@@ -2,7 +2,6 @@
 
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import Link from "next/link";
 import {
   classes,
   days,
