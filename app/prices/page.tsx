@@ -7,7 +7,6 @@ import {
   discountPercent,
   groupPlans,
   individualTiers,
-  isApproximate,
   packPerLesson,
   perLesson,
   rub,
@@ -157,10 +156,7 @@ export default function PricesPage() {
                     «600 ₽» и «9 600 ₽» — это одно и то же предложение,
                     но читаются они совершенно по-разному. Полная сумма
                     стоит тут же, ниже: ничего не спрятано. */}
-                <p className="pr-price">
-                  {isApproximate(plan) && <i>≈ </i>}
-                  {rub(perLesson(plan))}
-                </p>
+                <p className="pr-price">{rub(perLesson(plan))}</p>
                 <p className="pr-per">за занятие</p>
 
                 <p className="pr-total">{rub(plan.total)} за абонемент</p>
@@ -223,8 +219,10 @@ export default function PricesPage() {
                   </td>
                   {tier.packs.map((pack) => (
                     <td key={pack.lessons}>
-                      <span>{rub(pack.total)}</span>
-                      <small>{rub(packPerLesson(pack))} за занятие</small>
+                      {/* Крупно — цена одного занятия, как в карточках
+                          абонементов выше; полная сумма строкой ниже. */}
+                      <span>{rub(packPerLesson(pack))}</span>
+                      <small>{rub(pack.total)} за абонемент</small>
                     </td>
                   ))}
                 </tr>
@@ -252,8 +250,8 @@ export default function PricesPage() {
                   <div key={pack.lessons}>
                     <dt>{pack.lessons} занятий</dt>
                     <dd>
-                      {rub(pack.total)}
-                      <small>{rub(packPerLesson(pack))} за занятие</small>
+                      {rub(packPerLesson(pack))}
+                      <small>{rub(pack.total)} за абонемент</small>
                     </dd>
                   </div>
                 ))}

@@ -57,11 +57,6 @@ export function perLesson(plan: GroupPlan) {
   return Math.round(plan.total / plan.lessons);
 }
 
-/** true — сумма не делится нацело, цену показываем со знаком «≈». */
-export function isApproximate(plan: GroupPlan) {
-  return plan.total % plan.lessons !== 0;
-}
-
 /** Насколько занятие в абонементе дешевле разового, в процентах. */
 export function discountPercent(plan: GroupPlan) {
   return Math.round((1 - perLesson(plan) / singleLesson.total) * 100);

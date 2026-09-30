@@ -379,14 +379,6 @@
   font-weight: 600;
 }
 
-/* Знак «≈» у 8 000 / 12: он не должен быть таким же крупным, как цифры. */
-.pr-price i {
-  font-style: normal;
-  font-size: 0.6em;
-  font-weight: 700;
-  opacity: 0.6;
-}
-
 .pr-per {
   margin: 6px 0 0;
   font-size: 11px;
