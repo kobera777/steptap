@@ -323,8 +323,7 @@
      240px — чтобы все четыре встали в ряд и при этом дышали. */
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
-  /* Метка над карточкой торчит на 11px выше неё. */
-  padding-top: 14px;
+  /* Метка теперь внутри карточки — место сверху не нужно. */
 }
 
 .pr-card {
@@ -342,18 +341,26 @@
   color: var(--color-white);
 }
 
+/* Метка стоит внутри карточки. Снаружи её срезал overflow: hidden,
+   который нужен, чтобы розовая полоска сверху не вылезала за скругления.
+   11px вместо 9px: разрядка на прописных мельче просто не читается. */
 .pr-badge {
-  position: absolute;
-  top: -11px;
-  left: 24px;
-  padding: 6px 12px;
+  align-self: flex-start;
+  margin-bottom: 14px;
+  padding: 7px 13px;
   border-radius: var(--radius-pill);
   background: var(--color-black);
   color: var(--color-white);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: var(--tracking-ui);
   text-transform: uppercase;
+}
+
+/* На розовой карточке метка светлая: чёрным по розовому она спорит с ценой. */
+.pr-card.is-featured .pr-badge {
+  background: var(--color-white);
+  color: var(--color-black);
 }
 
 .pr-card h3 {

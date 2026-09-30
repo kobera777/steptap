@@ -11,6 +11,7 @@ import {
   yandexMapPageUrl,
 } from "@/data/site";
 import { FaqList } from "@/components/home/FaqList";
+import { MomentsVideo } from "@/components/home/MomentsVideo";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { SignupLink } from "@/components/layout/SignupLink";
 
@@ -159,16 +160,7 @@ export function HomePage() {
 
         <div className="video-frame" data-reveal="scale" data-reveal-delay="1">
           <div className="video-placeholder">
-            {/* preload="none": до нажатия «play» грузится только обложка,
-                чтобы главная страница открывалась быстро. */}
-            <video
-              className="moments-video"
-              src="/video/momenty.mp4"
-              poster="/video/momenty-poster.webp"
-              preload="none"
-              controls
-              playsInline
-            />
+            <MomentsVideo />
 
             <div className="video-brand">STEP TAP.</div>
           </div>

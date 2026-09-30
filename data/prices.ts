@@ -77,11 +77,6 @@ export function weeks(plan: GroupPlan) {
   return Math.round(plan.lessons / LESSONS_PER_WEEK);
 }
 
-/** Пробное занятие для тех, кто не берёт абонемент, — половина разового. */
-export function trialPrice() {
-  return singleLesson.total / 2;
-}
-
 /* ==================================================
    ИНДИВИДУАЛЬНЫЕ ЗАНЯТИЯ
    ================================================== */

@@ -13,7 +13,6 @@ import {
   rub,
   savings,
   singleLesson,
-  trialPrice,
   weeks,
 } from "@/data/prices";
 import { features } from "@/data/home";
@@ -51,9 +50,8 @@ export default function PricesPage() {
 
         <div className="pr-hero-text" data-reveal="right" data-reveal-delay="2">
           <p>
-            Приходите посмотреть, как всё устроено. Возьмёте абонемент — первое занятие
-            бесплатно; не возьмёте — заплатите половину. А дальше: чем больше занятий в
-            абонементе, тем дешевле каждое.
+            Приходите, попробуйте бачату и познакомьтесь с нашей школой. После занятия
+            сами решите, какой формат вам подходит.
           </p>
           <SignupLink className="pr-button">
             ЗАПИСАТЬСЯ НА ПРОБНОЕ <span>→</span>
@@ -74,14 +72,12 @@ export default function PricesPage() {
         <div className="pr-trial-text">
           <ul className="pr-trial-terms">
             <li>
-              <strong>Берёте абонемент после занятия</strong>
+              <strong>В случае покупки абонемента</strong>
               <span>первое занятие бесплатно</span>
             </li>
             <li>
-              <strong>Не подошло</strong>
-              <span>
-                заплатите половину — {rub(trialPrice())} вместо {rub(singleLesson.total)}
-              </span>
+              <strong>Или 50% скидка</strong>
+              <span>если захотите продолжить разово</span>
             </li>
           </ul>
 
@@ -144,6 +140,9 @@ export default function PricesPage() {
                 data-reveal
                 data-reveal-delay={String((index % 4) + 1)}
               >
+                {/* Метка внутри карточки, а не над ней: у карточки
+                    overflow: hidden ради розовой полоски, и он срезал
+                    выступающей метке верх букв. */}
                 {plan.featured && <span className="pr-badge">Выбирают чаще всего</span>}
 
                 <h3>{plan.title}</h3>

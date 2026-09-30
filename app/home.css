@@ -495,7 +495,8 @@
 
 .video-frame {
   position: relative;
-  width: min(700px, 72%);
+  /* Ролик занимает всю ширину полосы: владелец просил крупно. */
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -1059,7 +1060,7 @@
   }
 
   .video-frame {
-    width: min(650px, 70%);
+    width: 100%;
   }
 }
 
@@ -1149,7 +1150,7 @@
   }
 
   .video-frame {
-    width: min(650px, 82%);
+    width: 100%;
   }
 }
 
