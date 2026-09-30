@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import {
+  LESSONS_PER_WEEK,
   discountPercent,
   groupPlans,
   individualTiers,
@@ -10,6 +11,10 @@ import {
   packPerLesson,
   perLesson,
   rub,
+  savings,
+  singleLesson,
+  trialPrice,
+  weeks,
 } from "@/data/prices";
 import { features } from "@/data/home";
 import "./prices.css";
@@ -20,6 +25,15 @@ export const metadata: Metadata = {
   description:
     "Стоимость групповых и индивидуальных занятий в школе танца STEP TAP, а также аренда залов: тарифы по времени и размеру зала.",
 };
+
+/** «недели» по-русски: 1 неделя, 2–4 недели, 5+ недель. */
+function weeksWord(n: number) {
+  const last = n % 10;
+  const teen = n % 100 >= 11 && n % 100 <= 14;
+  if (!teen && last === 1) return "неделя";
+  if (!teen && last >= 2 && last <= 4) return "недели";
+  return "недель";
+}
 
 export default function PricesPage() {
   return (
@@ -37,8 +51,9 @@ export default function PricesPage() {
 
         <div className="pr-hero-text" data-reveal="right" data-reveal-delay="2">
           <p>
-            Приходите посмотреть, как всё устроено: первое занятие ничего не стоит. А
-            дальше — чем больше занятий в абонементе, тем дешевле каждое.
+            Приходите посмотреть, как всё устроено. Возьмёте абонемент — первое занятие
+            бесплатно; не возьмёте — заплатите половину. А дальше: чем больше занятий в
+            абонементе, тем дешевле каждое.
           </p>
           <SignupLink className="pr-button">
             ЗАПИСАТЬСЯ НА ПРОБНОЕ <span>→</span>
@@ -46,8 +61,9 @@ export default function PricesPage() {
         </div>
       </section>
 
-      {/* ПРОБНОЕ ЗАНЯТИЕ — первое число на странице должно быть нулём,
-          а не суммой абонемента. */}
+      {/* ПЕРВОЕ ЗАНЯТИЕ. Крупным — «Бесплатно», но условие набрано обычным
+          читаемым кеглем, а не мелким серым: обещание, которое поняли не так,
+          превращается в спор на ресепшене и в отзыв на одну звезду. */}
       <section className="pr-trial" data-reveal>
         <div className="pr-trial-main">
           <p className="pr-kicker">С ЧЕГО НАЧАТЬ</p>
@@ -56,12 +72,25 @@ export default function PricesPage() {
         </div>
 
         <div className="pr-trial-text">
-          <p>
-            Ничего не нужно платить и ничего не нужно уметь. Приходите, попробуйте и
-            решайте после — абонемент никуда не денется.
+          <ul className="pr-trial-terms">
+            <li>
+              <strong>Берёте абонемент после занятия</strong>
+              <span>первое занятие бесплатно</span>
+            </li>
+            <li>
+              <strong>Не подошло</strong>
+              <span>
+                заплатите половину — {rub(trialPrice())} вместо {rub(singleLesson.total)}
+              </span>
+            </li>
+          </ul>
+
+          <p className="pr-trial-note">
+            Решать после занятия, а не до: сначала посмотрите, как всё устроено.
           </p>
+
           <SignupLink className="pr-button">
-            ЗАПИСАТЬСЯ <span>→</span>
+            ЗАПИСАТЬСЯ НА ПЕРВОЕ ЗАНЯТИЕ <span>→</span>
           </SignupLink>
         </div>
       </section>
@@ -88,12 +117,23 @@ export default function PricesPage() {
         </div>
       </section>
 
-      {/* ГРУППОВЫЕ ЗАНЯТИЯ — показывается, только когда заполнены данные */}
+      {/* ГРУППОВЫЕ ЗАНЯТИЯ */}
       {groupPlans.length > 0 && (
         <section className="pr-section" id="group">
           <div className="pr-head" data-reveal>
             <p className="pr-kicker">01 / ГРУППОВЫЕ</p>
             <h2>ГРУППОВЫЕ ЗАНЯТИЯ</h2>
+          </div>
+
+          {/* Разовое занятие — не абонемент, а точка отсчёта: от него считается
+              выгода всех остальных. Поэтому строкой, а не карточкой вровень. */}
+          <div className="pr-anchor" data-reveal>
+            <div>
+              <strong>{singleLesson.title}</strong>
+              <span>без абонемента, когда захочется прийти разово</span>
+            </div>
+            <p>{rub(singleLesson.total)}</p>
+            <SignupLink className="pr-anchor-link">Записаться →</SignupLink>
           </div>
 
           <div className="pr-cards">
@@ -104,8 +144,15 @@ export default function PricesPage() {
                 data-reveal
                 data-reveal-delay={String((index % 4) + 1)}
               >
-                {plan.featured && <span className="pr-badge">Популярный</span>}
+                {plan.featured && <span className="pr-badge">Выбирают чаще всего</span>}
+
                 <h3>{plan.title}</h3>
+                {/* Недели вместо «просто занятий»:человек покупает не 16 уроков,
+                    а два месяца, за которые начнёт танцевать. */}
+                <p className="pr-weeks">
+                  {weeks(plan)} {weeksWord(weeks(plan))} · {LESSONS_PER_WEEK} занятия в
+                  неделю
+                </p>
 
                 {/* Крупно — цена одного занятия, а не сумма абонемента:
                     «600 ₽» и «9 600 ₽» — это одно и то же предложение,
@@ -117,22 +164,27 @@ export default function PricesPage() {
                 </p>
                 <p className="pr-per">за занятие</p>
 
-                <p className="pr-total">
-                  {plan.lessons > 1
-                    ? `${rub(plan.total)} за ${plan.title.toLowerCase()}`
-                    : "Одно занятие без абонемента"}
+                <p className="pr-total">{rub(plan.total)} за абонемент</p>
+
+                {/* Экономия в рублях, а не только в процентах: «−45 %» —
+                    абстракция, «8 000 ₽» — деньги, которые остались у человека. */}
+                <p className="pr-save">
+                  Экономия {rub(savings(plan))}
+                  <span>−{discountPercent(plan)}% к разовому</span>
                 </p>
 
-                {discountPercent(plan) > 0 && (
-                  <p className="pr-save">−{discountPercent(plan)}% к разовому</p>
-                )}
                 {plan.note && <p className="pr-note">{plan.note}</p>}
+
                 <SignupLink className="pr-card-button">
-                  ЗАПИСАТЬСЯ <span>→</span>
+                  Выбрать <span>→</span>
                 </SignupLink>
               </article>
             ))}
           </div>
+
+          <p className="pr-cards-foot" data-reveal>
+            Абонемент можно взять после первого занятия — тогда оно бесплатное.
+          </p>
         </section>
       )}
 
@@ -223,14 +275,14 @@ export default function PricesPage() {
           <p className="pr-kicker">С ЧЕГО НАЧАТЬ</p>
           <h2>
             Начните
-            <br />с бесплатного
+            <br />с первого занятия
           </h2>
         </div>
 
         <div className="pr-closing-text">
           <p>
-            Выбирать абонемент проще, когда уже сходил на занятие. Первое — бесплатное, и
-            после него вопросов о цене обычно не остаётся.
+            Выбирать абонемент проще, когда уже сходил на занятие. Возьмёте абонемент
+            после него — занятие бесплатное. Нет — заплатите половину, и на этом всё.
           </p>
           <SignupLink className="pr-button">
             ЗАПИСАТЬСЯ НА ПРОБНОЕ <span>→</span>

@@ -29,15 +29,23 @@ export type GroupPlan = {
 };
 
 /**
- * Источник: лицевая сторона прайс-листа, раздел «Групповые занятия».
- * Разовое занятие — 900 ₽ (в таблице было 1 100 ₽, владелец изменил цену).
+ * Разовое занятие — точка отсчёта, а не абонемент. Все выгоды на странице
+ * считаются относительно него, поэтому оно вынесено отдельно: поменяете
+ * здесь 1100 — пересчитаются и проценты, и рубли экономии, и цена пробного.
  *
- * Цена за занятие и выгода НЕ записываются руками: они считаются из total
- * и lessons (см. perLesson и discountPercent ниже). Иначе рано или поздно
- * два числа начнут противоречить друг другу.
+ * Источник: лицевая сторона прайс-листа, раздел «Групповые занятия».
+ */
+export const singleLesson = { title: "Разовое занятие", total: 1100 };
+
+/** Занятий в неделю — из этого считаются недели в карточке абонемента. */
+export const LESSONS_PER_WEEK = 2;
+
+/**
+ * Абонементы. Ни одно производное число не записано руками: цена за занятие,
+ * недели, экономия и процент считаются из lessons, total и singleLesson.
+ * Иначе однажды два числа разойдутся, и заметить это будет некому.
  */
 export const groupPlans: GroupPlan[] = [
-  { title: "Разовое занятие", lessons: 1, total: 900 },
   { title: "4 занятия", lessons: 4, total: 3400 },
   { title: "8 занятий", lessons: 8, total: 5600, featured: true },
   { title: "12 занятий", lessons: 12, total: 8000 },
@@ -54,11 +62,24 @@ export function isApproximate(plan: GroupPlan) {
   return plan.total % plan.lessons !== 0;
 }
 
-/** Насколько занятие дешевле разового, в процентах. 0 — для самого разового. */
+/** Насколько занятие в абонементе дешевле разового, в процентах. */
 export function discountPercent(plan: GroupPlan) {
-  const single = groupPlans[0];
-  if (!single || plan === single) return 0;
-  return Math.round((1 - perLesson(plan) / perLesson(single)) * 100);
+  return Math.round((1 - perLesson(plan) / singleLesson.total) * 100);
+}
+
+/** Сколько рублей экономит абонемент против покупки занятий поштучно. */
+export function savings(plan: GroupPlan) {
+  return plan.lessons * singleLesson.total - plan.total;
+}
+
+/** На сколько недель рассчитан абонемент при двух занятиях в неделю. */
+export function weeks(plan: GroupPlan) {
+  return Math.round(plan.lessons / LESSONS_PER_WEEK);
+}
+
+/** Пробное занятие для тех, кто не берёт абонемент, — половина разового. */
+export function trialPrice() {
+  return singleLesson.total / 2;
 }
 
 /* ==================================================
