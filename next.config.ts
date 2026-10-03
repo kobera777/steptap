@@ -9,9 +9,10 @@ const nextConfig: NextConfig = {
     // Страниц /signup, /contacts и /events пока нет — ведём на готовые разделы,
     // чтобы ни одна кнопка сайта не отдавала 404.
     return [
-      // Прямая ссылка на анонимный опрос; в меню и карте сайта её нет.
+      // Прямая ссылка /опрос на анонимный опрос; в меню и карте сайта её нет.
+      // Для сопоставления маршрута Next.js нужен URL-кодированный путь.
       {
-        source: "/encuesta",
+        source: "/%D0%BE%D0%BF%D1%80%D0%BE%D1%81",
         destination: "https://step-tap-feedback.vercel.app/",
         permanent: false,
       },
