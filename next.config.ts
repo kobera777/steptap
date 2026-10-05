@@ -6,23 +6,21 @@ const nextConfig: NextConfig = {
     qualities: [75, 90],
   },
   async redirects() {
-    // Страниц /signup, /contacts и /events пока нет — ведём на готовые разделы,
-    // чтобы ни одна кнопка сайта не отдавала 404.
+    // Страниц /signup и /events нет — ведём на готовые разделы,
+    // чтобы ни одна старая ссылка не отдавала 404.
     return [
       // Аренда переехала на свою страницу — старые ссылки ведут туда.
       { source: "/prices/rental", destination: "/rental", permanent: false },
-      { source: "/signup", destination: "/#contacts", permanent: false },
-      { source: "/contacts", destination: "/#contacts", permanent: false },
+      { source: "/signup", destination: "/contacts", permanent: false },
       { source: "/events", destination: "/schedule#events", permanent: false },
-      // Карточки направлений: своих страниц пока нет, сами карточки ведут на
-      // цены. Редиректы оставлены для старых ссылок и ведут туда же.
+      // Демо-альбомов галереи больше нет — старые ссылки ведут в галерею.
+      { source: "/gallery/:album", destination: "/gallery", permanent: false },
+      // Старые адреса направлений (до страниц стилей) — на список направлений.
       {
         source: "/directions/bachata/:style",
-        destination: "/prices#group",
+        destination: "/directions",
         permanent: false,
       },
-      { source: "/directions/dancehall", destination: "/prices#group", permanent: false },
-      { source: "/directions/latina", destination: "/prices#group", permanent: false },
     ];
   },
 };

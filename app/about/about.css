@@ -467,7 +467,7 @@
 .st-values-grid {
   display: grid;
 
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .st-value {
@@ -483,9 +483,13 @@
 }
 
 .st-value-icon {
-  height: 42px;
+  height: 30px;
 
-  font-size: 34px;
+  color: var(--pink);
+
+  font-size: 11px;
+
+  font-weight: 800;
 
   line-height: 1;
 }
@@ -506,82 +510,6 @@
   font-size: 10px;
 
   line-height: 1.4;
-}
-
-/* INFO */
-
-.st-info {
-  display: grid;
-
-  grid-template-columns:
-    30%
-    55%
-    15%;
-
-  padding: 45px 52px;
-
-  background: var(--white);
-
-  border-top: 1px solid rgba(17, 17, 17, 0.12);
-}
-
-.st-info-title h2 {
-  margin: 10px 0 0;
-
-  font-size: clamp(32px, 2.7vw, 44px);
-
-  line-height: var(--leading-display);
-
-  letter-spacing: var(--tracking-display);
-
-  max-width: 360px;
-}
-
-.st-info-text {
-  padding: 0 55px 0 30px;
-}
-
-.st-info-text p {
-  max-width: 650px;
-
-  margin: 0 0 13px;
-
-  font-size: 12px;
-
-  line-height: 1.48;
-}
-
-.st-info-side {
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
-
-  gap: 2px;
-
-  padding-left: 27px;
-
-  border-left: 1px solid rgba(17, 17, 17, 0.25);
-
-  font-size: 9px;
-
-  font-weight: 800;
-
-  line-height: 1.35;
-}
-
-.st-info-side i {
-  width: 30px;
-  height: 1px;
-
-  margin-top: 12px;
-
-  background: var(--color-black);
-}
-
-.st-approach {
-  background: var(--cream);
 }
 
 /* LIFE */
@@ -613,7 +541,7 @@
 .st-life-grid {
   display: grid;
 
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .st-life-item {
@@ -742,16 +670,7 @@
     top: -25px;
   }
 
-  .st-info {
-    grid-template-columns:
-      30%
-      54%
-      16%;
-  }
 
-  .st-info-title h2 {
-    font-size: 38px;
-  }
 
   .st-art-words {
     left: 35px;
@@ -865,7 +784,7 @@
   }
 
   .st-values-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: minmax(0, 1fr);
 
     gap: 25px 0;
   }
@@ -880,31 +799,9 @@
     padding-left: 0;
   }
 
-  .st-info {
-    display: block;
 
-    padding: 40px 22px;
-  }
 
-  .st-info-title h2 {
-    margin-bottom: 25px;
 
-    /* Фиксированные 40px не влезали: слово «ПРОФЕССИОНАЛЫ» шире экрана телефона
-       и вылезало за край. Теперь кегль тянется за шириной экрана. */
-    font-size: clamp(28px, 8.6vw, 40px);
-
-    max-width: none;
-  }
-
-  .st-info-text {
-    padding: 0;
-  }
-
-  .st-info-side {
-    margin-top: 25px;
-
-    padding-left: 18px;
-  }
 
   .st-life {
     display: block;
@@ -1089,4 +986,63 @@
   .st-team-grid {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+/* Тексты прототипа длиннее прежних подписей — чуть крупнее кегль. */
+.st-value h3 {
+  font-size: 13px;
+}
+
+.st-value p {
+  max-width: 260px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.st-quote {
+  max-width: 440px;
+  margin: 24px 0 0;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.st-team-intro {
+  max-width: 240px;
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.st-teacher small {
+  color: var(--pink);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
+}
+
+.st-life-text {
+  max-width: 300px;
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.st-about .st-life-link {
+  display: inline-block;
+  margin-top: 18px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid currentColor;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+}
+
+.st-about .st-life-link:hover {
+  color: var(--pink);
+}
+
+.st-dream-text p {
+  font-size: 15px;
 }

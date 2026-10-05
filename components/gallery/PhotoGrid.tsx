@@ -2,39 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { GalleryPhoto, GalleryVideo } from "@/data/gallery";
-
-/* ---------- ВИДЕО ---------- */
-
-export function VideoCard({ video }: { video: GalleryVideo }) {
-  return (
-    <article className="gal-video" data-reveal>
-      <div className="gal-video-frame">
-        {video.youtubeId ? (
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}`}
-            title={video.title}
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        ) : video.src ? (
-          <video controls preload="metadata" poster={video.poster} src={video.src} />
-        ) : (
-          <div className="gal-video-placeholder" aria-label="Видео скоро появится">
-            <b aria-hidden="true">▶</b>
-            <span>ВИДЕО СКОРО</span>
-          </div>
-        )}
-      </div>
-
-      <div className="gal-video-caption">
-        <span>{video.title}</span>
-        {video.duration && <small>{video.duration}</small>}
-      </div>
-    </article>
-  );
-}
+import type { GalleryPhoto } from "@/data/gallery";
 
 /* ---------- ФОТО + LIGHTBOX ---------- */
 

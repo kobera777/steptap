@@ -44,9 +44,8 @@
 
 .gal-hero h1 {
   margin: 0;
-  /* 8vw, а не 9vw: слово «МОМЕНТЫ.» при 9vw вылезало из своей колонки
-     и наезжало на розовый квадрат справа. */
-  font-size: clamp(64px, 8vw, 150px);
+  /* Самая длинная строка — «ЛЮДИ ЗА КАДРОМ.», по ней и считается кегль. */
+  font-size: clamp(40px, 4.6vw, 76px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
@@ -177,195 +176,7 @@
 
 /* ---------- СЕТКА АЛЬБОМОВ ---------- */
 
-.gal-albums {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  padding: 34px 7vw 90px;
-}
-
-.gal-album {
-  border-radius: var(--radius-card);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--black);
-  background: var(--paper);
-  overflow: hidden;
-}
-
-.gal-album:hover {
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.14);
-}
-
-.gal-album.is-featured {
-  grid-column: span 2;
-}
-
-.gal-album-cover {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border-bottom: 1px solid var(--black);
-  background: var(--sand);
-}
-
-.gal-album.is-featured .gal-album-cover {
-  aspect-ratio: 16 / 10;
-}
-
-.gal-album-cover img {
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.gal-album:hover .gal-album-cover img {
-  transform: scale(1.04);
-}
-
-.gal-album-date {
-  position: absolute;
-  left: 16px;
-  top: 16px;
-  padding: 8px 12px;
-  border-radius: var(--radius-pill);
-  color: var(--black);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-label);
-}
-
-.gal-album-category {
-  border-radius: var(--radius-pill);
-  position: absolute;
-  right: 16px;
-  top: 16px;
-  padding: 8px 10px;
-  background: var(--pink);
-  color: var(--color-white);
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-label);
-}
-
-.gal-album-body {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: end;
-  gap: 16px;
-  padding: 20px 22px 22px;
-}
-
-.gal-album-body h3 {
-  margin: 0 0 10px;
-  font-size: 22px;
-  line-height: 0.95;
-  letter-spacing: var(--tracking-heading);
-  font-weight: 800;
-  /* Длинные фразы прописными по-русски читаются плохо — оставляем как есть. */
-}
-
-.gal-album.is-featured .gal-album-body h3 {
-  font-size: clamp(26px, 3vw, 40px);
-}
-
-.gal-album-body small {
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-label);
-  opacity: 0.6;
-}
-
-.gal-album-arrow {
-  font-size: 28px;
-  font-weight: 300;
-  line-height: 1;
-  color: var(--pink);
-  transition: transform 0.25s ease;
-}
-
-.gal-album:hover .gal-album-arrow {
-  transform: translateX(6px);
-}
-
-.gal-empty {
-  grid-column: 1 / -1;
-  padding: 60px 0;
-  text-align: center;
-  font-size: 13px;
-  opacity: 0.6;
-}
-
 /* ---------- АЛЬБОМ: hero ---------- */
-
-.gal-album-hero {
-  padding: 48px 7vw 44px;
-  border-bottom: 1px solid var(--line);
-}
-
-.gal-back {
-  display: inline-block;
-  margin-bottom: 36px;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-label);
-}
-
-.gal-album-hero-grid {
-  display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
-  gap: 40px;
-  align-items: end;
-}
-
-.gal-album-hero h1 {
-  margin: 0;
-  max-width: 14ch;
-  font-size: clamp(40px, 6vw, 92px);
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-display);
-  font-weight: 800;
-  /* Длинные фразы прописными по-русски читаются плохо — оставляем как есть. */
-}
-
-.gal-album-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 0 0 22px;
-}
-
-.gal-album-meta span {
-  border-radius: var(--radius-pill);
-  padding: 8px 10px;
-  border: 1px solid var(--black);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-label);
-}
-
-.gal-album-meta span.is-pink {
-  background: var(--pink);
-  border-color: var(--pink);
-  color: var(--color-white);
-}
-
-.gal-album-hero p {
-  margin: 0;
-  padding-left: 20px;
-  border-left: 1px solid rgba(17, 17, 17, 0.3);
-  max-width: 420px;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.gal-album-hero-count {
-  margin-top: 22px;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-label);
-  opacity: 0.6;
-}
 
 /* ---------- АЛЬБОМ: секции ---------- */
 
@@ -389,26 +200,7 @@
   font-weight: 800;
 }
 
-.gal-section-head small {
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-label);
-  opacity: 0.6;
-  white-space: nowrap;
-}
-
 /* видео */
-
-.gal-videos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 22px;
-}
-
-.gal-video {
-  border: 1px solid var(--black);
-  background: var(--paper);
-}
 
 .gal-video-frame {
   border-radius: var(--radius-card);
@@ -426,53 +218,6 @@
   width: 100%;
   height: 100%;
   border: 0;
-}
-
-.gal-video-placeholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  background: linear-gradient(135deg, rgba(212, 95, 136, 0.35), transparent 60%), #1a1a1a;
-}
-
-.gal-video-placeholder b {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  border: 1px solid var(--color-white);
-  border-radius: 50%;
-  font-size: 22px;
-  padding-left: 4px;
-}
-
-.gal-video-placeholder span {
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-label);
-  opacity: 0.7;
-}
-
-.gal-video-caption {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.gal-video-caption small {
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-label);
-  opacity: 0.6;
 }
 
 /* фото — мозаика */
@@ -508,51 +253,6 @@
 
 /* соседние альбомы */
 
-.gal-adjacent {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 70px 7vw 0;
-  border-top: 1px solid var(--black);
-  border-bottom: 1px solid var(--black);
-}
-
-.gal-adjacent a {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 28px 24px;
-  transition: background 0.2s ease;
-}
-
-.gal-adjacent a:hover {
-  background: var(--sand);
-}
-
-.gal-adjacent a + a {
-  border-left: 1px solid var(--black);
-  text-align: right;
-  align-items: flex-end;
-}
-
-.gal-adjacent a:only-child {
-  grid-column: 1 / -1;
-}
-
-.gal-adjacent span {
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-label);
-  opacity: 0.6;
-}
-
-.gal-adjacent strong {
-  font-size: 18px;
-  line-height: 1;
-  letter-spacing: var(--tracking-heading);
-  font-weight: 800;
-  /* Длинные фразы прописными по-русски читаются плохо — оставляем как есть. */
-}
-
 /* ---------- ФИНАЛЬНЫЙ CTA ---------- */
 
 .gal-final {
@@ -567,7 +267,7 @@
 
 .gal-final h2 {
   margin: 0 0 25px;
-  font-size: clamp(56px, 9vw, 125px);
+  font-size: clamp(40px, 5.4vw, 84px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
@@ -734,18 +434,8 @@
 }
 
 @media (max-width: 1000px) {
-  .gal-albums {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
   .gal-masonry {
     columns: 2;
-  }
-
-  .gal-album-hero-grid {
-    grid-template-columns: 1fr;
-    gap: 26px;
   }
 }
 
@@ -757,7 +447,7 @@
   }
 
   .gal-hero h1 {
-    font-size: clamp(44px, 13.5vw, 80px);
+    font-size: clamp(28px, 8.2vw, 52px);
     letter-spacing: var(--tracking-display);
   }
 
@@ -780,32 +470,6 @@
     padding: 10px 12px;
   }
 
-  .gal-albums {
-    grid-template-columns: 1fr;
-    padding: 24px 18px 60px;
-  }
-
-  .gal-album.is-featured {
-    grid-column: auto;
-  }
-
-  .gal-album.is-featured .gal-album-cover {
-    aspect-ratio: 4 / 5;
-  }
-
-  .gal-album-body {
-    grid-template-columns: 1fr auto;
-    padding: 16px 18px 18px;
-  }
-
-  .gal-album-hero {
-    padding: 30px 18px 32px;
-  }
-
-  .gal-album-hero h1 {
-    letter-spacing: var(--tracking-heading);
-  }
-
   .gal-section {
     padding: 40px 18px 0;
   }
@@ -814,10 +478,6 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
-  }
-
-  .gal-videos {
-    grid-template-columns: 1fr;
   }
 
   .gal-masonry {
@@ -829,18 +489,6 @@
     margin-bottom: 10px;
   }
 
-  .gal-adjacent {
-    grid-template-columns: 1fr;
-    margin: 50px 18px 0;
-  }
-
-  .gal-adjacent a + a {
-    border-left: 0;
-    border-top: 1px solid var(--black);
-    text-align: left;
-    align-items: flex-start;
-  }
-
   .gal-final {
     grid-template-columns: 1fr;
     margin-top: 50px;
@@ -848,7 +496,7 @@
   }
 
   .gal-final h2 {
-    font-size: clamp(40px, 12vw, 56px);
+    font-size: clamp(30px, 8.4vw, 52px);
     letter-spacing: var(--tracking-display);
   }
 
@@ -886,4 +534,14 @@
   .gal-lightbox-counter {
     bottom: 32px;
   }
+}
+
+/* ---------- В ДВИЖЕНИИ ---------- */
+
+.gal-motion {
+  padding-top: 70px;
+}
+
+.gal-motion .gal-video-frame {
+  max-width: 1100px;
 }

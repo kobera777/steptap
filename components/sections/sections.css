@@ -23,7 +23,8 @@
 
 .sec-faq h2 {
   margin: 0;
-  font-size: clamp(33px, 4.4vw, 62px);
+  /* 3.4vw: длинное слово («БРОНИРОВАНИЕМ») должно помещаться в левую колонку. */
+  font-size: clamp(30px, 3.4vw, 56px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;

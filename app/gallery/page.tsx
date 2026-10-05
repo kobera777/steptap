@@ -1,21 +1,20 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { AlbumGrid } from "@/components/gallery/AlbumGrid";
-import { getAlbums } from "@/data/gallery";
-import "./gallery.css";
 import { SignupLink } from "@/components/layout/SignupLink";
+import { GalleryGrid } from "@/components/gallery/GalleryGrid";
+import { galleryPhotos } from "@/data/gallery";
+import Image from "next/image";
+import "./gallery.css";
 
 export const metadata: Metadata = {
   title: "Галерея",
   description:
-    "Фото и видео с занятий, вечеринок, мастер-классов и концертов школы танца STEP TAP.",
+    "Фото и видео школы танца STEP TAP: занятия, вечеринки, выступления, мастер-классы и поездки.",
 };
 
+/** Галерея: тексты и порядок блоков — из прототипа владельца, оформление прежнее. */
 export default function GalleryPage() {
-  const albums = getAlbums();
-
   return (
     <main className="gal-page">
       <SiteHeader />
@@ -25,51 +24,72 @@ export default function GalleryPage() {
         <div data-reveal="left">
           <p className="gal-kicker is-pink">АТМОСФЕРА STEP TAP</p>
           <h1>
-            НАШИ
+            ТАНЦЫ В КАДРЕ.
             <br />
-            <span>МОМЕНТЫ.</span>
+            <span>ЛЮДИ ЗА КАДРОМ.</span>
           </h1>
         </div>
 
         <div className="gal-hero-right" data-reveal="right" data-reveal-delay="2">
           <div className="gal-hero-art" aria-hidden="true" data-parallax="0.1">
             <span>
-              Танец
+              Музыка.
               <br />
-              объединяет ♡
+              Люди.
+              <br />
+              Моменты.
             </span>
           </div>
 
           <p className="gal-hero-text">
-            Люди. Эмоции.
-            <br />
-            Атмосфера.
             <small>
-              Альбомы с наших вечеринок, мастер-классов, концертов и поездок. Найди себя
-              на фото — и приходи за новыми.
+              Посмотри, как выглядит танцевальная жизнь: занятия, встречи, сцена и
+              общение. Нажми на фотографию, чтобы рассмотреть её ближе.
             </small>
           </p>
         </div>
       </section>
 
-      {/* ФИЛЬТРЫ + АЛЬБОМЫ */}
-      <AlbumGrid albums={albums} />
+      {/* ФИЛЬТРЫ + ФОТО */}
+      <GalleryGrid photos={galleryPhotos} />
 
-      {/* FINAL CTA */}
+      {/* В ДВИЖЕНИИ */}
+      <section className="gal-section gal-motion">
+        <p className="gal-kicker is-pink">В ДВИЖЕНИИ</p>
+        <div className="gal-section-head">
+          <h2>
+            МУЗЫКУ
+            <br />
+            ЛУЧШЕ ВКЛЮЧИТЬ.
+          </h2>
+        </div>
+
+        <div className="gal-video-frame">
+          <video
+            controls
+            playsInline
+            preload="none"
+            poster="/video/momenty-poster.webp"
+            src="/video/momenty.mp4"
+            aria-label="Видео STEP TAP"
+          />
+        </div>
+      </section>
+
+      {/* ПРИХОДИ ЗА СВОИМИ ВПЕЧАТЛЕНИЯМИ */}
       <section className="gal-final">
         <div data-reveal="left">
           <p className="gal-kicker">ТВОЙ ПЕРВЫЙ ШАГ</p>
           <h2>
-            ХОЧЕШЬ
-            <br />В КАДР?
-          </h2>
-          <p>
-            Запишись на пробное занятие —
+            ПРИХОДИ
             <br />
-            следующий альбом будет с тобой.
-          </p>
+            ЗА СВОИМИ
+            <br />
+            ВПЕЧАТЛЕНИЯМИ.
+          </h2>
+          <p>Фотографии передают настроение. А почувствовать его лучше на занятии.</p>
           <SignupLink className="gal-final-button">
-            ЗАПИСАТЬСЯ <span>→</span>
+            ПОДОБРАТЬ ЗАНЯТИЕ <span>→</span>
           </SignupLink>
         </div>
 

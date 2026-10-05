@@ -13,57 +13,6 @@
   text-transform: uppercase;
 }
 
-.directions-page .final-logo {
-  position: relative;
-  min-height: 360px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: var(--black);
-}
-
-.directions-page .final-logo::before,
-.directions-page .final-logo::after {
-  content: "";
-  position: absolute;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 50%;
-}
-
-.directions-page .final-logo::before {
-  width: 330px;
-  height: 330px;
-}
-
-.directions-page .final-logo::after {
-  width: 210px;
-  height: 210px;
-}
-
-.directions-page .final-logo img {
-  position: relative;
-  z-index: 2;
-  width: min(210px, 65%);
-  height: auto;
-  display: block;
-  transform: rotate(-7deg);
-}
-
-@media (max-width: 900px) {
-  .directions-page .final-logo {
-    grid-column: 1 / -1;
-    min-height: 300px;
-  }
-}
-
-@media (max-width: 680px) {
-  .directions-page .final-logo {
-    grid-column: auto;
-    min-height: 300px;
-  }
-}
-
 .directions-page {
   background: var(--color-cream-2);
   color: var(--color-black);
@@ -95,7 +44,7 @@
 
 .directions-page .directions-hero h1 {
   margin: 0;
-  font-size: clamp(72px, 10vw, 150px);
+  font-size: clamp(52px, 6.8vw, 108px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
@@ -145,12 +94,10 @@
 }
 
 .directions-page .hero-right > p {
-  position: absolute;
-  bottom: 5px;
-  right: 0;
-  margin: 0;
+  max-width: 320px;
+  margin: 34px 0 0;
   font-size: 14px;
-  line-height: 1.35;
+  line-height: 1.45;
   font-weight: 600;
 }
 
@@ -168,7 +115,7 @@
 
 .directions-page .direction-intro h2 {
   margin: 0;
-  font-size: clamp(64px, 9vw, 130px);
+  font-size: clamp(44px, 6vw, 92px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
@@ -176,190 +123,6 @@
 
 .directions-page .direction-intro h2 span {
   color: var(--color-pink);
-}
-
-.directions-page .direction-description {
-  max-width: 300px;
-  margin: 0 5vw 5px 0;
-  font-size: 14px;
-  line-height: 1.45;
-  font-weight: 500;
-}
-
-.directions-page .bachata-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-/* Карточка направления — квадратная плитка с фотографией школы во всю ширину.
-   Фото задаётся в data/directions.ts (поле photo) и уже обрезано в квадрат
-   при сборке, поэтому браузеру ничего докадрировать не приходится. */
-.directions-page .direction-card {
-  border-radius: var(--radius-card);
-  aspect-ratio: 1 / 1;
-  position: relative;
-  display: block;
-  text-decoration: none;
-  color: var(--color-black);
-  overflow: hidden;
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.directions-page .direction-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-}
-
-.directions-page .card-photo {
-  position: absolute;
-  inset: 0;
-}
-
-.directions-page .card-photo img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  transition: transform 0.45s ease;
-}
-
-/* Затемнение сверху: без него номер и стрелка пропадают на светлой стене. */
-.directions-page .card-photo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0) 28%);
-}
-
-.directions-page .direction-card:hover .card-photo img {
-  transform: scale(1.05);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .directions-page .card-photo img,
-  .directions-page .direction-card:hover .card-photo img {
-    transition: none;
-    transform: none;
-  }
-}
-
-.directions-page .card-body {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-/* Заливка снизу цветом карточки. Она держит фирменный ритм секции
-   (беж — розовый — чёрный — контур) и делает название читаемым
-   поверх любой фотографии. Цвета задаёт каждый вариант ниже. */
-.directions-page .card-body::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 36%,
-    var(--card-veil) 70%,
-    var(--card-veil-solid) 88%
-  );
-}
-
-.directions-page .card-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-  /* Верх карточки лежит на фотографии, а не на цветной заливке. */
-  color: white;
-}
-
-.directions-page .card-large {
-  --card-veil: rgba(240, 232, 223, 0.9);
-  --card-veil-solid: #f0e8df;
-  background: #f0e8df;
-}
-
-.directions-page .card-pink {
-  --card-veil: rgba(212, 95, 136, 0.9);
-  --card-veil-solid: var(--color-pink);
-  background: var(--color-pink);
-  color: white;
-}
-
-.directions-page .card-dark {
-  --card-veil: rgba(34, 34, 37, 0.9);
-  --card-veil-solid: #222225;
-  background: #222225;
-  color: white;
-}
-
-.directions-page .card-outline {
-  --card-veil: rgba(245, 240, 234, 0.9);
-  --card-veil-solid: var(--color-cream-2);
-  background: var(--color-cream-2);
-  border: 1px solid var(--color-black);
-}
-
-.directions-page .card-number {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-label);
-}
-
-.directions-page .card-tags {
-  list-style: none;
-  margin: 0 0 16px;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.directions-page .card-tags li {
-  padding: 5px 11px;
-  border: 1px solid currentColor;
-  border-radius: var(--radius-pill);
-  font-size: 8px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-label);
-  opacity: 0.75;
-}
-
-.directions-page .card-content p {
-  margin: 0 0 7px;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-label);
-}
-
-.directions-page .card-content h3 {
-  margin: 0;
-  font-size: clamp(40px, 4.6vw, 64px);
-  overflow-wrap: anywhere;
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-display);
-  font-weight: 800;
-}
-
-/* Длинные названия в одно слово («ЭКСПЕРИМЕНТАЛЬНАЯ») — кегль меньше:
-   перенести такое слово нельзя, а прежним кеглем оно не помещалось. */
-.directions-page .card-content h3.is-long {
-  font-size: clamp(22px, 2.6vw, 36px);
-}
-
-.directions-page .card-arrow {
-  font-size: 28px;
-  line-height: 1;
-  font-weight: 300;
 }
 
 .directions-page .other-directions {
@@ -374,7 +137,7 @@
 
 .directions-page .other-heading h2 {
   margin: 0 0 30px;
-  font-size: clamp(55px, 7vw, 105px);
+  font-size: clamp(44px, 5.5vw, 84px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
@@ -394,9 +157,13 @@
 
 .directions-page .other-card {
   border-radius: var(--radius-card);
-  min-height: 270px;
+  min-height: 320px;
   position: relative;
   padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 120px;
   text-decoration: none;
   color: var(--color-black);
   overflow: hidden;
@@ -419,12 +186,25 @@
 }
 
 .directions-page .other-card-title {
-  position: absolute;
-  left: 28px;
-  /* right обязателен: без него длинное слово («ДЭНСХОЛЛ») выходило за карточку
-     и обрезалось её overflow: hidden — было видно «ДЭНСХ». */
-  right: 28px;
-  bottom: 28px;
+  position: relative;
+  z-index: 2;
+}
+
+.directions-page .other-card-title .other-card-desc {
+  max-width: 420px;
+  margin: 14px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.directions-page .other-card-more {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
 }
 
 .directions-page .other-card-title p {
@@ -498,16 +278,20 @@
   padding: 80px 7vw;
 }
 
+.directions-page .choice-pink .section-kicker {
+  color: var(--color-black);
+}
+
 .directions-page .choice-pink h2 {
   margin: 0;
-  font-size: clamp(65px, 9vw, 130px);
+  font-size: clamp(36px, 4.4vw, 66px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
 }
 
 .directions-page .choice-black {
-  background: #222225;
+  background: var(--color-ink);
   color: white;
   padding: 80px 7vw;
   position: relative;
@@ -564,57 +348,6 @@
   inset: 70px;
 }
 
-.directions-page .directions-final {
-  min-height: 440px;
-  background: white;
-  display: grid;
-  grid-template-columns: 1fr 0.6fr;
-  align-items: center;
-  padding: 80px 7vw;
-}
-
-.directions-page .final-copy h2 {
-  margin: 0 0 25px;
-  font-size: clamp(65px, 9vw, 125px);
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-display);
-  font-weight: 800;
-}
-
-.directions-page .final-copy > p:not(.section-kicker) {
-  margin: 0 0 28px;
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-.directions-page .final-button {
-  border-radius: var(--radius-pill);
-  display: inline-flex;
-  gap: 18px;
-  align-items: center;
-  padding: 16px 23px;
-  background: var(--color-pink);
-  color: white;
-  text-decoration: none;
-  font-size: 10px;
-  font-weight: 800;
-}
-
-.directions-page .final-logo {
-  display: flex;
-  justify-content: flex-end;
-}
-
-/* Не применялось в исходной версии (правило styled-jsx не доходило до <Image>).
-   Оставлено выключенным, чтобы страница выглядела как раньше; включить по желанию. */
-/*
-.directions-page .final-logo img {
-  width: min(260px, 30vw);
-  height: auto;
-  transform: rotate(-8deg);
-}
-*/
-
 @media (max-width: 1000px) {
   .directions-page .directions-hero {
     padding-left: 5vw;
@@ -640,7 +373,7 @@
   }
 
   .directions-page .directions-hero h1 {
-    font-size: 72px;
+    font-size: clamp(40px, 12vw, 64px);
     letter-spacing: var(--tracking-display);
   }
 
@@ -654,11 +387,6 @@
     height: 220px;
   }
 
-  .directions-page .hero-right > p {
-    right: 0;
-    bottom: -5px;
-  }
-
   .directions-page .direction-main {
     padding: 70px 20px;
   }
@@ -668,20 +396,7 @@
   }
 
   .directions-page .direction-intro h2 {
-    font-size: 75px;
-  }
-
-  .directions-page .direction-description {
-    margin: 30px 0 0;
-  }
-
-  .directions-page .bachata-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .directions-page .card-body {
-    padding: 24px;
-    gap: 18px;
+    font-size: clamp(34px, 10vw, 60px);
   }
 
   .directions-page .other-directions {
@@ -698,6 +413,7 @@
 
   .directions-page .other-card {
     min-height: 270px;
+    gap: 90px;
   }
 
   .directions-page .other-card-title h3 {
@@ -721,28 +437,6 @@
   }
 
   .directions-page .choice-pink h2 {
-    font-size: 72px;
+    font-size: clamp(34px, 11vw, 64px);
   }
-
-  .directions-page .directions-final {
-    grid-template-columns: 1fr;
-    padding: 70px 20px;
-  }
-
-  .directions-page .final-copy h2 {
-    /* Фиксированные 72px не влезали: «ТАНЦЕВАТЬ?» шире экрана телефона. */
-    font-size: clamp(40px, 13vw, 72px);
-  }
-
-  .directions-page .final-logo {
-    justify-content: flex-start;
-    margin-top: 40px;
-  }
-
-  /* см. примечание выше про <Image> */
-  /*
-  .directions-page .final-logo img {
-    width: 190px;
-  }
-  */
 }

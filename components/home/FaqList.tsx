@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { faqs } from "@/data/home";
+import type { FaqItem } from "@/data/directions";
 
-/** Список FAQ: единственная часть главной, которой нужно состояние на клиенте. */
-export function FaqList() {
+/** Список FAQ на главной: единственная её часть, которой нужно состояние на клиенте. */
+export function FaqList({ items }: { items: FaqItem[] }) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
     <div className="faq-list" data-reveal data-reveal-delay="1">
-      {faqs.map((faq, index) => {
+      {items.map((faq, index) => {
         const open = openFaq === index;
         return (
           <div className={`faq-item ${open ? "is-open" : ""}`} key={faq.question}>

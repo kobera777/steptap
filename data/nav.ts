@@ -1,3 +1,4 @@
+import { danceStyles, styleHref } from "@/data/directions";
 import { signupChatUrl } from "@/data/site";
 
 /**
@@ -14,14 +15,15 @@ export const mainNav: NavItem[] = [
   { href: "/", label: "ГЛАВНАЯ" },
   { href: "/about", label: "О ШКОЛЕ" },
   { href: "/directions", label: "НАПРАВЛЕНИЯ" },
+  { href: "/classes", label: "ЗАНЯТИЯ" },
   { href: "/schedule", label: "РАСПИСАНИЕ" },
   { href: "/prices", label: "ЦЕНЫ" },
-  { href: "/rental", label: "АРЕНДА" },
   { href: "/gallery", label: "ГАЛЕРЕЯ" },
-  { href: "/#contacts", label: "КОНТАКТЫ" },
+  { href: "/rental", label: "АРЕНДА" },
+  { href: "/contacts", label: "КОНТАКТЫ" },
 ];
 
-/** Пункт меню главной: может иметь вложенный список. #якорь — раздел на самой главной. */
+/** Пункт меню главной: может иметь вложенный список. */
 export type HomeNavItem = NavItem & { children?: NavItem[] };
 
 /** Меню главной страницы (у неё своя шапка с выпадающими списками). */
@@ -31,22 +33,22 @@ export const homeNav: HomeNavItem[] = [
     href: "/directions",
     label: "НАПРАВЛЕНИЯ",
     children: [
-      { href: "/directions#bachata", label: "Бачата" },
+      ...danceStyles.map((style) => ({ href: styleHref(style), label: style.short })),
       { href: "/directions", label: "Все направления →" },
     ],
   },
   {
-    href: "#classes",
+    href: "/classes",
     label: "ЗАНЯТИЯ",
     children: [
-      { href: "#levels", label: "Групповые занятия" },
+      { href: "/classes", label: "Форматы и уровни" },
       { href: "/prices#individual", label: "Индивидуальные занятия" },
-      { href: signupChatUrl(), label: "Записаться на пробное" },
+      { href: signupChatUrl(), label: "Записаться на первое занятие" },
     ],
   },
   { href: "/schedule", label: "РАСПИСАНИЕ" },
   { href: "/prices", label: "ЦЕНЫ" },
   { href: "/gallery", label: "ГАЛЕРЕЯ" },
   { href: "/rental", label: "АРЕНДА" },
-  { href: "#contacts", label: "КОНТАКТЫ" },
+  { href: "/contacts", label: "КОНТАКТЫ" },
 ];
