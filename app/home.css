@@ -651,7 +651,6 @@
 
 .group-cta {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   min-height: 330px;
 }
 
@@ -699,58 +698,6 @@
 .outline-button:hover {
   background: var(--black);
   color: var(--white);
-}
-
-.group-cta-art {
-  position: relative;
-  min-height: 330px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: var(--black);
-  color: var(--white);
-}
-
-.circle-lines {
-  position: absolute;
-  width: 390px;
-  height: 390px;
-  border: 1px solid rgba(255, 255, 255, 0.38);
-  border-radius: 50%;
-}
-
-.circle-lines::before,
-.circle-lines::after {
-  content: "";
-  position: absolute;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 50%;
-}
-
-.circle-lines::before {
-  width: 270px;
-  height: 270px;
-  left: 59px;
-  top: 59px;
-}
-
-.circle-lines::after {
-  width: 165px;
-  height: 165px;
-  left: 112px;
-  top: 112px;
-}
-
-.group-cta-art > span {
-  position: relative;
-  z-index: 2;
-  color: var(--white);
-  font-family: var(--font-serif);
-  font-size: 25px;
-  line-height: 0.95;
-  text-align: center;
-  transform: rotate(-8deg);
 }
 
 /* ==================================================
@@ -1127,10 +1074,6 @@
     gap: 20px;
   }
 
-  .group-cta {
-    grid-template-columns: 1fr;
-  }
-
   .final-cta {
     grid-template-columns: 1fr 1fr;
   }
@@ -1286,29 +1229,6 @@
     padding: 55px 22px;
   }
 
-  .group-cta-art {
-    min-height: 320px;
-  }
-
-  .circle-lines {
-    width: 400px;
-    height: 400px;
-  }
-
-  .circle-lines::before {
-    width: 278px;
-    height: 278px;
-    left: 60px;
-    top: 60px;
-  }
-
-  .circle-lines::after {
-    width: 168px;
-    height: 168px;
-    left: 116px;
-    top: 116px;
-  }
-
   .faq-question > span {
     font-size: 14px;
   }
@@ -1448,7 +1368,6 @@
 
 .rental {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
   min-height: 420px;
   border-top: 1px solid rgba(17, 17, 17, 0.12);
 }
@@ -1473,61 +1392,7 @@
   line-height: 1.5;
 }
 
-.rental-art {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #e8dfd2;
-}
-
-.rental-square {
-  position: relative;
-  width: min(260px, 60%);
-  aspect-ratio: 1;
-}
-
-.rental-square::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--pink);
-  transform: rotate(10deg);
-}
-
-.rental-square::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 1px solid var(--black);
-  transform: rotate(-7deg);
-}
-
-.rental-square span {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-family: var(--font-serif);
-  font-size: 22px;
-  line-height: 1.15;
-}
-
 /* ---- responsive: rental / contacts / moments ---- */
-
-@media (max-width: 900px) {
-  .rental {
-    grid-template-columns: 1fr;
-  }
-
-  .rental-art {
-    min-height: 300px;
-  }
-}
 
 @media (max-width: 680px) {
   .moments-footer {
@@ -1537,9 +1402,5 @@
 
   .rental-copy {
     padding: 48px 22px;
-  }
-
-  .rental-art {
-    min-height: 260px;
   }
 }

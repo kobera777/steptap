@@ -3,8 +3,8 @@ import { SignupLink } from "@/components/layout/SignupLink";
 import "./sections.css";
 
 /**
- * Финальная полоса «Твой первый шаг» — как в прототипе владельца: слева
- * розовая с призывом, справа чёрная с кольцами. Кнопка ведёт в MAX.
+ * Финальная полоса «Твой первый шаг» — розовая, во всю ширину, с призывом.
+ * Кнопка ведёт в MAX. Чёрную половину с кольцами владелец убрал.
  */
 export function FirstStepBand({
   title,
@@ -24,18 +24,6 @@ export function FirstStepBand({
         <SignupLink className="sec-band-button">
           {button} <span>→</span>
         </SignupLink>
-      </div>
-
-      <div className="sec-band-art" aria-hidden="true">
-        <div className="sec-rings">
-          <span>
-            Танцуй.
-            <br />
-            Чувствуй.
-            <br />
-            Будь собой.
-          </span>
-        </div>
       </div>
     </section>
   );

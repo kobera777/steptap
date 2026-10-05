@@ -248,17 +248,6 @@ export function HomePage() {
 
           <SignupLink className="outline-button">ПОДОБРАТЬ ЗАНЯТИЕ →</SignupLink>
         </div>
-
-        <div className="group-cta-art" data-reveal="scale" data-reveal-delay="2">
-          <div className="circle-lines" data-parallax="0.06" />
-          <span>
-            Танцуй.
-            <br />
-            Чувствуй.
-            <br />
-            Будь собой.
-          </span>
-        </div>
       </section>
 
       {/* ПЕРЕД ПЕРВЫМ ЗАНЯТИЕМ */}
@@ -336,22 +325,6 @@ export function HomePage() {
           <Link className="primary-button" href="/rental">
             ЗАЛЫ И ТАРИФЫ <span>→</span>
           </Link>
-        </div>
-
-        <div
-          className="rental-art"
-          aria-hidden="true"
-          data-reveal="scale"
-          data-reveal-delay="2"
-        >
-          <div className="rental-square" data-parallax="0.08">
-            <span>
-              Пространство
-              <br />
-              для движения
-              <BrandDot />
-            </span>
-          </div>
         </div>
       </section>
 
