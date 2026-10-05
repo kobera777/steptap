@@ -3,20 +3,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { halls, rentalGroup, rentalIndividual, rentalRules, rub } from "@/data/prices";
 import { SignupLink } from "@/components/layout/SignupLink";
+import { FaqSection } from "@/components/sections/FaqSection";
+import { halls, rentalFaq, rentalGroup, rentalIndividual, rub } from "@/data/prices";
 
 /* Оформление общее со страницей цен: те же таблицы, карточки и рамки.
    Второй файл с тем же содержимым пришлось бы править в двух местах. */
 import "../prices/prices.css";
-import "./rental.css";
 
 export const metadata: Metadata = {
   title: "Аренда залов",
   description:
-    "Аренда танцевальных залов STEP TAP в Екатеринбурге: три зала для репетиций, индивидуальных занятий, мастер-классов и съёмок. Тарифы по времени и размеру зала.",
+    "Аренда танцевальных залов STEP TAP в Екатеринбурге: три зала для репетиций, индивидуальных занятий, мастер-классов и съёмок. Тарифы за час.",
 };
 
+/** «Аренда»: тексты и порядок блоков — из прототипа владельца, оформление прежнее. */
 export default function RentalPage() {
   return (
     <main className="pr-page">
@@ -25,30 +26,24 @@ export default function RentalPage() {
       {/* HERO */}
       <section className="pr-hero">
         <div data-reveal="left">
-          <p className="pr-kicker">ДЛЯ ТРЕНЕРОВ И КОМАНД</p>
+          <p className="pr-kicker">АРЕНДА ЗАЛОВ</p>
           <h1>
-            АРЕНДА<span>.</span>
+            ТВОЯ ИДЕЯ.
+            <br />
+            НАШЕ <span>ПРОСТРАНСТВО.</span>
           </h1>
         </div>
 
         <div className="pr-hero-text" data-reveal="right" data-reveal-delay="2">
           <p>
-            Три зала для репетиций, индивидуальных занятий, мастер-классов и съёмок. Цена
-            указана за час.
+            Для репетиций, индивидуальных занятий, мастер-классов и съёмок. Три зала в
+            центре Екатеринбурга — выбирай формат и уточняй свободное время.
           </p>
-          <SignupLink className="pr-button">
-            ЗАБРОНИРОВАТЬ ЗАЛ <span>→</span>
-          </SignupLink>
         </div>
       </section>
 
       {/* ЗАЛЫ */}
       <section className="pr-section" id="halls">
-        <div className="pr-head" data-reveal>
-          <p className="pr-kicker">01 / ЗАЛЫ</p>
-          <h2>ТРИ ЗАЛА</h2>
-        </div>
-
         <div className="pr-halls">
           {halls.map((hall, index) => (
             <article
@@ -67,6 +62,12 @@ export default function RentalPage() {
               </div>
               <h3>{hall.name}</h3>
               <p>{hall.description}</p>
+              <SignupLink
+                className="pr-hall-link"
+                ariaLabel={`Узнать об аренде: ${hall.name.toLowerCase()}`}
+              >
+                УЗНАТЬ О ЗАЛЕ →
+              </SignupLink>
             </article>
           ))}
         </div>
@@ -75,14 +76,23 @@ export default function RentalPage() {
       {/* ТАРИФЫ */}
       <section className="pr-section pr-section-alt" id="rates">
         <div className="pr-head" data-reveal>
-          <p className="pr-kicker">02 / ТАРИФЫ</p>
-          <h2>СТОИМОСТЬ ЧАСА</h2>
+          <p className="pr-kicker">ТАРИФЫ ЗА ЧАС</p>
+          <h2>
+            ПОНЯТНАЯ
+            <br />
+            СТОИМОСТЬ.
+          </h2>
+          <p className="pr-head-note">
+            Тариф зависит от количества людей и времени аренды.
+          </p>
         </div>
 
         {/* Индивидуальная аренда */}
         <div className="pr-rental-block" data-reveal>
           <h3 className="pr-sub">Индивидуальная аренда</h3>
-          <p className="pr-sub-note">Тренер + 1–2 ученика, максимум 3 человека в зале.</p>
+          <p className="pr-sub-note">
+            До 3 человек включительно: преподаватель и 1–2 ученика.
+          </p>
 
           <div className="pr-table-wrap">
             <table className="pr-table pr-table-rental">
@@ -92,7 +102,6 @@ export default function RentalPage() {
                   <th scope="col">Большой зал</th>
                   <th scope="col">Средний зал</th>
                   <th scope="col">Маленький зал</th>
-                  <th scope="col">Условие</th>
                 </tr>
               </thead>
               <tbody>
@@ -108,7 +117,6 @@ export default function RentalPage() {
                     <td>
                       <span>{rub(rate.small)}</span>
                     </td>
-                    <td>{rate.note}</td>
                   </tr>
                 ))}
               </tbody>
@@ -119,7 +127,6 @@ export default function RentalPage() {
             {rentalIndividual.map((rate) => (
               <article key={rate.time} className="pr-rate">
                 <h4>{rate.time}</h4>
-                <p className="pr-rate-note">{rate.note}</p>
                 <dl>
                   <div>
                     <dt>Большой</dt>
@@ -142,7 +149,10 @@ export default function RentalPage() {
         {/* Групповая аренда */}
         <div className="pr-rental-block" data-reveal>
           <h3 className="pr-sub">Групповая аренда</h3>
-          <p className="pr-sub-note">Тренер + 3 и более учеников, от 4 человек в зале.</p>
+          <p className="pr-sub-note">
+            От 4 человек: преподаватель и 3 или больше учеников. Доступный зал уточни при
+            бронировании.
+          </p>
 
           <ul className="pr-group-rates">
             {rentalGroup.map((rate) => (
@@ -155,26 +165,32 @@ export default function RentalPage() {
           </ul>
         </div>
 
-        {/* Правила */}
-        <div className="pr-rules" data-reveal>
-          <h3 className="pr-sub">Правила аренды</h3>
-          <ol>
-            {rentalRules.map((rule) => (
-              <li key={rule}>{rule}</li>
-            ))}
-          </ol>
+        <p className="pr-notice">
+          Для дневной групповой аренды уточни временные границы тарифа. Площадь,
+          вместимость, оборудование, правила оплаты и отмены бронирования согласуем до
+          подтверждения.
+        </p>
+
+        <div className="pr-rental-actions" data-reveal>
+          <SignupLink className="pr-button pr-button-dark">
+            УТОЧНИТЬ СВОБОДНОЕ ВРЕМЯ <span>→</span>
+          </SignupLink>
+          <Link className="pr-rental-link" href="/contacts">
+            КАК НАС НАЙТИ →
+          </Link>
         </div>
-
-        <SignupLink className="pr-button pr-button-dark" data-reveal>
-          ЗАБРОНИРОВАТЬ ЗАЛ <span>→</span>
-        </SignupLink>
       </section>
 
-      {/* Пришли не за этим — вот куда идти. */}
-      <section className="rn-crosslink" data-reveal>
-        <p>Ищете занятия, а не зал?</p>
-        <Link href="/prices">Цены на занятия →</Link>
-      </section>
+      <FaqSection
+        title={
+          <>
+            ПЕРЕД
+            <br />
+            БРОНИРОВАНИЕМ
+          </>
+        }
+        items={rentalFaq}
+      />
 
       <SiteFooter />
     </main>

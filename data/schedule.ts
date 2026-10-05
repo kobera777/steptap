@@ -28,25 +28,25 @@ export const levelInfo: Record<
 > = {
   zero: {
     label: "1.0 СТАРТ",
-    description: "без опыта",
+    description: "Без опыта",
     className: "schedule-card-zero",
   },
 
   continuing: {
     label: "2.0 ОСНОВА",
-    description: "Есть опыт от 8 месяцев",
+    description: "От 8 месяцев опыта",
     className: "schedule-card-continuing",
   },
 
   advanced: {
     label: "3.0 РАЗВИТИЕ",
-    description: "Есть опыт от 1.5года",
+    description: "От 1,5 лет опыта",
     className: "schedule-card-intermediate",
   },
 
   pro: {
     label: "4.0 МАСТЕРСТВО",
-    description: "Закрытые группы",
+    description: "Закрытая группа",
     className: "schedule-card-pro",
   },
 
@@ -58,7 +58,7 @@ export const levelInfo: Record<
 
   special: {
     label: "Специальные занятия",
-    description: "Мастер-классы,  мужской стил",
+    description: "Мастер-классы, мужской стиль",
     className: "schedule-card-special",
   },
 };
@@ -325,40 +325,6 @@ export const events: ScheduleEvent[] = [
     note: "Событие STEP TAP",
   },
 ];
-
-/** «понедельникам и средам», «понедельникам, средам и пятницам». */
-function joinRu(words: string[]) {
-  if (words.length <= 1) return words.join("");
-  return `${words.slice(0, -1).join(", ")} и ${words[words.length - 1]}`;
-}
-
-/**
- * Когда приходить новичку — собирается из самого расписания (уровень zero),
- * а не пишется руками: поменяется время группы — поменяется и фраза.
- * Возвращает строки вида «по понедельникам и средам в 19:00».
- */
-export function beginnerSlots() {
-  const byTime = new Map<string, Set<number>>();
-  for (const item of classes) {
-    if (item.level !== "zero") continue;
-    if (!byTime.has(item.start)) byTime.set(item.start, new Set());
-    byTime.get(item.start)!.add(item.day);
-  }
-  return [...byTime.entries()]
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([time, set]) => {
-      const list = [...set].sort((a, b) => a - b).map((d) => daysDative[d - 1]);
-      return `по ${joinRu(list)} в ${time}`;
-    });
-}
-
-/** Какие направления есть у новичков: «Парная Бачата и Бачата Леди». */
-export function beginnerTitles() {
-  const titles = [
-    ...new Set(classes.filter((c) => c.level === "zero").map((c) => c.title)),
-  ];
-  return joinRu(titles);
-}
 
 export const timeRows = [
   "14:00",

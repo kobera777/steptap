@@ -278,6 +278,10 @@
   padding: 80px 7vw;
 }
 
+.directions-page .choice-pink .section-kicker {
+  color: var(--color-black);
+}
+
 .directions-page .choice-pink h2 {
   margin: 0;
   font-size: clamp(36px, 4.4vw, 66px);
@@ -382,7 +386,6 @@
     width: 220px;
     height: 220px;
   }
-
 
   .directions-page .direction-main {
     padding: 70px 20px;

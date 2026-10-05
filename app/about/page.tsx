@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { lifeItems, values } from "@/data/about";
-import { teachers } from "@/data/schedule";
+import { lifeItems, team, values } from "@/data/about";
 import Link from "next/link";
 
 import Image from "next/image";
@@ -11,7 +10,8 @@ import { SignupLink } from "@/components/layout/SignupLink";
 
 export const metadata: Metadata = {
   title: "О школе",
-  description: "STEP TAP — школа танца: история, ценности, преподаватели и жизнь школы.",
+  description:
+    "STEP TAP — школа танцев для взрослых в центре Екатеринбурга: история, подход, преподаватели и жизнь школы.",
 };
 
 export default function AboutPage() {
@@ -23,31 +23,20 @@ export default function AboutPage() {
 
       <section className="st-hero">
         <div className="st-hero-left">
-          <div className="st-label">О НАС</div>
+          <div className="st-label">О ШКОЛЕ</div>
 
           <h1>
-            БОЛЬШЕ
+            МЕСТО, ГДЕ
             <br />
-            ЧЕМ ТАНЕЦ
+            ТЕБЕ РАДЫ.
           </h1>
 
           <p className="st-hero-lead">
-            STEP TAP — это школа, созданная с большой любовью и от всего сердца.
-          </p>
-
-          <p className="st-hero-text">
-            Мы хотели создать место, где каждый человек чувствует себя комфортно и
-            по-домашнему, верит в себя и знает, что у него всё получится. Здесь не
-            критикуют и не осуждают. Здесь поддерживают, общаются, танцуют и становятся
-            одной большой танцевальной семьёй.
+            STEP TAP — школа танцев для взрослых в центре Екатеринбурга. Мы хотели создать
+            место, где можно учиться, общаться и чувствовать себя своим.
           </p>
 
           <div className="st-hero-bottom">
-            <SignupLink className="st-pink-button">
-              СТАТЬ ЧАСТЬЮ СЕМЬИ
-              <span>→</span>
-            </SignupLink>
-
             <div className="st-tags">ЛЮДИ · МУЗЫКА · ДВИЖЕНИЕ</div>
           </div>
         </div>
@@ -100,29 +89,20 @@ export default function AboutPage() {
           <div className="st-label">НАША ИСТОРИЯ</div>
 
           <h2>
-            МЕЧТА,
-            <br />
-            КОТОРАЯ СТАЛА
-            <br />
-            ДОМОМ
+            ИЗ МЕЧТЫ —
+            <br />В ШКОЛУ.
           </h2>
 
           <div className="st-story-copy">
             <p>
-              <strong>29 ноября 2025 года открылись двери STEP TAP.</strong>
+              29 ноября 2025 года STEP TAP открыл двери для первых учеников. За этим
+              стояли мечта о своей школе, большая работа и желание собрать людей, которым
+              близки танцы.
             </p>
 
             <p>
-              Создание школы было нашей мечтой. Путь к ней оказался непростым — было много
-              работы, сложностей и моментов, когда хотелось остановиться. Но мы не
-              сдались.
-            </p>
-
-            <p>
-              Сегодня STEP TAP — это не просто танцевальная школа. Это наш второй дом.
-              Место, где мы стараемся относиться друг к другу так, как относились бы к
-              своей семье. Где можно быть собой, развиваться, пробовать новое и получать
-              удовольствие от танца.
+              С тех пор мы продолжаем развивать школу: проводить занятия, встречаться на
+              вечеринках и создавать пространство, в которое хочется возвращаться.
             </p>
           </div>
 
@@ -138,33 +118,39 @@ export default function AboutPage() {
             <i />
 
             <small>
-              НАЧАЛО
+              ДЕНЬ, КОГДА
               <br />
-              БОЛЬШОЙ
+              ОТКРЫЛСЯ
               <br />
-              ИСТОРИИ
+              STEP TAP
             </small>
           </div>
+
+          <p className="st-quote">
+            «Здесь можно быть собой, учиться и получать удовольствие от танца».
+          </p>
         </div>
       </section>
 
-      {/* VALUES */}
+      {/* НАШ ПОДХОД */}
 
       <section className="st-values">
         <div className="st-values-title">
-          <div className="st-label">НАШИ ЦЕННОСТИ</div>
+          <div className="st-label">НАШ ПОДХОД</div>
 
           <h2>
-            ЧТО ДЛЯ НАС
+            УЧИТЬСЯ ЛЕГЧЕ,
             <br />
-            ВАЖНО
+            КОГДА ТЕБЯ
+            <br />
+            ПОДДЕРЖИВАЮТ.
           </h2>
         </div>
 
         <div className="st-values-grid">
           {values.map((value) => (
             <article className="st-value" key={value.title}>
-              <div className="st-value-icon">{value.icon}</div>
+              <div className="st-value-icon">{value.number}</div>
 
               <h3>{value.title}</h3>
 
@@ -174,118 +160,63 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* TEAM — маленькая школа: те, кто в расписании, и есть те, кто ведёт
-          занятие. Собирается из data/schedule.ts. Регалии добавим, когда
-          школа их пришлёт, — придумывать их нельзя. */}
+      {/* КОМАНДА */}
 
       <section className="st-team">
         <div className="st-team-title">
           <div className="st-label">КОМАНДА</div>
 
           <h2>
-            С КЕМ ВЫ
+            С КЕМ
             <br />
-            БУДЕТЕ
+            БУДЕШЬ
             <br />
-            ТАНЦЕВАТЬ
+            ТАНЦЕВАТЬ.
           </h2>
+
+          <p className="st-team-intro">
+            Преподаватели, чьи занятия указаны в расписании школы.
+          </p>
         </div>
 
         <div className="st-team-grid">
-          {teachers().map((teacher) => (
+          {team.map((teacher) => (
             <article className="st-teacher" key={teacher.name}>
               <h3>{teacher.name}</h3>
 
-              <p>Ведёт: {teacher.titles.join(", ")}</p>
+              <small>{teacher.styles}</small>
 
-              <Link href="/schedule">Когда занятия →</Link>
+              <p>{teacher.text}</p>
+
+              <SignupLink ariaLabel={`Подобрать занятие у преподавателя ${teacher.name}`}>
+                Подобрать занятие →
+              </SignupLink>
             </article>
           ))}
         </div>
       </section>
 
-      {/* WHO COMES */}
-
-      <section className="st-info">
-        <div className="st-info-title">
-          <div className="st-label">ДЛЯ КАЖДОГО</div>
-
-          <h2>
-            КТО К НАМ
-            <br />
-            ПРИХОДИТ
-          </h2>
-        </div>
-
-        <div className="st-info-text">
-          <p>
-            В STEP TAP приходят как те, кто никогда не танцевал, так и те, кто уже имеет
-            опыт. У нас занимаются взрослые, мужчины и женщины, пары и те, кто приходит
-            один.
-          </p>
-
-          <p>
-            Главное — желание танцевать, развиваться и быть частью нашей атмосферы. Здесь
-            всегда найдётся место для тебя.
-          </p>
-        </div>
-
-        <div className="st-info-side">
-          <span>РАЗНЫЕ ЛЮДИ</span>
-          <span>ОДНА СТРАСТЬ</span>
-          <i />
-        </div>
-      </section>
-
-      {/* APPROACH */}
-
-      <section className="st-info st-approach">
-        <div className="st-info-title">
-          <div className="st-label">НАШ ПОДХОД</div>
-
-          <h2>
-            ПРОФЕССИОНАЛЫ
-            <br />
-            С БОЛЬШИМ
-            <br />
-            ОПЫТОМ
-          </h2>
-        </div>
-
-        <div className="st-info-text">
-          <p>
-            Мы очень тщательно подходим к набору новых тренеров STEP TAP. У нас преподают
-            настоящие профессионалы своего дела — с большим танцевальным опытом, чемпионы
-            и специалисты, которых приглашают преподавать по всей России и за её
-            пределами.
-          </p>
-
-          <p>
-            Мы выбираем тех, кто не только отлично танцует, но и умеет вдохновлять,
-            передавать знания и создавать особую атмосферу на занятиях.
-          </p>
-        </div>
-
-        <div className="st-info-side">
-          <span>КАЧЕСТВО</span>
-          <span>ОПЫТ</span>
-          <span>ДОВЕРИЕ</span>
-          <span>РЕЗУЛЬТАТ</span>
-          <i />
-        </div>
-      </section>
-
-      {/* LIFE */}
+      {/* ЗА ПРЕДЕЛАМИ УРОКА */}
 
       <section className="st-life">
         <div className="st-life-title">
-          <div className="st-label">ЖИЗНЬ STEP TAP</div>
+          <div className="st-label">ЗА ПРЕДЕЛАМИ УРОКА</div>
 
           <h2>
-            БОЛЬШЕ ЧЕМ
+            ТАНЦЫ —
             <br />
-            ЗАНЯТИЯ
+            ЭТО ЕЩЁ
+            <br />И ВСТРЕЧИ.
           </h2>
+
+          <p className="st-life-text">
+            Вечеринки, мастер-классы, выступления и поездки — часть танцевальной жизни
+            STEP TAP. Можно учиться в группе и постепенно знакомиться с сообществом.
+          </p>
+
+          <Link className="st-life-link" href="/gallery">
+            ПОСМОТРЕТЬ ГАЛЕРЕЮ →
+          </Link>
         </div>
 
         <div className="st-life-grid">
@@ -299,31 +230,28 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* DREAM */}
+      {/* ПРИХОДИ ЗНАКОМИТЬСЯ */}
 
       <section className="st-dream">
         <div className="st-dream-title">
-          <div className="st-label">НАША МЕЧТА</div>
+          <div className="st-label">ТВОЙ ПЕРВЫЙ ШАГ</div>
 
           <h2>
-            МЫ НЕ
+            ПРИХОДИ
             <br />
-            СДАЁМСЯ.
+            ЗНАКОМИТЬСЯ.
           </h2>
         </div>
 
         <div className="st-dream-text">
           <p>
-            STEP TAP — это мечта, которую мы смогли превратить в реальность. Мы шли к ней
-            непросто. Но мы продолжаем развиваться, расти и создавать место, в которое
-            хочется возвращаться снова и снова.
+            Лучше всего узнать школу на занятии: увидеть зал, познакомиться с
+            преподавателем и попробовать самому.
           </p>
-
-          <strong>Это только начало. ♡</strong>
         </div>
 
         <SignupLink className="st-dark-button">
-          СТАТЬ ЧАСТЬЮ STEP TAP
+          ПОДОБРАТЬ ЗАНЯТИЕ
           <span>→</span>
         </SignupLink>
       </section>

@@ -19,6 +19,8 @@ const nextConfig: NextConfig = {
       { source: "/prices/rental", destination: "/rental", permanent: false },
       { source: "/signup", destination: "/contacts", permanent: false },
       { source: "/events", destination: "/schedule#events", permanent: false },
+      // Демо-альбомов галереи больше нет — старые ссылки ведут в галерею.
+      { source: "/gallery/:album", destination: "/gallery", permanent: false },
       // Старые адреса направлений (до страниц стилей) — на список направлений.
       {
         source: "/directions/bachata/:style",

@@ -21,7 +21,7 @@ import { PNG } from "pngjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const shotsDir = path.join(root, "shots");
 
-/** Páginas que se capturan. El primer álbum de la galería se lee de data/gallery.ts. */
+/** Páginas que se capturan. */
 const ROUTES = [
   "/",
   "/about",
@@ -31,6 +31,10 @@ const ROUTES = [
   "/rental",
   "/song-analysis",
   "/gallery",
+  "/classes",
+  "/contacts",
+  "/directions/bachata",
+  "/directions/dancehall",
 ];
 /** Anchos de pantalla: escritorio, tableta, móvil. */
 const WIDTHS = [1280, 768, 375];
@@ -58,7 +62,7 @@ async function capture(name, url) {
   const outDir = path.join(shotsDir, name);
   mkdirSync(outDir, { recursive: true });
 
-  const routes = [...ROUTES, firstAlbumRoute()];
+  const routes = ROUTES;
   let server;
   if (!url) {
     if (!existsSync(path.join(root, ".next"))) {
@@ -178,12 +182,6 @@ function stopServer(proc) {
   } else {
     proc.kill();
   }
-}
-
-function firstAlbumRoute() {
-  const src = readFileSync(path.join(root, "data", "gallery.ts"), "utf8");
-  const m = src.match(/slug:\s*"([^"]+)"/);
-  return m ? `/gallery/${m[1]}` : "/gallery";
 }
 
 function fileName(route) {

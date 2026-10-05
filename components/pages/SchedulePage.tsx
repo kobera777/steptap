@@ -5,8 +5,6 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SignupLink } from "@/components/layout/SignupLink";
 import {
-  beginnerSlots,
-  beginnerTitles,
   classes,
   days,
   daysShort,
@@ -190,8 +188,6 @@ export function SchedulePage() {
       })()
     : null;
 
-  const slots = beginnerSlots();
-
   function openDay(iso: string) {
     const { y, m, d } = parseIso(iso);
     setSelectedDay(weekdayOf(y, m, d));
@@ -208,19 +204,17 @@ export function SchedulePage() {
 
       <section className="schedule-hero">
         <div className="schedule-hero-copy">
-          <p className="schedule-kicker">НАШЕ РАСПИСАНИЕ</p>
+          <p className="schedule-kicker">РАСПИСАНИЕ STEP TAP</p>
 
           <h1>
-            ЗАНЯТИЯ
-            <br />В STEP TAP
+            НАЙДИ ВРЕМЯ
+            <br />
+            ДЛЯ ТАНЦЕВ.
           </h1>
 
           <p className="schedule-intro">
-            Выбирайте направление, удобное время
-            <br />
-            и приходите танцевать. Мы всегда рады
-            <br />
-            новым и знакомым лицам!
+            Выбери день, направление и уровень. Нажми на занятие — поможем уточнить
+            условия и записаться.
           </p>
         </div>
 
@@ -248,20 +242,6 @@ export function SchedulePage() {
       </section>
 
       <section className="schedule-calendar-section">
-        {/* Новичку — самое конкретное, что можно сказать: куда и когда прийти.
-            Собирается из расписания, поэтому не разойдётся с ним. */}
-        {slots.length > 0 && (
-          <div className="schedule-beginner">
-            <p>
-              <strong>Впервые?</strong> {beginnerTitles()} для начинающих (1.0 СТАРТ) —{" "}
-              {slots.join("; ")}.
-            </p>
-            <SignupLink className="schedule-beginner-link">
-              ЗАПИСАТЬСЯ НА ПЕРВОЕ ЗАНЯТИЕ <span>→</span>
-            </SignupLink>
-          </div>
-        )}
-
         <div className="schedule-calendar-top">
           <div className="schedule-nav">
             {view === "month" && (
@@ -535,6 +515,15 @@ export function SchedulePage() {
             </p>
           </div>
         )}
+
+        <div className="schedule-other-note">
+          <strong>Дэнсхолл, латина и новые наборы</strong>
+          <p>
+            Если не видишь нужного направления или удобного времени, напиши школе. Уточним
+            актуальные группы и специальные занятия.
+          </p>
+          <SignupLink className="schedule-other-link">НАПИСАТЬ ШКОЛЕ →</SignupLink>
+        </div>
       </section>
 
       {upcoming.length > 0 && (
@@ -570,16 +559,21 @@ export function SchedulePage() {
 
       <section className="schedule-final-cta">
         <div>
-          <p>НЕ ЗНАЕШЬ, С КАКОЙ ГРУППЫ НАЧАТЬ?</p>
+          <p>ТВОЙ ПЕРВЫЙ ШАГ</p>
 
           <h2>
-            МЫ
+            ТВОЯ ГРУППА
             <br />
-            ПОМОЖЕМ
+            НАЙДЁТСЯ.
           </h2>
+
+          <p className="schedule-final-text">
+            Не обязательно выбирать только по названию уровня. Поможем разобраться в
+            расписании и подобрать занятие.
+          </p>
         </div>
 
-        <SignupLink>ПОДОБРАТЬ ГРУППУ →</SignupLink>
+        <SignupLink>ПОДОБРАТЬ ЗАНЯТИЕ →</SignupLink>
       </section>
 
       <SiteFooter />
