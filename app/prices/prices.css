@@ -93,125 +93,6 @@
   color: var(--color-white);
 }
 
-/* ---------- Пробное занятие ----------
-   Первый блок страницы. Раньше человек первым делом видел крупную сумму —
-   теперь — что попробовать почти ничего не стоит. */
-
-.pr-trial {
-  padding: 70px 7vw;
-  display: grid;
-  grid-template-columns: 1fr 0.9fr;
-  align-items: center;
-  gap: 5vw;
-  background: var(--color-black);
-  color: var(--color-white);
-}
-
-.pr-trial-price {
-  margin: 0;
-  font-size: clamp(48px, 6.5vw, 96px);
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-display);
-  font-weight: 800;
-  color: var(--color-pink);
-}
-
-.pr-trial-main h2 {
-  margin: 10px 0 0;
-  font-size: clamp(22px, 2.4vw, 34px);
-  line-height: 1.1;
-  letter-spacing: var(--tracking-heading);
-  font-weight: 800;
-}
-
-.pr-trial-text p {
-  max-width: 420px;
-  margin: 0 0 26px;
-  font-size: 15px;
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.75);
-}
-
-/* Два условия «бесплатно». Набраны обычным кеглем, а не мелким серым:
-   человек должен понять правило здесь, а не узнать его на ресепшене. */
-.pr-trial-terms {
-  list-style: none;
-  max-width: 460px;
-  margin: 0 0 18px;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.pr-trial-terms li {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding-left: 18px;
-  border-left: 2px solid var(--color-pink);
-}
-
-.pr-trial-terms strong {
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.pr-trial-terms span {
-  font-size: 15px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.pr-trial-note {
-  max-width: 460px;
-  margin: 0 0 26px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-/* ---------- Что входит в занятие ---------- */
-
-.pr-includes {
-  padding: 70px 7vw;
-}
-
-.pr-includes-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-  margin-top: 30px;
-}
-
-.pr-include {
-  padding: 26px 24px;
-  border-radius: var(--radius-card);
-  border: 1px solid rgba(17, 17, 17, 0.12);
-}
-
-.pr-include span {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-label);
-  color: var(--color-pink);
-}
-
-.pr-include h3 {
-  margin: 12px 0 8px;
-  font-size: 17px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-ui);
-  text-transform: uppercase;
-}
-
-.pr-include p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--color-muted);
-}
-
 /* ---------- Секции ---------- */
 
 .pr-section {
@@ -237,14 +118,6 @@
   font-weight: 800;
 }
 
-.pr-lead {
-  max-width: 520px;
-  margin: 22px 0 0;
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--color-muted);
-}
-
 .pr-sub {
   margin: 0 0 6px;
   font-size: clamp(22px, 2.4vw, 30px);
@@ -258,214 +131,6 @@
   color: var(--color-muted);
   font-size: 13px;
   line-height: 1.45;
-}
-
-/* ---------- Карточки абонементов (групповые) ----------
-   Правило для всей страницы: крупнее всего — то, что покупают
-   («8 занятий», «Тренер», «Большой зал»), а не цена. Цена читается
-   следом: она не уходит в серое, просто перестаёт кричать. */
-
-/* Разовое занятие: цена, с которой сравнивают всё остальное. Заметная,
-   но не карточка вровень с абонементами — иначе она с ними конкурирует. */
-.pr-anchor {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 10px 22px;
-  margin-bottom: 26px;
-  padding: 18px 22px;
-  border-radius: var(--radius-card);
-  border: 1px solid rgba(17, 17, 17, 0.14);
-}
-
-.pr-anchor > div {
-  flex: 1 1 260px;
-}
-
-.pr-anchor strong {
-  display: block;
-  font-size: 17px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-heading);
-}
-
-.pr-anchor span {
-  font-size: 13px;
-  color: var(--color-muted);
-}
-
-.pr-anchor > p {
-  margin: 0;
-  font-size: 19px;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.pr-anchor-link {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-ui);
-  text-transform: uppercase;
-  white-space: nowrap;
-  border-bottom: 1px solid var(--color-pink);
-  padding-bottom: 2px;
-  transition: color 0.2s ease;
-}
-
-.pr-anchor-link:hover,
-.pr-anchor-link:focus-visible {
-  color: var(--color-pink);
-}
-
-.pr-cards {
-  display: grid;
-  /* Абонементов четыре: разовое занятие ушло в строку-ориентир выше.
-     240px — чтобы все четыре встали в ряд и при этом дышали. */
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-  /* Метка теперь внутри карточки — место сверху не нужно. */
-}
-
-.pr-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 28px 24px 24px;
-  border-radius: var(--radius-card);
-  background: var(--color-paper);
-}
-
-.pr-card.is-featured {
-  background: var(--color-pink);
-  border-color: var(--color-pink);
-  color: var(--color-white);
-}
-
-/* Метка стоит внутри карточки. Снаружи её срезал overflow: hidden,
-   который нужен, чтобы розовая полоска сверху не вылезала за скругления.
-   11px вместо 9px: разрядка на прописных мельче просто не читается. */
-.pr-badge {
-  align-self: flex-start;
-  margin-bottom: 14px;
-  padding: 7px 13px;
-  border-radius: var(--radius-pill);
-  background: var(--color-black);
-  color: var(--color-white);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-ui);
-  text-transform: uppercase;
-}
-
-/* На розовой карточке метка светлая: чёрным по розовому она спорит с ценой. */
-.pr-card.is-featured .pr-badge {
-  background: var(--color-white);
-  color: var(--color-black);
-}
-
-.pr-card h3 {
-  margin: 0 0 12px;
-  font-size: clamp(20px, 1.9vw, 25px);
-  line-height: 1.1;
-  font-weight: 800;
-  letter-spacing: var(--tracking-heading);
-}
-
-.pr-price {
-  margin: 0;
-  font-size: 20px;
-  line-height: 1.1;
-  letter-spacing: var(--tracking-heading);
-  font-weight: 600;
-}
-
-.pr-per {
-  margin: 6px 0 0;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: var(--tracking-ui);
-  text-transform: uppercase;
-  opacity: 0.6;
-}
-
-/* Полная сумма абонемента: тут же, просто не она кричит. */
-.pr-total {
-  margin: 16px 0 0;
-  font-size: 13px;
-  line-height: 1.4;
-}
-
-.pr-save {
-  margin: 14px 0 0;
-  padding: 10px 12px;
-  border-radius: var(--radius-sm);
-  background: rgba(212, 95, 136, 0.1);
-  font-size: 15px;
-  font-weight: 800;
-  line-height: 1.3;
-  color: var(--color-pink);
-}
-
-.pr-save span {
-  display: block;
-  margin-top: 2px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: var(--tracking-ui);
-  opacity: 0.85;
-}
-
-.pr-card.is-featured .pr-save {
-  background: rgba(255, 255, 255, 0.16);
-  color: var(--color-white);
-}
-
-.pr-weeks {
-  margin: 0 0 18px;
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--color-muted);
-}
-
-.pr-card.is-featured .pr-weeks {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.pr-note {
-  margin: 14px 0 0;
-  font-size: 11px;
-  font-weight: 700;
-}
-
-/* Рекомендованный абонемент выделяется цветом и тенью, а не высотой:
-   карточки разной высоты в одном ряду читаются как небрежность. */
-.pr-card.is-featured {
-  box-shadow: 0 18px 40px rgba(212, 95, 136, 0.28);
-}
-
-.pr-cards-foot {
-  margin: 26px 0 0;
-  font-size: 14px;
-  color: var(--color-muted);
-}
-
-.pr-card-button {
-  margin-top: auto;
-  padding-top: 22px;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-ui);
-  text-transform: uppercase;
-}
-
-.pr-card-button span {
-  display: inline-block;
-  margin-left: 8px;
-  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-.pr-card-button:hover span {
-  transform: translateX(6px);
 }
 
 /* ---------- Таблица ---------- */
@@ -532,7 +197,6 @@
 }
 
 /* Карточки-дубли таблиц прячем, пока экран широкий */
-.pr-tiers,
 .pr-rates {
   display: none;
 }
@@ -541,8 +205,6 @@
    Общая рамка для всех карточек с ценами и арендой: тонкая розовая линия,
    розовая полоска сверху и мягкое свечение при наведении. */
 
-.pr-card,
-.pr-tier,
 .pr-rate,
 .pr-group-rates li {
   position: relative;
@@ -554,8 +216,6 @@
     transform 0.25s ease;
 }
 
-.pr-card::before,
-.pr-tier::before,
 .pr-rate::before,
 .pr-group-rates li::before {
   content: "";
@@ -565,18 +225,11 @@
   background: linear-gradient(90deg, var(--color-pink), rgba(212, 95, 136, 0.25));
 }
 
-.pr-card:hover,
-.pr-tier:hover,
 .pr-rate:hover,
 .pr-group-rates li:hover {
   border-color: var(--color-pink);
   box-shadow: 0 14px 34px rgba(212, 95, 136, 0.18);
   transform: translateY(-3px);
-}
-
-/* Выделенная карточка уже розовая — полоску сверху делаем светлой. */
-.pr-card.is-featured::before {
-  background: linear-gradient(90deg, var(--color-white), rgba(255, 255, 255, 0.3));
 }
 
 /* Строка «не предоставляется» не должна звать кликнуть. */
@@ -610,65 +263,6 @@
 .pr-table tbody tr:last-child th,
 .pr-table tbody tr:last-child td {
   border-bottom: 0;
-}
-
-/* ---------- Финал страницы ----------
-   Раньше прайс заканчивался кнопкой «Забронировать зал»: последнее, что читал
-   будущий ученик, было предложение не для него. Теперь — снова про пробное. */
-
-.pr-closing {
-  padding: 70px 7vw;
-  display: grid;
-  grid-template-columns: 1fr 0.9fr;
-  align-items: center;
-  gap: 5vw;
-  background: var(--color-black);
-  color: var(--color-white);
-}
-
-.pr-closing h2 {
-  margin: 10px 0 0;
-  font-size: clamp(30px, 3.6vw, 52px);
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-display);
-  font-weight: 800;
-}
-
-.pr-closing-text p {
-  max-width: 420px;
-  margin: 0 0 26px;
-  font-size: 15px;
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.pr-crosslink {
-  padding: 34px 7vw 70px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 18px;
-}
-
-.pr-crosslink p {
-  margin: 0;
-  font-size: 15px;
-  color: var(--color-muted);
-}
-
-.pr-crosslink a {
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-ui);
-  text-transform: uppercase;
-  border-bottom: 1px solid var(--color-pink);
-  padding-bottom: 2px;
-  transition: color 0.2s ease;
-}
-
-.pr-crosslink a:hover,
-.pr-crosslink a:focus-visible {
-  color: var(--color-pink);
 }
 
 /* ---------- Залы ---------- */
@@ -773,28 +367,6 @@
 ================================================== */
 
 @media (max-width: 900px) {
-  .pr-trial,
-  .pr-closing,
-  .pr-includes-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .pr-closing {
-    gap: 30px;
-  }
-
-  .pr-crosslink {
-    padding: 30px 20px 60px;
-  }
-
-  .pr-trial {
-    gap: 34px;
-  }
-
-  .pr-anchor {
-    align-items: flex-start;
-  }
-
   /* На планшете таблица аренды не помещалась и требовала горизонтальной
      прокрутки — ужимаем отступы в ячейках. */
   .pr-table th,
@@ -829,20 +401,17 @@
     display: none;
   }
 
-  .pr-tiers,
   .pr-rates {
     display: grid;
     gap: 14px;
   }
 
-  .pr-tier,
   .pr-rate {
     padding: 22px;
     border-radius: var(--radius-card);
     background: var(--color-paper);
   }
 
-  .pr-tier h3,
   .pr-rate h4 {
     margin: 0 0 14px;
     font-size: 21px;
@@ -860,12 +429,10 @@
     font-size: 11px;
   }
 
-  .pr-tier dl,
   .pr-rate dl {
     margin: 0;
   }
 
-  .pr-tier dl > div,
   .pr-rate dl > div {
     display: flex;
     align-items: baseline;
@@ -875,16 +442,12 @@
     border-top: 1px solid rgba(17, 17, 17, 0.1);
   }
 
-  /* На телефоне это было заметнее всего: «Разовое» — 12px серым,
-     «2000 ₽» — 16px жирным. Теперь наоборот по весу. */
-  .pr-tier dt,
   .pr-rate dt {
     font-size: 15px;
     font-weight: 700;
     color: var(--color-black);
   }
 
-  .pr-tier dd,
   .pr-rate dd {
     margin: 0;
     text-align: right;
@@ -893,16 +456,575 @@
     white-space: nowrap;
   }
 
-  .pr-tier dd small {
-    display: block;
-    margin-top: 2px;
-    color: var(--color-muted);
-    font-size: 11px;
-    font-weight: 400;
-  }
-
   .pr-button-dark {
     width: 100%;
     justify-content: center;
+  }
+}
+
+/* ==================================================
+   СТРАНИЦА ЦЕН ПО ПРОТОТИПУ ВЛАДЕЛЬЦА
+   Композиция и тексты — из его HTML; шрифт и цвета — текущие (tokens.css).
+   ================================================== */
+
+.pr-eyebrow {
+  margin: 0 0 20px;
+  color: var(--color-pink);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.pr-small {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.pr-muted {
+  color: var(--color-muted);
+}
+
+/* С префиксом .pr-page: правило «.pr-page a { color: inherit }» сильнее
+   одиночного класса и красило текст кнопок в цвет родителя — на чёрной
+   кнопке получался чёрный текст на чёрном. */
+.pr-page .pr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 15px 22px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background: var(--color-pink);
+  color: var(--color-black);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+  text-align: center;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.pr-page .pr-btn:hover,
+.pr-page .pr-btn:focus-visible {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.pr-page .pr-btn-ghost {
+  border-color: currentColor;
+  background: transparent;
+  color: inherit;
+}
+
+.pr-page .pr-btn-dark {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.pr-page .pr-btn-dark:hover,
+.pr-page .pr-btn-dark:focus-visible {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+/* ---------- Шапка ---------- */
+
+.pr-pagehead {
+  padding: 66px 7vw 44px;
+}
+
+.pr-pagehead h1 {
+  max-width: 970px;
+  margin: 0;
+  font-size: clamp(46px, 6.3vw, 92px);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
+}
+
+.pr-lead {
+  max-width: 620px;
+  margin: 25px 0 0;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+/* ---------- Первое знакомство ---------- */
+
+.pr-intro {
+  padding: 65px 7vw;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 60px;
+  align-items: center;
+  background: var(--color-white);
+}
+
+.pr-intro h2,
+.pr-sectionhead h2 {
+  margin: 0;
+  font-size: clamp(33px, 4.4vw, 62px);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
+}
+
+.pr-intro h2 {
+  margin-bottom: 8px;
+}
+
+.pr-benefit {
+  margin: 22px 0;
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 14px;
+}
+
+.pr-benefit > span {
+  color: var(--color-pink);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.pr-benefit p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.pr-benefit strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.pr-first {
+  position: relative;
+  padding: 36px;
+  border-radius: var(--radius-card);
+  background: var(--color-pink);
+  color: var(--color-black);
+}
+
+.pr-first .pr-eyebrow {
+  color: rgba(17, 17, 17, 0.7);
+}
+
+.pr-first-price {
+  margin: 15px 0;
+  font-size: clamp(72px, 7vw, 110px);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
+}
+
+.pr-first > p:not(.pr-eyebrow):not(.pr-first-price) {
+  max-width: 350px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.pr-first .pr-btn {
+  margin: 23px 0 18px;
+}
+
+.pr-ribbon {
+  position: absolute;
+  top: 28px;
+  right: 25px;
+  padding: 7px 10px;
+  border: 1px solid currentColor;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+  transform: rotate(6deg);
+}
+
+/* ---------- Блоки ---------- */
+
+.pr-block {
+  padding: 65px 7vw;
+}
+
+.pr-block-sand {
+  background: var(--color-cream-2);
+}
+
+.pr-sectionhead {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 35px;
+}
+
+.pr-sectionhead .pr-eyebrow {
+  margin-bottom: 14px;
+}
+
+.pr-sectionhead > p {
+  max-width: 350px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.pr-footnote {
+  margin-top: 17px;
+}
+
+/* ---------- Абонементы ---------- */
+
+.pr-plans {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+
+.pr-plan {
+  position: relative;
+  padding: 28px 23px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(17, 17, 17, 0.15);
+  border-radius: var(--radius-card);
+  background: var(--color-white);
+}
+
+.pr-plan.is-featured {
+  border-color: var(--color-black);
+  background: var(--color-black);
+  color: var(--color-cream);
+}
+
+.pr-plan-label {
+  min-height: 28px;
+  margin: 0;
+  color: var(--color-pink);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
+}
+
+.pr-plan h3 {
+  margin: 0;
+  font-size: 29px;
+  line-height: 1;
+  letter-spacing: var(--tracking-heading);
+  font-weight: 800;
+}
+
+.pr-plan-total {
+  margin: 22px 0 5px;
+  font-size: 39px;
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.pr-plan-unit {
+  margin: 22px 0 14px;
+  font-size: 14px;
+}
+
+.pr-plan-unit strong {
+  font-size: 21px;
+}
+
+.pr-plan ul {
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.pr-plan.is-featured ul {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.pr-plan li {
+  padding: 6px 0;
+  border-top: 1px solid rgba(17, 17, 17, 0.1);
+}
+
+.pr-plan.is-featured li {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.pr-plan .pr-btn {
+  width: 100%;
+  margin-top: auto;
+  padding: 13px 10px;
+  font-size: 10px;
+}
+
+.pr-plan.is-featured .pr-btn:hover,
+.pr-plan.is-featured .pr-btn:focus-visible {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+.pr-tools {
+  margin-top: 28px;
+  padding: 22px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  border-top: 1px solid rgba(17, 17, 17, 0.15);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.15);
+}
+
+.pr-tools p {
+  max-width: 540px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.pr-single {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.pr-single .pr-eyebrow {
+  margin-bottom: 10px;
+}
+
+.pr-single p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.pr-single strong {
+  font-size: 26px;
+  letter-spacing: var(--tracking-heading);
+}
+
+.pr-notice {
+  margin: 25px 0 0;
+  padding: 14px 18px;
+  border-left: 3px solid var(--color-pink);
+  background: var(--color-cream-2);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ---------- Индивидуальные ---------- */
+
+.pr-ind-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 60px;
+  align-items: start;
+}
+
+.pr-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pr-field select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  color: var(--color-black);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pr-chips {
+  margin: 25px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pr-chip {
+  padding: 11px 17px;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-black);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: var(--tracking-ui);
+  cursor: pointer;
+}
+
+.pr-chip[aria-pressed="true"] {
+  border-color: var(--color-black);
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.pr-mini-scroll {
+  overflow-x: auto;
+}
+
+.pr-mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.pr-mini-table caption {
+  padding: 10px 0;
+  color: var(--color-muted);
+  font-size: 12px;
+  text-align: left;
+}
+
+.pr-mini-table th,
+.pr-mini-table td {
+  padding: 14px 10px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.15);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.pr-mini-table thead th {
+  color: var(--color-muted);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.pr-mini-table tbody th {
+  font-weight: 700;
+}
+
+.pr-mini-table tr.is-chosen {
+  background: rgba(212, 95, 136, 0.14);
+}
+
+.pr-ind-result {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  border: 1px solid rgba(17, 17, 17, 0.15);
+  border-radius: var(--radius-card);
+  background: var(--color-white);
+}
+
+.pr-ind-result .pr-eyebrow {
+  margin: 0;
+}
+
+.pr-ind-amount {
+  margin: 0;
+  font-size: 54px;
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
+}
+
+.pr-tag {
+  padding: 7px 12px;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  border-radius: var(--radius-pill);
+  font-size: 10px;
+  letter-spacing: var(--tracking-ui);
+}
+
+@media (max-width: 1000px) {
+  .pr-plans {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .pr-pagehead {
+    padding: 50px 20px 36px;
+  }
+
+  .pr-lead {
+    font-size: 16px;
+  }
+
+  .pr-intro,
+  .pr-ind-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 35px;
+  }
+
+  .pr-intro,
+  .pr-block {
+    padding: 50px 20px;
+  }
+
+  .pr-sectionhead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .pr-tools,
+  .pr-single {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 560px) {
+  .pr-pagehead h1 {
+    font-size: clamp(36px, 11vw, 49px);
+  }
+
+  .pr-plans {
+    gap: 12px;
+  }
+
+  .pr-plan {
+    padding: 22px 15px;
+  }
+
+  .pr-plan h3 {
+    font-size: 22px;
+  }
+
+  .pr-plan-total {
+    font-size: 28px;
+  }
+
+  .pr-plan-label {
+    min-height: 30px;
+    font-size: 8px;
+  }
+
+  .pr-plan ul {
+    font-size: 11px;
+  }
+
+  .pr-first {
+    padding: 28px 22px;
+  }
+
+  .pr-ribbon {
+    position: static;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  .pr-ind-amount {
+    font-size: 42px;
   }
 }

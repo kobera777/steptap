@@ -1,300 +1,231 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SignupLink } from "@/components/layout/SignupLink";
+import { FaqSection } from "@/components/sections/FaqSection";
+import { FirstStepBand } from "@/components/sections/FirstStepBand";
+import { IndividualCalculator } from "@/components/prices/IndividualCalculator";
 import {
   LESSONS_PER_WEEK,
-  LESSON_HOURS,
-  discountPercent,
+  firstClassSteps,
   groupPlans,
-  individualTiers,
-  packPerLesson,
+  isApproximate,
   perLesson,
+  priceFaq,
   rub,
   savings,
   singleLesson,
-  trialTerms,
+  trialPrice,
   weeks,
 } from "@/data/prices";
-import { features } from "@/data/home";
 import "./prices.css";
-import { SignupLink } from "@/components/layout/SignupLink";
 
 export const metadata: Metadata = {
   title: "Цены",
   description:
-    "Стоимость групповых и индивидуальных занятий в школе танца STEP TAP, а также аренда залов: тарифы по времени и размеру зала.",
+    "Стоимость групповых и индивидуальных занятий в школе танца STEP TAP: первое занятие, абонементы на 4, 8, 12 и 16 занятий и индивидуальные тарифы.",
 };
 
-/** «недели» по-русски: 1 неделя, 2–4 недели, 5+ недель. */
-function weeksWord(n: number) {
-  const last = n % 10;
-  const teen = n % 100 >= 11 && n % 100 <= 14;
-  if (!teen && last === 1) return "неделя";
-  if (!teen && last >= 2 && last <= 4) return "недели";
-  return "недель";
-}
-
+/**
+ * Страница цен — по структуре и текстам прототипа владельца
+ * (сначала первое занятие, потом абонементы, потом индивидуальные),
+ * со шрифтом и цветами текущего сайта.
+ */
 export default function PricesPage() {
+  const rounded = groupPlans.filter(isApproximate);
+
   return (
     <main className="pr-page">
       <SiteHeader />
 
-      {/* HERO */}
-      <section className="pr-hero">
-        <div data-reveal="left">
-          <p className="pr-kicker">ЗАНЯТИЯ И АРЕНДА</p>
-          <h1>
-            ЦЕНЫ<span>.</span>
-          </h1>
-        </div>
-
-        <div className="pr-hero-text" data-reveal="right" data-reveal-delay="2">
-          <p>
-            Приходите, попробуйте бачату и познакомьтесь с нашей школой. После занятия
-            сами решите, какой формат вам подходит.
-          </p>
-          <SignupLink className="pr-button">
-            ЗАПИСАТЬСЯ НА ПРОБНОЕ <span>→</span>
-          </SignupLink>
-        </div>
+      {/* ШАПКА */}
+      <section className="pr-pagehead">
+        <p className="pr-eyebrow">СТОИМОСТЬ ЗАНЯТИЙ</p>
+        <h1>
+          СНАЧАЛА ПОПРОБУЙ.
+          <br />
+          ПОТОМ ВЫБИРАЙ.
+        </h1>
+        <p className="pr-lead">
+          Не нужно покупать большой абонемент, чтобы познакомиться со школой. Приходи на
+          первое занятие и решай после урока.
+        </p>
       </section>
 
-      {/* ПЕРВОЕ ЗАНЯТИЕ. Крупным — «Бесплатно», но условие набрано обычным
-          читаемым кеглем, а не мелким серым: обещание, которое поняли не так,
-          превращается в спор на ресепшене и в отзыв на одну звезду. */}
-      <section className="pr-trial" data-reveal>
-        <div className="pr-trial-main">
-          <p className="pr-kicker">С ЧЕГО НАЧАТЬ</p>
-          <p className="pr-trial-price">Бесплатно</p>
-          <h2>Первое занятие</h2>
-        </div>
-
-        <div className="pr-trial-text">
-          <ul className="pr-trial-terms">
-            {trialTerms.map((term) => (
-              <li key={term.lead}>
-                <strong>{term.lead}</strong>
-                <span>{term.text}</span>
-              </li>
-            ))}
-          </ul>
-
-          <p className="pr-trial-note">
-            Решать после занятия, а не до: сначала посмотрите, как всё устроено.
-          </p>
-
-          <SignupLink className="pr-button">
-            ЗАПИСАТЬСЯ НА ПЕРВОЕ ЗАНЯТИЕ <span>→</span>
-          </SignupLink>
-        </div>
-      </section>
-
-      {/* ЧТО ВХОДИТ В ЗАНЯТИЕ — сначала про занятие, потом про деньги. */}
-      <section className="pr-includes">
-        <div className="pr-head" data-reveal>
-          <p className="pr-kicker">ЧТО ВХОДИТ В ЗАНЯТИЕ</p>
-        </div>
-
-        <div className="pr-includes-grid">
-          {features.map((feature, index) => (
-            <article
-              key={feature.number}
-              className="pr-include"
-              data-reveal
-              data-reveal-delay={String(index + 1)}
-            >
-              <span>{feature.number}</span>
-              <h3>{feature.title}</h3>
-              <p>{feature.lines.join(" ")}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* ГРУППОВЫЕ ЗАНЯТИЯ */}
-      {groupPlans.length > 0 && (
-        <section className="pr-section" id="group">
-          <div className="pr-head" data-reveal>
-            <p className="pr-kicker">01 / ГРУППОВЫЕ</p>
-            <h2>ГРУППОВЫЕ ЗАНЯТИЯ</h2>
-          </div>
-
-          {/* Разовое занятие — не абонемент, а точка отсчёта: от него считается
-              выгода всех остальных. Поэтому строкой, а не карточкой вровень. */}
-          <div className="pr-anchor" data-reveal>
-            <div>
-              <strong>{singleLesson.title}</strong>
-              <span>без абонемента, когда захочется прийти разово</span>
-            </div>
-            <p>{rub(singleLesson.total)}</p>
-            <SignupLink className="pr-anchor-link">Записаться →</SignupLink>
-          </div>
-
-          <div className="pr-cards">
-            {groupPlans.map((plan, index) => (
-              <article
-                key={plan.title}
-                className={`pr-card ${plan.featured ? "is-featured" : ""}`}
-                data-reveal
-                data-reveal-delay={String((index % 4) + 1)}
-              >
-                {/* Метка внутри карточки, а не над ней: у карточки
-                    overflow: hidden ради розовой полоски, и он срезал
-                    выступающей метке верх букв. */}
-                {plan.featured && <span className="pr-badge">Выбирают чаще всего</span>}
-
-                <h3>{plan.title}</h3>
-                {/* Недели вместо «просто занятий»:человек покупает не 16 уроков,
-                    а два месяца, за которые начнёт танцевать. */}
-                <p className="pr-weeks">
-                  {weeks(plan)} {weeksWord(weeks(plan))} · {LESSONS_PER_WEEK} занятия в
-                  неделю
-                  {/* Длительность — главное, что делает цену понятной:
-                      за что именно платишь 700 ₽. */}
-                  {LESSON_HOURS === 1 ? " по часу" : ` по ${LESSON_HOURS} ч`}
-                </p>
-
-                {/* Крупно — цена одного занятия, а не сумма абонемента:
-                    «600 ₽» и «9 600 ₽» — это одно и то же предложение,
-                    но читаются они совершенно по-разному. Полная сумма
-                    стоит тут же, ниже: ничего не спрятано. */}
-                <p className="pr-price">{rub(perLesson(plan))}</p>
-                <p className="pr-per">за занятие</p>
-
-                <p className="pr-total">{rub(plan.total)} за абонемент</p>
-
-                {/* Экономия в рублях, а не только в процентах: «−45 %» —
-                    абстракция, «8 000 ₽» — деньги, которые остались у человека. */}
-                <p className="pr-save">
-                  Экономия {rub(savings(plan))}
-                  <span>−{discountPercent(plan)}% к разовому</span>
-                </p>
-
-                {plan.note && <p className="pr-note">{plan.note}</p>}
-
-                <SignupLink className="pr-card-button">
-                  Выбрать <span>→</span>
-                </SignupLink>
-              </article>
-            ))}
-          </div>
-
-          <p className="pr-cards-foot" data-reveal>
-            Абонемент можно взять после первого занятия — тогда оно бесплатное.
-          </p>
-        </section>
-      )}
-
-      {/* ИНДИВИДУАЛЬНЫЕ ЗАНЯТИЯ */}
-      <section className="pr-section pr-section-alt" id="individual">
-        <div className="pr-head" data-reveal>
-          <p className="pr-kicker">02 / ИНДИВИДУАЛЬНЫЕ</p>
-          <h2>
-            ИНДИВИДУАЛЬНЫЕ
-            <br />
-            ЗАНЯТИЯ
-          </h2>
-          <p className="pr-lead">
-            Занятие один на один с тренером. Цена зависит от категории тренера и
-            количества занятий в абонементе.
-          </p>
-        </div>
-
-        {/* Таблица — для экранов пошире */}
-        <div className="pr-table-wrap" data-reveal data-reveal-delay="1">
-          <table className="pr-table">
-            <thead>
-              <tr>
-                <th scope="col">Категория</th>
-                <th scope="col">Разовое</th>
-                <th scope="col">4 занятия</th>
-                <th scope="col">8 занятий</th>
-                <th scope="col">12 занятий</th>
-              </tr>
-            </thead>
-            <tbody>
-              {individualTiers.map((tier) => (
-                <tr key={tier.category}>
-                  <th scope="row">{tier.category}</th>
-                  <td>
-                    <span>{rub(tier.single)}</span>
-                  </td>
-                  {tier.packs.map((pack) => (
-                    <td key={pack.lessons}>
-                      {/* Крупно — цена одного занятия, как в карточках
-                          абонементов выше; полная сумма строкой ниже. */}
-                      <span>{rub(packPerLesson(pack))}</span>
-                      <small>{rub(pack.total)} за абонемент</small>
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Карточки — для телефона */}
-        <div className="pr-tiers">
-          {individualTiers.map((tier, index) => (
-            <article
-              key={tier.category}
-              className="pr-tier"
-              data-reveal
-              data-reveal-delay={String((index % 3) + 1)}
-            >
-              <h3>{tier.category}</h3>
-              <dl>
-                <div>
-                  <dt>Разовое</dt>
-                  <dd>{rub(tier.single)}</dd>
-                </div>
-                {tier.packs.map((pack) => (
-                  <div key={pack.lessons}>
-                    <dt>{pack.lessons} занятий</dt>
-                    <dd>
-                      {rub(packPerLesson(pack))}
-                      <small>{rub(pack.total)} за абонемент</small>
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </article>
-          ))}
-        </div>
-
-        <SignupLink className="pr-button pr-button-dark" data-reveal>
-          ЗАПИСАТЬСЯ НА ИНДИВИДУАЛЬНОЕ <span>→</span>
-        </SignupLink>
-      </section>
-
-      {/* Конец страницы — снова про первое занятие: это шаг, который
-          нужен от человека, дочитавшего до конца прайса. */}
-      <section className="pr-closing" data-reveal>
+      {/* ПЕРВОЕ ЗНАКОМСТВО */}
+      <section className="pr-intro">
         <div>
-          <p className="pr-kicker">С ЧЕГО НАЧАТЬ</p>
+          <p className="pr-eyebrow">ДЛЯ ПЕРВОГО ЗНАКОМСТВА</p>
           <h2>
-            Начните
-            <br />с первого занятия
+            ОДНО ЗАНЯТИЕ.
+            <br />
+            БОЛЬШЕ ЯСНОСТИ.
           </h2>
+
+          {firstClassSteps.map((step, index) => (
+            <div className="pr-benefit" key={step.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <p>
+                <strong>{step.title}</strong>
+                {step.text}
+              </p>
+            </div>
+          ))}
         </div>
 
-        <div className="pr-closing-text">
+        <div className="pr-first">
+          <p className="pr-eyebrow">ПЕРВОЕ ГРУППОВОЕ ЗАНЯТИЕ</p>
+          <span className="pr-ribbon">−50 % ОТ РАЗОВОГО</span>
+          <p className="pr-first-price">{rub(trialPrice())}</p>
           <p>
-            Выбирать абонемент проще, когда уже сходил на занятие. Возьмёте абонемент
-            после него — занятие бесплатное. Нет — заплатите половину, и на этом всё.
+            <strong>Бесплатно при покупке абонемента после занятия.</strong> Без покупки —{" "}
+            {rub(trialPrice())}.
           </p>
-          <SignupLink className="pr-button">
-            ЗАПИСАТЬСЯ НА ПРОБНОЕ <span>→</span>
+          <SignupLink className="pr-btn pr-btn-dark">
+            НА ПЕРВОЕ ЗАНЯТИЕ <span>→</span>
+          </SignupLink>
+          <p className="pr-small">
+            Условия для выбранной группы и учёт первого занятия в абонементе уточни при
+            записи.
+          </p>
+        </div>
+      </section>
+
+      {/* ГРУППОВЫЕ */}
+      <section className="pr-block" id="group">
+        <div className="pr-sectionhead">
+          <div>
+            <p className="pr-eyebrow">01 / ГРУППОВЫЕ ЗАНЯТИЯ</p>
+            <h2>
+              ВЫБЕРИ
+              <br />
+              СВОЙ РИТМ.
+            </h2>
+          </div>
+          <p>
+            Чем больше занятий в абонементе, тем ниже стоимость одного урока. Выбирай по
+            своему расписанию.
+          </p>
+        </div>
+
+        <div className="pr-plans">
+          {groupPlans.map((plan) => (
+            <article
+              key={plan.title}
+              className={`pr-plan${plan.featured ? " is-featured" : ""}`}
+            >
+              <p className="pr-plan-label">{plan.label}</p>
+              <h3>{plan.title.toUpperCase()}</h3>
+              <p className="pr-plan-total">{rub(plan.total)}</p>
+              <p className="pr-small">за весь абонемент</p>
+              <p className="pr-plan-unit">
+                <strong>{rub(perLesson(plan))}</strong> / занятие
+                {isApproximate(plan) && " ≈"}
+              </p>
+              <ul>
+                <li>{plan.reason}</li>
+                <li>
+                  Ориентир: {weeks(plan)} нед. при {LESSONS_PER_WEEK} уроках в неделю
+                </li>
+                <li>
+                  На {rub(savings(plan))} меньше, чем {plan.lessons} разовых
+                </li>
+              </ul>
+              <SignupLink
+                className={`pr-btn${plan.featured ? "" : " pr-btn-ghost"}`}
+                ariaLabel={`Выбрать абонемент: ${plan.title}, ${rub(plan.total)}`}
+              >
+                ВЫБРАТЬ АБОНЕМЕНТ <span>→</span>
+              </SignupLink>
+            </article>
+          ))}
+        </div>
+
+        <p className="pr-small pr-muted pr-footnote">
+          Недели — ориентир при регулярном посещении, не срок действия.
+          {rounded.map((plan) => (
+            <span key={plan.title}>
+              {" "}
+              {rub(perLesson(plan))} за занятие в абонементе на {plan.lessons} занятий —
+              округлённое значение.
+            </span>
+          ))}
+        </p>
+
+        <div className="pr-tools">
+          <div>
+            <p>Не уверен, какой абонемент нужен?</p>
+            <p>
+              <strong>Начни с первого занятия.</strong> Выбрать формат можно после урока.
+            </p>
+          </div>
+          <SignupLink className="pr-btn">
+            ОБСУДИТЬ СО ШКОЛОЙ <span>→</span>
           </SignupLink>
         </div>
+
+        <div className="pr-single">
+          <div>
+            <p className="pr-eyebrow">БЕЗ АБОНЕМЕНТА</p>
+            <p>Разовое групповое занятие</p>
+          </div>
+          <strong>{rub(singleLesson.total)}</strong>
+          <SignupLink className="pr-btn pr-btn-ghost">
+            ЗАПИСАТЬСЯ <span>→</span>
+          </SignupLink>
+        </div>
+
+        <div className="pr-notice">
+          Перед покупкой уточни срок действия абонемента, правила пропусков и то, на какие
+          группы он распространяется. Условия специальных занятий могут отличаться.
+        </div>
       </section>
 
-      {/* Пришли за залом, а не за занятиями — вот куда идти. */}
-      <section className="pr-crosslink" data-reveal>
-        <p>Нужен зал для репетиции или своих занятий?</p>
-        <Link href="/rental">Аренда залов →</Link>
+      {/* ИНДИВИДУАЛЬНЫЕ */}
+      <section className="pr-block pr-block-sand" id="individual">
+        <div className="pr-sectionhead">
+          <div>
+            <p className="pr-eyebrow">02 / ИНДИВИДУАЛЬНЫЕ ЗАНЯТИЯ</p>
+            <h2>
+              ВНИМАНИЕ —
+              <br />
+              ТВОЕЙ ЗАДАЧЕ.
+            </h2>
+          </div>
+          <p>
+            Стоимость зависит от категории преподавателя. Выбери категорию и сравни
+            разовое занятие с абонементами.
+          </p>
+        </div>
+
+        <IndividualCalculator />
+
+        <p className="pr-small pr-muted pr-footnote">
+          Преподавателя, продолжительность урока, доступное время и правила
+          индивидуального абонемента согласуем до оплаты.
+        </p>
       </section>
+
+      <FaqSection
+        title={
+          <>
+            ВСЁ О ЦЕНАХ
+            <br />И УСЛОВИЯХ
+          </>
+        }
+        items={priceFaq}
+      />
+
+      <FirstStepBand
+        title={
+          <>
+            НЕ ЗНАЕШЬ,
+            <br />
+            ЧТО ВЫБРАТЬ?
+          </>
+        }
+        text="Расскажи, как часто хочешь заниматься и что для тебя важно. Подскажем варианты — решение остаётся за тобой."
+      />
 
       <SiteFooter />
     </main>
