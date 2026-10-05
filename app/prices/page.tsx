@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import {
   LESSONS_PER_WEEK,
+  LESSON_HOURS,
   discountPercent,
   groupPlans,
   individualTiers,
@@ -12,6 +13,7 @@ import {
   rub,
   savings,
   singleLesson,
+  trialTerms,
   weeks,
 } from "@/data/prices";
 import { features } from "@/data/home";
@@ -70,14 +72,12 @@ export default function PricesPage() {
 
         <div className="pr-trial-text">
           <ul className="pr-trial-terms">
-            <li>
-              <strong>В случае покупки абонемента</strong>
-              <span>первое занятие бесплатно</span>
-            </li>
-            <li>
-              <strong>Или 50% скидка</strong>
-              <span>если захотите продолжить разово</span>
-            </li>
+            {trialTerms.map((term) => (
+              <li key={term.lead}>
+                <strong>{term.lead}</strong>
+                <span>{term.text}</span>
+              </li>
+            ))}
           </ul>
 
           <p className="pr-trial-note">
@@ -150,6 +150,9 @@ export default function PricesPage() {
                 <p className="pr-weeks">
                   {weeks(plan)} {weeksWord(weeks(plan))} · {LESSONS_PER_WEEK} занятия в
                   неделю
+                  {/* Длительность — главное, что делает цену понятной:
+                      за что именно платишь 700 ₽. */}
+                  {LESSON_HOURS === 1 ? " по часу" : ` по ${LESSON_HOURS} ч`}
                 </p>
 
                 {/* Крупно — цена одного занятия, а не сумма абонемента:

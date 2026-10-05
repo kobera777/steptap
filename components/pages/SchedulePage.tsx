@@ -1,53 +1,206 @@
 "use client";
 
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SignupLink } from "@/components/layout/SignupLink";
 import {
+  beginnerSlots,
+  beginnerTitles,
   classes,
   days,
+  daysShort,
+  events,
   levelInfo,
+  monthNames,
+  monthNamesGenitive,
+  monthShort,
   timeRows,
   type ClassItem,
   type Level,
+  type ScheduleEvent,
 } from "@/data/schedule";
 
-import { useMemo, useState } from "react";
-import { SignupLink } from "@/components/layout/SignupLink";
+type View = "month" | "week" | "day";
+
+/** Сколько месяцев вперёд можно пролистать календарь. */
+const MONTHS_AHEAD = 6;
+
+/* ---------- «Сегодня» ----------
+   Страница собирается заранее, а открывают её в другой день. Если считать
+   дату при сборке, браузер увидит, что HTML не совпадает с тем, что он
+   нарисовал сам. useSyncExternalStore отдаёт null при сборке и настоящую
+   дату — уже в браузере. Строка, а не Date: снимок должен быть стабильным. */
+const noSubscribe = () => () => {};
+
+function todayIso() {
+  const d = new Date();
+  return isoOf(d.getFullYear(), d.getMonth(), d.getDate());
+}
+
+function useTodayIso() {
+  return useSyncExternalStore(noSubscribe, todayIso, () => null);
+}
+
+function isoOf(year: number, month: number, day: number) {
+  return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+}
+
+function parseIso(iso: string) {
+  const [y, m, d] = iso.split("-").map(Number);
+  return { y, m: m - 1, d };
+}
+
+/** Индекс дня недели с понедельника: 0 — ПН … 6 — ВС. */
+function weekdayOf(year: number, month: number, day: number) {
+  return (new Date(year, month, day).getDay() + 6) % 7;
+}
 
 function timeToMinutes(time: string) {
   const [hours, minutes] = time.split(":").map(Number);
   return hours * 60 + minutes;
 }
 
-function getCardPosition(item: ClassItem, dayClasses: ClassItem[]) {
-  const startMinutes = timeToMinutes(item.start);
-  const endMinutes = item.end ? timeToMinutes(item.end) : startMinutes + 60;
+const FIRST_MINUTE = timeToMinutes(timeRows[0]);
 
-  const firstHour = 14 * 60;
-  const minutesFromStart = startMinutes - firstHour;
-  const duration = Math.max(60, endMinutes - startMinutes);
+const isClosed = (item: ClassItem) => item.level === "pro" || item.level === "profi";
 
-  const sameStart = dayClasses.filter((other) => other.start === item.start);
-
-  const sameStartIndex = sameStart.findIndex((other) => other.id === item.id);
-
-  const columnWidth = sameStart.length > 1 ? 50 : 100;
-
-  return {
-    top: `calc(${minutesFromStart} * var(--schedule-minute-height) / 60)`,
-    height: `calc(${duration} * var(--schedule-minute-height) / 60 - 6px)`,
-    width: `calc(${columnWidth}% - 4px)`,
-    left: sameStart.length > 1 ? `calc(${sameStartIndex * 50}% + 2px)` : "2px",
-  };
+function classesOfDay(dayIndex: number) {
+  return classes
+    .filter((item) => item.day === dayIndex + 1)
+    .sort((a, b) => a.start.localeCompare(b.start));
 }
 
-/** Расписание (клиентский компонент: переключение недель и вида). */
-export function SchedulePage() {
-  const [view, setView] = useState<"month" | "week" | "list">("month");
+/** Что услышит человек с экранным диктором на кнопке занятия. */
+function signupLabel(item: ClassItem) {
+  const day = days[item.day - 1].toLowerCase();
+  return `Записаться: ${item.title}, ${day}, ${item.start}–${item.end}, ${levelInfo[item.level].label}`;
+}
 
-  const groupedClasses = useMemo(() => {
-    return days.map((_, dayIndex) => classes.filter((item) => item.day === dayIndex + 1));
-  }, []);
+/* ---------- Карточки занятий ---------- */
+
+/** Карточка в сетке недели: положение по времени, сама — кнопка в MAX. */
+function GridCard({ item, dayClasses }: { item: ClassItem; dayClasses: ClassItem[] }) {
+  const info = levelInfo[item.level];
+  const start = timeToMinutes(item.start) - FIRST_MINUTE;
+  const duration = Math.max(60, timeToMinutes(item.end) - timeToMinutes(item.start));
+  const parallel = dayClasses.filter((other) => other.start === item.start);
+  const index = parallel.findIndex((other) => other.id === item.id);
+  const share = 100 / parallel.length;
+  // Два занятия в одно время делят колонку пополам. Тогда «19:00 – 20:00»
+  // не помещается в строку — показываем только начало: конец и так виден
+  // по высоте карточки.
+  const narrow = parallel.length > 1;
+
+  return (
+    <div
+      className="schedule-slot"
+      style={{
+        top: `calc(${start} * var(--schedule-hour-height) / 60)`,
+        height: `calc(${duration} * var(--schedule-hour-height) / 60 - 6px)`,
+        width: `calc(${share}% - 4px)`,
+        left: `calc(${index * share}% + 2px)`,
+      }}
+    >
+      <SignupLink
+        className={`schedule-card ${info.className}${narrow ? " is-narrow" : ""}`}
+        ariaLabel={signupLabel(item)}
+      >
+        <strong>{narrow ? item.start : `${item.start} – ${item.end}`}</strong>
+        <h3>{item.title}</h3>
+        {item.teacher !== "Закрытая группа" && <p>{item.teacher}</p>}
+        {isClosed(item) && <em>Закрытая группа</em>}
+        <small>{info.label}</small>
+      </SignupLink>
+    </div>
+  );
+}
+
+/** Строка занятия для списков (телефон, день, месяц): крупная, под палец. */
+function ClassRow({ item }: { item: ClassItem }) {
+  const info = levelInfo[item.level];
+
+  return (
+    <SignupLink
+      className={`schedule-row ${info.className}`}
+      ariaLabel={signupLabel(item)}
+    >
+      <b>
+        {item.start} – {item.end}
+      </b>
+      <span className="schedule-row-title">
+        {item.title}
+        {item.teacher !== "Закрытая группа" && <small>{item.teacher}</small>}
+      </span>
+      <span className="schedule-row-level">
+        {info.label}
+        {isClosed(item) && <small>Закрытая группа</small>}
+      </span>
+      <i>Записаться →</i>
+    </SignupLink>
+  );
+}
+
+function EventRow({ event }: { event: ScheduleEvent }) {
+  return (
+    <SignupLink
+      className="schedule-row schedule-row-event"
+      ariaLabel={`Записаться: ${event.title}`}
+    >
+      <b>Событие</b>
+      <span className="schedule-row-title">
+        {event.title}
+        <small>{event.note}</small>
+      </span>
+      <i>Записаться →</i>
+    </SignupLink>
+  );
+}
+
+/* ---------- Страница ---------- */
+
+/** Расписание: месяц, неделя (по умолчанию) и день. Каждое занятие — кнопка в MAX. */
+export function SchedulePage() {
+  const today = useTodayIso();
+  const [view, setView] = useState<View>("week");
+  const [selectedDay, setSelectedDay] = useState<number | null>(null);
+  const [pickedDate, setPickedDate] = useState<string | null>(null);
+  const [monthOffset, setMonthOffset] = useState(0);
+
+  const groupedClasses = useMemo(() => days.map((_, index) => classesOfDay(index)), []);
+
+  const todayParts = today ? parseIso(today) : null;
+  const todayIndex = todayParts
+    ? weekdayOf(todayParts.y, todayParts.m, todayParts.d)
+    : null;
+  const activeDay = selectedDay ?? todayIndex ?? 0;
+
+  // Прошедшие события не показываем: устаревшее событие подрывает доверие.
+  const upcoming = today
+    ? events
+        .filter((event) => event.date >= today)
+        .sort((a, b) => a.date.localeCompare(b.date))
+    : [];
+
+  // Календарь месяца: текущий месяц + сдвиг стрелками.
+  const month = todayParts
+    ? (() => {
+        const first = new Date(todayParts.y, todayParts.m + monthOffset, 1);
+        return { y: first.getFullYear(), m: first.getMonth() };
+      })()
+    : null;
+
+  const slots = beginnerSlots();
+
+  function openDay(iso: string) {
+    const { y, m, d } = parseIso(iso);
+    setSelectedDay(weekdayOf(y, m, d));
+    setPickedDate(iso);
+    setView("day");
+  }
+
+  const pickedParts = pickedDate ? parseIso(pickedDate) : null;
+  const pickedEvents = pickedDate ? upcoming.filter((e) => e.date === pickedDate) : [];
 
   return (
     <main className="schedule-page">
@@ -95,18 +248,66 @@ export function SchedulePage() {
       </section>
 
       <section className="schedule-calendar-section">
+        {/* Новичку — самое конкретное, что можно сказать: куда и когда прийти.
+            Собирается из расписания, поэтому не разойдётся с ним. */}
+        {slots.length > 0 && (
+          <div className="schedule-beginner">
+            <p>
+              <strong>Впервые?</strong> {beginnerTitles()} для начинающих (1.0 СТАРТ) —{" "}
+              {slots.join("; ")}.
+            </p>
+            <SignupLink className="schedule-beginner-link">
+              ЗАПИСАТЬСЯ НА ПЕРВОЕ ЗАНЯТИЕ <span>→</span>
+            </SignupLink>
+          </div>
+        )}
+
         <div className="schedule-calendar-top">
-          <button className="schedule-arrow" type="button" aria-label="Предыдущий месяц">
-            ←
-          </button>
+          <div className="schedule-nav">
+            {view === "month" && (
+              <button
+                className="schedule-arrow"
+                type="button"
+                aria-label="Предыдущий месяц"
+                disabled={monthOffset <= 0}
+                onClick={() => setMonthOffset((n) => n - 1)}
+              >
+                ←
+              </button>
+            )}
 
-          <h2>
-            СЕНТЯБРЬ <span>2026</span>
-          </h2>
+            <h2>
+              {view === "week" && "НЕДЕЛЯ"}
+              {view === "day" &&
+                (pickedParts ? (
+                  <>
+                    {days[activeDay]}{" "}
+                    <span>
+                      {pickedParts.d} {monthNamesGenitive[pickedParts.m]}
+                    </span>
+                  </>
+                ) : (
+                  days[activeDay]
+                ))}
+              {view === "month" && month && (
+                <>
+                  {monthNames[month.m]} <span>{month.y}</span>
+                </>
+              )}
+            </h2>
 
-          <button className="schedule-arrow" type="button" aria-label="Следующий месяц">
-            →
-          </button>
+            {view === "month" && (
+              <button
+                className="schedule-arrow"
+                type="button"
+                aria-label="Следующий месяц"
+                disabled={monthOffset >= MONTHS_AHEAD}
+                onClick={() => setMonthOffset((n) => n + 1)}
+              >
+                →
+              </button>
+            )}
+          </div>
 
           <div className="schedule-top-legend">
             {(Object.keys(levelInfo) as Level[]).map((level) => (
@@ -123,259 +324,249 @@ export function SchedulePage() {
           </div>
 
           <div className="schedule-view-switcher">
-            <button
-              type="button"
-              className={view === "month" ? "is-active" : ""}
-              onClick={() => setView("month")}
-            >
-              МЕСЯЦ
-            </button>
-
-            <button
-              type="button"
-              className={view === "week" ? "is-active" : ""}
-              onClick={() => setView("week")}
-            >
-              НЕДЕЛЯ
-            </button>
-
-            <button
-              type="button"
-              className={view === "list" ? "is-active" : ""}
-              onClick={() => setView("list")}
-            >
-              СПИСОК
-            </button>
+            {(
+              [
+                ["month", "МЕСЯЦ"],
+                ["week", "НЕДЕЛЯ"],
+                ["day", "ДЕНЬ"],
+              ] as const
+            ).map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                className={view === value ? "is-active" : ""}
+                aria-pressed={view === value}
+                onClick={() => {
+                  setView(value);
+                  setPickedDate(null);
+                }}
+              >
+                {label}
+              </button>
+            ))}
           </div>
         </div>
 
-        {view === "month" && (
-          <div className="schedule-calendar">
-            <div className="schedule-grid-header">
-              <div className="schedule-time-head" />
+        {/* ---------- НЕДЕЛЯ ----------
+            На широком экране — сетка 7 дней × часы. На узком семь колонок не
+            читаются, поэтому та же неделя показывается списком по дням. */}
+        {view === "week" && (
+          <>
+            <div className="schedule-calendar">
+              <div className="schedule-grid-header">
+                <div className="schedule-time-head" />
 
-              {days.map((day) => (
-                <div key={day} className="schedule-day-head">
-                  {day}
-                </div>
-              ))}
-            </div>
-
-            <div className="schedule-grid-body">
-              <div className="schedule-time-column">
-                {timeRows.map((time) => (
-                  <div key={time} className="schedule-time">
-                    {time}
+                {days.map((day, index) => (
+                  <div
+                    key={day}
+                    className={`schedule-day-head${index === todayIndex ? " is-today" : ""}`}
+                  >
+                    {day}
                   </div>
                 ))}
               </div>
 
-              {groupedClasses.map((dayClasses, index) => (
-                <div key={days[index]} className="schedule-day-column">
-                  <div className="schedule-day-lines">
-                    {timeRows.map((time) => (
-                      <div key={time} className="schedule-hour-line" />
-                    ))}
+              <div className="schedule-grid-body">
+                <div className="schedule-time-column">
+                  {timeRows.map((time) => (
+                    <div key={time} className="schedule-time">
+                      {time}
+                    </div>
+                  ))}
+                </div>
+
+                {groupedClasses.map((dayClasses, index) => (
+                  <div key={days[index]} className="schedule-day-column">
+                    <div className="schedule-day-lines">
+                      {timeRows.map((time) => (
+                        <div key={time} className="schedule-hour-line" />
+                      ))}
+                    </div>
+
+                    <div className="schedule-day-content">
+                      {dayClasses.map((item) => (
+                        <GridCard key={item.id} item={item} dayClasses={dayClasses} />
+                      ))}
+                    </div>
                   </div>
+                ))}
+              </div>
+            </div>
 
-                  <div className="schedule-day-content">
-                    {dayClasses.map((item) => {
-                      const info = levelInfo[item.level];
+            <div className="schedule-days-list">
+              {days.map((day, index) => (
+                <div key={day} className="schedule-list-day">
+                  <h3>
+                    {day}
+                    {index === todayIndex && <small>сегодня</small>}
+                  </h3>
 
-                      const position = getCardPosition(item, dayClasses);
-
-                      const compactEarlyCard = [1, 2, 7, 8].includes(item.id);
-
-                      return (
-                        <article
-                          key={item.id}
-                          className={`schedule-card ${info.className}`}
-                          style={{
-                            ...position,
-                            ...(compactEarlyCard
-                              ? {
-                                  padding: "8px 14px 5px",
-                                  display: "flex",
-                                  flexDirection: "column",
-                                  justifyContent: "flex-start",
-                                }
-                              : {}),
-                            ...(item.level === "pro"
-                              ? { backgroundColor: "#B8A1E3" }
-                              : item.level === "profi"
-                                ? { backgroundColor: "#34343A", color: "#FFFFFF" }
-                                : {}),
-                          }}
-                        >
-                          <strong
-                            style={
-                              compactEarlyCard
-                                ? {
-                                    whiteSpace: "nowrap",
-                                    marginBottom: "4px",
-                                    lineHeight: 1,
-                                    transform: "translateX(-11px)",
-                                  }
-                                : undefined
-                            }
-                          >
-                            {item.start}
-                            {item.end ? ` – ${item.end}` : ""}
-                          </strong>
-
-                          <h3
-                            style={
-                              compactEarlyCard
-                                ? {
-                                    marginTop: 0,
-                                    marginBottom: "4px",
-                                    lineHeight: 1,
-                                  }
-                                : undefined
-                            }
-                          >
-                            {item.title}
-                          </h3>
-
-                          <p
-                            style={
-                              compactEarlyCard
-                                ? {
-                                    marginTop: 0,
-                                    marginBottom: "4px",
-                                    lineHeight: 1,
-                                  }
-                                : undefined
-                            }
-                          >
-                            {item.teacher}
-                          </p>
-
-                          {item.level === "profi" && (
-                            <small style={{ marginBottom: "3px" }}>Закрытая группа</small>
-                          )}
-
-                          <small>{info.label}</small>
-                        </article>
-                      );
-                    })}
-                  </div>
+                  {groupedClasses[index].length === 0 ? (
+                    <p className="schedule-empty">Занятий нет</p>
+                  ) : (
+                    groupedClasses[index].map((item) => (
+                      <ClassRow key={item.id} item={item} />
+                    ))
+                  )}
                 </div>
               ))}
+            </div>
+          </>
+        )}
+
+        {/* ---------- ДЕНЬ ---------- */}
+        {view === "day" && (
+          <div className="schedule-day-view">
+            <div className="schedule-day-tabs">
+              {daysShort.map((label, index) => (
+                <button
+                  key={label}
+                  type="button"
+                  className={index === activeDay ? "is-active" : ""}
+                  aria-pressed={index === activeDay}
+                  onClick={() => {
+                    setSelectedDay(index);
+                    setPickedDate(null);
+                  }}
+                >
+                  {label}
+                  {index === todayIndex && <small>сегодня</small>}
+                </button>
+              ))}
+            </div>
+
+            <div className="schedule-day-rows">
+              {pickedEvents.map((event) => (
+                <EventRow key={event.date + event.title} event={event} />
+              ))}
+
+              {groupedClasses[activeDay].length === 0 ? (
+                <p className="schedule-empty">
+                  В этот день групповых занятий нет — посмотрите другие дни недели.
+                </p>
+              ) : (
+                groupedClasses[activeDay].map((item) => (
+                  <ClassRow key={item.id} item={item} />
+                ))
+              )}
             </div>
           </div>
         )}
 
-        {view === "week" && (
-          <div className="schedule-week-view">
-            <div className="schedule-week-title">НЕДЕЛЯ</div>
+        {/* ---------- МЕСЯЦ ----------
+            Занятия повторяются каждую неделю, поэтому в каждой дате — занятия
+            её дня недели. На компьютере каждое занятие в клетке — кнопка в MAX;
+            на телефоне клетки слишком малы, и нажатие на дату открывает день. */}
+        {view === "month" && month && today && (
+          <div className="schedule-month">
+            <div className="schedule-month-head">
+              {daysShort.map((label) => (
+                <div key={label}>{label}</div>
+              ))}
+            </div>
 
-            {days.map((day, index) => {
-              const dayClasses = groupedClasses[index];
+            <div className="schedule-month-grid">
+              {Array.from({ length: weekdayOf(month.y, month.m, 1) }, (_, i) => (
+                <div key={`blank-${i}`} className="schedule-month-cell is-blank" />
+              ))}
 
-              return (
-                <div key={day} className="schedule-week-row">
-                  <strong>{day}</strong>
+              {Array.from(
+                { length: new Date(month.y, month.m + 1, 0).getDate() },
+                (_, i) => i + 1,
+              ).map((date) => {
+                const iso = isoOf(month.y, month.m, date);
+                const weekday = weekdayOf(month.y, month.m, date);
+                const dayClasses = groupedClasses[weekday];
+                const dayEvents = upcoming.filter((e) => e.date === iso);
+                const past = iso < today;
 
-                  <div>
-                    {dayClasses.length === 0 ? (
-                      <span className="schedule-empty">Занятий нет</span>
-                    ) : (
-                      dayClasses.map((item) => (
-                        <article
-                          key={item.id}
-                          className={`schedule-list-card ${levelInfo[item.level].className}`}
-                        >
-                          <b>
-                            {item.start}
-                            {item.end ? ` – ${item.end}` : ""}
-                          </b>
-
-                          <span>{item.title}</span>
-
-                          <small>{item.teacher}</small>
-                        </article>
-                      ))
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
-
-        {view === "list" && (
-          <div className="schedule-list-view">
-            {days.map((day, index) => {
-              const dayClasses = groupedClasses[index];
-
-              if (!dayClasses.length) return null;
-
-              return (
-                <div key={day} className="schedule-list-day">
-                  <h3>{day}</h3>
-
-                  {dayClasses.map((item) => (
-                    <article
-                      key={item.id}
-                      className={`schedule-list-card ${levelInfo[item.level].className}`}
+                return (
+                  <div
+                    key={iso}
+                    className={`schedule-month-cell${past ? " is-past" : ""}${
+                      iso === today ? " is-today" : ""
+                    }`}
+                  >
+                    <button
+                      type="button"
+                      className="schedule-date"
+                      onClick={() => openDay(iso)}
+                      aria-label={`${days[weekday]}, ${date} ${monthNamesGenitive[month.m]}: занятий ${dayClasses.length}`}
                     >
-                      <b>
-                        {item.start}
-                        {item.end ? ` – ${item.end}` : ""}
-                      </b>
+                      {date}
+                      {/* На телефоне вместо списка занятий — точки по уровням. */}
+                      <span className="schedule-dots" aria-hidden="true">
+                        {dayClasses.map((item) => (
+                          <i key={item.id} className={levelInfo[item.level].className} />
+                        ))}
+                      </span>
+                    </button>
 
-                      <span>{item.title}</span>
+                    <div className="schedule-chips">
+                      {dayEvents.map((event) => (
+                        <SignupLink
+                          key={event.title}
+                          className="schedule-chip is-event"
+                          ariaLabel={`Записаться: ${event.title}`}
+                        >
+                          ★ {event.title}
+                        </SignupLink>
+                      ))}
 
-                      <small>{item.teacher}</small>
+                      {!past &&
+                        dayClasses.map((item) => (
+                          <SignupLink
+                            key={item.id}
+                            className={`schedule-chip ${levelInfo[item.level].className}`}
+                            ariaLabel={`${signupLabel(item)}, ${date} ${monthNamesGenitive[month.m]}`}
+                          >
+                            <b>{item.start}</b> {item.title}
+                          </SignupLink>
+                        ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
 
-                      <em>{levelInfo[item.level].label}</em>
-                    </article>
-                  ))}
-                </div>
-              );
-            })}
+            <p className="schedule-month-note">
+              Это регулярное расписание: занятия повторяются каждую неделю. О переносах и
+              праздничных днях сообщаем в чате школы.
+            </p>
           </div>
         )}
       </section>
 
-      <section className="schedule-events" id="events">
-        <div>
-          <p className="section-kicker">СОБЫТИЯ И МАСТЕР-КЛАССЫ</p>
+      {upcoming.length > 0 && (
+        <section className="schedule-events" id="events">
+          <div>
+            <p className="section-kicker">СОБЫТИЯ И МАСТЕР-КЛАССЫ</p>
 
-          <h2>
-            БЛИЖАЙШИЕ
-            <br />
-            СОБЫТИЯ
-          </h2>
-        </div>
+            <h2>
+              БЛИЖАЙШИЕ
+              <br />
+              СОБЫТИЯ
+            </h2>
+          </div>
 
-        <div className="schedule-events-list">
-          <article>
-            <span>02 СЕН</span>
+          <div className="schedule-events-list">
+            {upcoming.map((event) => {
+              const { m, d } = parseIso(event.date);
+              return (
+                <article key={event.date + event.title}>
+                  <span>
+                    {String(d).padStart(2, "0")} {monthShort[m]}
+                  </span>
 
-            <strong>Бесплатные открытые уроки</strong>
+                  <strong>{event.title}</strong>
 
-            <small>19:00</small>
-          </article>
-
-          <article>
-            <span>05 СЕН</span>
-
-            <strong>Старт курса Бачазук Леди</strong>
-
-            <small>Ада</small>
-          </article>
-
-          <article>
-            <span>12 СЕН</span>
-
-            <strong>День рождения Зарины / МК Бачата Леди + вечеринка</strong>
-
-            <small>Событие STEP TAP</small>
-          </article>
-        </div>
-      </section>
+                  <small>{event.note}</small>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       <section className="schedule-final-cta">
         <div>

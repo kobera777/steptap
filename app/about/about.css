@@ -1014,3 +1014,79 @@
     font-size: 8px;
   }
 }
+
+/* TEAM */
+
+.st-team {
+  display: grid;
+  grid-template-columns: 27% 73%;
+  padding: 48px 52px;
+  background: var(--white);
+  border-top: 1px solid rgba(17, 17, 17, 0.1);
+}
+
+.st-team-title h2 {
+  margin: 10px 0 0;
+  font-size: clamp(32px, 2.8vw, 45px);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+}
+
+.st-team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.st-teacher {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: var(--radius-card);
+}
+
+.st-teacher h3 {
+  margin: 0;
+  font-size: clamp(26px, 2.4vw, 34px);
+  line-height: 1;
+  letter-spacing: var(--tracking-heading);
+  font-weight: 800;
+}
+
+.st-teacher p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.st-teacher a {
+  margin-top: auto;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.st-teacher a:hover,
+.st-teacher a:focus-visible {
+  color: var(--pink);
+}
+
+@media (max-width: 900px) {
+  .st-team {
+    display: block;
+    padding: 40px 22px;
+  }
+
+  .st-team-title {
+    margin-bottom: 26px;
+  }
+
+  .st-team-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

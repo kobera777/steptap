@@ -124,13 +124,72 @@
   background: var(--white);
 }
 
+/* ---------- Для новичков ----------
+   Самое конкретное, что можно сказать человеку, который хочет начать:
+   куда и когда прийти. Текст собирается из data/schedule.ts. */
+
+.schedule-beginner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 28px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.schedule-beginner p {
+  max-width: 720px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.schedule-beginner strong {
+  font-weight: 800;
+}
+
+.schedule-beginner-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px;
+  border-radius: var(--radius-pill);
+  background: var(--pink);
+  color: var(--black);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+  white-space: nowrap;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.schedule-beginner-link:hover,
+.schedule-beginner-link:focus-visible {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* ---------- Верхняя панель: заголовок, легенда, переключатель ----------
+   Раньше блоки двигались вручную (left: -70px, -40px, 30px) и на узких
+   экранах это приходилось отменять. Теперь обычный перенос строк. */
+
 .schedule-calendar-top {
   min-height: 86px;
-  display: grid;
-  grid-template-columns: 36px auto 36px minmax(0, 1fr) auto;
+  padding: 14px 0;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 14px;
+  gap: 14px 24px;
   border-top: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.schedule-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .schedule-calendar-top h2 {
@@ -147,15 +206,6 @@
   color: var(--pink);
 }
 
-/* Блок навигации по месяцу сдвинут влево, чтобы встать по сетке календаря.
-   Раньше сдвиг был прописан прямо в разметке (style left:-70px) и на телефоне
-   уезжал за край экрана — теперь он живёт здесь и на узких экранах отключается. */
-.schedule-calendar-top > .schedule-arrow,
-.schedule-calendar-top > h2 {
-  position: relative;
-  left: -70px;
-}
-
 .schedule-arrow {
   width: 32px;
   height: 32px;
@@ -166,23 +216,32 @@
   color: var(--black);
   font-size: 16px;
   line-height: 1;
+  cursor: pointer;
 }
 
-.schedule-arrow:hover {
+.schedule-arrow:hover:not(:disabled) {
   background: var(--black);
   color: var(--white);
 }
 
+/* Дальше листать некуда: в прошлое календарь не ходит. */
+.schedule-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
 /* TOP LEGEND */
 
+/* Легенда всегда отдельной строкой: в виде «Месяц» заголовок со стрелками
+   шире, и переключатель иначе падал на вторую строку. */
 .schedule-top-legend {
-  position: relative;
-  left: -40px;
+  order: 3;
+  flex-basis: 100%;
   min-width: 0;
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: center;
-  gap: clamp(14px, 1.8vw, 28px);
+  gap: 10px clamp(14px, 1.8vw, 28px);
 }
 
 .schedule-top-legend-item {
@@ -220,36 +279,30 @@
 /* VIEW SWITCHER */
 
 .schedule-view-switcher {
-  position: relative;
-  left: 30px;
-  justify-self: end;
+  margin-left: auto;
   display: flex;
   align-items: stretch;
   overflow: hidden;
   border: 1px solid rgba(17, 17, 17, 0.1);
   border-radius: var(--radius-pill);
-  background: #f3f1ed;
+  background: var(--color-cream-2);
 }
 
 .schedule-view-switcher button {
   /* Прописная кириллица в мелком кегле требует разрядки. */
   letter-spacing: var(--tracking-ui);
   border-radius: var(--radius-pill);
-  min-width: 68px;
-  min-height: 30px;
-  padding: 7px 11px;
+  min-width: 76px;
+  min-height: 34px;
+  padding: 8px 14px;
   border: 0;
-  border-right: 1px solid rgba(17, 17, 17, 0.08);
   background: transparent;
   color: var(--black);
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-}
-
-.schedule-view-switcher button:last-child {
-  border-right: 0;
+  cursor: pointer;
 }
 
 .schedule-view-switcher button.is-active {
@@ -257,7 +310,7 @@
   color: var(--white);
 }
 
-/* CALENDAR GRID */
+/* ---------- НЕДЕЛЯ: сетка 7 дней × часы ---------- */
 
 .schedule-calendar {
   width: 100%;
@@ -280,11 +333,16 @@
   padding: 12px 5px;
   border-top: 1px solid rgba(17, 17, 17, 0.1);
   border-left: 1px solid rgba(17, 17, 17, 0.1);
-  color: #44413d;
+  color: var(--muted);
   font-size: 9px;
   line-height: 1;
   font-weight: 600;
   text-align: center;
+}
+
+.schedule-day-head.is-today {
+  color: var(--pink);
+  font-weight: 800;
 }
 
 .schedule-day-head:last-child {
@@ -292,7 +350,8 @@
 }
 
 .schedule-grid-body {
-  --schedule-minute-height: 82px;
+  /* Высота одного часа в сетке. */
+  --schedule-hour-height: 82px;
 
   min-width: 900px;
   display: grid;
@@ -305,17 +364,17 @@
 }
 
 .schedule-time {
-  height: var(--schedule-minute-height);
+  height: var(--schedule-hour-height);
   padding: 12px 5px 0 7px;
   border-top: 1px solid rgba(17, 17, 17, 0.07);
-  color: #55514b;
+  color: var(--muted);
   font-size: 9px;
   line-height: 1;
 }
 
 .schedule-day-column {
   position: relative;
-  min-height: calc(9 * var(--schedule-minute-height));
+  min-height: calc(9 * var(--schedule-hour-height));
   border-left: 1px solid rgba(17, 17, 17, 0.1);
 }
 
@@ -330,7 +389,7 @@
 }
 
 .schedule-hour-line {
-  height: var(--schedule-minute-height);
+  height: var(--schedule-hour-height);
   border-top: 1px solid rgba(17, 17, 17, 0.07);
 }
 
@@ -340,15 +399,29 @@
   z-index: 2;
 }
 
-/* CLASS CARDS */
+/* CLASS CARDS — каждая карточка ведёт в MAX */
+
+.schedule-slot {
+  position: absolute;
+}
 
 .schedule-card {
-  position: absolute;
+  display: block;
+  height: 100%;
   box-sizing: border-box;
   padding: 10px 10px 8px;
   border-radius: var(--radius-sm);
   color: var(--black);
   overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.schedule-card:hover,
+.schedule-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(17, 17, 17, 0.16);
 }
 
 .schedule-card strong {
@@ -376,116 +449,72 @@
   line-height: 1.15;
 }
 
+.schedule-card em {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
 .schedule-card small {
   display: block;
   font-size: 8px;
   line-height: 1.1;
 }
 
-/* LEVEL COLORS */
-
-.schedule-card-zero,
-.schedule-legend-dot.schedule-card-zero {
-  background: #dfe9cf;
+/* Два занятия в одно время: карточка в полколонки. Раньше здесь был
+   инлайн-«костыль» по номерам занятий [1, 2, 7, 8] — и текст всё равно
+   вылезал за край. */
+.schedule-card.is-narrow {
+  padding: 8px 7px 6px;
 }
 
-.schedule-card-continuing,
-.schedule-legend-dot.schedule-card-continuing {
-  background: #d8e5f1;
+.schedule-card.is-narrow h3 {
+  font-size: 9px;
+  letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
 }
 
-.schedule-card-intermediate,
-.schedule-legend-dot.schedule-card-intermediate {
-  background: #f8cfdd;
+/* LEVEL COLORS — цвета заданы в app/styles/tokens.css */
+
+.schedule-card-zero {
+  background: var(--level-zero);
 }
 
-.schedule-card-intermediate-plus,
-.schedule-legend-dot.schedule-card-intermediate-plus {
-  background: #e8daf2;
+.schedule-card-continuing {
+  background: var(--level-continuing);
 }
 
-.schedule-card-special,
-.schedule-legend-dot.schedule-card-special {
-  background: #eadbc6;
+.schedule-card-intermediate {
+  background: var(--level-intermediate);
 }
 
-.schedule-card-pro,
-.schedule-legend-dot.schedule-card-pro {
-  background: #b8a1e3;
+.schedule-card-special {
+  background: var(--level-special);
 }
 
-.schedule-card-profi,
-.schedule-legend-dot.schedule-card-profi {
-  background: #34343a;
+.schedule-card-pro {
+  background: var(--level-pro);
+}
+
+.schedule-card-profi {
+  background: var(--level-profi);
   color: var(--color-white);
 }
 
-/* WEEK VIEW */
-
-.schedule-week-view {
-  border-top: 1px solid rgba(17, 17, 17, 0.1);
+/* Строки и плашки объявлены ниже и задают свой чёрный цвет текста —
+   на тёмном фоне 5.0 его нужно вернуть в белый, иначе не читается. */
+.schedule-row.schedule-card-profi,
+.schedule-chip.schedule-card-profi {
+  color: var(--color-white);
 }
 
-.schedule-week-title {
-  padding: 12px 0;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: var(--tracking-ui);
-}
+/* ---------- НЕДЕЛЯ на телефоне и ДЕНЬ: строки занятий ---------- */
 
-.schedule-week-row {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 25px;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(17, 17, 17, 0.1);
-}
-
-.schedule-week-row > strong {
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.schedule-week-row > div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.schedule-empty {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.schedule-list-card {
-  min-width: 170px;
-  padding: 10px 12px;
-  border-radius: var(--radius-sm);
-}
-
-.schedule-list-card b {
-  font-size: 10px;
-}
-
-.schedule-list-card span {
-  /* Прописная кириллица в мелком кегле требует разрядки. */
-  letter-spacing: var(--tracking-ui);
-  display: block;
-  margin-top: 4px;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.schedule-list-card small {
-  display: block;
-  margin-top: 4px;
-  font-size: 9px;
-}
-
-/* LIST VIEW */
-
-.schedule-list-view {
+.schedule-days-list {
+  display: none;
   border-top: 1px solid rgba(17, 17, 17, 0.1);
 }
 
@@ -496,30 +525,252 @@
 
 .schedule-list-day h3 {
   margin: 0 0 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+}
+
+.schedule-list-day h3 small,
+.schedule-day-tabs small {
+  color: var(--pink);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: lowercase;
+}
+
+.schedule-empty {
+  margin: 6px 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.schedule-row {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr) auto auto;
+  grid-template-areas: "time title level cta";
+  align-items: center;
+  gap: 8px 18px;
+  margin-bottom: 8px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  color: var(--black);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.schedule-row:hover,
+.schedule-row:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(17, 17, 17, 0.12);
+}
+
+.schedule-row b {
+  grid-area: time;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.schedule-row-title {
+  grid-area: title;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
+}
+
+.schedule-row-level {
+  grid-area: level;
   font-size: 11px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.schedule-row-title small,
+.schedule-row-level small {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.schedule-row i {
+  grid-area: cta;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.schedule-row-event {
+  border: 1px solid var(--pink);
+  background: var(--color-paper);
+}
+
+.schedule-row-event b {
+  color: var(--pink);
+}
+
+/* ---------- ДЕНЬ ---------- */
+
+.schedule-day-view {
+  padding-top: 18px;
+  border-top: 1px solid rgba(17, 17, 17, 0.1);
+}
+
+.schedule-day-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.schedule-day-tabs button {
+  min-width: 58px;
+  padding: 10px 12px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  border: 1px solid rgba(17, 17, 17, 0.15);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--black);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+  cursor: pointer;
+}
+
+.schedule-day-tabs button.is-active {
+  border-color: var(--black);
+  background: var(--black);
+  color: var(--white);
+}
+
+/* ---------- МЕСЯЦ ---------- */
+
+.schedule-month {
+  padding-top: 14px;
+  border-top: 1px solid rgba(17, 17, 17, 0.1);
+}
+
+.schedule-month-head,
+.schedule-month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.schedule-month-head {
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+  text-align: center;
+}
+
+.schedule-month-cell {
+  min-width: 0;
+  min-height: 132px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+}
+
+.schedule-month-cell.is-blank {
+  border-color: transparent;
+  background: transparent;
+}
+
+.schedule-month-cell.is-past {
+  opacity: 0.45;
+}
+
+.schedule-month-cell.is-today {
+  border-color: var(--pink);
+  box-shadow: inset 0 0 0 1px var(--pink);
+}
+
+.schedule-date {
+  align-self: flex-start;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.schedule-month-cell.is-today .schedule-date {
+  color: var(--pink);
+}
+
+.schedule-dots {
+  display: none;
+  gap: 3px;
+}
+
+.schedule-dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.schedule-chips {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.schedule-chip {
+  display: block;
+  padding: 3px 6px;
+  border-radius: 6px;
+  color: var(--black);
+  font-size: 10px;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.schedule-chip b {
+  font-weight: 800;
+}
+
+.schedule-chip:hover,
+.schedule-chip:focus-visible {
+  box-shadow: inset 0 0 0 2px rgba(17, 17, 17, 0.35);
+}
+
+.schedule-chip.is-event {
+  background: var(--pink);
+  color: var(--white);
   font-weight: 700;
 }
 
-.schedule-list-day .schedule-list-card {
-  margin-bottom: 7px;
-  display: grid;
-  grid-template-columns: 100px 1fr 150px 120px;
-  align-items: center;
-  gap: 12px;
-}
-
-.schedule-list-day .schedule-list-card span {
-  margin: 0;
-}
-
-.schedule-list-day .schedule-list-card small {
-  margin: 0;
-}
-
-.schedule-list-day .schedule-list-card em {
-  font-size: 9px;
-  font-style: normal;
-  text-align: right;
+.schedule-month-note {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 /* EVENTS */
@@ -632,39 +883,6 @@
     padding-left: 5vw;
     padding-right: 5vw;
   }
-
-  .schedule-calendar {
-    overflow-x: auto;
-  }
-
-  .schedule-grid-header,
-  .schedule-grid-body {
-    min-width: 900px;
-  }
-
-  .schedule-calendar-top {
-    grid-template-columns: 36px auto 36px 1fr;
-  }
-
-  .schedule-calendar-top > .schedule-arrow,
-  .schedule-calendar-top > h2,
-  .schedule-top-legend,
-  .schedule-view-switcher {
-    left: 0;
-  }
-
-  .schedule-top-legend {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    justify-content: flex-start;
-    padding: 6px 0 12px;
-    overflow-x: auto;
-  }
-
-  .schedule-view-switcher {
-    grid-column: 4;
-    grid-row: 1;
-  }
 }
 
 /* MOBILE */
@@ -694,29 +912,48 @@
     padding-right: 22px;
   }
 
-  .schedule-calendar-top {
-    grid-template-columns: 32px 1fr 32px;
-    gap: 10px;
-  }
-
   .schedule-calendar-top h2 {
     font-size: 28px;
-    text-align: center;
   }
 
-  .schedule-top-legend {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    justify-content: flex-start;
-    overflow-x: auto;
-    padding: 5px 0 10px;
+  /* Семь колонок по часам на узком экране не читаются: та же неделя
+     показывается списком по дням. */
+  .schedule-calendar {
+    display: none;
   }
 
-  .schedule-view-switcher {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    justify-self: center;
-    margin-bottom: 15px;
+  .schedule-days-list {
+    display: block;
+  }
+
+  /* В клетке месяца на телефоне места нет — вместо занятий точки по
+     уровням, а нажатие на дату открывает этот день целиком. */
+  .schedule-month-head,
+  .schedule-month-grid {
+    gap: 4px;
+  }
+
+  .schedule-month-cell {
+    min-height: 58px;
+    padding: 6px 2px;
+    align-items: center;
+  }
+
+  .schedule-chips {
+    display: none;
+  }
+
+  .schedule-dots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .schedule-date {
+    align-self: stretch;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 13px;
   }
 
   .schedule-events {
@@ -783,10 +1020,32 @@
     font-size: 24px;
   }
 
+  .schedule-view-switcher {
+    margin-left: 0;
+  }
+
   .schedule-view-switcher button {
-    min-width: 60px;
-    padding-left: 8px;
-    padding-right: 8px;
+    min-width: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  /* Строка занятия в два этажа: время и «Записаться» сверху, ниже — что и кто. */
+  .schedule-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "time cta"
+      "title title"
+      "level level";
+    padding: 14px 16px;
+  }
+
+  .schedule-row-level {
+    text-align: left;
+  }
+
+  .schedule-beginner p {
+    font-size: 15px;
   }
 
   .schedule-events {

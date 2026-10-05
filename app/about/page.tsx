@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { lifeItems, values } from "@/data/about";
+import { teachers } from "@/data/schedule";
+import Link from "next/link";
 
 import Image from "next/image";
 import "./about.css";
@@ -167,6 +169,36 @@ export default function AboutPage() {
               <h3>{value.title}</h3>
 
               <p>{value.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* TEAM — маленькая школа: те, кто в расписании, и есть те, кто ведёт
+          занятие. Собирается из data/schedule.ts. Регалии добавим, когда
+          школа их пришлёт, — придумывать их нельзя. */}
+
+      <section className="st-team">
+        <div className="st-team-title">
+          <div className="st-label">КОМАНДА</div>
+
+          <h2>
+            С КЕМ ВЫ
+            <br />
+            БУДЕТЕ
+            <br />
+            ТАНЦЕВАТЬ
+          </h2>
+        </div>
+
+        <div className="st-team-grid">
+          {teachers().map((teacher) => (
+            <article className="st-teacher" key={teacher.name}>
+              <h3>{teacher.name}</h3>
+
+              <p>Ведёт: {teacher.titles.join(", ")}</p>
+
+              <Link href="/schedule">Когда занятия →</Link>
             </article>
           ))}
         </div>

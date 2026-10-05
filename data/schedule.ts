@@ -247,6 +247,119 @@ export const days = [
   "ВОСКРЕСЕНЬЕ",
 ];
 
+/** Короткие названия — для вкладок дня и шапки месяца. */
+export const daysShort = ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"];
+
+/** «по понедельникам» — для фраз вида «группы для новичков по понедельникам». */
+export const daysDative = [
+  "понедельникам",
+  "вторникам",
+  "средам",
+  "четвергам",
+  "пятницам",
+  "субботам",
+  "воскресеньям",
+];
+
+export const monthNames = [
+  "ЯНВАРЬ",
+  "ФЕВРАЛЬ",
+  "МАРТ",
+  "АПРЕЛЬ",
+  "МАЙ",
+  "ИЮНЬ",
+  "ИЮЛЬ",
+  "АВГУСТ",
+  "СЕНТЯБРЬ",
+  "ОКТЯБРЬ",
+  "НОЯБРЬ",
+  "ДЕКАБРЬ",
+];
+
+/** «12 октября» — для заголовка дня, открытого из календаря месяца. */
+export const monthNamesGenitive = [
+  "января",
+  "февраля",
+  "марта",
+  "апреля",
+  "мая",
+  "июня",
+  "июля",
+  "августа",
+  "сентября",
+  "октября",
+  "ноября",
+  "декабря",
+];
+
+/** «02 СЕН» — в списке ближайших событий. */
+export const monthShort = [
+  "ЯНВ",
+  "ФЕВ",
+  "МАР",
+  "АПР",
+  "МАЙ",
+  "ИЮН",
+  "ИЮЛ",
+  "АВГ",
+  "СЕН",
+  "ОКТ",
+  "НОЯ",
+  "ДЕК",
+];
+
+/**
+ * События и мастер-классы. Дата — ГГГГ-ММ-ДД.
+ * Прошедшие на сайте не показываются: устаревшее событие на странице
+ * подрывает доверие сильнее, чем пустой раздел. Если ближайших событий
+ * нет, раздел «Ближайшие события» скрывается целиком.
+ */
+export type ScheduleEvent = { date: string; title: string; note: string };
+
+export const events: ScheduleEvent[] = [
+  { date: "2026-09-02", title: "Бесплатные открытые уроки", note: "19:00" },
+  { date: "2026-09-05", title: "Старт курса Бачазук Леди", note: "Ада" },
+  {
+    date: "2026-09-12",
+    title: "День рождения Зарины / МК Бачата Леди + вечеринка",
+    note: "Событие STEP TAP",
+  },
+];
+
+/** «понедельникам и средам», «понедельникам, средам и пятницам». */
+function joinRu(words: string[]) {
+  if (words.length <= 1) return words.join("");
+  return `${words.slice(0, -1).join(", ")} и ${words[words.length - 1]}`;
+}
+
+/**
+ * Когда приходить новичку — собирается из самого расписания (уровень zero),
+ * а не пишется руками: поменяется время группы — поменяется и фраза.
+ * Возвращает строки вида «по понедельникам и средам в 19:00».
+ */
+export function beginnerSlots() {
+  const byTime = new Map<string, Set<number>>();
+  for (const item of classes) {
+    if (item.level !== "zero") continue;
+    if (!byTime.has(item.start)) byTime.set(item.start, new Set());
+    byTime.get(item.start)!.add(item.day);
+  }
+  return [...byTime.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([time, set]) => {
+      const list = [...set].sort((a, b) => a - b).map((d) => daysDative[d - 1]);
+      return `по ${joinRu(list)} в ${time}`;
+    });
+}
+
+/** Какие направления есть у новичков: «Парная Бачата и Бачата Леди». */
+export function beginnerTitles() {
+  const titles = [
+    ...new Set(classes.filter((c) => c.level === "zero").map((c) => c.title)),
+  ];
+  return joinRu(titles);
+}
+
 export const timeRows = [
   "14:00",
   "15:00",
@@ -258,3 +371,20 @@ export const timeRows = [
   "21:00",
   "22:00",
 ];
+
+/**
+ * Преподаватели и что они ведут — собирается из расписания, руками не
+ * пишется: появится новое занятие — обновится и раздел «Команда».
+ * «Закрытая группа» в поле teacher — не человек, её пропускаем.
+ */
+export function teachers() {
+  const map = new Map<string, Set<string>>();
+  for (const item of classes) {
+    for (const name of item.teacher.split(" и ")) {
+      if (name === "Закрытая группа") continue;
+      if (!map.has(name)) map.set(name, new Set());
+      map.get(name)!.add(item.title);
+    }
+  }
+  return [...map.entries()].map(([name, titles]) => ({ name, titles: [...titles] }));
+}

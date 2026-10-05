@@ -2,7 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { HomeHeader } from "@/components/layout/HomeHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { features, homeLevels, marqueeWords, rentalItems } from "@/data/home";
+import {
+  features,
+  homeLevels,
+  marqueeWords,
+  messageExamples,
+  rentalItems,
+} from "@/data/home";
+import { trialSummary } from "@/data/prices";
 import {
   siteContacts,
   socialLinks,
@@ -46,6 +53,12 @@ export function HomePage() {
           <SignupLink className="primary-button" data-reveal data-reveal-delay="4">
             ЗАПИСАТЬСЯ <span>→</span>
           </SignupLink>
+
+          {/* Самый сильный довод — что начать почти ничего не стоит — раньше
+              появлялся только в самом конце страницы. */}
+          <p className="hero-offer" data-reveal data-reveal-delay="4">
+            {trialSummary}
+          </p>
         </div>
 
         <div className="hero-photo" data-reveal="scale" data-reveal-delay="2">
@@ -100,24 +113,29 @@ export function HomePage() {
       {/* ABOUT DIRECTION */}
       <section className="about-direction" id="bachata">
         <div className="about-copy" data-reveal="left">
-          <p className="section-kicker">О НАПРАВЛЕНИИ</p>
+          {/* Сначала — страх, потом всё остальное. Главное, что останавливает
+              взрослого человека: «я не умею», «у меня нет пары», «у меня не
+              получится». Этот блок отвечает на все три сразу. */}
+          <p className="section-kicker">С ЧЕГО НАЧАТЬ</p>
 
           <h2>
-            БАЧАТА —
+            НЕ НУЖНО УМЕТЬ
             <br />
-            ЭТО ПРО КОНТАКТ.
+            ТАНЦЕВАТЬ,
+            <br />
+            ЧТОБЫ НАЧАТЬ.
           </h2>
 
-          <p>Это гармоничное сочетание музыки, движения и эмоций.</p>
-
           <p>
-            На наших занятиях вы учитесь слышать музыку, чувствовать партнёра и получать
-            удовольствие от каждого шага.
+            Можно прийти без опыта, без пары и без уверенности, что «у меня получится». Мы
+            разберём движения, объясним непонятное и поможем освоиться в группе.
           </p>
 
           <p>
-            Подходит как для начинающих, так и для тех, кто хочет углубить свои знания.
+            На парных занятиях партнёры меняются, поэтому свою пару приводить не нужно.
           </p>
+
+          <p>А если вы уже танцуете — подберём группу, в которой можно расти дальше.</p>
         </div>
 
         <div className="geometry" data-reveal="right" data-reveal-delay="2">
@@ -386,6 +404,28 @@ export function HomePage() {
             <Link href="/schedule">
               <small>Смотреть расписание →</small>
             </Link>
+          </div>
+        </div>
+
+        {/* Самое страшное в записи — первое сообщение незнакомым людям.
+            Показываем, что писать можно совсем коротко. */}
+        <div className="contacts-write" data-reveal data-reveal-delay="2">
+          <h3>
+            Что написать? Можно просто: <span>«Хочу на танцы»</span>
+          </h3>
+
+          <div className="contacts-write-list">
+            {messageExamples.map((example) => (
+              <SignupLink
+                key={example.label}
+                className="contacts-write-item"
+                ariaLabel={`Написать в MAX: ${example.text}`}
+              >
+                <small>{example.label}</small>
+                <span>«{example.text}»</span>
+                <i>НАПИСАТЬ →</i>
+              </SignupLink>
+            ))}
           </div>
         </div>
 

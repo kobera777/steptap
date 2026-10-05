@@ -14,6 +14,14 @@
   --color-line: #1a1a1a;
   --color-muted: #6f6b65;
 
+  /* Цвета уровней в расписании (карточки занятий и легенда). */
+  --level-zero: #dfe9cf;
+  --level-continuing: #d8e5f1;
+  --level-intermediate: #f8cfdd;
+  --level-special: #eadbc6;
+  --level-pro: #b8a1e3;
+  --level-profi: #34343a;
+
   /* Страница «Разбор песни» намеренно использует свою «бумажную» палитру
      (#f4eee5 / #171717) — см. app/song-analysis/song-analysis.css. */
 
