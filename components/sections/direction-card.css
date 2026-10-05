@@ -1,0 +1,219 @@
+/* Карточка направления с фотографией (DirectionCard.tsx). Префикс: .dc-
+   Оформление — прежней карточки страницы «Направления»: фото во всю плитку,
+   снизу заливка цветом карточки. Без фото (дэнсхолл, латина) — просто цвет. */
+
+.dc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.dc-grid.is-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* overflow не обрезаем: если текст длиннее, карточка вытягивается, а не
+   прячет описание. Скругление фото и заливки держат их собственные слои. */
+.dc-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-card);
+  color: var(--color-black);
+  text-decoration: none;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.dc-card:hover,
+.dc-card:focus-visible {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.dc-photo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.dc-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+/* Затемнение сверху: без него номер и стрелка пропадают на светлой стене. */
+.dc-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0) 28%);
+}
+
+.dc-card:hover .dc-photo img {
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dc-card,
+  .dc-photo img,
+  .dc-card:hover .dc-photo img {
+    transition: none;
+    transform: none;
+  }
+}
+
+.dc-body {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.dc-body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--radius-card);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 26%,
+    var(--dc-veil) 56%,
+    var(--dc-veil-solid) 74%
+  );
+}
+
+.dc-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--color-white);
+}
+
+.dc-card-large {
+  --dc-veil: rgba(240, 232, 223, 0.9);
+  --dc-veil-solid: var(--color-sand);
+  background: var(--color-sand);
+}
+
+.dc-card-pink {
+  --dc-veil: rgba(212, 95, 136, 0.9);
+  --dc-veil-solid: var(--color-pink);
+  background: var(--color-pink);
+  color: var(--color-white);
+}
+
+.dc-card-dark {
+  --dc-veil: rgba(34, 34, 37, 0.9);
+  --dc-veil-solid: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.dc-card-outline {
+  --dc-veil: rgba(245, 240, 234, 0.9);
+  --dc-veil-solid: var(--color-cream-2);
+  background: var(--color-cream-2);
+  border: 1px solid var(--color-black);
+}
+
+.dc-number {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
+}
+
+.dc-arrow {
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 300;
+}
+
+.dc-tags {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dc-tags li {
+  padding: 5px 11px;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
+  opacity: 0.75;
+}
+
+.dc-kicker {
+  margin: 0 0 7px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
+}
+
+.dc-content h3 {
+  margin: 0;
+  font-size: clamp(36px, 4vw, 58px);
+  overflow-wrap: anywhere;
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
+}
+
+/* Длинные названия в одно слово («ЭКСПЕРИМЕНТАЛЬНАЯ») — кегль меньше:
+   перенести такое слово нельзя. */
+.dc-content h3.is-long {
+  font-size: clamp(22px, 2.6vw, 36px);
+}
+
+.dc-desc {
+  max-width: 440px;
+  margin: 14px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.dc-more {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+}
+
+.dc-grid.is-three .dc-content h3 {
+  font-size: clamp(30px, 3vw, 44px);
+}
+
+@media (max-width: 1000px) {
+  .dc-grid.is-three {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .dc-grid,
+  .dc-grid.is-three {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dc-body {
+    padding: 22px;
+  }
+}

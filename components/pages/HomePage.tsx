@@ -2,27 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { HomeHeader } from "@/components/layout/HomeHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import {
-  features,
-  homeLevels,
-  marqueeWords,
-  messageExamples,
-  rentalItems,
-} from "@/data/home";
-import { trialSummary } from "@/data/prices";
-import {
-  siteContacts,
-  socialLinks,
-  telHref,
-  yandexMapEmbedUrl,
-  yandexMapPageUrl,
-} from "@/data/site";
+import { features, homeHero, marqueeWords } from "@/data/home";
+import { bachataStyles, firstClassFaq } from "@/data/directions";
+import { rub, trialPrice } from "@/data/prices";
 import { FaqList } from "@/components/home/FaqList";
 import { MomentsVideo } from "@/components/home/MomentsVideo";
-import { SocialIcon } from "@/components/ui/SocialIcon";
+import { DirectionCard } from "@/components/sections/DirectionCard";
 import { SignupLink } from "@/components/layout/SignupLink";
 
-/** Главная страница — серверный компонент; интерактивен только FaqList. */
+/**
+ * Главная страница. Оформление — прежнее, тексты и порядок блоков — из
+ * прототипа владельца. Серверный компонент; интерактивен только FaqList.
+ */
 export function HomePage() {
   return (
     <main className="site-shell">
@@ -31,33 +22,36 @@ export function HomePage() {
       {/* HERO */}
       <section className="hero" id="top">
         <div className="hero-copy">
-          <Link className="back-link" href="/directions" data-reveal>
-            ← ВСЕ НАПРАВЛЕНИЯ
-          </Link>
+          <p className="section-kicker" data-reveal>
+            {homeHero.kicker}
+          </p>
 
           <h1 data-reveal data-reveal-delay="1">
-            БАЧАТА
+            {homeHero.title.map((line, index) => (
+              <span key={line}>
+                {index > 0 && <br />}
+                {line}
+              </span>
+            ))}
           </h1>
 
-          <p className="hero-accent" data-reveal data-reveal-delay="2">
-            МУЗЫКА. КОНТАКТ.
-            <br />
-            УВЕРЕННОСТЬ.
+          <p className="hero-description" data-reveal data-reveal-delay="2">
+            {homeHero.lead}
           </p>
 
-          <p className="hero-description" data-reveal data-reveal-delay="3">
-            Парные занятия для взрослых, где танец становится способом чувствовать,
-            наслаждаться и быть собой.
-          </p>
+          <div className="hero-actions" data-reveal data-reveal-delay="3">
+            <SignupLink className="primary-button">
+              НА ПЕРВОЕ ЗАНЯТИЕ <span>→</span>
+            </SignupLink>
+            <Link className="hero-textlink" href="/directions">
+              ВЫБРАТЬ НАПРАВЛЕНИЕ
+            </Link>
+          </div>
 
-          <SignupLink className="primary-button" data-reveal data-reveal-delay="4">
-            ЗАПИСАТЬСЯ <span>→</span>
-          </SignupLink>
-
-          {/* Самый сильный довод — что начать почти ничего не стоит — раньше
-              появлялся только в самом конце страницы. */}
           <p className="hero-offer" data-reveal data-reveal-delay="4">
-            {trialSummary}
+            {homeHero.styles}
+            <br />
+            {homeHero.place}
           </p>
         </div>
 
@@ -77,7 +71,7 @@ export function HomePage() {
           <Image
             className="hero-cutout"
             src="/hero-bachata-crop-cutout.webp"
-            alt="STEP TAP — бачата"
+            alt="Танцоры STEP TAP"
             fill
             priority
             quality={75}
@@ -85,13 +79,11 @@ export function HomePage() {
           />
 
           <div className="hero-note" data-parallax="0.12">
-            Танцуй
+            Танцуй.
             <br />
-            чувствуй
+            Чувствуй.
             <br />
-            развивайся
-            <br />
-            вместе ♡
+            Вместе ♡
           </div>
         </div>
       </section>
@@ -110,13 +102,10 @@ export function HomePage() {
         </div>
       </div>
 
-      {/* ABOUT DIRECTION */}
-      <section className="about-direction" id="bachata">
+      {/* ЭТО STEP TAP — сначала снимаем страх */}
+      <section className="about-direction" id="about">
         <div className="about-copy" data-reveal="left">
-          {/* Сначала — страх, потом всё остальное. Главное, что останавливает
-              взрослого человека: «я не умею», «у меня нет пары», «у меня не
-              получится». Этот блок отвечает на все три сразу. */}
-          <p className="section-kicker">С ЧЕГО НАЧАТЬ</p>
+          <p className="section-kicker">ЭТО STEP TAP</p>
 
           <h2>
             НЕ НУЖНО УМЕТЬ
@@ -131,11 +120,11 @@ export function HomePage() {
             разберём движения, объясним непонятное и поможем освоиться в группе.
           </p>
 
-          <p>
-            На парных занятиях партнёры меняются, поэтому свою пару приводить не нужно.
-          </p>
+          <p>А если уже танцуешь — найдём занятия, на которых можно двигаться дальше.</p>
 
-          <p>А если вы уже танцуете — подберём группу, в которой можно расти дальше.</p>
+          <Link className="outline-button" href="/about">
+            ПОЗНАКОМИТЬСЯ СО ШКОЛОЙ →
+          </Link>
         </div>
 
         <div className="geometry" data-reveal="right" data-reveal-delay="2">
@@ -159,20 +148,20 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* OUR MOMENTS */}
+      {/* ЛУЧШЕ ОДИН РАЗ УВИДЕТЬ */}
       <section className="moments" id="gallery">
         <div className="moments-heading" data-reveal>
           <div>
             <p className="section-kicker">АТМОСФЕРА STEP TAP</p>
-            <h2>НАШИ МОМЕНТЫ</h2>
+            <h2>
+              ЛУЧШЕ ОДИН РАЗ
+              <br />
+              УВИДЕТЬ.
+            </h2>
           </div>
 
           <p className="moments-subtitle">
-            Люди.
-            <br />
-            Эмоции.
-            <br />
-            Атмосфера.
+            Вот как выглядит танцевальная жизнь школы — с музыкой, людьми и эмоциями.
           </p>
         </div>
 
@@ -185,20 +174,22 @@ export function HomePage() {
         </div>
 
         <div className="moments-footer" data-reveal data-reveal-delay="2">
-          <p>Фото и видео с вечеринок, мастер-классов и концертов.</p>
+          <p>Узнай школу не только по текстам.</p>
           <Link className="outline-button" href="/gallery">
-            ВСЕ АЛЬБОМЫ →
+            СМОТРЕТЬ ГАЛЕРЕЮ →
           </Link>
         </div>
       </section>
 
-      {/* WHAT IS INCLUDED */}
+      {/* НА ЗАНЯТИЯХ */}
       <section className="class-features" id="classes">
         <div className="features-title" data-reveal>
-          <p className="section-kicker">ЧТО ВХОДИТ В ЗАНЯТИЕ</p>
+          <p className="section-kicker">НА ЗАНЯТИЯХ</p>
           <h2>
-            ТРИ ШАГА
-            <br />К СВОБОДНОМУ ТАНЦУ.
+            ПОНЯТНО.
+            <br />
+            ПОСТЕПЕННО.
+            <br />С ПРАКТИКОЙ.
           </h2>
         </div>
 
@@ -211,108 +202,144 @@ export function HomePage() {
             >
               <span>{feature.number}</span>
               <h3>{feature.title}</h3>
-              <p>
-                {feature.lines[0]}
-                <br />
-                {feature.lines[1]}
-              </p>
+              <p>{feature.text}</p>
             </article>
           ))}
         </div>
       </section>
 
-      {/* GROUP LEVELS */}
-      <section className="levels-section" id="levels">
-        <div data-reveal="left">
-          <p className="section-kicker">ГРУППОВЫЕ ЗАНЯТИЯ</p>
-          <h2>
-            НАЙДИ СВОЙ
-            <br />
-            УРОВЕНЬ.
-          </h2>
+      {/* НАПРАВЛЕНИЯ */}
+      <section className="home-directions" id="directions">
+        <div className="home-directions-head" data-reveal>
+          <div>
+            <p className="section-kicker">НАПРАВЛЕНИЯ</p>
+            <h2>
+              ЧТО ХОЧЕТСЯ
+              <br />
+              ТАНЦЕВАТЬ ТЕБЕ?
+            </h2>
+          </div>
+
+          <Link className="outline-button" href="/directions">
+            ВСЕ НАПРАВЛЕНИЯ →
+          </Link>
         </div>
 
-        <div className="levels-list" data-reveal="right" data-reveal-delay="1">
-          {homeLevels.map((level) => (
-            <SignupLink key={level.number}>
-              <span>{level.number}</span>
-              <strong>{level.title}</strong>
-              <span>→</span>
-            </SignupLink>
+        <div className="dc-grid is-three" data-reveal data-reveal-delay="1">
+          {bachataStyles.slice(0, 3).map((style) => (
+            <DirectionCard
+              key={style.slug}
+              style={style}
+              sizes="(max-width: 760px) 90vw, (max-width: 1000px) 45vw, 30vw"
+            />
           ))}
         </div>
       </section>
 
-      {/* FIND YOUR GROUP */}
+      {/* НЕ ЗНАЕШЬ, С ЧЕГО НАЧАТЬ? */}
       <section className="group-cta">
         <div className="group-cta-copy" data-reveal="left">
-          <p className="section-kicker">НЕ ЗНАЕШЬ,</p>
+          <p className="section-kicker">ТВОЙ ПЕРВЫЙ ШАГ</p>
           <h2>
-            С КАКОЙ
-            <br />
-            ГРУППЫ
+            НЕ ЗНАЕШЬ,
+            <br />С ЧЕГО
             <br />
             НАЧАТЬ?
           </h2>
 
           <p>
-            Ничего страшного.
-            <br />
-            Поможем подобрать подходящий уровень, даже если ты никогда раньше не танцевал.
+            Расскажи, что тебе нравится и танцевал ли ты раньше. Поможем выбрать
+            направление и время — без необходимости разбираться во всём самому.
           </p>
 
-          <SignupLink className="outline-button">ПОДОБРАТЬ ГРУППУ →</SignupLink>
+          <SignupLink className="outline-button">ПОДОБРАТЬ ЗАНЯТИЕ →</SignupLink>
         </div>
 
         <div className="group-cta-art" data-reveal="scale" data-reveal-delay="2">
           <div className="circle-lines" data-parallax="0.06" />
           <span>
-            Танец
+            Танцуй.
             <br />
-            как стиль
+            Чувствуй.
             <br />
-            жизни ♡
+            Будь собой.
           </span>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* ПЕРЕД ПЕРВЫМ ЗАНЯТИЕМ */}
       <section className="faq-section">
         <div className="faq-heading" data-reveal="left">
-          <p className="section-kicker">FAQ</p>
+          <p className="section-kicker">ОТВЕЧАЕМ НА ВОПРОСЫ</p>
           <h2>
-            ЧАСТЫЕ
+            ПЕРЕД ПЕРВЫМ
             <br />
-            ВОПРОСЫ
+            ЗАНЯТИЕМ
           </h2>
         </div>
 
-        <FaqList />
+        <FaqList items={firstClassFaq} />
       </section>
 
-      {/* RENTAL */}
-      <section className="rental" id="rental">
-        <div className="rental-copy" data-reveal="left">
-          <p className="section-kicker">АРЕНДА ЗАЛА</p>
+      {/* СНАЧАЛА ПОПРОБУЙ */}
+      <section className="final-cta" id="trial">
+        <div className="final-cta-pink" data-reveal="left">
+          <p>ПЕРВОЕ ЗНАКОМСТВО</p>
           <h2>
-            ЗАЛ ДЛЯ
+            СНАЧАЛА
             <br />
-            ТВОИХ ИДЕЙ.
+            ПОПРОБУЙ.
+            <br />
+            ПОТОМ РЕШАЙ.
           </h2>
+        </div>
+
+        <div className="final-cta-copy" data-reveal data-reveal-delay="1">
+          <div className="final-cta-price">
+            <small>ПЕРВОЕ ГРУППОВОЕ ЗАНЯТИЕ</small>
+            <strong>{rub(trialPrice())}</strong>
+            <span>БЕСПЛАТНО ПРИ ПОКУПКЕ АБОНЕМЕНТА</span>
+          </div>
+
           <p>
-            Светлый танцевальный зал STEP TAP можно арендовать в свободные часы — для
-            репетиций, индивидуальных занятий, мастер-классов и съёмок.
+            Первая групповая тренировка — {rub(trialPrice())}. Если после неё покупаешь
+            абонемент, первое занятие бесплатно.
           </p>
 
-          <ul className="rental-list">
-            {rentalItems.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
+          <div className="final-cta-actions">
+            <SignupLink className="primary-button">
+              ЗАПИСАТЬСЯ <span>→</span>
+            </SignupLink>
+            <Link className="hero-textlink" href="/prices">
+              ЦЕНЫ И УСЛОВИЯ →
+            </Link>
+          </div>
 
-          <a className="primary-button" href="#contacts">
-            УЗНАТЬ УСЛОВИЯ <span>→</span>
-          </a>
+          <p className="final-cta-note">Условия для выбранной группы уточни при записи.</p>
+        </div>
+
+        <div className="final-logo" data-reveal="scale" data-reveal-delay="2">
+          <Image src="/step-tap-logo.png" alt="STEP TAP" width={260} height={260} />
+        </div>
+      </section>
+
+      {/* ЕСТЬ ИДЕЯ? ЕСТЬ ЗАЛ. */}
+      <section className="rental" id="rental">
+        <div className="rental-copy" data-reveal="left">
+          <p className="section-kicker">ДЛЯ ПРЕПОДАВАТЕЛЕЙ И КОМАНД</p>
+          <h2>
+            ЕСТЬ ИДЕЯ?
+            <br />
+            ЕСТЬ ЗАЛ.
+          </h2>
+          <p>
+            В STEP TAP можно арендовать зал для репетиции, индивидуального занятия,
+            мастер-класса или съёмки.
+          </p>
+
+          <Link className="primary-button" href="/rental">
+            ЗАЛЫ И ТАРИФЫ <span>→</span>
+          </Link>
         </div>
 
         <div
@@ -327,138 +354,6 @@ export function HomePage() {
               <br />
               для движения ♡
             </span>
-          </div>
-        </div>
-      </section>
-
-      {/* FINAL CTA */}
-      <section className="final-cta" id="trial">
-        <div className="final-cta-pink" data-reveal="left">
-          <p>ТВОЙ ПЕРВЫЙ ШАГ</p>
-          <h2>
-            ГОТОВЫ
-            <br />
-            ТАНЦЕВАТЬ?
-          </h2>
-        </div>
-
-        <div className="final-cta-copy" data-reveal data-reveal-delay="1">
-          <p>
-            Запишитесь на пробное занятие —
-            <br />
-            поможем подобрать подходящую группу.
-          </p>
-
-          <a className="primary-button" href="#contacts">
-            ЗАПИСАТЬСЯ <span>→</span>
-          </a>
-        </div>
-
-        <div className="final-logo" data-reveal="scale" data-reveal-delay="2">
-          <Image src="/step-tap-logo.png" alt="STEP TAP" width={260} height={260} />
-        </div>
-      </section>
-
-      {/* CONTACTS */}
-      <section className="contacts" id="contacts">
-        <div className="contacts-heading" data-reveal>
-          <p className="section-kicker">СВЯЗЬ</p>
-          <h2>
-            КОНТАКТЫ
-            <br />
-            STEP TAP.
-          </h2>
-          <p className="contacts-intro">
-            Напишите нам — ответим на вопросы,
-            <br />
-            подберём группу и запишем на пробное занятие.
-          </p>
-        </div>
-
-        <div className="contacts-grid" data-reveal data-reveal-delay="1">
-          <div className="contacts-block">
-            <span>АДРЕС</span>
-            <strong>{siteContacts.address || "Адрес уточняется"}</strong>
-            {siteContacts.addressNote && <small>{siteContacts.addressNote}</small>}
-          </div>
-
-          <div className="contacts-block">
-            <span>ТЕЛЕФОН</span>
-            {siteContacts.phone ? (
-              <a href={telHref(siteContacts.phone)}>
-                <strong>{siteContacts.phone}</strong>
-              </a>
-            ) : (
-              <strong>Уточняется</strong>
-            )}
-            {siteContacts.email && (
-              <a href={`mailto:${siteContacts.email}`}>
-                <small>{siteContacts.email}</small>
-              </a>
-            )}
-          </div>
-
-          <div className="contacts-block">
-            <span>ЗАНЯТИЯ</span>
-            <strong>Ежедневно, по расписанию</strong>
-            <Link href="/schedule">
-              <small>Смотреть расписание →</small>
-            </Link>
-          </div>
-        </div>
-
-        {/* Самое страшное в записи — первое сообщение незнакомым людям.
-            Показываем, что писать можно совсем коротко. */}
-        <div className="contacts-write" data-reveal data-reveal-delay="2">
-          <h3>
-            Что написать? Можно просто: <span>«Хочу на танцы»</span>
-          </h3>
-
-          <div className="contacts-write-list">
-            {messageExamples.map((example) => (
-              <SignupLink
-                key={example.label}
-                className="contacts-write-item"
-                ariaLabel={`Написать в MAX: ${example.text}`}
-              >
-                <small>{example.label}</small>
-                <span>«{example.text}»</span>
-                <i>НАПИСАТЬ →</i>
-              </SignupLink>
-            ))}
-          </div>
-        </div>
-
-        <div className="contacts-actions" data-reveal data-reveal-delay="2">
-          {socialLinks().map((item) => (
-            <a key={item.key} href={item.href} target="_blank" rel="noreferrer">
-              <SocialIcon name={item.key} />
-              {item.label.toUpperCase()} <span>→</span>
-            </a>
-          ))}
-        </div>
-
-        {/* Карта. loading="lazy" — виджет Яндекса не грузится, пока до него
-            не долистают: главная страница от него не тормозит. */}
-        <div className="contacts-map" data-reveal data-reveal-delay="3">
-          <div className="contacts-map-frame">
-            <iframe
-              src={yandexMapEmbedUrl()}
-              title={`STEP TAP на карте — ${siteContacts.address}`}
-              loading="lazy"
-              allowFullScreen
-            />
-          </div>
-
-          <div className="contacts-map-foot">
-            <p>
-              {siteContacts.address}
-              {siteContacts.addressNote && <span>{siteContacts.addressNote}</span>}
-            </p>
-
-            <a href={yandexMapPageUrl()} target="_blank" rel="noreferrer">
-              КАК ДОБРАТЬСЯ <span>→</span>
-            </a>
           </div>
         </div>
       </section>

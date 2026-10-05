@@ -1,0 +1,261 @@
+/* Страница «Занятия». Префикс классов: .cl-
+   Композиция — из прототипа владельца; шрифт, цвета и приёмы (линии,
+   розовые номера, таблетки) — как на остальных страницах сайта. */
+
+.cl-page {
+  background: var(--color-cream-2);
+  color: var(--color-black);
+  overflow: clip; /* clip, не hidden: иначе не работает sticky-шапка */
+}
+
+.cl-kicker {
+  margin: 0 0 16px;
+  color: var(--color-pink);
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/* ---------- Заголовок ---------- */
+
+.cl-head {
+  padding: 66px 7vw 44px;
+}
+
+.cl-head h1 {
+  margin: 0;
+  font-size: clamp(42px, 6.3vw, 92px);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
+}
+
+.cl-lead {
+  max-width: 620px;
+  margin: 25px 0 0;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+/* ---------- Форматы ---------- */
+
+.cl-formats {
+  padding: 30px 7vw 80px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cl-card {
+  padding: 38px;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: var(--radius-card);
+  background: var(--color-white);
+}
+
+.cl-card-sand {
+  background: var(--color-sand);
+}
+
+.cl-card h2 {
+  margin: 0 0 20px;
+  font-size: clamp(30px, 3.2vw, 48px);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
+}
+
+.cl-card > p:not(.cl-kicker) {
+  max-width: 480px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.cl-tags {
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cl-tags li {
+  padding: 6px 12px;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
+}
+
+.cl-actions {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 24px;
+}
+
+.cl-page .cl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  min-height: var(--btn-min-height);
+  padding: 14px 21px;
+  border: 1px solid var(--color-pink);
+  border-radius: var(--radius-pill);
+  background: var(--color-pink);
+  color: var(--color-black);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: var(--tracking-ui);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.cl-page .cl-btn span {
+  font-size: 18px;
+  line-height: 0;
+}
+
+.cl-page .cl-btn:hover,
+.cl-page .cl-btn:focus-visible {
+  background: var(--color-black);
+  border-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.cl-textlink {
+  padding-bottom: 3px;
+  border-bottom: 1px solid currentColor;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: var(--tracking-ui);
+}
+
+.cl-textlink:hover {
+  color: var(--color-pink);
+}
+
+.cl-card .cl-note {
+  margin: 16px 0 0;
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
+/* ---------- Уровни ---------- */
+
+.cl-levels {
+  padding: 75px 7vw;
+  background: var(--color-white);
+}
+
+.cl-levels-head {
+  margin-bottom: 38px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.cl-levels-head h2 {
+  margin: 0;
+  font-size: clamp(36px, 4.6vw, 70px);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
+}
+
+.cl-levels-head > p {
+  max-width: 360px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Строки уровней — как прежний список «Найди свой уровень» на главной. */
+.cl-level-list {
+  border-top: 1px solid var(--color-line);
+}
+
+.cl-level-list article {
+  min-height: 72px;
+  padding: 16px 4px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.cl-level-list span {
+  color: var(--color-pink);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.cl-level-list h3 {
+  margin: 0;
+  font-size: clamp(21px, 2vw, 31px);
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  font-weight: 700;
+}
+
+.cl-level-list p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* ---------- Адаптив ---------- */
+
+@media (max-width: 900px) {
+  .cl-head {
+    padding: 50px 20px 30px;
+  }
+
+  .cl-lead {
+    font-size: 16px;
+  }
+
+  .cl-formats {
+    padding: 20px 20px 60px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cl-card {
+    padding: 28px 22px;
+  }
+
+  .cl-levels {
+    padding: 55px 20px;
+  }
+
+  .cl-level-list article {
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: 8px 10px;
+  }
+
+  .cl-level-list p {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 520px) {
+  .cl-head h1 {
+    font-size: clamp(32px, 9.6vw, 48px);
+  }
+
+  .cl-levels-head h2 {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+}

@@ -1,35 +1,23 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import Link from "next/link";
-import type { CardDecor } from "@/data/directions";
-import { bachataCards, otherCards } from "@/data/directions";
-
-import Image from "next/image";
-import "./directions.css";
 import { SignupLink } from "@/components/layout/SignupLink";
+import { DirectionCard } from "@/components/sections/DirectionCard";
+import { FaqSection } from "@/components/sections/FaqSection";
+import { bachataStyles, directionsFaq, otherStyles, styleHref } from "@/data/directions";
+import "./directions.css";
 
 export const metadata: Metadata = {
   title: "Направления",
   description:
-    "Направления школы танца STEP TAP: бачата в паре, бачата леди, мужской стиль, экспериментальная, дэнсхолл и латина.",
+    "Направления школы танца STEP TAP: парная бачата, бачата леди, мужской стиль, экспериментальная бачата, дэнсхолл и латина.",
 };
 
 /**
- * Длина самого длинного слова в названии. По ней подбирается кегль:
- * «ЭКСПЕРИМЕНТАЛЬНАЯ» — одно слово из 17 букв, его нельзя перенести,
- * и тем же кеглем, что «ЛЕДИ», оно вылезает за карточку.
+ * «Направления». Оформление — прежнее, тексты и порядок блоков — из
+ * прототипа владельца. Каждая карточка ведёт на страницу своего стиля.
  */
-function longestWord(title: string) {
-  return Math.max(...title.split(" ").map((word) => word.length));
-}
-
-/** Слова из декора карточки — теперь они стоят подписью над названием. */
-function decorWords(decor: CardDecor) {
-  const words = decor.kind === "circle" ? [decor.text] : decor.lines;
-  return words.filter((word) => word !== "×");
-}
-
 export default function DirectionsPage() {
   return (
     <main className="directions-page">
@@ -41,11 +29,11 @@ export default function DirectionsPage() {
           <p className="section-kicker">НАПРАВЛЕНИЯ STEP TAP</p>
 
           <h1>
-            ТАНЕЦ —
+            У КАЖДОГО
             <br />
-            ЭТО ТВОЙ
+            ТАНЦА —
             <br />
-            <span>СТИЛЬ.</span>
+            СВОЙ <span>ХАРАКТЕР.</span>
           </h1>
         </div>
 
@@ -57,9 +45,8 @@ export default function DirectionsPage() {
           </div>
 
           <p>
-            Выбирай направление,
-            <br />
-            которое тебе ближе.
+            Хочешь танцевать в паре, развивать пластику или двигаться под энергичную
+            музыку? Посмотри направления — и выбери то, что откликается.
           </p>
         </div>
       </section>
@@ -68,60 +55,25 @@ export default function DirectionsPage() {
       <section className="direction-main bachata-section" id="bachata">
         <div className="direction-intro">
           <div>
-            <p className="section-kicker">01 / НАПРАВЛЕНИЕ</p>
+            <p className="section-kicker">БАЧАТА</p>
 
             <h2>
-              БАЧАТА
-              <span>.</span>
+              ОДНА МУЗЫКА.
+              <br />
+              РАЗНЫЕ
+              <br />
+              ВОЗМОЖНОСТИ<span>.</span>
             </h2>
           </div>
-
-          <p className="direction-description">
-            Музыка. Контакт. Уверенность.
-            <br />
-            Одно направление —
-            <br />
-            несколько способов танцевать.
-          </p>
         </div>
 
-        <div className="bachata-grid">
-          {bachataCards.map((card) => (
-            <Link
-              key={card.title}
-              href={card.href}
-              className={`direction-card ${card.variant}`}
-            >
-              <div className="card-body">
-                <div className="card-top">
-                  <span className="card-number">{card.number}</span>
-                  <span className="card-arrow">→</span>
-                </div>
-
-                <div className="card-content">
-                  <ul className="card-tags">
-                    {decorWords(card.decor).map((word) => (
-                      <li key={word}>{word}</li>
-                    ))}
-                  </ul>
-
-                  <p>{card.kicker}</p>
-                  <h3 className={longestWord(card.title) >= 12 ? "is-long" : undefined}>
-                    {card.title}
-                  </h3>
-                </div>
-              </div>
-
-              <div className="card-photo">
-                <Image
-                  src={card.photo.src}
-                  alt={card.photo.alt}
-                  width={1200}
-                  height={1200}
-                  sizes="(max-width: 760px) 90vw, 43vw"
-                />
-              </div>
-            </Link>
+        <div className="dc-grid">
+          {bachataStyles.map((style) => (
+            <DirectionCard
+              key={style.slug}
+              style={style}
+              sizes="(max-width: 760px) 90vw, 43vw"
+            />
           ))}
         </div>
       </section>
@@ -129,69 +81,66 @@ export default function DirectionsPage() {
       {/* OTHER DIRECTIONS */}
       <section className="other-directions">
         <div className="other-heading">
-          <p className="section-kicker">02 / 03</p>
+          <p className="section-kicker">ДРУГИЕ НАПРАВЛЕНИЯ</p>
 
           <h2>
-            ЕЩЁ
+            ПОПРОБУЙ
             <br />
-            НАПРАВЛЕНИЯ.
+            ДРУГОЙ
+            <br />
+            РИТМ.
           </h2>
-
-          <p>
-            Разные стили.
-            <br />
-            Разная энергия.
-            <br />
-            Один STEP TAP.
-          </p>
         </div>
 
         <div className="other-list">
-          {otherCards.map((card) => (
+          {otherStyles.map((style) => (
             <Link
-              key={card.title}
-              href={card.href}
-              className={`other-card ${card.variant}`}
+              key={style.slug}
+              href={styleHref(style)}
+              className={`other-card ${style.slug === "dancehall" ? "dancehall-card" : "latina-card"}`}
             >
               <div className="other-card-top">
-                <span>{card.number}</span>
-                <span>→</span>
+                <span>{style.card.number}</span>
+                <span aria-hidden="true">→</span>
               </div>
 
-              <div className="other-card-title">
-                <p>{card.kicker}</p>
-                <h3>{card.title}</h3>
-              </div>
-
-              {card.variant === "dancehall-card" ? (
-                <div className="other-card-shape">
+              {style.slug === "dancehall" ? (
+                <div className="other-card-shape" aria-hidden="true">
                   <div />
                   <div />
                   <div />
                 </div>
               ) : (
-                <div className="latina-circle">
-                  {card.circleWords?.map((word) => (
-                    <span key={word}>{word}</span>
-                  ))}
+                <div className="latina-circle" aria-hidden="true">
+                  <span>ТАНЦУЙ</span>
+                  <span>ЧУВСТВУЙ</span>
                 </div>
               )}
+
+              <div className="other-card-title">
+                <p>{style.tags.join(" · ")}</p>
+                <h3>{style.title}</h3>
+                <p className="other-card-desc">{style.description}</p>
+                <span className="other-card-more">О ЗАНЯТИЯХ →</span>
+              </div>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* CHOICE */}
+      {/* НЕ ОБЯЗАТЕЛЬНО ВЫБИРАТЬ СРАЗУ */}
       <section className="choice-section">
         <div className="choice-pink">
-          <p className="section-kicker">НЕ ЗНАЕШЬ, ЧТО ВЫБРАТЬ?</p>
+          <p className="section-kicker">ТВОЙ ПЕРВЫЙ ШАГ</p>
 
           <h2>
-            НАЧНИ
+            НЕ
             <br />
-            СВОЙ
+            ОБЯЗАТЕЛЬНО
             <br />
-            ПУТЬ.
+            ВЫБИРАТЬ
+            <br />
+            СРАЗУ.
           </h2>
         </div>
 
@@ -199,44 +148,24 @@ export default function DirectionsPage() {
           <div className="choice-lines" />
 
           <p>
-            Расскажи нам
-            <br />
-            немного о себе —
-            <br />
-            и мы поможем
-            <br />
-            выбрать направление.
+            Опиши, что тебе нравится: музыка, парный танец, пластика или активное
+            движение. Подскажем, с какого занятия начать.
           </p>
 
-          <SignupLink className="choice-button">ПОДОБРАТЬ НАПРАВЛЕНИЕ →</SignupLink>
+          <SignupLink className="choice-button">ПОДОБРАТЬ ЗАНЯТИЕ →</SignupLink>
         </div>
       </section>
 
-      {/* FINAL CTA */}
-      <section className="directions-final">
-        <div className="final-copy">
-          <p className="section-kicker">ТВОЙ ПЕРВЫЙ ШАГ</p>
-
-          <h2>
-            ГОТОВЫ
+      <FaqSection
+        title={
+          <>
+            ПЕРЕД ПЕРВЫМ
             <br />
-            ТАНЦЕВАТЬ?
-          </h2>
-
-          <p>
-            Выбери направление
-            <br />и приходи на первое занятие.
-          </p>
-
-          <SignupLink className="final-button">
-            ЗАПИСАТЬСЯ <span>→</span>
-          </SignupLink>
-        </div>
-
-        <div className="final-logo">
-          <Image src="/step-tap-logo.png" alt="STEP TAP" width={260} height={260} />
-        </div>
-      </section>
+            ЗАНЯТИЕМ
+          </>
+        }
+        items={directionsFaq}
+      />
 
       <SiteFooter />
     </main>
