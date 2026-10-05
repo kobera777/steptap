@@ -366,22 +366,6 @@
   z-index: 3 !important;
 }
 
-.hero-note {
-  position: absolute;
-  z-index: 4;
-  right: 28px;
-  bottom: 28px;
-  max-width: 190px;
-  /* Чёрный, а не розовый: надпись лежит поверх фотографии и на светлой
-     одежде розовый по розовому не читался. */
-  color: var(--color-black);
-  font-family: var(--font-serif);
-  font-size: 23px;
-  line-height: 0.95;
-  text-align: left;
-  transform: rotate(-7deg);
-}
-
 /* ==================================================
    ABOUT DIRECTION
 ================================================== */
@@ -1208,12 +1192,6 @@
     transform: none !important;
   }
 
-  .hero-note {
-    right: 18px;
-    bottom: 18px;
-    font-size: 20px;
-  }
-
   .about-direction,
   .moments,
   .class-features,
@@ -1549,7 +1527,6 @@
   .rental-art {
     min-height: 300px;
   }
-
 }
 
 @media (max-width: 680px) {

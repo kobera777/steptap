@@ -4,6 +4,7 @@ import { useMemo, useState, useSyncExternalStore } from "react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SignupLink } from "@/components/layout/SignupLink";
+import { BrandDot } from "@/components/ui/BrandDot";
 import {
   classes,
   days,
@@ -227,7 +228,8 @@ export function SchedulePage() {
               <br />
               чем
               <br />
-              танец ♡
+              танец
+              <BrandDot />
             </span>
           </div>
         </div>

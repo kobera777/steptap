@@ -285,3 +285,23 @@
     transform: none;
   }
 }
+
+/* ---------- Точка из логотипа (components/ui/BrandDot.tsx) ----------
+   Розовая, как в «STEP TAP.». Внутри розовых квадратов — белая:
+   розовая точка на розовом не видна. */
+.brand-dot {
+  display: inline-block;
+  width: 0.34em;
+  height: 0.34em;
+  margin-left: 0.08em;
+  border-radius: 50%;
+  background: var(--color-pink);
+  vertical-align: baseline;
+}
+
+.geometry-square .brand-dot,
+.sp-square .brand-dot,
+.rental-square .brand-dot,
+.schedule-outline-square .brand-dot {
+  background: var(--color-white);
+}

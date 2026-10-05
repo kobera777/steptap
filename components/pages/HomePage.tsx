@@ -9,6 +9,7 @@ import { FaqList } from "@/components/home/FaqList";
 import { MomentsVideo } from "@/components/home/MomentsVideo";
 import { DirectionCard } from "@/components/sections/DirectionCard";
 import { SignupLink } from "@/components/layout/SignupLink";
+import { BrandDot } from "@/components/ui/BrandDot";
 
 /**
  * Главная страница. Оформление — прежнее, тексты и порядок блоков — из
@@ -77,14 +78,6 @@ export function HomePage() {
             quality={75}
             sizes="(max-width: 900px) 100vw, 50vw"
           />
-
-          <div className="hero-note" data-parallax="0.12">
-            Танцуй.
-            <br />
-            Чувствуй.
-            <br />
-            Вместе ♡
-          </div>
         </div>
       </section>
 
@@ -134,7 +127,8 @@ export function HomePage() {
               <br />
               ЧЕМ
               <br />
-              ТАНЕЦ ♡
+              ТАНЕЦ
+              <BrandDot />
             </span>
           </div>
 
@@ -315,7 +309,9 @@ export function HomePage() {
             </Link>
           </div>
 
-          <p className="final-cta-note">Условия для выбранной группы уточни при записи.</p>
+          <p className="final-cta-note">
+            Условия для выбранной группы уточни при записи.
+          </p>
         </div>
 
         <div className="final-logo" data-reveal="scale" data-reveal-delay="2">
@@ -352,7 +348,8 @@ export function HomePage() {
             <span>
               Пространство
               <br />
-              для движения ♡
+              для движения
+              <BrandDot />
             </span>
           </div>
         </div>

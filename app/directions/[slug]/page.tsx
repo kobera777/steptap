@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SignupLink } from "@/components/layout/SignupLink";
+import { BrandDot } from "@/components/ui/BrandDot";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { FirstStepBand } from "@/components/sections/FirstStepBand";
 import { danceStyles, findStyle } from "@/data/directions";
@@ -58,10 +59,7 @@ export default async function StylePage(props: PageProps<"/directions/[slug]">) 
           <p className="sp-lead">{style.description}</p>
 
           <div className="sp-actions">
-            <SignupLink
-              className="sp-btn"
-              ariaLabel={`Хочу попробовать: ${style.short}`}
-            >
+            <SignupLink className="sp-btn" ariaLabel={`Хочу попробовать: ${style.short}`}>
               ХОЧУ ПОПРОБОВАТЬ <span>→</span>
             </SignupLink>
             <Link className="sp-textlink" href="/schedule">
@@ -109,7 +107,8 @@ export default async function StylePage(props: PageProps<"/directions/[slug]">) 
               <br />
               ЧЕМ
               <br />
-              ТАНЕЦ ♡
+              ТАНЕЦ
+              <BrandDot />
             </span>
           </div>
           <div className="sp-circle">
