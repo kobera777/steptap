@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
     // Страниц /signup, /contacts и /events пока нет — ведём на готовые разделы,
     // чтобы ни одна кнопка сайта не отдавала 404.
     return [
+      // Прямая ссылка /feedback на анонимный опрос; в меню и карте сайта её нет.
+      {
+        source: "/feedback",
+        destination: "https://step-tap-feedback.vercel.app/",
+        permanent: false,
+      },
       // Аренда переехала на свою страницу — старые ссылки ведут туда.
       { source: "/prices/rental", destination: "/rental", permanent: false },
       { source: "/signup", destination: "/#contacts", permanent: false },
