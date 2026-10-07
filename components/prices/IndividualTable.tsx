@@ -18,8 +18,9 @@ function priceOf(tier: IndividualTier, count: number) {
 
 /**
  * Индивидуальные занятия — одна таблица: строки — категории преподавателя,
- * столбцы — разовое и абонементы. Крупно — цена занятия, мелко — сумма
- * абонемента. На телефоне таблица сменяется карточками (как в аренде).
+ * столбцы — разовое и абонементы. Крупно — сумма абонемента (её и платят),
+ * мелко — сколько выходит за одно занятие. На телефоне таблица сменяется
+ * карточками (как в аренде).
  * Все числа берутся из data/prices.ts.
  */
 export function IndividualTable() {
@@ -28,7 +29,7 @@ export function IndividualTable() {
       <div className="pr-table-wrap">
         <table className="pr-table pr-table-individual">
           <caption className="pr-visually-hidden">
-            Индивидуальные занятия: цена одного занятия по категориям преподавателя
+            Индивидуальные занятия: стоимость по категориям преподавателя
           </caption>
           <thead>
             <tr>
@@ -48,8 +49,10 @@ export function IndividualTable() {
                   const { rate, total } = priceOf(tier, n);
                   return (
                     <td key={n}>
-                      <span>{rub(rate)}</span>
-                      <small>{n === 1 ? "за занятие" : `${rub(total)} за ${n}`}</small>
+                      <span>{rub(total)}</span>
+                      <small>
+                        {n === 1 ? "за одно занятие" : `${rub(rate)} за занятие`}
+                      </small>
                     </td>
                   );
                 })}
@@ -70,8 +73,8 @@ export function IndividualTable() {
                   <div key={n}>
                     <dt>{columnTitle(n)}</dt>
                     <dd>
-                      {rub(rate)}
-                      {n > 1 && <small>{rub(total)} всего</small>}
+                      {rub(total)}
+                      {n > 1 && <small>{rub(rate)} за занятие</small>}
                     </dd>
                   </div>
                 );

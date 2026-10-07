@@ -2,13 +2,11 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SignupLink } from "@/components/layout/SignupLink";
-import { FaqSection } from "@/components/sections/FaqSection";
 import { IndividualTable } from "@/components/prices/IndividualTable";
 import {
   groupPlans,
   isApproximate,
   perLesson,
-  priceFaq,
   rub,
   singleLesson,
   trialPrice,
@@ -107,7 +105,6 @@ export default function PricesPage() {
       <section className="pr-block pr-block-sand" id="individual">
         <div className="pr-sectionhead">
           <div>
-            <p className="pr-eyebrow">02 / ИНДИВИДУАЛЬНЫЕ ЗАНЯТИЯ</p>
             <h2>
               ИНДИВИДУАЛЬНЫЕ
               <br />
@@ -117,22 +114,7 @@ export default function PricesPage() {
         </div>
 
         <IndividualTable />
-
-        <p className="pr-small pr-muted pr-footnote">
-          Преподавателя, продолжительность урока, доступное время и правила
-          индивидуального абонемента согласуем до оплаты.
-        </p>
       </section>
-
-      <FaqSection
-        title={
-          <>
-            ВСЁ О ЦЕНАХ
-            <br />И УСЛОВИЯХ
-          </>
-        }
-        items={priceFaq}
-      />
 
       <SiteFooter />
     </main>
