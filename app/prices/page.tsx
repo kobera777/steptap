@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SignupLink } from "@/components/layout/SignupLink";
 import { FaqSection } from "@/components/sections/FaqSection";
-import { IndividualCalculator } from "@/components/prices/IndividualCalculator";
+import { IndividualTable } from "@/components/prices/IndividualTable";
 import {
   groupPlans,
   isApproximate,
@@ -116,7 +116,7 @@ export default function PricesPage() {
           </div>
         </div>
 
-        <IndividualCalculator />
+        <IndividualTable />
 
         <p className="pr-small pr-muted pr-footnote">
           Преподавателя, продолжительность урока, доступное время и правила

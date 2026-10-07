@@ -360,7 +360,7 @@
 
 @media (max-width: 900px) {
   /* На планшете таблица аренды не помещалась и требовала горизонтальной
-         прокрутки — ужимаем отступы в ячейках. */
+           прокрутки — ужимаем отступы в ячейках. */
 
   .pr-table th,
   .pr-table td {
@@ -722,33 +722,6 @@
   line-height: 1.6;
 }
 
-/* ---------- Индивидуальные ---------- */
-
-.pr-chips {
-  margin: 25px 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.pr-chip {
-  padding: 11px 17px;
-  border: 1px solid rgba(17, 17, 17, 0.2);
-  border-radius: var(--radius-pill);
-  background: transparent;
-  color: var(--color-black);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: var(--tracking-ui);
-  cursor: pointer;
-}
-
-.pr-chip[aria-pressed="true"] {
-  border-color: var(--color-black);
-  background: var(--color-black);
-  color: var(--color-white);
-}
-
 @media (max-width: 1000px) {
   .pr-plans {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -874,41 +847,21 @@
   border: 0;
 }
 
-/* ---------- Индивидуальные: переключатель и пять карточек ---------- */
+/* ---------- Индивидуальные: таблица ---------- */
 
-.pr-ind-switch {
-  margin: 0 0 22px;
+.pr-table-individual td span {
+  font-size: 17px;
+  font-weight: 700;
 }
 
-.pr-plans.pr-ind-plans {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+.pr-table-individual td small {
+  font-size: 11px;
 }
 
-.pr-ind-plans .pr-plan-total {
-  margin-top: 14px;
-  font-size: clamp(28px, 2.6vw, 36px);
-}
-
-.pr-ind-plans .pr-plan-unit {
-  margin: 10px 0 20px;
+/* Сумма абонемента под ценой занятия в карточке на телефоне. */
+.pr-rate dd small {
+  display: block;
+  margin-top: 2px;
   color: var(--color-muted);
-  font-size: 13px;
-  line-height: 1.4;
-}
-
-.pr-ind-plans .pr-plan-unit strong {
-  color: var(--color-black);
-  font-size: 13px;
-}
-
-@media (max-width: 1100px) {
-  .pr-plans.pr-ind-plans {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 760px) {
-  .pr-plans.pr-ind-plans {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  font-size: 11px;
 }
