@@ -9,6 +9,7 @@ import { FaqList } from "@/components/home/FaqList";
 import { MomentsVideo } from "@/components/home/MomentsVideo";
 import { DirectionCard } from "@/components/sections/DirectionCard";
 import { SignupLink } from "@/components/layout/SignupLink";
+import { SchoolMap } from "@/components/sections/SchoolMap";
 
 /**
  * Главная страница. Оформление — прежнее, тексты и порядок блоков — из
@@ -222,6 +223,12 @@ export function HomePage() {
             ЗАЛЫ И ТАРИФЫ <span>→</span>
           </Link>
         </div>
+      </section>
+
+      {/* КАК НАС НАЙТИ — карта на чёрном фоне, как была внизу главной раньше. */}
+      <section className="contacts home-map" id="map">
+        <p className="contacts-kicker">КАК НАС НАЙТИ</p>
+        <SchoolMap />
       </section>
 
       <SiteFooter />

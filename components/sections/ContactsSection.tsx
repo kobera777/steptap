@@ -1,13 +1,8 @@
 import { SignupLink } from "@/components/layout/SignupLink";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { contactsPage, messageExamples } from "@/data/contacts";
-import {
-  siteContacts,
-  socialLinks,
-  telHref,
-  yandexMapEmbedUrl,
-  yandexMapPageUrl,
-} from "@/data/site";
+import { siteContacts, socialLinks, telHref, yandexMapPageUrl } from "@/data/site";
+import { SchoolMap } from "./SchoolMap";
 import "./contacts.css";
 
 /**
@@ -72,32 +67,7 @@ export function ContactsSection() {
         ))}
       </div>
 
-      {/* Карта. loading="lazy" — виджет Яндекса не грузится, пока до него
-          не долистают. */}
-      <div className="contacts-map">
-        <div className="contacts-map-frame">
-          <iframe
-            src={yandexMapEmbedUrl()}
-            title={`STEP TAP на карте — ${siteContacts.address}`}
-            loading="lazy"
-            allowFullScreen
-          />
-        </div>
-
-        <div className="contacts-map-foot">
-          <p>
-            <b>ТВОЙ МАРШРУТ НА ТАНЦЫ.</b>
-            <span>
-              {siteContacts.address}
-              {siteContacts.addressNote && ` · ${siteContacts.addressNote}`}
-            </span>
-          </p>
-
-          <a href={yandexMapPageUrl()} target="_blank" rel="noreferrer">
-            ОТКРЫТЬ ЯНДЕКС КАРТЫ <span>→</span>
-          </a>
-        </div>
-      </div>
+      <SchoolMap />
 
       {/* Самое страшное в записи — первое сообщение незнакомым людям.
           Показываем, что писать можно совсем коротко. */}
