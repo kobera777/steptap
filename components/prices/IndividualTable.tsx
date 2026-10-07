@@ -50,9 +50,7 @@ export function IndividualTable() {
                   return (
                     <td key={n}>
                       <span>{rub(total)}</span>
-                      <small>
-                        {n === 1 ? "за одно занятие" : `${rub(rate)} за занятие`}
-                      </small>
+                      {n > 1 && <small>{rub(rate)} за занятие</small>}
                     </td>
                   );
                 })}

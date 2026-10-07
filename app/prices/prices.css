@@ -360,7 +360,7 @@
 
 @media (max-width: 900px) {
   /* На планшете таблица аренды не помещалась и требовала горизонтальной
-           прокрутки — ужимаем отступы в ячейках. */
+             прокрутки — ужимаем отступы в ячейках. */
 
   .pr-table th,
   .pr-table td {
@@ -528,7 +528,7 @@
   padding: 65px 7vw;
   display: grid;
   /* Осталась одна розовая карточка первого занятия. */
-  grid-template-columns: minmax(0, 640px);
+  grid-template-columns: minmax(0, 780px);
   justify-content: center;
   background: var(--color-white);
 }
@@ -539,49 +539,6 @@
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
-}
-
-.pr-first {
-  position: relative;
-  padding: 36px;
-  border-radius: var(--radius-card);
-  background: var(--color-pink);
-  color: var(--color-black);
-}
-
-.pr-first .pr-eyebrow {
-  color: rgba(17, 17, 17, 0.7);
-}
-
-.pr-first-price {
-  margin: 15px 0;
-  font-size: clamp(72px, 7vw, 110px);
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-display);
-  font-weight: 800;
-}
-
-.pr-first > p:not(.pr-eyebrow):not(.pr-first-price) {
-  max-width: 350px;
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.pr-first .pr-btn {
-  margin: 23px 0 18px;
-}
-
-.pr-ribbon {
-  position: absolute;
-  top: 28px;
-  right: 25px;
-  padding: 7px 10px;
-  border: 1px solid currentColor;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: var(--tracking-ui);
-  transform: rotate(6deg);
 }
 
 /* ---------- Блоки ---------- */
@@ -772,16 +729,6 @@
     min-height: 30px;
     font-size: 8px;
   }
-
-  .pr-first {
-    padding: 28px 22px;
-  }
-
-  .pr-ribbon {
-    position: static;
-    display: inline-block;
-    margin-bottom: 8px;
-  }
 }
 
 /* ---------- Аренда: ссылки и подпись к тарифам ---------- */
@@ -859,9 +806,135 @@
 }
 
 /* Сумма абонемента под ценой занятия в карточке на телефоне. */
+
 .pr-rate dd small {
   display: block;
   margin-top: 2px;
   color: var(--color-muted);
   font-size: 11px;
+}
+
+/* ---------- Первое занятие: розовая карточка с печатью «−50 %» ---------- */
+
+.pr-first {
+  position: relative;
+  padding: 40px 44px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 30px;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--color-pink);
+  color: var(--color-black);
+}
+
+/* Мягкий круг на фоне — та же геометрия, что у кругов на других страницах. */
+.pr-first::before {
+  content: "";
+  position: absolute;
+  right: -90px;
+  bottom: -110px;
+  width: 300px;
+  height: 300px;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  border-radius: 50%;
+}
+
+.pr-first-main {
+  position: relative;
+  z-index: 1;
+}
+
+.pr-first .pr-eyebrow {
+  color: rgba(17, 17, 17, 0.7);
+}
+
+.pr-first-price {
+  margin: 10px 0 18px;
+  font-size: clamp(72px, 7vw, 110px);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  font-weight: 800;
+}
+
+/* Строка «С абонементом: 950 ₽ → 475 ₽». */
+.pr-first-deal {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.28);
+  font-size: 14px;
+}
+
+.pr-first-deal s {
+  opacity: 0.6;
+}
+
+.pr-first-deal strong {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.pr-first .pr-btn {
+  margin-top: 26px;
+}
+
+.pr-first-stamp {
+  position: relative;
+  z-index: 1;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 2px solid var(--color-black);
+  border-radius: 50%;
+  outline: 1px solid var(--color-black);
+  outline-offset: 5px;
+  text-align: center;
+  transform: rotate(-12deg);
+}
+
+.pr-first-stamp b {
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: var(--tracking-heading);
+}
+
+.pr-first-stamp small {
+  font-size: 9px;
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: var(--tracking-label);
+}
+
+@media (max-width: 560px) {
+  .pr-first {
+    padding: 28px 22px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* На телефоне печать — над ценой, слева, чтобы ничего не перекрывать. */
+  .pr-first-stamp {
+    order: -1;
+    justify-self: start;
+    width: 96px;
+    height: 96px;
+    margin: 6px 0 0 6px;
+  }
+
+  .pr-first-stamp b {
+    font-size: 22px;
+  }
+
+  .pr-first-stamp small {
+    font-size: 7px;
+  }
 }

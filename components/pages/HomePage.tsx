@@ -4,7 +4,7 @@ import { HomeHeader } from "@/components/layout/HomeHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { homeHero, marqueeWords } from "@/data/home";
 import { bachataStyles, firstClassFaq } from "@/data/directions";
-import { rub, trialPrice } from "@/data/prices";
+import { firstLesson, firstLessonWithPlan, rub } from "@/data/prices";
 import { FaqList } from "@/components/home/FaqList";
 import { MomentsVideo } from "@/components/home/MomentsVideo";
 import { DirectionCard } from "@/components/sections/DirectionCard";
@@ -221,8 +221,8 @@ export function HomePage() {
         <div className="final-cta-copy" data-reveal data-reveal-delay="1">
           <div className="final-cta-price">
             <small>ПЕРВОЕ ГРУППОВОЕ ЗАНЯТИЕ</small>
-            <strong>{rub(trialPrice())}</strong>
-            <span>БЕСПЛАТНО ПРИ ПОКУПКЕ АБОНЕМЕНТА</span>
+            <strong>{rub(firstLesson.price)}</strong>
+            <span>{rub(firstLessonWithPlan())} ПРИ ПОКУПКЕ АБОНЕМЕНТА</span>
           </div>
 
           <div className="final-cta-actions">

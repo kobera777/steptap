@@ -74,9 +74,15 @@ export function isApproximate(plan: GroupPlan) {
   return plan.total % plan.lessons !== 0;
 }
 
-/** Первое групповое занятие без покупки абонемента — половина разового. */
-export function trialPrice() {
-  return singleLesson.total / 2;
+/**
+ * Первое групповое занятие. Без абонемента — 950 ₽; если после него
+ * покупаешь абонемент — половина, 475 ₽ (условие владельца, 07.10.2026).
+ */
+export const firstLesson = { price: 950 };
+
+/** Первое занятие при покупке абонемента — половина цены. */
+export function firstLessonWithPlan() {
+  return firstLesson.price / 2;
 }
 
 /** Цена одного занятия внутри абонемента. */

@@ -9,7 +9,8 @@ import {
   perLesson,
   rub,
   singleLesson,
-  trialPrice,
+  firstLesson,
+  firstLessonWithPlan,
 } from "@/data/prices";
 import "./prices.css";
 
@@ -36,20 +37,30 @@ export default function PricesPage() {
       {/* ПЕРВОЕ ЗНАКОМСТВО */}
       <section className="pr-intro">
         <div className="pr-first">
-          <p className="pr-eyebrow">ПЕРВОЕ ГРУППОВОЕ ЗАНЯТИЕ</p>
-          <span className="pr-ribbon">−50 % ОТ РАЗОВОГО</span>
-          <p className="pr-first-price">{rub(trialPrice())}</p>
-          <p>
-            <strong>Бесплатно при покупке абонемента после занятия.</strong> Без покупки —{" "}
-            {rub(trialPrice())}.
-          </p>
-          <SignupLink className="pr-btn pr-btn-dark">
-            НА ПЕРВОЕ ЗАНЯТИЕ <span>→</span>
-          </SignupLink>
-          <p className="pr-small">
-            Условия для выбранной группы и учёт первого занятия в абонементе уточни при
-            записи.
-          </p>
+          <div className="pr-first-main">
+            <p className="pr-eyebrow">ПЕРВОЕ ГРУППОВОЕ ЗАНЯТИЕ</p>
+            <p className="pr-first-price">{rub(firstLesson.price)}</p>
+
+            <div className="pr-first-deal">
+              <span>С абонементом</span>
+              <s>{rub(firstLesson.price)}</s>
+              <strong>{rub(firstLessonWithPlan())}</strong>
+            </div>
+
+            <SignupLink className="pr-btn pr-btn-dark">
+              НА ПЕРВОЕ ЗАНЯТИЕ <span>→</span>
+            </SignupLink>
+          </div>
+
+          {/* Печать «−50 %» — как штамп: круг, повёрнутый на несколько градусов. */}
+          <div className="pr-first-stamp" aria-hidden="true">
+            <b>−50 %</b>
+            <small>
+              ПРИ ПОКУПКЕ
+              <br />
+              АБОНЕМЕНТА
+            </small>
+          </div>
         </div>
       </section>
 
