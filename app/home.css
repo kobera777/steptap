@@ -1,206 +1,5 @@
-/* Главная страница — все стили только здесь (шапка главной, hero, секции). */
-
-/* ==================================================
-   HEADER
-================================================== */
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  width: 100%;
-  min-height: 74px;
-  padding: 12px 42px;
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  background: var(--black);
-  color: var(--white);
-  transition:
-    background 0.35s ease,
-    padding 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-/* Liquid Glass: после первого скролла шапка становится полупрозрачной */
-.site-header.is-scrolled {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  background: rgba(17, 17, 17, 0.6);
-  box-shadow:
-    inset 0 -1px 0 rgba(255, 255, 255, 0.12),
-    0 10px 40px rgba(0, 0, 0, 0.25);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
-  backdrop-filter: blur(14px) saturate(160%);
-}
-
-/* Пока открыто мобильное меню, шапка сплошная: вложенный backdrop-filter
-   не дал бы панели меню размыть страницу под собой */
-.site-header.is-open {
-  background: var(--black);
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-}
-
-.site-header.is-scrolled .site-logo {
-  transform: scale(0.88);
-}
-
-.site-logo {
-  transition: transform 0.35s ease;
-  transform-origin: left center;
-}
-
-.site-logo {
-  display: block;
-  width: 86px;
-  height: auto;
-  flex: 0 0 86px;
-}
-
-.site-logo img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-.main-nav {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(17px, 2vw, 32px);
-}
-
-.main-nav > a,
-.nav-dropdown > a {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  color: var(--white);
-  font-size: 12px;
-  line-height: 1;
-  font-weight: 700;
-  letter-spacing: var(--tracking-ui);
-  white-space: nowrap;
-  text-transform: uppercase;
-}
-
-.nav-dropdown {
-  position: relative;
-  flex: 0 0 auto;
-}
-
-/* Невидимый «мост» между кнопкой и меню: пока курсор идёт вниз,
-   hover не теряется и меню не закрывается. */
-.nav-dropdown::after {
-  content: "";
-  position: absolute;
-  left: -10px;
-  right: -10px;
-  top: 100%;
-  height: 18px;
-}
-
-.nav-dropdown > a span {
-  font-size: 11px;
-}
-
-.nav-dropdown > button {
-  all: unset;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 18px;
-  margin-left: 2px;
-  color: var(--white);
-  font-size: 11px;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.nav-dropdown {
-  display: inline-flex;
-  align-items: center;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: calc(100% + 15px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-5px);
-  width: 205px;
-  padding: 10px;
-  display: grid;
-  gap: 2px;
-  border-radius: var(--radius-card);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition:
-    opacity 0.18s ease,
-    transform 0.18s ease;
-}
-
-.nav-dropdown:hover .dropdown-menu,
-.nav-dropdown:focus-within .dropdown-menu,
-.nav-dropdown.is-open .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
-}
-
-.dropdown-menu a {
-  /* Прописная кириллица в мелком кегле требует разрядки. */
-  letter-spacing: var(--tracking-ui);
-  display: block;
-  padding: 9px 10px;
-  border-radius: var(--radius-sm);
-  color: var(--white);
-  font-size: 11px;
-  line-height: 1.25;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.dropdown-menu a:hover {
-  background: var(--pink);
-  color: var(--black);
-}
-
-.header-action {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 13px;
-  padding: 12px 20px;
-  border-radius: var(--radius-pill);
-  /* Розовая, как кнопка «Записаться» на внутренних страницах (.sc-signup):
-     одна и та же кнопка на всём сайте. */
-  background: var(--color-pink);
-  color: var(--color-black);
-  font-size: 11px;
-  line-height: 1;
-  font-weight: 700;
-  letter-spacing: var(--tracking-ui);
-  text-transform: uppercase;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.header-action span {
-  font-size: 16px;
-}
-
-.header-action:hover {
-  background: var(--color-black);
-  color: var(--color-white);
-}
+/* Главная страница — hero и секции. Шапка (общая для всех страниц) —
+   components/layout/home-header.css. */
 
 /* ==================================================
    GENERAL
@@ -294,6 +93,7 @@
 }
 
 /* Второстепенная ссылка рядом с главной кнопкой. */
+
 .hero-textlink {
   font-size: 12px;
   font-weight: 800;
@@ -307,6 +107,7 @@
 }
 
 /* Направления и адрес под кнопками. */
+
 .hero-offer {
   max-width: 400px;
   margin: 26px 0 0;
@@ -346,6 +147,7 @@
 
 /* Плавный переход фото в кремовый фон слева и лёгкое затемнение снизу —
    как в референсе: пара «выходит» из страницы, без резкой границы. */
+
 .hero-photo::before {
   content: "";
   position: absolute;
@@ -362,6 +164,7 @@
 }
 
 /* Вырезанная пара — над градиентом (z 2), под подписью. */
+
 .hero-photo img.hero-cutout {
   z-index: 3 !important;
 }
@@ -511,6 +314,7 @@
 
 /* Сам ролик. Раньше здесь была нарисованная «заглушка» плеера:
    кнопка ▶, выдуманный таймкод и стрелки, которые никуда не вели. */
+
 .moments-video {
   position: relative;
   z-index: 2;
@@ -565,41 +369,6 @@
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
-}
-
-/* ==================================================
-   FIND YOUR GROUP
-================================================== */
-
-.group-cta {
-  display: grid;
-  min-height: 330px;
-}
-
-.group-cta-copy {
-  padding: 55px 6.5vw;
-  background: var(--pink);
-}
-
-.group-cta-copy .section-kicker {
-  margin-bottom: 8px;
-  color: var(--black);
-}
-
-.group-cta-copy h2 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(44px, 5vw, 74px);
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-display);
-  font-weight: 800;
-}
-
-.group-cta-copy > p:not(.section-kicker) {
-  max-width: 460px;
-  margin: 20px 0;
-  font-size: 14px;
-  line-height: 1.45;
 }
 
 .outline-button {
@@ -733,7 +502,7 @@
 .final-cta {
   min-height: 360px;
   display: grid;
-  grid-template-columns: 0.9fr 1fr 0.75fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .final-cta-pink {
@@ -773,6 +542,7 @@
 }
 
 /* Цена первого занятия — главный довод блока, поэтому крупно. */
+
 .final-cta-price {
   margin-bottom: 22px;
   display: flex;
@@ -817,77 +587,11 @@
   font-size: 12px;
 }
 
-.final-logo {
-  position: relative;
-  min-height: 360px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: var(--black);
-}
-
-.final-logo::before,
-.final-logo::after {
-  content: "";
-  position: absolute;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 50%;
-}
-
-.final-logo::before {
-  width: 330px;
-  height: 330px;
-}
-
-.final-logo::after {
-  width: 210px;
-  height: 210px;
-}
-
-.final-logo img {
-  position: relative;
-  z-index: 2;
-  width: min(210px, 65%);
-  height: auto;
-  display: block;
-  transform: rotate(-7deg);
-}
-
 /* ==================================================
    TABLET
 ================================================== */
 
 @media (max-width: 1200px) {
-  .site-header {
-    padding: 12px 25px;
-    gap: 20px;
-  }
-
-  .main-nav {
-    flex: 1;
-    min-width: 0;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    align-items: center;
-    justify-items: center;
-    gap: 0;
-    height: 100%;
-  }
-
-  .main-nav > a,
-  .nav-dropdown {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .main-nav > a,
-  .nav-dropdown > a {
-    font-size: 10px;
-  }
-
   .hero {
     grid-template-columns: 48% 52%;
     min-height: clamp(460px, 46vw, 600px);
@@ -925,29 +629,6 @@
 ================================================== */
 
 @media (max-width: 900px) {
-  .site-header {
-    min-height: 70px;
-  }
-
-  .site-logo {
-    width: 82px;
-    flex-basis: 82px;
-  }
-
-  .main-nav {
-    gap: 10px;
-  }
-
-  .main-nav > a,
-  .nav-dropdown > a {
-    font-size: 8px;
-  }
-
-  .header-action {
-    padding: 10px 14px;
-    font-size: 9px;
-  }
-
   .hero {
     grid-template-columns: 1fr;
   }
@@ -994,11 +675,6 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .final-logo {
-    grid-column: 1 / -1;
-    min-height: 300px;
-  }
-
   .video-frame {
     width: 100%;
   }
@@ -1009,26 +685,6 @@
 ================================================== */
 
 @media (max-width: 680px) {
-  .site-header {
-    min-height: 68px;
-    padding: 12px 18px;
-  }
-
-  .site-logo {
-    width: 78px;
-    flex-basis: 78px;
-  }
-
-  .main-nav {
-    display: none;
-  }
-
-  .header-action {
-    margin-left: auto;
-    padding: 10px 14px;
-    font-size: 9px;
-  }
-
   .hero-copy {
     padding: 48px 22px 38px;
   }
@@ -1063,7 +719,7 @@
   .home-directions-head h2,
   .faq-heading h2 {
     /* 12.5vw, а не 14vw: при 14vw слово «СВОБОДНОМУ» шире экрана телефона
-       и заголовок вылезал за правый край. */
+    и заголовок вылезал за правый край. */
     font-size: clamp(38px, 12.5vw, 68px);
   }
 
@@ -1091,7 +747,7 @@
 
   .video-frame {
     /* Отступ слева был нужен под стрелки «вперёд/назад», которых больше нет:
-       на телефоне ролик занимает всю ширину колонки. */
+    на телефоне ролик занимает всю ширину колонки. */
     width: 100%;
     margin-left: 0;
     margin-right: 0;
@@ -1099,7 +755,7 @@
 
   .video-placeholder {
     /* было 4/3 под рисованную заглушку; у ролика кадр 16/9,
-       иначе его обрезало бы сверху и снизу. */
+    иначе его обрезало бы сверху и снизу. */
     box-shadow: none;
   }
 
@@ -1107,10 +763,6 @@
     top: 11px;
     left: 11px;
     width: 57px;
-  }
-
-  .group-cta-copy {
-    padding: 55px 22px;
   }
 
   .faq-question > span {
@@ -1125,61 +777,6 @@
   .final-cta-copy {
     padding: 55px 22px;
   }
-
-  .final-logo {
-    grid-column: auto;
-    min-height: 300px;
-  }
-}
-
-/* ==================================================
-   HEADER — MOBILE MENU
-================================================== */
-
-.menu-toggle {
-  display: none;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  background: transparent;
-  border: 1px solid var(--white);
-  border-radius: var(--radius-pill);
-  color: var(--white);
-  cursor: pointer;
-}
-
-.menu-toggle i {
-  display: block;
-  width: 16px;
-  height: 2px;
-  background: currentColor;
-  box-shadow:
-    0 -5px 0 currentColor,
-    0 5px 0 currentColor;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.menu-toggle[aria-expanded="true"] i {
-  box-shadow: none;
-  transform: rotate(45deg);
-}
-
-.mobile-nav {
-  display: none;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
-  z-index: 100;
-  flex-direction: column;
-  padding: 6px 18px 20px;
-  border-radius: 0 0 var(--radius-card) var(--radius-card);
-  animation: mobile-nav-in 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 @keyframes mobile-nav-in {
@@ -1190,40 +787,6 @@
   to {
     opacity: 1;
     transform: none;
-  }
-}
-
-.mobile-nav a {
-  padding: 15px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-  color: var(--white);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: var(--tracking-ui);
-  text-transform: uppercase;
-}
-
-.mobile-nav .mobile-nav-action {
-  border-radius: var(--radius-pill);
-  margin-top: 14px;
-  padding: 14px 18px;
-  border: 0;
-  background: var(--pink);
-  color: var(--black);
-  text-align: center;
-}
-
-.site-header.is-open .mobile-nav {
-  display: flex;
-}
-
-@media (max-width: 680px) {
-  .menu-toggle {
-    display: inline-flex;
-  }
-
-  .header-action {
-    margin-left: auto;
   }
 }
 

@@ -1,71 +1,10 @@
-"use client";
+import { HomeHeader } from "./HomeHeader";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { mainNav } from "@/data/nav";
-import { siteName, siteTagline } from "@/data/site";
-import "./site-chrome.css";
-import { SignupLink } from "@/components/layout/SignupLink";
-
-/** Общая шапка всех страниц, кроме главной. Активный пункт определяется по адресу. */
+/**
+ * Шапка внутренних страниц. По просьбе владельца она такая же, как на
+ * главной (чёрная, с логотипом-картинкой), чтобы при переходе между
+ * страницами сайт не выглядел как другой. Вся логика — в HomeHeader.
+ */
 export function SiteHeader() {
-  const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-
-  // Пункт активен и на вложенных страницах (например, /gallery/album → ГАЛЕРЕЯ)
-  const isActive = (href: string) =>
-    pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
-
-  const links = mainNav.map((item) => (
-    <Link
-      key={item.href}
-      href={item.href}
-      className={isActive(item.href) ? "sc-active" : undefined}
-      onClick={() => setOpen(false)}
-    >
-      {item.label}
-    </Link>
-  ));
-
-  return (
-    <header className={`sc-header ${open ? "is-open" : ""}`} data-glass-header>
-      <Link href="/" className="sc-logo" aria-label={`${siteName} — на главную`}>
-        <strong>
-          {siteName}
-          <span>.</span>
-        </strong>
-        <small>{siteTagline}</small>
-      </Link>
-
-      <nav className="sc-nav" aria-label="Главное меню">
-        {links}
-      </nav>
-
-      <div className="sc-actions">
-        <SignupLink className="sc-signup">
-          ЗАПИСАТЬСЯ <b>→</b>
-        </SignupLink>
-
-        <button
-          type="button"
-          className="sc-burger"
-          aria-expanded={open}
-          aria-controls="sc-mobile-menu"
-          aria-label={open ? "Закрыть меню" : "Открыть меню"}
-          onClick={() => setOpen((value) => !value)}
-        >
-          <i />
-        </button>
-      </div>
-
-      <nav
-        id="sc-mobile-menu"
-        className="sc-mobile glass glass-solid"
-        aria-label="Мобильное меню"
-      >
-        {links}
-      </nav>
-    </header>
-  );
+  return <HomeHeader />;
 }

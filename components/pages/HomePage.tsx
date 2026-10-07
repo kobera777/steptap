@@ -191,26 +191,6 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* НЕ ЗНАЕШЬ, С ЧЕГО НАЧАТЬ? */}
-      <section className="group-cta">
-        <div className="group-cta-copy" data-reveal="left">
-          <p className="section-kicker">ТВОЙ ПЕРВЫЙ ШАГ</p>
-          <h2>
-            НЕ ЗНАЕШЬ,
-            <br />С ЧЕГО
-            <br />
-            НАЧАТЬ?
-          </h2>
-
-          <p>
-            Расскажи, что тебе нравится и танцевал ли ты раньше. Поможем выбрать
-            направление и время — без необходимости разбираться во всём самому.
-          </p>
-
-          <SignupLink className="outline-button">ПОДОБРАТЬ ЗАНЯТИЕ →</SignupLink>
-        </div>
-      </section>
-
       {/* ПЕРЕД ПЕРВЫМ ЗАНЯТИЕМ */}
       <section className="faq-section">
         <div className="faq-heading" data-reveal="left">
@@ -245,11 +225,6 @@ export function HomePage() {
             <span>БЕСПЛАТНО ПРИ ПОКУПКЕ АБОНЕМЕНТА</span>
           </div>
 
-          <p>
-            Первая групповая тренировка — {rub(trialPrice())}. Если после неё покупаешь
-            абонемент, первое занятие бесплатно.
-          </p>
-
           <div className="final-cta-actions">
             <SignupLink className="primary-button">
               ЗАПИСАТЬСЯ <span>→</span>
@@ -262,10 +237,6 @@ export function HomePage() {
           <p className="final-cta-note">
             Условия для выбранной группы уточни при записи.
           </p>
-        </div>
-
-        <div className="final-logo" data-reveal="scale" data-reveal-delay="2">
-          <Image src="/step-tap-logo.png" alt="STEP TAP" width={260} height={260} />
         </div>
       </section>
 

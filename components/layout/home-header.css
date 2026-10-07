@@ -1,0 +1,359 @@
+/* Чёрная шапка сайта (HomeHeader.tsx) — одна на всех страницах.
+   Раньше жила в app/home.css и была только у главной. */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  min-height: 74px;
+  padding: 12px 42px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  background: var(--color-black);
+  color: var(--color-white);
+  transition:
+    background 0.35s ease,
+    padding 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.site-header.is-scrolled {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background: rgba(17, 17, 17, 0.6);
+  box-shadow:
+    inset 0 -1px 0 rgba(255, 255, 255, 0.12),
+    0 10px 40px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+}
+
+.site-header.is-open {
+  background: var(--color-black);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.site-header.is-scrolled .site-logo {
+  transform: scale(0.88);
+}
+
+.site-logo {
+  transition: transform 0.35s ease;
+  transform-origin: left center;
+}
+
+.site-logo {
+  display: block;
+  width: 86px;
+  height: auto;
+  flex: 0 0 86px;
+}
+
+.site-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.main-nav {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(17px, 2vw, 32px);
+}
+
+.main-nav > a,
+.nav-dropdown > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--color-white);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: var(--tracking-ui);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.nav-dropdown {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.nav-dropdown::after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  right: -10px;
+  top: 100%;
+  height: 18px;
+}
+
+.nav-dropdown > a span {
+  font-size: 11px;
+}
+
+.nav-dropdown > button {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 18px;
+  margin-left: 2px;
+  color: var(--color-white);
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.nav-dropdown {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 15px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  width: 205px;
+  padding: 10px;
+  display: grid;
+  gap: 2px;
+  border-radius: var(--radius-card);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu,
+.nav-dropdown.is-open .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu a {
+  /* Прописная кириллица в мелком кегле требует разрядки. */
+  letter-spacing: var(--tracking-ui);
+  display: block;
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--color-white);
+  font-size: 11px;
+  line-height: 1.25;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.dropdown-menu a:hover {
+  background: var(--color-pink);
+  color: var(--color-black);
+}
+
+.header-action {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  /* Розовая, как кнопка «Записаться» на внутренних страницах (.sc-signup):
+  одна и та же кнопка на всём сайте. */
+  background: var(--color-pink);
+  color: var(--color-black);
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.header-action span {
+  font-size: 16px;
+}
+
+.header-action:hover {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+@media (max-width: 1200px) {
+  .site-header {
+    padding: 12px 25px;
+    gap: 20px;
+  }
+
+  .main-nav {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    justify-items: center;
+    gap: 0;
+    height: 100%;
+  }
+
+  .main-nav > a,
+  .nav-dropdown {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main-nav > a,
+  .nav-dropdown > a {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-header {
+    min-height: 70px;
+  }
+
+  .site-logo {
+    width: 82px;
+    flex-basis: 82px;
+  }
+
+  .main-nav {
+    gap: 10px;
+  }
+
+  .main-nav > a,
+  .nav-dropdown > a {
+    font-size: 8px;
+  }
+
+  .header-action {
+    padding: 10px 14px;
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 680px) {
+  .site-header {
+    min-height: 68px;
+    padding: 12px 18px;
+  }
+
+  .site-logo {
+    width: 78px;
+    flex-basis: 78px;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .header-action {
+    margin-left: auto;
+    padding: 10px 14px;
+    font-size: 9px;
+  }
+}
+
+.menu-toggle {
+  display: none;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--color-white);
+  border-radius: var(--radius-pill);
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.menu-toggle i {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: currentColor;
+  box-shadow:
+    0 -5px 0 currentColor,
+    0 5px 0 currentColor;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.menu-toggle[aria-expanded="true"] i {
+  box-shadow: none;
+  transform: rotate(45deg);
+}
+
+.mobile-nav {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 100;
+  flex-direction: column;
+  padding: 6px 18px 20px;
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+  animation: mobile-nav-in 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.mobile-nav a {
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--color-white);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
+}
+
+.mobile-nav .mobile-nav-action {
+  border-radius: var(--radius-pill);
+  margin-top: 14px;
+  padding: 14px 18px;
+  border: 0;
+  background: var(--color-pink);
+  color: var(--color-black);
+  text-align: center;
+}
+
+.site-header.is-open .mobile-nav {
+  display: flex;
+}
+
+@media (max-width: 680px) {
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .header-action {
+    margin-left: auto;
+  }
+}
+
+/* Пункт текущего раздела — розовая черта под словом. */
+.main-nav a.is-active,
+.mobile-nav a.is-active {
+  color: var(--color-pink);
+}

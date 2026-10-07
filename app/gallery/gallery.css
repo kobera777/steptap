@@ -118,7 +118,8 @@
 
 .gal-filters-bar {
   position: sticky;
-  top: 60px;
+  /* Под чёрной шапкой: её высота после скролла — около 102px. */
+  top: 86px;
   z-index: 50;
   padding: 18px 7vw 0;
   pointer-events: none;
@@ -462,7 +463,7 @@
   }
 
   .gal-filters-bar {
-    top: 54px;
+    top: 82px;
     padding: 14px 18px 0;
   }
 
