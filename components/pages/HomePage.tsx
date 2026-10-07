@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HomeHeader } from "@/components/layout/HomeHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { features, homeHero, marqueeWords } from "@/data/home";
+import { homeHero, marqueeWords } from "@/data/home";
 import { bachataStyles, firstClassFaq } from "@/data/directions";
 import { rub, trialPrice } from "@/data/prices";
 import { FaqList } from "@/components/home/FaqList";
@@ -108,13 +108,6 @@ export function HomePage() {
             ЧТОБЫ НАЧАТЬ.
           </h2>
 
-          <p>
-            Можно прийти без опыта, без пары и без уверенности, что «у меня получится». Мы
-            разберём движения, объясним непонятное и поможем освоиться в группе.
-          </p>
-
-          <p>А если уже танцуешь — найдём занятия, на которых можно двигаться дальше.</p>
-
           <Link className="outline-button" href="/about">
             ПОЗНАКОМИТЬСЯ СО ШКОЛОЙ →
           </Link>
@@ -153,10 +146,6 @@ export function HomePage() {
               УВИДЕТЬ.
             </h2>
           </div>
-
-          <p className="moments-subtitle">
-            Вот как выглядит танцевальная жизнь школы — с музыкой, людьми и эмоциями.
-          </p>
         </div>
 
         <div className="video-frame" data-reveal="scale" data-reveal-delay="1">
@@ -168,37 +157,9 @@ export function HomePage() {
         </div>
 
         <div className="moments-footer" data-reveal data-reveal-delay="2">
-          <p>Узнай школу не только по текстам.</p>
           <Link className="outline-button" href="/gallery">
             СМОТРЕТЬ ГАЛЕРЕЮ →
           </Link>
-        </div>
-      </section>
-
-      {/* НА ЗАНЯТИЯХ */}
-      <section className="class-features" id="classes">
-        <div className="features-title" data-reveal>
-          <p className="section-kicker">НА ЗАНЯТИЯХ</p>
-          <h2>
-            ПОНЯТНО.
-            <br />
-            ПОСТЕПЕННО.
-            <br />С ПРАКТИКОЙ.
-          </h2>
-        </div>
-
-        <div className="features-grid">
-          {features.map((feature, index) => (
-            <article
-              key={feature.title}
-              data-reveal
-              data-reveal-delay={String(index + 1)}
-            >
-              <span>{feature.number}</span>
-              <h3>{feature.title}</h3>
-              <p>{feature.text}</p>
-            </article>
-          ))}
         </div>
       </section>
 
