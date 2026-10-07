@@ -106,14 +106,7 @@ export function HomePage() {
       {/* ЛУЧШЕ ОДИН РАЗ УВИДЕТЬ */}
       <section className="moments" id="gallery">
         <div className="moments-heading" data-reveal>
-          <div>
-            <p className="section-kicker">АТМОСФЕРА STEP TAP</p>
-            <h2>
-              ЛУЧШЕ ОДИН РАЗ
-              <br />
-              УВИДЕТЬ.
-            </h2>
-          </div>
+          <h2 className="moments-title">АТМОСФЕРА STEP TAP</h2>
         </div>
 
         <div className="video-frame" data-reveal="scale" data-reveal-delay="1">

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { mainNav } from "@/data/nav";
 import {
   siteContacts,
   siteLegal,
@@ -29,14 +28,6 @@ export function SiteFooter() {
           </strong>
           <small>{siteTagline}</small>
         </Link>
-
-        <nav className="sc-footer-nav" aria-label="Меню в подвале">
-          {mainNav.map((item) => (
-            <Link key={item.href} href={item.href}>
-              {item.label}
-            </Link>
-          ))}
-        </nav>
 
         {social.length > 0 && (
           <div className="sc-social">
