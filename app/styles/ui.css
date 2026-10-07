@@ -299,7 +299,6 @@
   vertical-align: baseline;
 }
 
-.geometry-square .brand-dot,
 .sp-square .brand-dot,
 .schedule-outline-square .brand-dot {
   background: var(--color-white);

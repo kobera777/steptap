@@ -9,7 +9,6 @@ import { FaqList } from "@/components/home/FaqList";
 import { MomentsVideo } from "@/components/home/MomentsVideo";
 import { DirectionCard } from "@/components/sections/DirectionCard";
 import { SignupLink } from "@/components/layout/SignupLink";
-import { BrandDot } from "@/components/ui/BrandDot";
 
 /**
  * Главная страница. Оформление — прежнее, тексты и порядок блоков — из
@@ -36,10 +35,6 @@ export function HomePage() {
             ))}
           </h1>
 
-          <p className="hero-description" data-reveal data-reveal-delay="2">
-            {homeHero.lead}
-          </p>
-
           <div className="hero-actions" data-reveal data-reveal-delay="3">
             <SignupLink className="primary-button">
               НА ПЕРВОЕ ЗАНЯТИЕ <span>→</span>
@@ -48,12 +43,6 @@ export function HomePage() {
               ВЫБРАТЬ НАПРАВЛЕНИЕ
             </Link>
           </div>
-
-          <p className="hero-offer" data-reveal data-reveal-delay="4">
-            {homeHero.styles}
-            <br />
-            {homeHero.place}
-          </p>
         </div>
 
         <div className="hero-photo" data-reveal="scale" data-reveal-delay="2">
@@ -111,27 +100,6 @@ export function HomePage() {
           <Link className="outline-button" href="/about">
             ПОЗНАКОМИТЬСЯ СО ШКОЛОЙ →
           </Link>
-        </div>
-
-        <div className="geometry" data-reveal="right" data-reveal-delay="2">
-          <div className="geometry-square" data-parallax="0.08">
-            <span>
-              БОЛЬШЕ
-              <br />
-              ЧЕМ
-              <br />
-              ТАНЕЦ
-              <BrandDot />
-            </span>
-          </div>
-
-          <div className="geometry-circle" data-parallax="-0.06">
-            МУЗЫКА
-            <br />
-            ЛЮДИ
-            <br />
-            ДВИЖЕНИЕ
-          </div>
         </div>
       </section>
 
