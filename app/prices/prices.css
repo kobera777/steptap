@@ -858,25 +858,22 @@
   font-weight: 800;
 }
 
-/* Строка «С абонементом: 950 ₽ → 475 ₽». */
+/* Зачёркнутая полная цена рядом с крупной ценой со скидкой. */
+.pr-first-price s {
+  margin-left: 14px;
+  font-size: 0.32em;
+  font-weight: 700;
+  letter-spacing: 0;
+  opacity: 0.55;
+  vertical-align: middle;
+}
+
+/* Пояснение под ценой. */
 .pr-first-deal {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 12px;
-  padding: 10px 16px;
-  border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.28);
-  font-size: 14px;
-}
-
-.pr-first-deal s {
-  opacity: 0.6;
-}
-
-.pr-first-deal strong {
-  font-size: 22px;
-  font-weight: 800;
+  max-width: 380px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 .pr-first .pr-btn {

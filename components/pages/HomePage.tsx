@@ -221,8 +221,11 @@ export function HomePage() {
         <div className="final-cta-copy" data-reveal data-reveal-delay="1">
           <div className="final-cta-price">
             <small>ПЕРВОЕ ГРУППОВОЕ ЗАНЯТИЕ</small>
-            <strong>{rub(firstLesson.price)}</strong>
-            <span>{rub(firstLessonWithPlan())} ПРИ ПОКУПКЕ АБОНЕМЕНТА</span>
+            <strong>
+              {rub(firstLessonWithPlan())}
+              <s>{rub(firstLesson.price)}</s>
+            </strong>
+            <span>−50 % ПРИ ПОКУПКЕ АБОНЕМЕНТА</span>
           </div>
 
           <div className="final-cta-actions">

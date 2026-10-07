@@ -565,6 +565,15 @@
   font-weight: 800;
 }
 
+.final-cta-price strong s {
+  margin-left: 12px;
+  font-size: 0.34em;
+  font-weight: 700;
+  letter-spacing: 0;
+  opacity: 0.5;
+  vertical-align: middle;
+}
+
 .final-cta-price span {
   padding: 6px 12px;
   border-radius: var(--radius-pill);

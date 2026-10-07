@@ -39,13 +39,16 @@ export default function PricesPage() {
         <div className="pr-first">
           <div className="pr-first-main">
             <p className="pr-eyebrow">ПЕРВОЕ ГРУППОВОЕ ЗАНЯТИЕ</p>
-            <p className="pr-first-price">{rub(firstLesson.price)}</p>
-
-            <div className="pr-first-deal">
-              <span>С абонементом</span>
+            {/* Крупно — цена со скидкой (её и запоминают), рядом зачёркнутая. */}
+            <p className="pr-first-price">
+              {rub(firstLessonWithPlan())}
               <s>{rub(firstLesson.price)}</s>
-              <strong>{rub(firstLessonWithPlan())}</strong>
-            </div>
+            </p>
+
+            <p className="pr-first-deal">
+              <strong>При покупке абонемента.</strong> Без абонемента —{" "}
+              {rub(firstLesson.price)}.
+            </p>
 
             <SignupLink className="pr-btn pr-btn-dark">
               НА ПЕРВОЕ ЗАНЯТИЕ <span>→</span>
