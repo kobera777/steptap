@@ -109,9 +109,9 @@ export default function PricesPage() {
           <div>
             <p className="pr-eyebrow">02 / ИНДИВИДУАЛЬНЫЕ ЗАНЯТИЯ</p>
             <h2>
-              ВНИМАНИЕ —
+              ИНДИВИДУАЛЬНЫЕ
               <br />
-              ТВОЕЙ ЗАДАЧЕ.
+              ЗАНЯТИЯ
             </h2>
           </div>
         </div>

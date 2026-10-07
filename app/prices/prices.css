@@ -360,7 +360,7 @@
 
 @media (max-width: 900px) {
   /* На планшете таблица аренды не помещалась и требовала горизонтальной
-       прокрутки — ужимаем отступы в ячейках. */
+         прокрутки — ужимаем отступы в ячейках. */
 
   .pr-table th,
   .pr-table td {
@@ -724,33 +724,6 @@
 
 /* ---------- Индивидуальные ---------- */
 
-.pr-ind-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  gap: 60px;
-  align-items: start;
-}
-
-.pr-field {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.pr-field select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid rgba(17, 17, 17, 0.2);
-  border-radius: var(--radius-sm);
-  background: var(--color-white);
-  color: var(--color-black);
-  font: inherit;
-  font-size: 14px;
-  font-weight: 500;
-}
-
 .pr-chips {
   margin: 25px 0;
   display: flex;
@@ -776,76 +749,6 @@
   color: var(--color-white);
 }
 
-.pr-mini-scroll {
-  overflow-x: auto;
-}
-
-.pr-mini-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-
-.pr-mini-table caption {
-  padding: 10px 0;
-  color: var(--color-muted);
-  font-size: 12px;
-  text-align: left;
-}
-
-.pr-mini-table th,
-.pr-mini-table td {
-  padding: 14px 10px;
-  border-bottom: 1px solid rgba(17, 17, 17, 0.15);
-  text-align: left;
-  white-space: nowrap;
-}
-
-.pr-mini-table thead th {
-  color: var(--color-muted);
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.pr-mini-table tbody th {
-  font-weight: 700;
-}
-
-.pr-mini-table tr.is-chosen {
-  background: rgba(212, 95, 136, 0.14);
-}
-
-.pr-ind-result {
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-  border: 1px solid rgba(17, 17, 17, 0.15);
-  border-radius: var(--radius-card);
-  background: var(--color-white);
-}
-
-.pr-ind-result .pr-eyebrow {
-  margin: 0;
-}
-
-.pr-ind-amount {
-  margin: 0;
-  font-size: 54px;
-  line-height: 1;
-  letter-spacing: var(--tracking-display);
-  font-weight: 800;
-}
-
-.pr-tag {
-  padding: 7px 12px;
-  border: 1px solid rgba(17, 17, 17, 0.2);
-  border-radius: var(--radius-pill);
-  font-size: 10px;
-  letter-spacing: var(--tracking-ui);
-}
-
 @media (max-width: 1000px) {
   .pr-plans {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -854,8 +757,7 @@
 }
 
 @media (max-width: 900px) {
-  .pr-intro,
-  .pr-ind-grid {
+  .pr-intro {
     grid-template-columns: minmax(0, 1fr);
     gap: 35px;
   }
@@ -906,10 +808,6 @@
     position: static;
     display: inline-block;
     margin-bottom: 8px;
-  }
-
-  .pr-ind-amount {
-    font-size: 42px;
   }
 }
 
@@ -963,6 +861,7 @@
 }
 
 /* Заголовок для поисковиков и экранного диктора, на экране не виден. */
+
 .pr-visually-hidden {
   position: absolute;
   width: 1px;
@@ -973,4 +872,43 @@
   clip: rect(0 0 0 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ---------- Индивидуальные: переключатель и пять карточек ---------- */
+
+.pr-ind-switch {
+  margin: 0 0 22px;
+}
+
+.pr-plans.pr-ind-plans {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.pr-ind-plans .pr-plan-total {
+  margin-top: 14px;
+  font-size: clamp(28px, 2.6vw, 36px);
+}
+
+.pr-ind-plans .pr-plan-unit {
+  margin: 10px 0 20px;
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.pr-ind-plans .pr-plan-unit strong {
+  color: var(--color-black);
+  font-size: 13px;
+}
+
+@media (max-width: 1100px) {
+  .pr-plans.pr-ind-plans {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .pr-plans.pr-ind-plans {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

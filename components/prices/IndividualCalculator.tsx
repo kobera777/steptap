@@ -4,7 +4,7 @@ import { useState } from "react";
 import { SignupLink } from "@/components/layout/SignupLink";
 import { individualTiers, packPerLesson, rub } from "@/data/prices";
 
-/** Разовое и три абонемента — как колонки в прайсе. */
+/** Разовое и три абонемента — варианты переключателя. */
 const COUNTS = [1, 4, 8, 12] as const;
 
 function countLabel(count: number) {
@@ -27,93 +27,62 @@ function totalOf(tierIndex: number, count: number) {
 }
 
 /**
- * Индивидуальные занятия как в прототипе владельца: выбираешь категорию
- * преподавателя и количество занятий — справа сразу сумма и кнопка в MAX.
+ * Индивидуальные занятия: один переключатель (разовое / 4 / 8 / 12) и
+ * пять карточек категорий преподавателя — в том же оформлении, что и
+ * групповые абонементы. Переключатель меняет цены сразу во всех карточках.
  * Все числа берутся из data/prices.ts.
  */
 export function IndividualCalculator() {
-  const [tier, setTier] = useState(0);
   const [count, setCount] = useState<number>(1);
-  const name = individualTiers[tier].category;
-  const total = totalOf(tier, count);
 
   return (
-    <div className="pr-ind-grid">
-      <div>
-        <label className="pr-field">
-          Категория преподавателя
-          <select value={tier} onChange={(e) => setTier(Number(e.target.value))}>
-            {individualTiers.map((t, index) => (
-              <option key={t.category} value={index}>
-                {t.category}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <div className="pr-chips">
-          {COUNTS.map((n) => (
-            <button
-              key={n}
-              type="button"
-              className="pr-chip"
-              aria-pressed={count === n}
-              onClick={() => setCount(n)}
-            >
-              {countLabel(n)}
-            </button>
-          ))}
-        </div>
-
-        <div className="pr-mini-scroll">
-          <table className="pr-mini-table">
-            <caption>Стоимость одного занятия по категориям</caption>
-            <thead>
-              <tr>
-                <th scope="col">ПРЕПОДАВАТЕЛЬ</th>
-                {COUNTS.map((n) => (
-                  <th key={n} scope="col">
-                    {n === 1 ? "РАЗОВОЕ" : n}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {individualTiers.map((t, index) => (
-                <tr key={t.category} className={index === tier ? "is-chosen" : undefined}>
-                  <th scope="row">{t.category}</th>
-                  {COUNTS.map((n) => (
-                    <td key={n}>{rub(rateOf(index, n))}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+    <>
+      <div
+        className="pr-chips pr-ind-switch"
+        role="group"
+        aria-label="Количество занятий"
+      >
+        {COUNTS.map((n) => (
+          <button
+            key={n}
+            type="button"
+            className="pr-chip"
+            aria-pressed={count === n}
+            onClick={() => setCount(n)}
+          >
+            {countLabel(n)}
+          </button>
+        ))}
       </div>
 
-      <div className="pr-ind-result" aria-live="polite">
-        <p className="pr-eyebrow">
-          {name.toUpperCase()} · {count === 1 ? "РАЗОВОЕ ЗАНЯТИЕ" : countLabel(count)}
-        </p>
-        <p className="pr-ind-amount">{rub(total)}</p>
-        <p className="pr-small">
-          {count === 1
-            ? "за одно занятие"
-            : `за весь абонемент · ${rub(rateOf(tier, count))} за занятие`}
-        </p>
-        <span className="pr-tag">ИНДИВИДУАЛЬНЫЙ ФОРМАТ</span>
-        <p className="pr-small pr-muted">
-          Обсудим твою задачу и поможем подобрать преподавателя. Длительность урока и
-          время уточним перед записью.
-        </p>
-        <SignupLink
-          className="pr-btn"
-          ariaLabel={`Обсудить индивидуальное занятие: ${name}, ${countLabel(count).toLowerCase()}, ${rub(total)}`}
-        >
-          ОБСУДИТЬ ЗАНЯТИЕ <span>→</span>
-        </SignupLink>
+      <div className="pr-plans pr-ind-plans" aria-live="polite">
+        {individualTiers.map((tier, index) => {
+          const rate = rateOf(index, count);
+          const total = totalOf(index, count);
+          return (
+            <article key={tier.category} className="pr-plan">
+              <p className="pr-plan-label">{tier.category.toUpperCase()}</p>
+              <p className="pr-plan-total">{rub(rate)}</p>
+              <p className="pr-plan-unit">
+                {count === 1 ? (
+                  "за одно занятие"
+                ) : (
+                  <>
+                    за занятие · <strong>{rub(total)}</strong> за{" "}
+                    {countLabel(count).toLowerCase()}
+                  </>
+                )}
+              </p>
+              <SignupLink
+                className="pr-btn pr-btn-ghost"
+                ariaLabel={`Индивидуальное занятие: ${tier.category}, ${countLabel(count).toLowerCase()}, ${rub(total)}`}
+              >
+                ВЫБРАТЬ <span>→</span>
+              </SignupLink>
+            </article>
+          );
+        })}
       </div>
-    </div>
+    </>
   );
 }
