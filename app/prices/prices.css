@@ -198,6 +198,7 @@
 }
 
 /* Карточки-дубли таблиц прячем, пока экран широкий */
+
 .pr-rates {
   display: none;
 }
@@ -234,6 +235,7 @@
 }
 
 /* Строка «не предоставляется» не должна звать кликнуть. */
+
 .pr-group-rates li.is-off {
   border-color: rgba(17, 17, 17, 0.14);
 }
@@ -249,6 +251,7 @@
 }
 
 /* Таблицы на широком экране — в такой же розовой рамке. */
+
 .pr-table-wrap {
   border: 1px solid rgba(212, 95, 136, 0.45);
   border-radius: var(--radius-card);
@@ -357,7 +360,8 @@
 
 @media (max-width: 900px) {
   /* На планшете таблица аренды не помещалась и требовала горизонтальной
-     прокрутки — ужимаем отступы в ячейках. */
+       прокрутки — ужимаем отступы в ячейках. */
+
   .pr-table th,
   .pr-table td {
     padding: 14px 12px;
@@ -386,6 +390,7 @@
   }
 
   /* Таблицы на телефоне не читаются — показываем карточки. */
+
   .pr-table-wrap {
     display: none;
   }
@@ -472,6 +477,7 @@
 /* С префиксом .pr-page: правило «.pr-page a { color: inherit }» сильнее
    одиночного класса и красило текст кнопок в цвет родителя — на чёрной
    кнопке получался чёрный текст на чёрном. */
+
 .pr-page .pr-btn {
   display: inline-flex;
   align-items: center;
@@ -516,72 +522,23 @@
 
 /* ---------- Шапка ---------- */
 
-.pr-pagehead {
-  padding: 66px 7vw 44px;
-}
-
-.pr-pagehead h1 {
-  max-width: 970px;
-  margin: 0;
-  font-size: clamp(46px, 6.3vw, 92px);
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-display);
-  font-weight: 800;
-}
-
-.pr-lead {
-  max-width: 620px;
-  margin: 25px 0 0;
-  font-size: 18px;
-  line-height: 1.55;
-}
-
 /* ---------- Первое знакомство ---------- */
 
 .pr-intro {
   padding: 65px 7vw;
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  gap: 60px;
-  align-items: center;
+  /* Осталась одна розовая карточка первого занятия. */
+  grid-template-columns: minmax(0, 640px);
+  justify-content: center;
   background: var(--color-white);
 }
 
-.pr-intro h2,
 .pr-sectionhead h2 {
   margin: 0;
   font-size: clamp(33px, 4.4vw, 62px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 800;
-}
-
-.pr-intro h2 {
-  margin-bottom: 8px;
-}
-
-.pr-benefit {
-  margin: 22px 0;
-  display: grid;
-  grid-template-columns: 28px 1fr;
-  gap: 14px;
-}
-
-.pr-benefit > span {
-  color: var(--color-pink);
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.pr-benefit p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.pr-benefit strong {
-  display: block;
-  margin-bottom: 5px;
 }
 
 .pr-first {
@@ -649,13 +606,6 @@
   margin-bottom: 14px;
 }
 
-.pr-sectionhead > p {
-  max-width: 350px;
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
 .pr-footnote {
   margin-top: 17px;
 }
@@ -720,22 +670,8 @@
   font-size: 21px;
 }
 
-.pr-plan ul {
-  margin: 0 0 24px;
-  padding: 0;
-  list-style: none;
-  color: var(--color-muted);
-  font-size: 12px;
-  line-height: 1.5;
-}
-
 .pr-plan.is-featured ul {
   color: rgba(255, 255, 255, 0.72);
-}
-
-.pr-plan li {
-  padding: 6px 0;
-  border-top: 1px solid rgba(17, 17, 17, 0.1);
 }
 
 .pr-plan.is-featured li {
@@ -753,24 +689,6 @@
 .pr-plan.is-featured .pr-btn:focus-visible {
   background: var(--color-white);
   color: var(--color-black);
-}
-
-.pr-tools {
-  margin-top: 28px;
-  padding: 22px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 25px;
-  border-top: 1px solid rgba(17, 17, 17, 0.15);
-  border-bottom: 1px solid rgba(17, 17, 17, 0.15);
-}
-
-.pr-tools p {
-  max-width: 540px;
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.6;
 }
 
 .pr-single {
@@ -936,14 +854,6 @@
 }
 
 @media (max-width: 900px) {
-  .pr-pagehead {
-    padding: 50px 20px 36px;
-  }
-
-  .pr-lead {
-    font-size: 16px;
-  }
-
   .pr-intro,
   .pr-ind-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -961,17 +871,12 @@
     gap: 18px;
   }
 
-  .pr-tools,
   .pr-single {
     flex-wrap: wrap;
   }
 }
 
 @media (max-width: 560px) {
-  .pr-pagehead h1 {
-    font-size: clamp(36px, 11vw, 49px);
-  }
-
   .pr-plans {
     gap: 12px;
   }
@@ -991,10 +896,6 @@
   .pr-plan-label {
     min-height: 30px;
     font-size: 8px;
-  }
-
-  .pr-plan ul {
-    font-size: 11px;
   }
 
   .pr-first {
@@ -1059,4 +960,17 @@
   .pr-hero h1 {
     font-size: clamp(28px, 8.4vw, 44px);
   }
+}
+
+/* Заголовок для поисковиков и экранного диктора, на экране не виден. */
+.pr-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }

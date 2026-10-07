@@ -24,8 +24,6 @@ export type GroupPlan = {
   total: number;
   /** Надпись над названием: для кого этот абонемент. */
   label: string;
-  /** Одна строка — зачем брать именно этот. */
-  reason: string;
   /** true — карточка выделяется (тёмная). */
   featured?: boolean;
 };
@@ -39,16 +37,8 @@ export type GroupPlan = {
  */
 export const singleLesson = { title: "Разовое занятие", total: 1100 };
 
-/** Условия первого занятия одной строкой — под главной кнопкой на главной. */
-export const trialSummary =
-  "Первое занятие — бесплатно при покупке абонемента или со скидкой 50%, если продолжите разово.";
-
-/** Занятий в неделю — из этого считаются недели в карточке абонемента. */
-export const LESSONS_PER_WEEK = 2;
-
 /**
- * Абонементы. Ни одно производное число не записано руками: цена за занятие,
- * недели, экономия и процент считаются из lessons, total и singleLesson.
+ * Абонементы. Цена за занятие не записана руками — считается из lessons и total.
  * Иначе однажды два числа разойдутся, и заметить это будет некому.
  */
 export const groupPlans: GroupPlan[] = [
@@ -57,14 +47,12 @@ export const groupPlans: GroupPlan[] = [
     lessons: 4,
     total: 3400,
     label: "ПОЗНАКОМИТЬСЯ С ФОРМАТОМ",
-    reason: "Небольшой абонемент для начала.",
   },
   {
     title: "8 занятий",
     lessons: 8,
     total: 5600,
     label: "ДЛЯ РЕГУЛЯРНЫХ ЗАНЯТИЙ",
-    reason: "Удобный ритм: два занятия в неделю.",
     featured: true,
   },
   {
@@ -72,14 +60,12 @@ export const groupPlans: GroupPlan[] = [
     lessons: 12,
     total: 8000,
     label: "ПРОДОЛЖАТЬ В СВОЁМ РИТМЕ",
-    reason: "Больше практики по меньшей цене за урок.",
   },
   {
     title: "16 занятий",
     lessons: 16,
     total: 9600,
     label: "МИНИМАЛЬНАЯ ЦЕНА ЗА УРОК",
-    reason: "Самая низкая цена занятия среди абонементов.",
   },
 ];
 
@@ -87,22 +73,6 @@ export const groupPlans: GroupPlan[] = [
 export function isApproximate(plan: GroupPlan) {
   return plan.total % plan.lessons !== 0;
 }
-
-/** Три шага «Одно занятие. Больше ясности.» — из прототипа владельца. */
-export const firstClassSteps = [
-  {
-    title: "Познакомься со школой.",
-    text: "Посмотри зал, преподавателя и то, как проходят занятия.",
-  },
-  {
-    title: "Попробуй сам.",
-    text: "Пойми, нравится ли тебе направление и подходит ли группа.",
-  },
-  {
-    title: "Реши после урока.",
-    text: "Если покупаешь абонемент, первое занятие бесплатно.",
-  },
-];
 
 /** Первое групповое занятие без покупки абонемента — половина разового. */
 export function trialPrice() {
@@ -112,21 +82,6 @@ export function trialPrice() {
 /** Цена одного занятия внутри абонемента. */
 export function perLesson(plan: GroupPlan) {
   return Math.round(plan.total / plan.lessons);
-}
-
-/** Насколько занятие в абонементе дешевле разового, в процентах. */
-export function discountPercent(plan: GroupPlan) {
-  return Math.round((1 - perLesson(plan) / singleLesson.total) * 100);
-}
-
-/** Сколько рублей экономит абонемент против покупки занятий поштучно. */
-export function savings(plan: GroupPlan) {
-  return plan.lessons * singleLesson.total - plan.total;
-}
-
-/** На сколько недель рассчитан абонемент при двух занятиях в неделю. */
-export function weeks(plan: GroupPlan) {
-  return Math.round(plan.lessons / LESSONS_PER_WEEK);
 }
 
 /* ==================================================
@@ -316,7 +271,7 @@ export const priceFaq: FaqItem[] = [
   {
     question: "Сколько действует абонемент?",
     answer:
-      "В карточках указан ориентир при двух занятиях в неделю, а не срок действия абонемента. Срок, правила посещения и возможность смены группы уточни у администратора до покупки.",
+      "Срок действия, правила посещения и возможность смены группы уточни у администратора до покупки.",
   },
   {
     question: "Что делать, если пропускаю занятие?",
