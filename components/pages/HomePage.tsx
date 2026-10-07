@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HomeHeader } from "@/components/layout/HomeHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { homeHero, marqueeWords } from "@/data/home";
+import { homeHero, marqueeItems } from "@/data/home";
 import { bachataStyles, firstClassFaq } from "@/data/directions";
 import { firstLesson, firstLessonWithPlan, rub } from "@/data/prices";
 import { FaqList } from "@/components/home/FaqList";
@@ -10,6 +10,7 @@ import { MomentsVideo } from "@/components/home/MomentsVideo";
 import { DirectionCard } from "@/components/sections/DirectionCard";
 import { SignupLink } from "@/components/layout/SignupLink";
 import { SchoolMap } from "@/components/sections/SchoolMap";
+import { BrandDot } from "@/components/ui/BrandDot";
 
 /**
  * Главная страница. Оформление — прежнее, тексты и порядок блоков — из
@@ -75,10 +76,11 @@ export function HomePage() {
       <div className="marquee" aria-hidden="true">
         <div className="marquee-track">
           {Array.from({ length: 2 }).map((_, copy) =>
-            marqueeWords.map((word) => (
-              <span key={`${copy}-${word}`}>
-                {word}
-                <i />
+            marqueeItems.map((item) => (
+              <span key={`${copy}-${item.text}`}>
+                {item.text}
+                {item.accent && <b>{item.accent}</b>}
+                <BrandDot />
               </span>
             )),
           )}
