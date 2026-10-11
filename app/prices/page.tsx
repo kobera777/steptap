@@ -37,7 +37,7 @@ export default function PricesPage() {
       <section className="pr-intro">
         <div className="pr-first">
           <div className="pr-first-main">
-            <p className="pr-eyebrow">ПЕРВОЕ ЗАНЯТИЕ</p>
+            <p className="pr-eyebrow">ПЕРВОЕ ГРУППОВОЕ ЗАНЯТИЕ</p>
             <p className="pr-first-price">БЕСПЛАТНО</p>
 
             <p className="pr-first-deal">
@@ -69,12 +69,12 @@ export default function PricesPage() {
       <section className="pr-block" id="group">
         <div className="pr-sectionhead">
           <div>
-            <p className="pr-eyebrow">01 / ГРУППОВЫЕ ЗАНЯТИЯ</p>
-            <h2>
+            <h2>ГРУППОВЫЕ ЗАНЯТИЯ</h2>
+            <p className="pr-subtitle">
               ВЫБЕРИ
               <br />
               СВОЙ РИТМ.
-            </h2>
+            </p>
           </div>
         </div>
 
