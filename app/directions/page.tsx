@@ -27,9 +27,7 @@ export default function DirectionsPage() {
           <p className="section-kicker">НАПРАВЛЕНИЯ STEP TAP</p>
 
           <h1>
-            У КАЖДОГО
-            <br />
-            ТАНЦА —
+            У КАЖДОГО ТАНЦА —
             <br />
             СВОЙ <span>ХАРАКТЕР.</span>
           </h1>
@@ -38,19 +36,7 @@ export default function DirectionsPage() {
 
       {/* BACHATA */}
       <section className="direction-main bachata-section" id="bachata">
-        <div className="direction-intro">
-          <div>
-            <p className="section-kicker">БАЧАТА</p>
-
-            <h2>
-              ОДНА МУЗЫКА.
-              <br />
-              РАЗНЫЕ
-              <br />
-              ВОЗМОЖНОСТИ<span>.</span>
-            </h2>
-          </div>
-        </div>
+        <p className="section-kicker">БАЧАТА</p>
 
         <div className="dc-grid">
           {bachataStyles.map((style) => (

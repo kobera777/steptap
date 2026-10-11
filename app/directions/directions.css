@@ -24,7 +24,8 @@
 }
 
 .directions-page .directions-hero {
-  padding: 80px 7vw 64px;
+  /* Компактная полоса: заголовок в две строки, без пустого поля справа. */
+  padding: 56px 7vw 48px;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-items: center;
@@ -57,27 +58,8 @@
 }
 
 .directions-page .direction-main {
-  padding: 100px 7vw 110px;
+  padding: 56px 7vw 110px;
   background: white;
-}
-
-.directions-page .direction-intro {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 55px;
-}
-
-.directions-page .direction-intro h2 {
-  margin: 0;
-  font-size: var(--dir-title);
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-display);
-  font-weight: 600;
-}
-
-.directions-page .direction-intro h2 span {
-  color: var(--color-pink);
 }
 
 .directions-page .other-directions {
@@ -242,7 +224,7 @@
 @media (max-width: 760px) {
   .directions-page .directions-hero {
     min-height: auto;
-    padding: 70px 20px;
+    padding: 40px 20px 36px;
     grid-template-columns: 1fr;
   }
 
@@ -252,15 +234,7 @@
   }
 
   .directions-page .direction-main {
-    padding: 70px 20px;
-  }
-
-  .directions-page .direction-intro {
-    display: block;
-  }
-
-  .directions-page .direction-intro h2 {
-    font-size: var(--dir-title-mobile);
+    padding: 40px 20px 70px;
   }
 
   .directions-page .other-directions {
