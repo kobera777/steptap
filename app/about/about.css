@@ -332,7 +332,7 @@
 .st-life-item {
   /* Фото с подписью — не кнопка: без рамки, тени и «подъёма» при наведении. */
   position: relative;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 5;
   margin: 0;
   overflow: hidden;
   border-radius: var(--radius-card);

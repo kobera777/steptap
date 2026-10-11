@@ -50,12 +50,19 @@ export const team = [
  * Снимки школы; чтобы заменить, достаточно поменять photo.
  * Иконки — components/ui/LifeIcon.tsx.
  */
-export const lifeItems: { icon: LifeIconName; title: string; photo: string }[] = [
+export const lifeItems: {
+  icon: LifeIconName;
+  title: string;
+  photo: string;
+  /** Какая часть фото остаётся в кадре при обрезке (object-position). */
+  focus?: string;
+}[] = [
   { icon: "party", title: "ВЕЧЕРИНКИ", photo: "/video/momenty-poster.webp" },
   {
     icon: "masterclass",
     title: "МАСТЕР-КЛАССЫ",
-    photo: "/directions/estilo-masculino.webp",
+    photo: "/about/master-klass.webp",
+    focus: "50% 60%",
   },
   { icon: "performance", title: "ВЫСТУПЛЕНИЯ", photo: "/about/vystupleniya.webp" },
   { icon: "trip", title: "ПОЕЗДКИ", photo: "/gallery/demo/p11.webp" },
