@@ -1,5 +1,3 @@
-import { danceStyles, styleHref } from "@/data/directions";
-
 /**
  * Меню сайта — единственное место, где оно задаётся.
  * Отсюда берут пункты общая шапка (SiteHeader), подвал (SiteFooter) и sitemap.
@@ -28,14 +26,7 @@ export type HomeNavItem = NavItem & { children?: NavItem[] };
 /** Меню главной страницы (у неё своя шапка с выпадающими списками). */
 export const homeNav: HomeNavItem[] = [
   { href: "/about", label: "О ШКОЛЕ" },
-  {
-    href: "/directions",
-    label: "НАПРАВЛЕНИЯ",
-    children: [
-      ...danceStyles.map((style) => ({ href: styleHref(style), label: style.short })),
-      { href: "/directions", label: "Все направления →" },
-    ],
-  },
+  { href: "/directions", label: "НАПРАВЛЕНИЯ" },
   { href: "/classes", label: "ЗАНЯТИЯ" },
   { href: "/schedule", label: "РАСПИСАНИЕ" },
   { href: "/prices", label: "ЦЕНЫ" },

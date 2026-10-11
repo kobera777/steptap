@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { DirectionCard } from "@/components/sections/DirectionCard";
-import { bachataStyles, otherStyles, styleHref } from "@/data/directions";
+import { bachataStyles, otherStyles } from "@/data/directions";
 import "./directions.css";
 
 export const metadata: Metadata = {
@@ -14,7 +13,8 @@ export const metadata: Metadata = {
 
 /**
  * «Направления». Оформление — прежнее, тексты и порядок блоков — из
- * прототипа владельца. Каждая карточка ведёт на страницу своего стиля.
+ * прототипа владельца. Карточки — не ссылки: весь рассказ о стиле на самой
+ * карточке, отдельных страниц у стилей нет.
  */
 export default function DirectionsPage() {
   return (
@@ -79,14 +79,12 @@ export default function DirectionsPage() {
 
         <div className="other-list">
           {otherStyles.map((style) => (
-            <Link
+            <article
               key={style.slug}
-              href={styleHref(style)}
               className={`other-card ${style.slug === "dancehall" ? "dancehall-card" : "latina-card"}`}
             >
               <div className="other-card-top">
                 <span>{style.card.number}</span>
-                <span aria-hidden="true">→</span>
               </div>
 
               {style.slug === "dancehall" ? (
@@ -106,9 +104,8 @@ export default function DirectionsPage() {
                 <p>{style.tags.join(" · ")}</p>
                 <h3>{style.title}</h3>
                 <p className="other-card-desc">{style.description}</p>
-                <span className="other-card-more">О ЗАНЯТИЯХ →</span>
               </div>
-            </Link>
+            </article>
           ))}
         </div>
       </section>

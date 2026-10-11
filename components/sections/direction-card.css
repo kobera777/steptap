@@ -21,16 +21,6 @@
   aspect-ratio: 4 / 5;
   border-radius: var(--radius-card);
   color: var(--color-black);
-  text-decoration: none;
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.dc-card:hover,
-.dc-card:focus-visible {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 .dc-photo {
@@ -45,29 +35,15 @@
   height: 100%;
   display: block;
   object-fit: cover;
-  transition: transform 0.45s ease;
 }
 
-/* Затемнение сверху: без него номер и стрелка пропадают на светлой стене. */
+/* Затемнение сверху: без него номер пропадает на светлой стене. */
 
 .dc-photo::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0) 28%);
-}
-
-.dc-card:hover .dc-photo img {
-  transform: scale(1.05);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .dc-card,
-  .dc-photo img,
-  .dc-card:hover .dc-photo img {
-    transition: none;
-    transform: none;
-  }
 }
 
 .dc-body {
@@ -136,12 +112,6 @@
   letter-spacing: var(--tracking-label);
 }
 
-.dc-arrow {
-  font-size: 22px;
-  line-height: 1;
-  font-weight: 500;
-}
-
 .dc-tags {
   list-style: none;
   margin: 0 0 14px;
@@ -190,14 +160,6 @@
   font-size: 13px;
   line-height: 1.5;
   font-weight: 500;
-}
-
-.dc-more {
-  display: inline-block;
-  margin-top: 16px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: var(--tracking-ui);
 }
 
 .dc-grid.is-three .dc-content h3 {
