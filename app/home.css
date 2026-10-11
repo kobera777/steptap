@@ -227,10 +227,13 @@
   margin: 0;
   color: var(--color-pink);
   font-family: var(--font-display);
-  font-size: var(--fs-title);
+  /* Чуть меньше общего размера заголовков: из-за широкой разрядки
+  «АТМОСФЕРА STEP TAP» должна всегда стоять в одну строку. */
+  font-size: clamp(26px, 3.2vw, 46px);
   line-height: 1.2;
   font-weight: 600;
   letter-spacing: var(--tracking-label);
+  white-space: nowrap;
 }
 
 .video-frame {
@@ -646,6 +649,10 @@
   .moments-heading {
     display: block;
     margin-bottom: 25px;
+  }
+
+  .moments-heading .moments-title {
+    font-size: clamp(17px, 5.6vw, 30px);
   }
 
   .video-frame {

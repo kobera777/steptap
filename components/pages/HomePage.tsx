@@ -166,13 +166,15 @@ export function HomePage() {
       {/* ПЕРВОЕ ЗАНЯТИЕ — бесплатно при покупке абонемента */}
       <section className="final-cta" id="trial">
         <div className="final-cta-offer" data-reveal>
-          <small>ПЕРВОЕ ГРУППОВОЕ ЗАНЯТИЕ</small>
+          <small>ПЕРВОЕ ЗАНЯТИЕ</small>
           <strong>
             БЕСПЛАТНО
             <BrandDot />
           </strong>
-          <p>первое занятие при покупке абонемента</p>
-          <span>без абонемента — {rub(firstLesson.price)}</span>
+          <p>при покупке абонемента</p>
+          <span>
+            Без абонемента — {rub(firstLesson.price)} (т.е. −50 % от разового посещения)
+          </span>
         </div>
 
         <div className="final-cta-actions" data-reveal data-reveal-delay="1">

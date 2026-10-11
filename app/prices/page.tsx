@@ -37,12 +37,12 @@ export default function PricesPage() {
       <section className="pr-intro">
         <div className="pr-first">
           <div className="pr-first-main">
-            <p className="pr-eyebrow">ПЕРВОЕ ГРУППОВОЕ ЗАНЯТИЕ</p>
+            <p className="pr-eyebrow">ПЕРВОЕ ЗАНЯТИЕ</p>
             <p className="pr-first-price">БЕСПЛАТНО</p>
 
             <p className="pr-first-deal">
-              <strong>Первое занятие при покупке абонемента.</strong> Без абонемента —{" "}
-              {rub(firstLesson.price)}.
+              <strong>При покупке абонемента.</strong> Без абонемента —{" "}
+              {rub(firstLesson.price)} (т.е. −50 % от разового посещения).
             </p>
 
             <SignupLink className="pr-btn pr-btn-dark">
