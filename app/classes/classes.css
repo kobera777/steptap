@@ -13,7 +13,7 @@
   color: var(--color-pink);
   font-size: 11px;
   line-height: 1.2;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
@@ -29,7 +29,7 @@
   font-size: clamp(42px, 6.3vw, 92px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .cl-lead {
@@ -64,7 +64,7 @@
   font-size: clamp(30px, 3.2vw, 48px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .cl-card > p:not(.cl-kicker) {
@@ -88,7 +88,7 @@
   border: 1px solid currentColor;
   border-radius: var(--radius-pill);
   font-size: 9px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-label);
 }
 
@@ -112,7 +112,7 @@
   color: var(--color-black);
   font-size: 12px;
   line-height: 1;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: var(--tracking-ui);
   transition:
     background 0.2s ease,
@@ -127,16 +127,16 @@
 
 .cl-page .cl-btn:hover,
 .cl-page .cl-btn:focus-visible {
-  background: var(--color-black);
-  border-color: var(--color-black);
-  color: var(--color-white);
+  background: var(--color-pink-hover);
+  border-color: var(--color-pink-hover);
+  color: var(--color-black);
 }
 
 .cl-textlink {
   padding-bottom: 3px;
   border-bottom: 1px solid currentColor;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-ui);
 }
 
@@ -171,7 +171,7 @@
   font-size: clamp(36px, 4.6vw, 70px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .cl-levels-head > p {
@@ -199,7 +199,7 @@
 .cl-level-list span {
   color: var(--color-pink);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .cl-level-list h3 {
@@ -207,7 +207,7 @@
   font-size: clamp(21px, 2vw, 31px);
   line-height: 1;
   letter-spacing: var(--tracking-display);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .cl-level-list p {

@@ -8,7 +8,7 @@
   color: var(--pink);
   font-size: 11px;
   line-height: 1.2;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
@@ -38,7 +38,7 @@
 .directions-page .section-kicker {
   margin: 0 0 22px;
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-label);
 }
 
@@ -47,7 +47,7 @@
   font-size: clamp(52px, 6.8vw, 108px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .directions-page .directions-hero h1 span {
@@ -89,7 +89,7 @@
   position: relative;
   z-index: 2;
   font-size: 9px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-label);
 }
 
@@ -118,7 +118,7 @@
   font-size: clamp(44px, 6vw, 92px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .directions-page .direction-intro h2 span {
@@ -140,7 +140,7 @@
   font-size: clamp(44px, 5.5vw, 84px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .directions-page .other-heading > p:last-child {
@@ -182,7 +182,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .directions-page .other-card-title {
@@ -203,14 +203,14 @@
   display: inline-block;
   margin-top: 16px;
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-ui);
 }
 
 .directions-page .other-card-title p {
   margin: 0 0 8px;
   font-size: 9px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-label);
 }
 
@@ -220,7 +220,7 @@
   font-size: clamp(34px, 3.6vw, 64px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .directions-page .other-card-shape {
@@ -262,7 +262,7 @@
   gap: 5px;
   transform: rotate(-10deg);
   font-size: 9px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-label);
 }
 
@@ -287,7 +287,7 @@
   font-size: clamp(36px, 4.4vw, 66px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .directions-page .choice-black {
@@ -317,7 +317,7 @@
   color: white;
   text-decoration: none;
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 600;
   position: relative;
   z-index: 2;
 }

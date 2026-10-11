@@ -13,7 +13,7 @@
   color: var(--color-pink);
   font-size: 11px;
   line-height: 1.2;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
@@ -40,7 +40,7 @@
   color: var(--color-black);
   font-size: 12px;
   line-height: 1;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: var(--tracking-ui);
   transition:
     background 0.2s ease,
@@ -55,9 +55,9 @@
 
 .sp-page .sp-btn:hover,
 .sp-page .sp-btn:focus-visible {
-  background: var(--color-black);
-  border-color: var(--color-black);
-  color: var(--color-white);
+  background: var(--color-pink-hover);
+  border-color: var(--color-pink-hover);
+  color: var(--color-black);
 }
 
 .sp-page .sp-btn-ghost {
@@ -69,7 +69,7 @@
   padding-bottom: 3px;
   border-bottom: 1px solid currentColor;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-ui);
 }
 
@@ -109,7 +109,7 @@
   font-size: clamp(36px, 4.3vw, 66px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .sp-lead {
@@ -184,7 +184,7 @@
   font-size: clamp(38px, 4.6vw, 70px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .sp-who p:not(.sp-kicker) {
@@ -225,7 +225,7 @@
   z-index: 1;
   font-size: 13px;
   line-height: 1.05;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
 }
 
@@ -243,7 +243,7 @@
   border: 1px solid var(--color-black);
   border-radius: 50%;
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: var(--tracking-ui);
   transform: translateY(-50%);
 }
@@ -280,7 +280,7 @@
 .sp-learn-grid span {
   color: var(--color-pink);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .sp-learn-grid h3 {
@@ -288,7 +288,7 @@
   font-size: clamp(22px, 2vw, 30px);
   line-height: 1;
   letter-spacing: var(--tracking-heading);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .sp-learn-grid p {

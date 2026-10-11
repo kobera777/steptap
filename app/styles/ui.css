@@ -145,7 +145,7 @@
   padding-block: 0; /* высоту задаёт min-height: все кнопки ровно одного роста */
   padding-inline: var(--btn-pad-x);
   font-size: var(--btn-font-size);
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1;
   letter-spacing: var(--tracking-ui);
   white-space: nowrap;
@@ -192,7 +192,7 @@
   display: inline-block;
   margin: 0;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1;
   transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
 }

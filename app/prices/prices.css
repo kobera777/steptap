@@ -17,7 +17,7 @@
   margin: 0 0 16px;
   color: var(--color-pink);
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
@@ -39,7 +39,7 @@
   font-size: clamp(40px, 4.4vw, 72px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .pr-hero h1 span {
@@ -64,13 +64,13 @@
   background: var(--color-pink);
   color: var(--color-white);
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-ui);
   text-transform: uppercase;
 }
 
 .pr-button:hover {
-  background: var(--color-black);
+  background: var(--color-pink-hover);
 }
 
 .pr-button span {
@@ -116,7 +116,7 @@
   font-size: clamp(38px, 5vw, 76px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .pr-sub {
@@ -124,7 +124,7 @@
   font-size: clamp(22px, 2.4vw, 30px);
   line-height: 1.05;
   letter-spacing: var(--tracking-heading);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .pr-sub-note {
@@ -157,7 +157,7 @@
   background: var(--color-black);
   color: var(--color-white);
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-ui);
   text-transform: uppercase;
   white-space: nowrap;
@@ -173,7 +173,7 @@
 
 .pr-table tbody th {
   font-size: 17px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-heading);
   white-space: nowrap;
 }
@@ -194,7 +194,7 @@
 }
 
 .pr-table tbody tr:hover {
-  background: rgba(212, 95, 136, 0.06);
+  background: rgba(var(--color-pink-rgb), 0.06);
 }
 
 /* Карточки-дубли таблиц прячем, пока экран широкий */
@@ -211,7 +211,7 @@
 .pr-group-rates li {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(212, 95, 136, 0.45);
+  border: 1px solid rgba(var(--color-pink-rgb), 0.45);
   transition:
     border-color 0.25s ease,
     box-shadow 0.25s ease,
@@ -224,13 +224,17 @@
   position: absolute;
   inset: 0 0 auto;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-pink), rgba(212, 95, 136, 0.25));
+  background: linear-gradient(
+    90deg,
+    var(--color-pink),
+    rgba(var(--color-pink-rgb), 0.25)
+  );
 }
 
 .pr-rate:hover,
 .pr-group-rates li:hover {
   border-color: var(--color-pink);
-  box-shadow: 0 14px 34px rgba(212, 95, 136, 0.18);
+  box-shadow: 0 14px 34px rgba(var(--color-pink-rgb), 0.18);
   transform: translateY(-3px);
 }
 
@@ -253,7 +257,7 @@
 /* Таблицы на широком экране — в такой же розовой рамке. */
 
 .pr-table-wrap {
-  border: 1px solid rgba(212, 95, 136, 0.45);
+  border: 1px solid rgba(var(--color-pink-rgb), 0.45);
   border-radius: var(--radius-card);
   overflow: hidden;
   overflow-x: auto;
@@ -284,7 +288,7 @@
   margin-bottom: 16px;
   border-radius: var(--radius-card);
   overflow: hidden;
-  background: #f0e8df;
+  background: var(--color-pink-soft);
 }
 
 .pr-hall-photo img {
@@ -294,7 +298,7 @@
 .pr-hall h3 {
   margin: 0 0 6px;
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-heading);
 }
 
@@ -336,7 +340,7 @@
   font-size: 19px;
   line-height: 1.2;
   letter-spacing: var(--tracking-heading);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .pr-group-rates span {
@@ -409,7 +413,7 @@
   .pr-rate h4 {
     margin: 0 0 14px;
     font-size: 21px;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: var(--tracking-heading);
   }
 
@@ -432,7 +436,7 @@
 
   .pr-rate dt {
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--color-black);
   }
 
@@ -459,7 +463,7 @@
   margin: 0 0 20px;
   color: var(--color-pink);
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
@@ -489,7 +493,7 @@
   background: var(--color-pink);
   color: var(--color-black);
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-ui);
   text-align: center;
   transition:
@@ -499,8 +503,9 @@
 
 .pr-page .pr-btn:hover,
 .pr-page .pr-btn:focus-visible {
-  background: var(--color-black);
-  color: var(--color-white);
+  border-color: var(--color-pink-hover);
+  background: var(--color-pink-hover);
+  color: var(--color-black);
 }
 
 .pr-page .pr-btn-ghost {
@@ -516,6 +521,7 @@
 
 .pr-page .pr-btn-dark:hover,
 .pr-page .pr-btn-dark:focus-visible {
+  border-color: var(--color-white);
   background: var(--color-white);
   color: var(--color-black);
 }
@@ -538,7 +544,7 @@
   font-size: clamp(33px, 4.4vw, 62px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 /* ---------- Блоки ---------- */
@@ -597,7 +603,7 @@
   margin: 0;
   color: var(--color-pink);
   font-size: 9px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-label);
 }
 
@@ -606,7 +612,7 @@
   font-size: 29px;
   line-height: 1;
   letter-spacing: var(--tracking-heading);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .pr-plan-total {
@@ -614,7 +620,7 @@
   font-size: 39px;
   line-height: 1;
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 600;
   white-space: nowrap;
 }
 
@@ -739,7 +745,7 @@
   padding-bottom: 3px;
   border-bottom: 1px solid currentColor;
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-ui);
 }
 
@@ -766,7 +772,7 @@
   padding-bottom: 3px;
   border-bottom: 1px solid currentColor;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-ui);
 }
 
@@ -798,7 +804,7 @@
 
 .pr-table-individual td span {
   font-size: 17px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .pr-table-individual td small {
@@ -855,14 +861,14 @@
   font-size: clamp(72px, 7vw, 110px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
-  font-weight: 800;
+  font-weight: 600;
 }
 
 /* Зачёркнутая полная цена рядом с крупной ценой со скидкой. */
 .pr-first-price s {
   margin-left: 14px;
   font-size: 0.32em;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0;
   opacity: 0.55;
   vertical-align: middle;
@@ -901,14 +907,14 @@
 .pr-first-stamp b {
   font-size: 32px;
   line-height: 1;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-heading);
 }
 
 .pr-first-stamp small {
   font-size: 9px;
   line-height: 1.25;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: var(--tracking-label);
 }
 

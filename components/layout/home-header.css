@@ -76,7 +76,7 @@
   color: var(--color-white);
   font-size: 12px;
   line-height: 1;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: var(--tracking-ui);
   white-space: nowrap;
   text-transform: uppercase;
@@ -177,7 +177,7 @@
   color: var(--color-black);
   font-size: 11px;
   line-height: 1;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: var(--tracking-ui);
   text-transform: uppercase;
   transition:
@@ -190,8 +190,8 @@
 }
 
 .header-action:hover {
-  background: var(--color-black);
-  color: var(--color-white);
+  background: var(--color-pink-hover);
+  color: var(--color-black);
 }
 
 @media (max-width: 1200px) {
@@ -323,7 +323,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   color: var(--color-white);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: var(--tracking-ui);
   text-transform: uppercase;
 }

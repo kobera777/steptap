@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { siteName, siteUrl } from "@/data/site";
 import "./styles/tokens.css";
 import "./styles/base.css";
@@ -7,22 +7,17 @@ import "./styles/ui.css";
 import "./motion.css";
 import { MotionEffects } from "@/components/motion/MotionEffects";
 
-/* Единственный шрифт сайта. Скачивается при сборке и отдаётся с нашего домена
-   (без запросов к Google). Переменное начертание: один файл на подмножество
-   покрывает все веса 200–800, поэтому список weight не нужен.
+/* Официальный шрифт школы — Montserrat, начертания 500 и 600 (см. guía
+   tipográfica владельца и комментарий в app/styles/tokens.css). Скачивается при
+   сборке и отдаётся с нашего домена, без запросов к Google.
 
-   Раньше тело набиралось DM Sans, у которого НЕТ кириллицы, — весь русский текст
-   рендерился системным Arial, а веса 800+ подделывались браузером. Подробнее
-   в комментарии в app/styles/tokens.css.
-
-   В CSS семейство названо напрямую ("Manrope" — см. styles/tokens.css); className
-   с .variable нужен, чтобы @font-face попали в сборку. adjustFontFallback: false
-   Turbopack игнорирует, поэтому переменную --font-manrope в CSS не используем. */
-const manrope = Manrope({
+   В CSS семейство названо напрямую ("Montserrat" — см. styles/tokens.css);
+   className с .variable нужен, чтобы @font-face попали в сборку. */
+const montserrat = Montserrat({
   subsets: ["latin", "cyrillic"],
+  weight: ["500", "600"],
   display: "swap",
-  adjustFontFallback: false,
-  variable: "--font-manrope",
+  variable: "--font-montserrat",
 });
 
 export const metadata: Metadata = {
@@ -42,7 +37,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ru" className={manrope.variable}>
+    <html lang="ru" className={montserrat.variable}>
       <body>
         {children}
         <MotionEffects />
