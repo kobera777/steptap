@@ -1,5 +1,4 @@
 import { danceStyles, styleHref } from "@/data/directions";
-import { signupChatUrl } from "@/data/site";
 
 /**
  * Меню сайта — единственное место, где оно задаётся.

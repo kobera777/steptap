@@ -166,12 +166,14 @@ export default function AboutPage() {
         </div>
 
         <div className="st-life-grid">
-          {lifeItems.map(({ icon, title }) => (
-            <div className="st-life-item" key={title}>
-              <LifeIcon name={icon} />
-
-              <span>{title}</span>
-            </div>
+          {lifeItems.map(({ icon, title, photo }) => (
+            <figure className="st-life-item" key={title}>
+              <Image src={photo} alt="" fill sizes="(max-width: 800px) 50vw, 25vw" />
+              <figcaption>
+                <LifeIcon name={icon} />
+                <span>{title}</span>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </section>

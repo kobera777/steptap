@@ -45,10 +45,18 @@ export const team = [
   },
 ];
 
-/** Чем живёт школа за пределами урока. Иконки — components/ui/LifeIcon.tsx. */
-export const lifeItems: { icon: LifeIconName; title: string }[] = [
-  { icon: "party", title: "ВЕЧЕРИНКИ" },
-  { icon: "masterclass", title: "МАСТЕР-КЛАССЫ" },
-  { icon: "performance", title: "ВЫСТУПЛЕНИЯ" },
-  { icon: "trip", title: "ПОЕЗДКИ" },
+/**
+ * Чем живёт школа за пределами урока — четыре фото с подписью.
+ * Снимки школы; чтобы заменить, достаточно поменять photo.
+ * Иконки — components/ui/LifeIcon.tsx.
+ */
+export const lifeItems: { icon: LifeIconName; title: string; photo: string }[] = [
+  { icon: "party", title: "ВЕЧЕРИНКИ", photo: "/video/momenty-poster.webp" },
+  {
+    icon: "masterclass",
+    title: "МАСТЕР-КЛАССЫ",
+    photo: "/directions/estilo-masculino.webp",
+  },
+  { icon: "performance", title: "ВЫСТУПЛЕНИЯ", photo: "/directions/lady.webp" },
+  { icon: "trip", title: "ПОЕЗДКИ", photo: "/gallery/demo/p11.webp" },
 ];

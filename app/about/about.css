@@ -286,32 +286,48 @@
 }
 
 .st-life-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 18px 20px;
-  border: 1px solid var(--color-border);
+  /* Фото с подписью — не кнопка: без рамки, тени и «подъёма» при наведении. */
+  position: relative;
+  aspect-ratio: 3 / 4;
+  margin: 0;
+  overflow: hidden;
   border-radius: var(--radius-card);
-  background: var(--color-bg-soft);
-  transition:
-    border-color 0.25s ease,
-    transform 0.25s ease;
+  background: var(--color-graphite);
 }
 
-.st-life-item:hover {
-  border-color: var(--color-pink);
-  transform: translateY(-3px);
+.st-life-item img {
+  object-fit: cover;
+}
+
+/* Затемнение снизу, чтобы подпись читалась на любой фотографии. */
+.st-life-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0) 55%);
+}
+
+.st-life-item figcaption {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-white);
 }
 
 .st-life-item .life-icon {
   flex: 0 0 auto;
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
   color: var(--color-pink);
 }
 
 .st-life-item span {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: var(--tracking-label);
   line-height: 1.2;
@@ -432,6 +448,21 @@
   .st-life-grid {
     margin-top: 28px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  /* На узкой плитке иконка над подписью, чтобы длинные слова влезали. */
+  .st-life-item figcaption {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .st-life-item span {
+    font-size: 11px;
   }
 
   .st-story-photo {
