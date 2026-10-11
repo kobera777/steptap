@@ -41,8 +41,11 @@ export default function PricesPage() {
             <p className="pr-first-price">БЕСПЛАТНО</p>
 
             <p className="pr-first-deal">
-              <strong>При покупке абонемента.</strong> Без абонемента —{" "}
-              {rub(firstLesson.price)} (т.е. −50 % от разового посещения).
+              <strong>При покупке абонемента.</strong>
+            </p>
+            <p className="pr-first-deal pr-first-note">
+              Без абонемента — {rub(firstLesson.price)} (т.е. −50 % от разового
+              посещения).
             </p>
 
             <SignupLink className="pr-btn pr-btn-dark">

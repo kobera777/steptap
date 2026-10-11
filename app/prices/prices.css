@@ -885,6 +885,12 @@
   line-height: 1.5;
 }
 
+/* Цена без абонемента — отдельной строкой под условием. */
+.pr-first-note {
+  margin-top: 10px;
+  font-size: 13px;
+}
+
 .pr-first .pr-btn {
   margin-top: 26px;
 }
