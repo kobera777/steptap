@@ -1,13 +1,12 @@
 import { SignupLink } from "@/components/layout/SignupLink";
 import { SocialIcon } from "@/components/ui/SocialIcon";
-import { contactsPage, messageExamples } from "@/data/contacts";
+import { contactsPage } from "@/data/contacts";
 import { siteContacts, socialLinks, telHref, yandexMapPageUrl } from "@/data/site";
 import { SchoolMap } from "./SchoolMap";
 import "./contacts.css";
 
 /**
- * Контакты школы: где, как позвонить, куда написать, карта и примеры
- * первого сообщения. Оформление — прежнего блока внизу главной,
+ * Контакты школы: где, как позвонить, куда написать и карта. Оформление — прежнего блока внизу главной,
  * тексты и порядок — из прототипа владельца.
  */
 export function ContactsSection() {
@@ -68,29 +67,6 @@ export function ContactsSection() {
       </div>
 
       <SchoolMap />
-
-      {/* Самое страшное в записи — первое сообщение незнакомым людям.
-          Показываем, что писать можно совсем коротко. */}
-      <div className="contacts-write">
-        <p className="contacts-kicker">ЧТО НАПИСАТЬ</p>
-        <h2>
-          МОЖНО ПРОСТО: <span>«ХОЧУ НА ТАНЦЫ».</span>
-        </h2>
-
-        <div className="contacts-write-list">
-          {messageExamples.map((example) => (
-            <SignupLink
-              key={example.label}
-              className="contacts-write-item"
-              ariaLabel={`Написать в MAX: ${example.text}`}
-            >
-              <small>{example.label}</small>
-              <span>«{example.text}»</span>
-              <i>НАПИСАТЬ →</i>
-            </SignupLink>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }

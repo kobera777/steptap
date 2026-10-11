@@ -4,8 +4,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SignupLink } from "@/components/layout/SignupLink";
-import { FaqSection } from "@/components/sections/FaqSection";
-import { halls, rentalFaq, rentalGroup, rentalIndividual, rub } from "@/data/prices";
+import { halls, rentalGroup, rentalIndividual, rub } from "@/data/prices";
 
 /* Оформление общее со страницей цен: те же таблицы, карточки и рамки.
    Второй файл с тем же содержимым пришлось бы править в двух местах. */
@@ -180,17 +179,6 @@ export default function RentalPage() {
           </Link>
         </div>
       </section>
-
-      <FaqSection
-        title={
-          <>
-            ПЕРЕД
-            <br />
-            БРОНИРОВАНИЕМ
-          </>
-        }
-        items={rentalFaq}
-      />
 
       <SiteFooter />
     </main>
