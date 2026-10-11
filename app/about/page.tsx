@@ -75,15 +75,21 @@ export default function AboutPage() {
         </div>
 
         {/* Открытие школы 29 ноября 2025 — разрезаем ленточку. */}
-        <div className="st-story-photo">
-          <Image
-            src="/about/otkrytie.webp"
-            alt="Открытие STEP TAP 29 ноября 2025 года: перерезают красную ленточку"
-            width={1280}
-            height={853}
-            sizes="(max-width: 900px) 100vw, 50vw"
-          />
-        </div>
+        <figure className="st-story-media">
+          <div className="st-story-photo">
+            <Image
+              src="/about/otkrytie.webp"
+              alt="Открытие STEP TAP 29 ноября 2025 года: перерезают красную ленточку"
+              width={1280}
+              height={853}
+              sizes="(max-width: 900px) 100vw, 50vw"
+            />
+          </div>
+          <figcaption className="st-story-badge">
+            <b>29.11.2025</b>
+            <span>ОТКРЫТИЕ ШКОЛЫ</span>
+          </figcaption>
+        </figure>
       </section>
 
       {/* НАШ ПОДХОД */}
