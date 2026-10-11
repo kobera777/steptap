@@ -1,6 +1,6 @@
 /* Страница «Занятия». Префикс классов: .cl-
    Композиция — из прототипа владельца; шрифт, цвета и приёмы (линии,
-   розовые номера, таблетки) — как на остальных страницах сайта. */
+   таблетки) — как на остальных страницах сайта. */
 
 .cl-page {
   background: var(--color-cream-2);
@@ -30,6 +30,7 @@
 }
 
 .cl-card {
+  container-type: inline-size;
   padding: 38px;
   border: 1px solid rgba(17, 17, 17, 0.12);
   border-radius: var(--radius-card);
@@ -40,15 +41,26 @@
   background: var(--color-sand);
 }
 
+/* Название формата — крупно, подзаголовок под ним — меньше. */
 .cl-card h2 {
-  margin: 0 0 20px;
-  font-size: clamp(24px, 2.6vw, 38px);
+  margin: 0 0 12px;
+  /* Размер от ширины карточки: «ИНДИВИДУАЛЬНЫЕ» всегда в одну строку. */
+  font-size: min(54px, 8.4cqi);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
 }
 
-.cl-card > p:not(.cl-kicker) {
+.cl-card > .cl-card-sub {
+  margin: 0 0 20px;
+  font-size: clamp(16px, 1.5vw, 22px);
+  line-height: 1.15;
+  letter-spacing: var(--tracking-display);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.cl-card > p:not(.cl-kicker, .cl-card-sub) {
   max-width: 480px;
   margin: 0;
   font-size: 15px;
@@ -154,16 +166,10 @@
   min-height: 72px;
   padding: 16px 4px;
   display: grid;
-  grid-template-columns: 42px minmax(0, 0.8fr) minmax(0, 1.2fr);
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   align-items: center;
   gap: 15px;
   border-bottom: 1px solid var(--color-line);
-}
-
-.cl-level-list span {
-  color: var(--color-pink);
-  font-size: 11px;
-  font-weight: 600;
 }
 
 .cl-level-list h3 {
@@ -197,12 +203,8 @@
   }
 
   .cl-level-list article {
-    grid-template-columns: 32px minmax(0, 1fr);
-    gap: 8px 10px;
-  }
-
-  .cl-level-list p {
-    grid-column: 2;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
   }
 }
 

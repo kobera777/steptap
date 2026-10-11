@@ -27,12 +27,12 @@ export default function ClassesPage() {
 
       <section className="cl-formats">
         <article className="cl-card">
-          <p className="cl-kicker">{group.eyebrow}</p>
-          <h2>
+          <h2>{group.name}</h2>
+          <p className="cl-card-sub">
             {group.title[0]}
             <br />
             {group.title[1]}
-          </h2>
+          </p>
           <p>{group.text}</p>
           <ul className="cl-tags">
             {group.tags.map((tag) => (
@@ -47,12 +47,12 @@ export default function ClassesPage() {
         </article>
 
         <article className="cl-card cl-card-sand">
-          <p className="cl-kicker">{individual.eyebrow}</p>
-          <h2>
+          <h2>{individual.name}</h2>
+          <p className="cl-card-sub">
             {individual.title[0]}
             <br />
             {individual.title[1]}
-          </h2>
+          </p>
           <p>{individual.text}</p>
           <ul className="cl-tags">
             {individual.tags.map((tag) => (
@@ -76,8 +76,7 @@ export default function ClassesPage() {
 
         <div className="cl-level-list">
           {levelGuide.map((level) => (
-            <article key={level.number}>
-              <span>{level.number}</span>
+            <article key={level.title}>
               <h3>{level.title}</h3>
               <p>{level.text}</p>
             </article>
