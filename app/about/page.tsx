@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import "./about.css";
 import { SignupLink } from "@/components/layout/SignupLink";
+import { LifeIcon } from "@/components/ui/LifeIcon";
 
 export const metadata: Metadata = {
   title: "О школе",
@@ -30,8 +31,8 @@ export default function AboutPage() {
           </h1>
 
           <p className="st-hero-lead">
-            STEP TAP — школа танцев для взрослых в центре Екатеринбурга. Мы хотели создать
-            место, где можно учиться, общаться и чувствовать себя своим.
+            STEP TAP — школа танцев в центре Екатеринбурга. Место, где можно учиться,
+            общаться и чувствовать себя своим.
           </p>
         </div>
 
@@ -156,9 +157,9 @@ export default function AboutPage() {
         </div>
 
         <div className="st-life-grid">
-          {lifeItems.map(([icon, title]) => (
+          {lifeItems.map(({ icon, title }) => (
             <div className="st-life-item" key={title}>
-              <div>{icon}</div>
+              <LifeIcon name={icon} />
 
               <span>{title}</span>
             </div>

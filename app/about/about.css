@@ -256,15 +256,22 @@
   border-left: 1px solid rgba(17, 17, 17, 0.18);
 }
 
-.st-life-item div {
-  height: 38px;
-  font-size: 23px;
+.st-life-item .life-icon {
+  width: 34px;
+  height: 34px;
+  color: var(--color-pink);
+  transition: transform 0.25s ease;
+}
+
+.st-life-item:hover .life-icon {
+  transform: translateY(-3px);
 }
 
 .st-life-item span {
-  max-width: 95px;
-  margin-top: 8px;
-  font-size: 8px;
+  max-width: 120px;
+  margin-top: 14px;
+  font-size: 10px;
+  letter-spacing: var(--tracking-label);
   font-weight: 600;
   line-height: 1.2;
 }
