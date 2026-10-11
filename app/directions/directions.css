@@ -21,10 +21,9 @@
 }
 
 .directions-page .directions-hero {
-  min-height: 500px;
-  padding: 90px 7vw 80px;
+  padding: 80px 7vw 64px;
   display: grid;
-  grid-template-columns: 1.25fr 0.75fr;
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   background: var(--color-cream-2);
   position: relative;
@@ -44,7 +43,7 @@
 
 .directions-page .directions-hero h1 {
   margin: 0;
-  font-size: clamp(42px, 5.4vw, 86px);
+  font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -52,53 +51,6 @@
 
 .directions-page .directions-hero h1 span {
   color: var(--color-pink);
-}
-
-.directions-page .hero-right {
-  min-height: 340px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.directions-page .hero-circle {
-  width: 260px;
-  height: 260px;
-  border: 1px solid var(--color-black);
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  transform: rotate(-10deg);
-}
-
-.directions-page .hero-circle::before {
-  content: "";
-  position: absolute;
-  width: 210px;
-  height: 210px;
-  border: 1px solid var(--color-pink);
-  border-radius: 50%;
-}
-
-.directions-page .hero-circle span {
-  position: relative;
-  z-index: 2;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: var(--tracking-label);
-}
-
-.directions-page .hero-right > p {
-  max-width: 320px;
-  margin: 34px 0 0;
-  font-size: 14px;
-  line-height: 1.45;
-  font-weight: 600;
 }
 
 .directions-page .direction-main {
@@ -115,7 +67,7 @@
 
 .directions-page .direction-intro h2 {
   margin: 0;
-  font-size: clamp(35px, 4.8vw, 74px);
+  font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -130,14 +82,14 @@
   background: var(--color-cream-2);
   display: grid;
   /* Голые доли (без minmax): колонка заголовка должна расширяться под длинное
-     слово «НАПРАВЛЕНИЯ.», иначе оно уезжает под карточки. */
+  слово «НАПРАВЛЕНИЯ.», иначе оно уезжает под карточки. */
   grid-template-columns: 0.7fr 1.3fr;
   gap: 7vw;
 }
 
 .directions-page .other-heading h2 {
   margin: 0 0 30px;
-  font-size: clamp(35px, 4.4vw, 67px);
+  font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -266,88 +218,6 @@
   letter-spacing: var(--tracking-label);
 }
 
-.directions-page .choice-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 520px;
-}
-
-.directions-page .choice-pink {
-  background: var(--color-pink);
-  color: white;
-  padding: 80px 7vw;
-}
-
-.directions-page .choice-pink .section-kicker {
-  color: var(--color-black);
-}
-
-.directions-page .choice-pink h2 {
-  margin: 0;
-  font-size: clamp(29px, 3.5vw, 53px);
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-display);
-  font-weight: 600;
-}
-
-.directions-page .choice-black {
-  background: var(--color-ink);
-  color: white;
-  padding: 80px 7vw;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  overflow: hidden;
-}
-
-.directions-page .choice-black > p {
-  margin: 0 0 30px;
-  font-size: 16px;
-  line-height: 1.45;
-  position: relative;
-  z-index: 2;
-}
-
-.directions-page .choice-button {
-  border-radius: var(--radius-pill);
-  align-self: flex-start;
-  padding: 15px 22px;
-  border: 1px solid white;
-  color: white;
-  text-decoration: none;
-  font-size: 10px;
-  font-weight: 600;
-  position: relative;
-  z-index: 2;
-}
-
-.directions-page .choice-lines {
-  position: absolute;
-  width: 380px;
-  height: 380px;
-  right: -100px;
-  top: -80px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 50%;
-}
-
-.directions-page .choice-lines::before,
-.directions-page .choice-lines::after {
-  content: "";
-  position: absolute;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 50%;
-}
-
-.directions-page .choice-lines::before {
-  inset: 35px;
-}
-
-.directions-page .choice-lines::after {
-  inset: 70px;
-}
-
 @media (max-width: 1000px) {
   .directions-page .directions-hero {
     padding-left: 5vw;
@@ -373,18 +243,8 @@
   }
 
   .directions-page .directions-hero h1 {
-    font-size: clamp(32px, 9.6vw, 51px);
+    font-size: var(--fs-title-mobile);
     letter-spacing: var(--tracking-display);
-  }
-
-  .directions-page .hero-right {
-    min-height: 280px;
-    margin-top: 20px;
-  }
-
-  .directions-page .hero-circle {
-    width: 220px;
-    height: 220px;
   }
 
   .directions-page .direction-main {
@@ -396,7 +256,7 @@
   }
 
   .directions-page .direction-intro h2 {
-    font-size: clamp(27px, 8vw, 48px);
+    font-size: var(--fs-title-mobile);
   }
 
   .directions-page .other-directions {
@@ -407,8 +267,8 @@
 
   .directions-page .other-heading h2 {
     /* Фиксированные 70px не влезали: слово «НАПРАВЛЕНИЯ.» шире экрана телефона,
-       и секцию обрезало по краю. Теперь кегль тянется за шириной экрана. */
-    font-size: clamp(27px, 8.8vw, 56px);
+    и секцию обрезало по краю. Теперь кегль тянется за шириной экрана. */
+    font-size: var(--fs-title-mobile);
   }
 
   .directions-page .other-card {
@@ -425,18 +285,5 @@
     right: 20px;
     transform: scale(0.7) rotate(10deg);
     transform-origin: center;
-  }
-
-  .directions-page .choice-section {
-    grid-template-columns: 1fr;
-  }
-
-  .directions-page .choice-pink,
-  .directions-page .choice-black {
-    padding: 65px 20px;
-  }
-
-  .directions-page .choice-pink h2 {
-    font-size: clamp(27px, 8.8vw, 51px);
   }
 }

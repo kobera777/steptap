@@ -37,15 +37,7 @@ export const homeNav: HomeNavItem[] = [
       { href: "/directions", label: "Все направления →" },
     ],
   },
-  {
-    href: "/classes",
-    label: "ЗАНЯТИЯ",
-    children: [
-      { href: "/classes", label: "Форматы и уровни" },
-      { href: "/prices#individual", label: "Индивидуальные занятия" },
-      { href: signupChatUrl(), label: "Записаться на первое занятие" },
-    ],
-  },
+  { href: "/classes", label: "ЗАНЯТИЯ" },
   { href: "/schedule", label: "РАСПИСАНИЕ" },
   { href: "/prices", label: "ЦЕНЫ" },
   { href: "/gallery", label: "ГАЛЕРЕЯ" },

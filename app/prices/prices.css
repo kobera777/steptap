@@ -36,7 +36,7 @@
 .pr-hero h1 {
   margin: 0;
   /* Самая длинная строка — «НАШЕ ПРОСТРАНСТВО.». */
-  font-size: clamp(32px, 3.5vw, 58px);
+  font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -113,7 +113,7 @@
 
 .pr-head h2 {
   margin: 0;
-  font-size: clamp(30px, 4vw, 61px);
+  font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -390,7 +390,7 @@
 @media (max-width: 680px) {
   .pr-head h2 {
     /* Слово «ИНДИВИДУАЛЬНЫЕ» не влезало в экран телефона при 38px. */
-    font-size: clamp(21px, 6.4vw, 30px);
+    font-size: var(--fs-title-mobile);
   }
 
   /* Таблицы на телефоне не читаются — показываем карточки. */
@@ -541,7 +541,7 @@
 
 .pr-sectionhead h2 {
   margin: 0;
-  font-size: clamp(26px, 3.5vw, 50px);
+  font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -782,7 +782,7 @@
 
 @media (max-width: 640px) {
   .pr-hero h1 {
-    font-size: clamp(22px, 6.7vw, 35px);
+    font-size: var(--fs-title-mobile);
   }
 }
 
@@ -836,6 +836,7 @@
 }
 
 /* Мягкий круг на фоне — та же геометрия, что у кругов на других страницах. */
+
 .pr-first::before {
   content: "";
   position: absolute;
@@ -865,6 +866,7 @@
 }
 
 /* Зачёркнутая полная цена рядом с крупной ценой со скидкой. */
+
 .pr-first-price s {
   margin-left: 14px;
   font-size: 0.32em;
@@ -875,6 +877,7 @@
 }
 
 /* Пояснение под ценой. */
+
 .pr-first-deal {
   max-width: 380px;
   margin: 0;
@@ -925,6 +928,7 @@
   }
 
   /* На телефоне печать — над ценой, слева, чтобы ничего не перекрывать. */
+
   .pr-first-stamp {
     order: -1;
     justify-self: start;

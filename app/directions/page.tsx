@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SignupLink } from "@/components/layout/SignupLink";
 import { DirectionCard } from "@/components/sections/DirectionCard";
-import { FaqSection } from "@/components/sections/FaqSection";
-import { bachataStyles, directionsFaq, otherStyles, styleHref } from "@/data/directions";
+import { bachataStyles, otherStyles, styleHref } from "@/data/directions";
 import "./directions.css";
 
 export const metadata: Metadata = {
@@ -35,19 +33,6 @@ export default function DirectionsPage() {
             <br />
             СВОЙ <span>ХАРАКТЕР.</span>
           </h1>
-        </div>
-
-        <div className="hero-right">
-          <div className="hero-circle">
-            <span>ДВИЖЕНИЕ</span>
-            <span>МУЗЫКА</span>
-            <span>ЛЮДИ</span>
-          </div>
-
-          <p>
-            Хочешь танцевать в паре, развивать пластику или двигаться под энергичную
-            музыку? Посмотри направления — и выбери то, что откликается.
-          </p>
         </div>
       </section>
 
@@ -127,45 +112,6 @@ export default function DirectionsPage() {
           ))}
         </div>
       </section>
-
-      {/* НЕ ОБЯЗАТЕЛЬНО ВЫБИРАТЬ СРАЗУ */}
-      <section className="choice-section">
-        <div className="choice-pink">
-          <p className="section-kicker">ТВОЙ ПЕРВЫЙ ШАГ</p>
-
-          <h2>
-            НЕ
-            <br />
-            ОБЯЗАТЕЛЬНО
-            <br />
-            ВЫБИРАТЬ
-            <br />
-            СРАЗУ.
-          </h2>
-        </div>
-
-        <div className="choice-black">
-          <div className="choice-lines" />
-
-          <p>
-            Опиши, что тебе нравится: музыка, парный танец, пластика или активное
-            движение. Подскажем, с какого занятия начать.
-          </p>
-
-          <SignupLink className="choice-button">ПОДОБРАТЬ ЗАНЯТИЕ →</SignupLink>
-        </div>
-      </section>
-
-      <FaqSection
-        title={
-          <>
-            ПЕРЕД ПЕРВЫМ
-            <br />
-            ЗАНЯТИЕМ
-          </>
-        }
-        items={directionsFaq}
-      />
 
       <SiteFooter />
     </main>

@@ -5,9 +5,6 @@ import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SignupLink } from "@/components/layout/SignupLink";
-import { BrandDot } from "@/components/ui/BrandDot";
-import { FaqSection } from "@/components/sections/FaqSection";
-import { FirstStepBand } from "@/components/sections/FirstStepBand";
 import { danceStyles, findStyle } from "@/data/directions";
 import "./style-page.css";
 
@@ -56,7 +53,6 @@ export default async function StylePage(props: PageProps<"/directions/[slug]">) 
               </span>
             ))}
           </h1>
-          <p className="sp-lead">{style.description}</p>
 
           <div className="sp-actions">
             <SignupLink className="sp-btn" ariaLabel={`Хочу попробовать: ${style.short}`}>
@@ -87,38 +83,6 @@ export default async function StylePage(props: PageProps<"/directions/[slug]">) 
         )}
       </section>
 
-      <section className="sp-who">
-        <div>
-          <p className="sp-kicker">КОМУ ПОДОЙДЁТ</p>
-          <h2>
-            ЕСЛИ ХОЧЕТСЯ
-            <br />
-            ПОПРОБОВАТЬ —
-            <br />
-            УЖЕ МОЖНО.
-          </h2>
-          <p>{style.who}</p>
-        </div>
-
-        <div className="sp-geometry" aria-hidden="true">
-          <div className="sp-square">
-            <span>
-              БОЛЬШЕ
-              <br />
-              ЧЕМ
-              <br />
-              ТАНЕЦ
-              <BrandDot />
-            </span>
-          </div>
-          <div className="sp-circle">
-            {style.tags.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="sp-learn">
         <p className="sp-kicker">НА ЗАНЯТИЯХ</p>
         <h2>
@@ -146,28 +110,6 @@ export default async function StylePage(props: PageProps<"/directions/[slug]">) 
           </SignupLink>
         </div>
       </section>
-
-      <FaqSection
-        title={
-          <>
-            ПЕРЕД ПЕРВЫМ
-            <br />
-            ЗАНЯТИЕМ
-          </>
-        }
-        items={style.faq}
-      />
-
-      <FirstStepBand
-        title={
-          <>
-            ПРОСТО
-            <br />
-            ПОПРОБУЙ.
-          </>
-        }
-        text="Не нужно заранее знать, станет ли это твоим любимым танцем. Для начала достаточно одного занятия."
-      />
 
       <SiteFooter />
     </main>

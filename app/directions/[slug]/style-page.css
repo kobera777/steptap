@@ -106,17 +106,10 @@
 
 .sp-hero h1 {
   margin: 0;
-  font-size: clamp(29px, 3.4vw, 53px);
+  font-size: var(--fs-hero);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
-}
-
-.sp-lead {
-  max-width: 470px;
-  margin: 24px 0 0;
-  font-size: 15px;
-  line-height: 1.5;
 }
 
 .sp-hero-photo {
@@ -168,84 +161,12 @@
 
 /* ---------- Кому подойдёт ---------- */
 
-.sp-who {
-  min-height: 470px;
-  padding: 75px 6.5vw;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
-  gap: 50px;
-  align-items: center;
-  background: var(--color-white);
-}
-
-.sp-who h2,
 .sp-learn h2 {
   margin: 0 0 26px;
-  font-size: clamp(30px, 3.7vw, 56px);
+  font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
-}
-
-.sp-who p:not(.sp-kicker) {
-  max-width: 540px;
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.5;
-}
-
-.sp-geometry {
-  position: relative;
-  min-height: 340px;
-}
-
-.sp-square {
-  position: absolute;
-  top: 50%;
-  left: 24%;
-  width: 225px;
-  height: 225px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-pink);
-  transform: translate(-50%, -50%) rotate(-10deg);
-}
-
-.sp-square::after {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  border: 1px solid var(--color-black);
-  transform: rotate(4deg);
-}
-
-.sp-square span {
-  position: relative;
-  z-index: 1;
-  font-size: 13px;
-  line-height: 1.05;
-  font-weight: 600;
-  text-align: center;
-}
-
-.sp-circle {
-  position: absolute;
-  right: 2%;
-  top: 50%;
-  width: 210px;
-  height: 210px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  border: 1px solid var(--color-black);
-  border-radius: 50%;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: var(--tracking-ui);
-  transform: translateY(-50%);
 }
 
 /* ---------- Чем будем заниматься ---------- */
@@ -300,8 +221,7 @@
 /* ---------- Адаптив ---------- */
 
 @media (max-width: 900px) {
-  .sp-hero,
-  .sp-who {
+  .sp-hero {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -317,7 +237,6 @@
     min-height: 320px;
   }
 
-  .sp-who,
   .sp-learn {
     padding: 55px 22px;
   }
@@ -345,21 +264,6 @@
 
 @media (max-width: 520px) {
   .sp-hero h1 {
-    font-size: clamp(24px, 6.9vw, 35px);
-  }
-
-  .sp-geometry {
-    min-height: 300px;
-  }
-
-  .sp-square {
-    left: 32%;
-    width: 180px;
-    height: 180px;
-  }
-
-  .sp-circle {
-    width: 170px;
-    height: 170px;
+    font-size: var(--fs-title-mobile);
   }
 }

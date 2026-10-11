@@ -23,8 +23,6 @@ export default function AboutPage() {
 
       <section className="st-hero">
         <div className="st-hero-left">
-          <div className="st-label">О ШКОЛЕ</div>
-
           <h1>
             МЕСТО, ГДЕ
             <br />
@@ -35,10 +33,6 @@ export default function AboutPage() {
             STEP TAP — школа танцев для взрослых в центре Екатеринбурга. Мы хотели создать
             место, где можно учиться, общаться и чувствовать себя своим.
           </p>
-
-          <div className="st-hero-bottom">
-            <div className="st-tags">ЛЮДИ · МУЗЫКА · ДВИЖЕНИЕ</div>
-          </div>
         </div>
 
         <div className="st-hero-right">
@@ -53,38 +47,6 @@ export default function AboutPage() {
       {/* STORY */}
 
       <section className="st-story">
-        <div className="st-story-art">
-          <div className="st-art-big-circle" />
-
-          <div className="st-art-small-circle" />
-
-          <div className="st-art-pink" />
-
-          <div className="st-art-line" />
-
-          <div className="st-art-logo">
-            <strong>
-              STEP TAP<span>.</span>
-            </strong>
-
-            <small>[ ТАНЦЕВАЛЬНАЯ ШКОЛА ]</small>
-          </div>
-
-          <div className="st-art-script">
-            Больше
-            <br />
-            чем танец
-          </div>
-
-          <div className="st-art-words">
-            СВОИ ЛЮДИ.
-            <br />
-            СВОЯ АТМОСФЕРА.
-            <br />
-            СВОЙ ТАНЕЦ.
-          </div>
-        </div>
-
         <div className="st-story-content">
           <div className="st-label">НАША ИСТОРИЯ</div>
 
@@ -104,26 +66,6 @@ export default function AboutPage() {
               С тех пор мы продолжаем развивать школу: проводить занятия, встречаться на
               вечеринках и создавать пространство, в которое хочется возвращаться.
             </p>
-          </div>
-
-          <div className="st-date">
-            <strong>29</strong>
-
-            <span>
-              НОЯБРЯ
-              <br />
-              2025
-            </span>
-
-            <i />
-
-            <small>
-              ДЕНЬ, КОГДА
-              <br />
-              ОТКРЫЛСЯ
-              <br />
-              STEP TAP
-            </small>
           </div>
 
           <p className="st-quote">
@@ -173,10 +115,6 @@ export default function AboutPage() {
             <br />
             ТАНЦЕВАТЬ.
           </h2>
-
-          <p className="st-team-intro">
-            Преподаватели, чьи занятия указаны в расписании школы.
-          </p>
         </div>
 
         <div className="st-team-grid">
@@ -200,8 +138,6 @@ export default function AboutPage() {
 
       <section className="st-life">
         <div className="st-life-title">
-          <div className="st-label">ЗА ПРЕДЕЛАМИ УРОКА</div>
-
           <h2>
             ТАНЦЫ —
             <br />
@@ -228,32 +164,6 @@ export default function AboutPage() {
             </div>
           ))}
         </div>
-      </section>
-
-      {/* ПРИХОДИ ЗНАКОМИТЬСЯ */}
-
-      <section className="st-dream">
-        <div className="st-dream-title">
-          <div className="st-label">ТВОЙ ПЕРВЫЙ ШАГ</div>
-
-          <h2>
-            ПРИХОДИ
-            <br />
-            ЗНАКОМИТЬСЯ.
-          </h2>
-        </div>
-
-        <div className="st-dream-text">
-          <p>
-            Лучше всего узнать школу на занятии: увидеть зал, познакомиться с
-            преподавателем и попробовать самому.
-          </p>
-        </div>
-
-        <SignupLink className="st-dark-button">
-          ПОДОБРАТЬ ЗАНЯТИЕ
-          <span>→</span>
-        </SignupLink>
       </section>
 
       <SiteFooter />

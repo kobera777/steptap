@@ -17,12 +17,6 @@
 .contacts-actions a,
 .contacts-map-foot a,
 .sc-signup,
-.st-pink-button,
-.st-dark-button,
-.directions-page .choice-button,
-.directions-page .final-button,
-.gal-final-button,
-.schedule-final-cta a,
 .song-page .play {
   -webkit-user-select: none;
   user-select: none;
@@ -34,6 +28,7 @@
 }
 
 /* Нажатие: лёгкое «утопание». */
+
 .primary-button:active,
 .outline-button:active,
 .header-action:active,
@@ -41,12 +36,6 @@
 .contacts-actions a:active,
 .contacts-map-foot a:active,
 .sc-signup:active,
-.st-pink-button:active,
-.st-dark-button:active,
-.directions-page .choice-button:active,
-.directions-page .final-button:active,
-.gal-final-button:active,
-.schedule-final-cta a:active,
 .song-page .play:active,
 .gal-filters button:active,
 .schedule-view-switcher button:active {
@@ -66,9 +55,9 @@
 }
 
 /* На тёмном фоне розовое кольцо читается хуже — там белое. */
+
 .site-header :focus-visible,
 .marquee :focus-visible,
-.final-cta-pink :focus-visible,
 .gal-lightbox :focus-visible,
 .dancehall-card:focus-visible,
 .card-dark:focus-visible {
@@ -76,6 +65,7 @@
 }
 
 /* У круглых и «таблеточных» элементов кольцо повторяет их форму. */
+
 .primary-button:focus-visible,
 .outline-button:focus-visible,
 .header-action:focus-visible,
@@ -84,14 +74,8 @@
 .sc-signup:focus-visible,
 .sc-burger:focus-visible,
 .menu-toggle:focus-visible,
-.st-pink-button:focus-visible,
-.st-dark-button:focus-visible,
-.directions-page .choice-button:focus-visible,
-.directions-page .final-button:focus-visible,
-.gal-final-button:focus-visible,
 .gal-filters button:focus-visible,
 .gal-lightbox button:focus-visible,
-.schedule-final-cta a:focus-visible,
 .schedule-arrow:focus-visible,
 .schedule-view-switcher button:focus-visible,
 .song-page .play:focus-visible,
@@ -108,6 +92,7 @@
 
 /* Ссылка «сразу к содержимому» не нужна: у сайта простая структура,
    но заголовок не должен перекрывать якорь при переходе по #ссылке. */
+
 :target {
   scroll-margin-top: 90px;
 }
@@ -129,12 +114,6 @@
     .header-action,
     .contacts-actions a,
     .sc-signup,
-    .st-pink-button,
-    .st-dark-button,
-    .directions-page .choice-button,
-    .directions-page .final-button,
-    .gal-final-button,
-    .schedule-final-cta a,
     .mobile-nav .mobile-nav-action
   ) {
   display: inline-flex;
@@ -160,34 +139,21 @@
 
 /* Розовые кнопки светятся розовым. Исключение — .primary-button и .header-action:
    при наведении они становятся чёрными, поэтому у них тень тёмная (по умолчанию). */
-:root
-  :is(
-    .sc-signup,
-    .st-pink-button,
-    .directions-page .final-button,
-    .gal-final-button,
-    .mobile-nav .mobile-nav-action
-  ) {
+
+:root :is(.sc-signup, .mobile-nav .mobile-nav-action) {
   --btn-glow: var(--btn-glow-pink);
 }
 
 /* Кнопка внутри меню на телефоне занимает всю ширину панели. */
+
 :root .mobile-nav .mobile-nav-action {
   width: 100%;
 }
 
 /* Стрелка: один размер и положение на всём сайте, без ручных отступов. */
+
 :root
-  :is(
-    .primary-button,
-    .header-action,
-    .contacts-actions a,
-    .sc-signup,
-    .st-pink-button,
-    .st-dark-button,
-    .gal-final-button,
-    .directions-page .final-button
-  )
+  :is(.primary-button, .header-action, .contacts-actions a, .sc-signup)
   > :is(span, b) {
   display: inline-block;
   margin: 0;
@@ -199,6 +165,7 @@
 
 /* Наведение: кнопка приподнимается и отбрасывает мягкую тень.
    Только там, где есть мышь: на телефоне :hover «залипает» после касания. */
+
 @media (hover: hover) {
   :root
     :is(
@@ -207,12 +174,6 @@
       .header-action,
       .contacts-actions a,
       .sc-signup,
-      .st-pink-button,
-      .st-dark-button,
-      .directions-page .choice-button,
-      .directions-page .final-button,
-      .gal-final-button,
-      .schedule-final-cta a,
       .song-page .play
     ):hover {
     transform: translateY(var(--btn-lift));
@@ -220,22 +181,14 @@
   }
 
   :root
-    :is(
-      .primary-button,
-      .header-action,
-      .contacts-actions a,
-      .sc-signup,
-      .st-pink-button,
-      .st-dark-button,
-      .gal-final-button,
-      .directions-page .final-button
-    ):hover
+    :is(.primary-button, .header-action, .contacts-actions a, .sc-signup):hover
     > :is(span, b) {
     transform: translateX(6px);
   }
 }
 
 /* Нажатие: «утопание» поверх подъёма и без тени. Стоит после :hover. */
+
 :root
   :is(
     .primary-button,
@@ -243,12 +196,6 @@
     .header-action,
     .contacts-actions a,
     .sc-signup,
-    .st-pink-button,
-    .st-dark-button,
-    .directions-page .choice-button,
-    .directions-page .final-button,
-    .gal-final-button,
-    .schedule-final-cta a,
     .song-page .play
   ):active {
   transform: translateY(1px);
@@ -256,6 +203,7 @@
 }
 
 /* Кнопка «Разбор песни» на всю ширину: только высота и подъём. */
+
 :root .song-page .play {
   min-height: var(--btn-min-height);
   font-size: var(--btn-font-size);
@@ -266,6 +214,7 @@
 }
 
 /* Без анимаций для тех, кто их отключил. */
+
 @media (prefers-reduced-motion: reduce) {
   :root
     :is(
@@ -274,12 +223,6 @@
       .header-action,
       .contacts-actions a,
       .sc-signup,
-      .st-pink-button,
-      .st-dark-button,
-      .directions-page .choice-button,
-      .directions-page .final-button,
-      .gal-final-button,
-      .schedule-final-cta a,
       .song-page .play
     ):hover {
     transform: none;
@@ -289,6 +232,7 @@
 /* ---------- Точка из логотипа (components/ui/BrandDot.tsx) ----------
    Розовая, как в «STEP TAP.». Внутри розовых квадратов — белая:
    розовая точка на розовом не видна. */
+
 .brand-dot {
   display: inline-block;
   width: 0.34em;
@@ -299,7 +243,30 @@
   vertical-align: baseline;
 }
 
-.sp-square .brand-dot,
-.schedule-outline-square .brand-dot {
-  background: var(--color-white);
+/* ---------- Подписи-рубрики над заголовками ----------
+   Эталон — главная (.section-kicker): 11px, полужирный, разрядка, розовый.
+   :root поднимает специфичность над стилями страниц. */
+:root
+  :is(
+    .section-kicker,
+    .st-label,
+    .cl-kicker,
+    .sp-kicker,
+    .pr-eyebrow,
+    .pr-kicker,
+    .schedule-kicker,
+    .gal-kicker,
+    .sec-eyebrow,
+    .contacts-kicker
+  ) {
+  color: var(--color-pink);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/* На розовом фоне розовая подпись не видна — там она тёмная. */
+:root .pr-first .pr-eyebrow {
+  color: rgba(0, 0, 0, 0.7);
 }

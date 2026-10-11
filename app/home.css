@@ -72,7 +72,7 @@
   margin: 0;
   font-family: var(--font-display);
   /* Четыре строки; самая длинная — «ВОЗВРАЩАТЬСЯ.», по ней и считается кегль. */
-  font-size: clamp(27px, 2.8vw, 46px);
+  font-size: var(--fs-hero);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -188,7 +188,7 @@
 .about-copy h2 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(30px, 3.4vw, 52px);
+  font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -227,7 +227,7 @@
   margin: 0;
   color: var(--color-pink);
   font-family: var(--font-display);
-  font-size: clamp(16px, 1.6vw, 22px);
+  font-size: var(--fs-title);
   line-height: 1.2;
   font-weight: 600;
   letter-spacing: var(--tracking-label);
@@ -310,7 +310,7 @@
 .home-directions-head h2 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(34px, 4vw, 61px);
+  font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -351,7 +351,7 @@
 .faq-heading h2 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(36px, 4vw, 62px);
+  font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -446,6 +446,7 @@
 
 /* Первое занятие бесплатно при покупке абонемента: полоса во всю ширину —
    предложение слева, кнопки справа, тонкий круг на фоне. */
+
 .final-cta {
   position: relative;
   padding: 64px 6.5vw;
@@ -460,6 +461,7 @@
 }
 
 /* Тонкий круг за словом «БЕСПЛАТНО» — та же геометрия, что на карточке цен. */
+
 .final-cta::before {
   content: "";
   position: absolute;
@@ -570,7 +572,7 @@
   }
 
   .hero-copy h1 {
-    font-size: clamp(27px, 5.6vw, 51px);
+    font-size: var(--fs-hero);
   }
 
   .hero-photo {
@@ -613,7 +615,7 @@
   }
 
   .hero-copy h1 {
-    font-size: clamp(24px, 6.9vw, 42px);
+    font-size: var(--fs-title-mobile);
   }
 
   .hero-photo {
@@ -638,7 +640,7 @@
   .faq-heading h2 {
     /* 12.5vw, а не 14vw: при 14vw слово «СВОБОДНОМУ» шире экрана телефона
     и заголовок вылезал за правый край. */
-    font-size: clamp(30px, 10vw, 54px);
+    font-size: var(--fs-title-mobile);
   }
 
   .moments-heading {
@@ -709,7 +711,7 @@
 .rental-copy h2 {
   margin: 0 0 22px;
   font-family: var(--font-display);
-  font-size: clamp(35px, 4vw, 59px);
+  font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -736,6 +738,7 @@
 }
 
 /* ---- «Не нужно уметь…» и «Бесплатно» на телефоне: всё в столбик ---- */
+
 @media (max-width: 680px) {
   .about-copy {
     grid-template-columns: minmax(0, 1fr);

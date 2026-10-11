@@ -4,7 +4,6 @@ import { useMemo, useState, useSyncExternalStore } from "react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SignupLink } from "@/components/layout/SignupLink";
-import { BrandDot } from "@/components/ui/BrandDot";
 import {
   classes,
   days,
@@ -212,34 +211,6 @@ export function SchedulePage() {
             <br />
             ДЛЯ ТАНЦЕВ.
           </h1>
-
-          <p className="schedule-intro">
-            Выбери день, направление и уровень. Нажми на занятие — поможем уточнить
-            условия и записаться.
-          </p>
-        </div>
-
-        <div className="schedule-hero-art">
-          <div className="schedule-pink-square" />
-
-          <div className="schedule-outline-square">
-            <span>
-              Больше
-              <br />
-              чем
-              <br />
-              танец
-              <BrandDot />
-            </span>
-          </div>
-        </div>
-
-        <div className="schedule-hero-words">
-          <span>ЛЮДИ</span>
-          <span>МУЗЫКА</span>
-          <span>ДВИЖЕНИЕ</span>
-          <span>РАЗВИТИЕ</span>
-          <i />
         </div>
       </section>
 
@@ -517,15 +488,6 @@ export function SchedulePage() {
             </p>
           </div>
         )}
-
-        <div className="schedule-other-note">
-          <strong>Дэнсхолл, латина и новые наборы</strong>
-          <p>
-            Если не видишь нужного направления или удобного времени, напиши школе. Уточним
-            актуальные группы и специальные занятия.
-          </p>
-          <SignupLink className="schedule-other-link">НАПИСАТЬ ШКОЛЕ →</SignupLink>
-        </div>
       </section>
 
       {upcoming.length > 0 && (
@@ -558,25 +520,6 @@ export function SchedulePage() {
           </div>
         </section>
       )}
-
-      <section className="schedule-final-cta">
-        <div>
-          <p>ТВОЙ ПЕРВЫЙ ШАГ</p>
-
-          <h2>
-            ТВОЯ ГРУППА
-            <br />
-            НАЙДЁТСЯ.
-          </h2>
-
-          <p className="schedule-final-text">
-            Не обязательно выбирать только по названию уровня. Поможем разобраться в
-            расписании и подобрать занятие.
-          </p>
-        </div>
-
-        <SignupLink>ПОДОБРАТЬ ЗАНЯТИЕ →</SignupLink>
-      </section>
 
       <SiteFooter />
     </main>

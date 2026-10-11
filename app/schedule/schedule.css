@@ -27,10 +27,9 @@
 /* SCHEDULE HERO */
 
 .schedule-hero {
-  min-height: 390px;
-  padding: 55px 6.5vw 45px;
+  padding: 56px 6.5vw;
   display: grid;
-  grid-template-columns: 1fr 0.9fr 170px;
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: 30px;
   background: var(--cream);
@@ -49,72 +48,10 @@
 .schedule-hero-copy h1 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(38px, 4.5vw, 67px);
+  font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
-}
-
-.schedule-intro {
-  margin: 18px 0 0;
-  font-size: 15px;
-  line-height: 1.25;
-}
-
-.schedule-hero-art {
-  position: relative;
-  min-height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.schedule-pink-square {
-  position: absolute;
-  width: 235px;
-  height: 235px;
-  background: var(--soft-pink);
-  transform: rotate(14deg);
-}
-
-.schedule-outline-square {
-  position: relative;
-  z-index: 2;
-  width: 225px;
-  height: 225px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--black);
-  transform: rotate(-13deg);
-}
-
-.schedule-outline-square span {
-  font-family: var(--font-serif);
-  font-size: 22px;
-  line-height: 1.05;
-  text-align: center;
-  transform: rotate(13deg);
-}
-
-.schedule-hero-words {
-  align-self: start;
-  padding-top: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  font-size: 10px;
-  line-height: 1;
-  font-weight: 600;
-  letter-spacing: var(--tracking-ui);
-}
-
-.schedule-hero-words i {
-  width: 50px;
-  height: 1px;
-  margin-top: 14px;
-  display: block;
-  background: var(--black);
 }
 
 /* CALENDAR */
@@ -127,68 +64,6 @@
 /* ---------- Для новичков ----------
    Самое конкретное, что можно сказать человеку, который хочет начать:
    куда и когда прийти. Текст собирается из data/schedule.ts. */
-
-.schedule-other-note {
-  margin-top: 34px;
-  padding: 24px 26px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 8px 28px;
-  border: 1px solid rgba(17, 17, 17, 0.12);
-  border-radius: var(--radius-card);
-  background: var(--color-paper);
-}
-
-.schedule-other-note strong {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.schedule-other-note p {
-  grid-column: 1;
-  max-width: 640px;
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.schedule-other-link {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  display: inline-flex;
-  align-items: center;
-  padding: 14px 22px;
-  border-radius: var(--radius-pill);
-  background: var(--color-pink);
-  color: var(--color-black);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: var(--tracking-ui);
-  white-space: nowrap;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.schedule-other-link:hover,
-.schedule-other-link:focus-visible {
-  background: var(--color-pink-hover);
-  color: var(--color-black);
-}
-
-@media (max-width: 700px) {
-  .schedule-other-note {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .schedule-other-link {
-    grid-column: 1;
-    grid-row: auto;
-    justify-self: start;
-    margin-top: 8px;
-  }
-}
 
 /* ---------- Верхняя панель: заголовок, легенда, переключатель ----------
    Раньше блоки двигались вручную (left: -70px, -40px, 30px) и на узких
@@ -213,7 +88,8 @@
 .schedule-calendar-top h2 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(22px, 2.4vw, 34px);
+  /* Подпись календаря («НЕДЕЛЯ», «ОКТЯБРЬ»), а не заголовок раздела — мельче. */
+  font-size: clamp(22px, 2.2vw, 32px);
   line-height: 1;
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -243,6 +119,7 @@
 }
 
 /* Дальше листать некуда: в прошлое календарь не ходит. */
+
 .schedule-arrow:disabled {
   opacity: 0.3;
   cursor: default;
@@ -252,6 +129,7 @@
 
 /* Легенда всегда отдельной строкой: в виде «Месяц» заголовок со стрелками
    шире, и переключатель иначе падал на вторую строку. */
+
 .schedule-top-legend {
   order: 3;
   flex-basis: 100%;
@@ -370,7 +248,6 @@
 .schedule-grid-body {
   /* Высота одного часа в сетке. */
   --schedule-hour-height: 82px;
-
   min-width: 900px;
   display: grid;
   grid-template-columns: 58px repeat(7, minmax(110px, 1fr));
@@ -485,6 +362,7 @@
 /* Два занятия в одно время: карточка в полколонки. Раньше здесь был
    инлайн-«костыль» по номерам занятий [1, 2, 7, 8] — и текст всё равно
    вылезал за край. */
+
 .schedule-card.is-narrow {
   padding: 8px 7px 6px;
 }
@@ -524,6 +402,7 @@
 
 /* Строки и плашки объявлены ниже и задают свой чёрный цвет текста —
    на тёмном фоне 5.0 его нужно вернуть в белый, иначе не читается. */
+
 .schedule-row.schedule-card-profi,
 .schedule-chip.schedule-card-profi {
   color: var(--color-white);
@@ -804,7 +683,7 @@
 .schedule-events h2 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(37px, 4vw, 61px);
+  font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -844,63 +723,11 @@
 
 /* FINAL CTA */
 
-.schedule-final-cta {
-  min-height: 260px;
-  padding: 50px 6.5vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  background: var(--pink);
-}
-
-.schedule-final-cta p {
-  margin: 0 0 8px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: var(--tracking-label);
-}
-
-.schedule-final-cta h2 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(40px, 4.8vw, 66px);
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-display);
-  font-weight: 600;
-}
-
-.schedule-final-cta .schedule-final-text {
-  max-width: 460px;
-  margin: 18px 0 0;
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0;
-  line-height: 1.5;
-}
-
-.schedule-final-cta a {
-  border-radius: var(--radius-pill);
-  display: inline-flex;
-  align-items: center;
-  padding: 14px 18px;
-  border: 1px solid var(--black);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: var(--tracking-ui);
-  text-transform: uppercase;
-}
-
-.schedule-final-cta a:hover {
-  background: var(--black);
-  color: var(--white);
-}
-
 /* TABLET */
 
 @media (max-width: 1200px) {
   .schedule-hero {
-    grid-template-columns: 1fr 0.85fr 120px;
+    grid-template-columns: minmax(0, 1fr);
     padding-left: 5vw;
     padding-right: 5vw;
   }
@@ -923,15 +750,7 @@
   }
 
   .schedule-hero-copy h1 {
-    font-size: clamp(46px, 12vw, 70px);
-  }
-
-  .schedule-hero-art {
-    min-height: 280px;
-  }
-
-  .schedule-hero-words {
-    display: none;
+    font-size: var(--fs-title);
   }
 
   .schedule-calendar-section {
@@ -939,12 +758,9 @@
     padding-right: 22px;
   }
 
-  .schedule-calendar-top h2 {
-    font-size: 22px;
-  }
-
   /* Семь колонок по часам на узком экране не читаются: та же неделя
-     показывается списком по дням. */
+       показывается списком по дням. */
+
   .schedule-calendar {
     display: none;
   }
@@ -954,7 +770,8 @@
   }
 
   /* В клетке месяца на телефоне места нет — вместо занятий точки по
-     уровням, а нажатие на дату открывает этот день целиком. */
+       уровням, а нажатие на дату открывает этот день целиком. */
+
   .schedule-month-head,
   .schedule-month-grid {
     gap: 4px;
@@ -998,12 +815,6 @@
     grid-column: 2;
     text-align: left;
   }
-
-  .schedule-final-cta {
-    padding: 50px 22px;
-    align-items: flex-start;
-    flex-direction: column;
-  }
 }
 
 /* PHONE */
@@ -1014,29 +825,7 @@
   }
 
   .schedule-hero-copy h1 {
-    font-size: clamp(45px, 14.4vw, 62px);
-  }
-
-  .schedule-intro {
-    font-size: 14px;
-  }
-
-  .schedule-hero-art {
-    min-height: 245px;
-  }
-
-  .schedule-pink-square {
-    width: 190px;
-    height: 190px;
-  }
-
-  .schedule-outline-square {
-    width: 185px;
-    height: 185px;
-  }
-
-  .schedule-outline-square span {
-    font-size: 18px;
+    font-size: var(--fs-title-mobile);
   }
 
   .schedule-calendar-section {
@@ -1044,7 +833,7 @@
   }
 
   .schedule-calendar-top h2 {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .schedule-view-switcher {
@@ -1058,6 +847,7 @@
   }
 
   /* Строка занятия в два этажа: время и «Записаться» сверху, ниже — что и кто. */
+
   .schedule-row {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
@@ -1077,11 +867,6 @@
 
   .schedule-events h2 {
     /* 15vw давало «БЛИЖАЙШИЕ» шире экрана — слово упиралось в край. */
-    font-size: clamp(30px, 10.4vw, 54px);
-  }
-
-  .schedule-final-cta h2 {
-    /* «НАЙДЁТСЯ.» должно влезать в экран телефона. */
-    font-size: clamp(27px, 8.8vw, 51px);
+    font-size: var(--fs-title-mobile);
   }
 }

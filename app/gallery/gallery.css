@@ -7,7 +7,6 @@
   --sand: var(--color-pink-soft);
   --pink: var(--color-pink);
   --line: rgba(17, 17, 17, 0.14);
-
   min-height: 100vh;
   overflow-x: clip; /* не hidden — иначе sticky-шапка не работает */
   background: var(--cream);
@@ -35,7 +34,7 @@
 
 .gal-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: end;
   gap: 40px;
   padding: 80px 7vw 60px;
@@ -45,7 +44,7 @@
 .gal-hero h1 {
   margin: 0;
   /* Самая длинная строка — «ЛЮДИ ЗА КАДРОМ.», по ней и считается кегль. */
-  font-size: clamp(32px, 3.7vw, 61px);
+  font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -53,65 +52,6 @@
 
 .gal-hero h1 span {
   color: var(--pink);
-}
-
-.gal-hero-right {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  min-width: 0;
-  align-items: center;
-  gap: 32px;
-}
-
-.gal-hero-art {
-  position: relative;
-  width: 150px;
-  height: 150px;
-}
-
-.gal-hero-art::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--pink);
-  transform: rotate(12deg);
-}
-
-.gal-hero-art::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 1px solid var(--black);
-  transform: rotate(-8deg);
-}
-
-.gal-hero-art span {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-family: var(--font-serif);
-  font-size: 17px;
-  line-height: 1.15;
-}
-
-.gal-hero-text {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: var(--tracking-heading);
-}
-
-.gal-hero-text small {
-  display: block;
-  margin-top: 14px;
-  max-width: 300px;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.5;
 }
 
 /* ---------- ФИЛЬТРЫ ---------- */
@@ -185,22 +125,6 @@
   padding: 56px 7vw 0;
 }
 
-.gal-section-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 26px;
-}
-
-.gal-section-head h2 {
-  margin: 0;
-  font-size: clamp(24px, 2.8vw, 38px);
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-heading);
-  font-weight: 600;
-}
-
 /* видео */
 
 .gal-video-frame {
@@ -255,62 +179,6 @@
 /* соседние альбомы */
 
 /* ---------- ФИНАЛЬНЫЙ CTA ---------- */
-
-.gal-final {
-  min-height: 400px;
-  display: grid;
-  grid-template-columns: 1fr 0.6fr;
-  align-items: center;
-  margin-top: 80px;
-  padding: 80px 7vw;
-  background: var(--color-white);
-}
-
-.gal-final h2 {
-  margin: 0 0 25px;
-  font-size: clamp(32px, 4.3vw, 67px);
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-display);
-  font-weight: 600;
-}
-
-.gal-final > div > p:not(.gal-kicker) {
-  margin: 0 0 28px;
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-.gal-final-button {
-  border-radius: var(--radius-pill);
-  display: inline-flex;
-  gap: 18px;
-  align-items: center;
-  padding: 16px 23px;
-  background: var(--color-pink);
-  color: var(--color-white) !important;
-  font-size: 10px;
-  font-weight: 600;
-}
-
-.gal-final-logo {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.gal-final-logo div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: min(240px, 32vw);
-  aspect-ratio: 1;
-  background: var(--black);
-  transform: rotate(-8deg);
-}
-
-.gal-final-logo img {
-  width: 72%;
-  height: auto;
-}
 
 /* ---------- LIGHTBOX ---------- */
 
@@ -448,18 +316,8 @@
   }
 
   .gal-hero h1 {
-    font-size: clamp(22px, 6.6vw, 42px);
+    font-size: var(--fs-title-mobile);
     letter-spacing: var(--tracking-display);
-  }
-
-  .gal-hero-right {
-    grid-template-columns: 1fr;
-    gap: 22px;
-  }
-
-  .gal-hero-art {
-    width: 120px;
-    height: 120px;
   }
 
   .gal-filters-bar {
@@ -475,12 +333,6 @@
     padding: 40px 18px 0;
   }
 
-  .gal-section-head {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
   .gal-masonry {
     columns: 2;
     column-gap: 10px;
@@ -488,26 +340,6 @@
 
   .gal-photo {
     margin-bottom: 10px;
-  }
-
-  .gal-final {
-    grid-template-columns: 1fr;
-    margin-top: 50px;
-    padding: 56px 18px;
-  }
-
-  .gal-final h2 {
-    font-size: clamp(24px, 6.7vw, 42px);
-    letter-spacing: var(--tracking-display);
-  }
-
-  .gal-final-logo {
-    justify-content: flex-start;
-    margin-top: 40px;
-  }
-
-  .gal-final-logo div {
-    width: 150px;
   }
 
   .gal-lightbox-stage {

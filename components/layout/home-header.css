@@ -200,23 +200,10 @@
     gap: 20px;
   }
 
+  /* Меню всегда в одну строку: раньше здесь была сетка на 6 колонок,
+     и 8 пунктов разъезжались на две строки. */
   .main-nav {
-    flex: 1;
-    min-width: 0;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    align-items: center;
-    justify-items: center;
-    gap: 0;
-    height: 100%;
-  }
-
-  .main-nav > a,
-  .nav-dropdown {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    gap: 14px;
   }
 
   .main-nav > a,
@@ -342,7 +329,12 @@
   display: flex;
 }
 
-@media (max-width: 680px) {
+/* Уже 1024px восемь пунктов в строку не помещаются — меню уходит в «бургер». */
+@media (max-width: 1024px) {
+  .main-nav {
+    display: none;
+  }
+
   .menu-toggle {
     display: inline-flex;
   }
