@@ -36,7 +36,7 @@
 .pr-hero h1 {
   margin: 0;
   /* Самая длинная строка — «НАШЕ ПРОСТРАНСТВО.». */
-  font-size: clamp(40px, 4.4vw, 72px);
+  font-size: clamp(32px, 3.5vw, 58px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -113,7 +113,7 @@
 
 .pr-head h2 {
   margin: 0;
-  font-size: clamp(38px, 5vw, 76px);
+  font-size: clamp(30px, 4vw, 61px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -121,7 +121,7 @@
 
 .pr-sub {
   margin: 0 0 6px;
-  font-size: clamp(22px, 2.4vw, 30px);
+  font-size: clamp(18px, 1.9vw, 24px);
   line-height: 1.05;
   letter-spacing: var(--tracking-heading);
   font-weight: 600;
@@ -390,7 +390,7 @@
 @media (max-width: 680px) {
   .pr-head h2 {
     /* Слово «ИНДИВИДУАЛЬНЫЕ» не влезало в экран телефона при 38px. */
-    font-size: clamp(26px, 8vw, 38px);
+    font-size: clamp(21px, 6.4vw, 30px);
   }
 
   /* Таблицы на телефоне не читаются — показываем карточки. */
@@ -541,7 +541,7 @@
 
 .pr-sectionhead h2 {
   margin: 0;
-  font-size: clamp(33px, 4.4vw, 62px);
+  font-size: clamp(26px, 3.5vw, 50px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -609,7 +609,7 @@
 
 .pr-plan h3 {
   margin: 0;
-  font-size: 29px;
+  font-size: 23px;
   line-height: 1;
   letter-spacing: var(--tracking-heading);
   font-weight: 600;
@@ -617,7 +617,7 @@
 
 .pr-plan-total {
   margin: 22px 0 5px;
-  font-size: 39px;
+  font-size: 31px;
   line-height: 1;
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -672,7 +672,7 @@
 }
 
 .pr-single strong {
-  font-size: 26px;
+  font-size: 21px;
   letter-spacing: var(--tracking-heading);
 }
 
@@ -728,7 +728,7 @@
   }
 
   .pr-plan-total {
-    font-size: 28px;
+    font-size: 22px;
   }
 
   .pr-plan-label {
@@ -782,7 +782,7 @@
 
 @media (max-width: 640px) {
   .pr-hero h1 {
-    font-size: clamp(28px, 8.4vw, 44px);
+    font-size: clamp(22px, 6.7vw, 35px);
   }
 }
 
@@ -858,7 +858,7 @@
 
 .pr-first-price {
   margin: 10px 0 18px;
-  font-size: clamp(72px, 7vw, 110px);
+  font-size: clamp(58px, 5.6vw, 88px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -905,7 +905,7 @@
 }
 
 .pr-first-stamp b {
-  font-size: 32px;
+  font-size: 26px;
   line-height: 1;
   font-weight: 600;
   letter-spacing: var(--tracking-heading);

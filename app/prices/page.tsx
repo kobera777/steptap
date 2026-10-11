@@ -10,7 +10,6 @@ import {
   rub,
   singleLesson,
   firstLesson,
-  firstLessonWithPlan,
 } from "@/data/prices";
 import "./prices.css";
 
@@ -39,14 +38,10 @@ export default function PricesPage() {
         <div className="pr-first">
           <div className="pr-first-main">
             <p className="pr-eyebrow">ПЕРВОЕ ГРУППОВОЕ ЗАНЯТИЕ</p>
-            {/* Крупно — цена со скидкой (её и запоминают), рядом зачёркнутая. */}
-            <p className="pr-first-price">
-              {rub(firstLessonWithPlan())}
-              <s>{rub(firstLesson.price)}</s>
-            </p>
+            <p className="pr-first-price">БЕСПЛАТНО</p>
 
             <p className="pr-first-deal">
-              <strong>При покупке абонемента.</strong> Без абонемента —{" "}
+              <strong>Первое занятие при покупке абонемента.</strong> Без абонемента —{" "}
               {rub(firstLesson.price)}.
             </p>
 
@@ -55,9 +50,9 @@ export default function PricesPage() {
             </SignupLink>
           </div>
 
-          {/* Печать «−50 %» — как штамп: круг, повёрнутый на несколько градусов. */}
+          {/* Печать «0 ₽» — как штамп: круг, повёрнутый на несколько градусов. */}
           <div className="pr-first-stamp" aria-hidden="true">
-            <b>−50 %</b>
+            <b>0 ₽</b>
             <small>
               ПРИ ПОКУПКЕ
               <br />

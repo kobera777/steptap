@@ -63,7 +63,7 @@
 .st-hero-left h1 {
   margin: 25px 0 28px;
 
-  font-size: clamp(56px, 5.5vw, 82px);
+  font-size: clamp(45px, 4.4vw, 66px);
 
   line-height: var(--leading-display);
 
@@ -286,7 +286,7 @@
 .st-art-logo strong {
   display: block;
 
-  font-size: 48px;
+  font-size: 38px;
 
   line-height: var(--leading-display);
 
@@ -369,7 +369,7 @@
 .st-story-content h2 {
   margin: 12px 0 13px;
 
-  font-size: clamp(34px, 3vw, 48px);
+  font-size: clamp(27px, 2.4vw, 38px);
 
   line-height: var(--leading-display);
 
@@ -406,7 +406,7 @@
 .st-date strong {
   display: block;
 
-  font-size: 43px;
+  font-size: 34px;
 
   line-height: var(--leading-display);
 }
@@ -458,7 +458,7 @@
   margin: 10px 0 0;
 
   /* Montserrat шире прежнего шрифта: «ПОДДЕРЖИВАЮТ.» должно влезать в колонку. */
-  font-size: clamp(24px, 2.3vw, 38px);
+  font-size: clamp(19px, 1.8vw, 30px);
 
   line-height: var(--leading-display);
 
@@ -532,7 +532,7 @@
 .st-life-title h2 {
   margin: 10px 0 0;
 
-  font-size: clamp(32px, 2.7vw, 44px);
+  font-size: clamp(26px, 2.2vw, 35px);
 
   line-height: var(--leading-display);
 
@@ -566,7 +566,7 @@
 .st-life-item div {
   height: 38px;
 
-  font-size: 29px;
+  font-size: 23px;
 }
 
 .st-life-item span {
@@ -603,7 +603,7 @@
 .st-dream-title h2 {
   margin: 10px 0 0;
 
-  font-size: clamp(26px, 2.6vw, 42px);
+  font-size: clamp(21px, 2.1vw, 34px);
 
   line-height: var(--leading-display);
 
@@ -659,7 +659,7 @@
   }
 
   .st-hero-left h1 {
-    font-size: 62px;
+    font-size: 50px;
   }
 
   .st-photo {
@@ -696,7 +696,7 @@
   .st-hero-left h1 {
     margin: 18px 0 23px;
 
-    font-size: 56px;
+    font-size: 45px;
 
     letter-spacing: var(--tracking-display);
   }
@@ -753,7 +753,7 @@
   }
 
   .st-art-logo strong {
-    font-size: 40px;
+    font-size: 32px;
   }
 
   .st-story-content {
@@ -761,7 +761,7 @@
   }
 
   .st-story-content h2 {
-    font-size: 40px;
+    font-size: 32px;
   }
 
   .st-story-copy {
@@ -779,7 +779,7 @@
   }
 
   .st-values-title h2 {
-    font-size: clamp(26px, 7.8vw, 40px);
+    font-size: clamp(21px, 6.2vw, 32px);
   }
 
   .st-values-grid {
@@ -807,7 +807,7 @@
   .st-life-title h2 {
     margin-bottom: 30px;
 
-    font-size: 40px;
+    font-size: 32px;
   }
 
   .st-life-grid {
@@ -831,7 +831,7 @@
   }
 
   .st-dream-title h2 {
-    font-size: clamp(28px, 8.4vw, 50px);
+    font-size: clamp(22px, 6.7vw, 40px);
   }
 
   .st-dream-text {
@@ -919,7 +919,7 @@
 
 .st-team-title h2 {
   margin: 10px 0 0;
-  font-size: clamp(32px, 2.8vw, 45px);
+  font-size: clamp(26px, 2.2vw, 36px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
 }
@@ -941,7 +941,7 @@
 
 .st-teacher h3 {
   margin: 0;
-  font-size: clamp(26px, 2.4vw, 34px);
+  font-size: clamp(21px, 1.9vw, 27px);
   line-height: 1;
   letter-spacing: var(--tracking-heading);
   font-weight: 600;

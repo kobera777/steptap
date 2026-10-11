@@ -72,7 +72,7 @@
   margin: 0;
   font-family: var(--font-display);
   /* Четыре строки; самая длинная — «ВОЗВРАЩАТЬСЯ.», по ней и считается кегль. */
-  font-size: clamp(34px, 3.5vw, 58px);
+  font-size: clamp(27px, 2.8vw, 46px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -156,33 +156,53 @@
    ABOUT DIRECTION
 ================================================== */
 
+/* «Не нужно уметь танцевать» — одна горизонтальная полоса: подпись и
+   заголовок слева, кнопка справа внизу. Раньше заголовок шёл в пять строк,
+   а правая половина пустовала. */
+
 .about-direction {
-  padding: 75px 6.5vw;
+  padding: 56px 6.5vw;
   background: var(--white);
 }
 
 .about-copy {
-  max-width: 610px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 0 32px;
+}
+
+.about-copy .section-kicker {
+  grid-column: 1;
 }
 
 .about-copy h2 {
-  margin: 0 0 27px;
+  grid-column: 1;
+}
+
+.about-copy .outline-button {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.about-copy h2 {
+  margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(43px, 5vw, 76px);
+  font-size: clamp(30px, 3.4vw, 52px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
 }
 
-.about-copy > p:not(.section-kicker) {
-  max-width: 570px;
-  margin: 0 0 13px;
-  font-size: 15px;
-  line-height: 1.48;
+/* Вторая строка — розовая: фирменный акцент. */
+
+.about-copy h2 span {
+  color: var(--color-pink);
 }
 
 .about-copy .outline-button {
-  margin-top: 14px;
+  margin-bottom: 6px;
+  white-space: nowrap;
 }
 
 /* ==================================================
@@ -290,7 +310,7 @@
 .home-directions-head h2 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(43px, 5vw, 76px);
+  font-size: clamp(34px, 4vw, 61px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -331,7 +351,7 @@
 .faq-heading h2 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(45px, 5vw, 78px);
+  font-size: clamp(36px, 4vw, 62px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -424,101 +444,79 @@
    FINAL CTA
 ================================================== */
 
+/* Первое занятие бесплатно при покупке абонемента: полоса во всю ширину —
+   предложение слева, кнопки справа, тонкий круг на фоне. */
 .final-cta {
-  min-height: 360px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  position: relative;
+  padding: 64px 6.5vw;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px 48px;
+  overflow: hidden;
+  /* Мягкий розовый — «карточки и декоративные фоны» по Brand Board. */
+  background: var(--color-pink-soft);
 }
 
-.final-cta-pink {
-  padding: 60px 5.5vw;
-  background: var(--pink);
+/* Тонкий круг за словом «БЕСПЛАТНО» — та же геометрия, что на карточке цен. */
+.final-cta::before {
+  content: "";
+  position: absolute;
+  left: calc(6.5vw - 70px);
+  top: 50%;
+  width: 300px;
+  height: 300px;
+  border: 1px solid rgba(var(--color-pink-rgb), 0.45);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
-.final-cta-pink > p {
-  margin: 0 0 17px;
+.final-cta-offer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.final-cta-offer small {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: var(--tracking-label);
 }
 
-.final-cta-pink h2 {
-  margin: 0;
+.final-cta-offer strong {
   font-family: var(--font-display);
-  font-size: clamp(45px, 5vw, 78px);
+  font-size: clamp(38px, 4.6vw, 66px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
 }
 
-.final-cta-copy {
-  padding: 60px 4vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: var(--white);
+.final-cta-offer strong .brand-dot {
+  width: 0.26em;
+  height: 0.26em;
 }
 
-.final-cta-copy p {
-  max-width: 390px;
-  margin: 0 0 24px;
-  font-size: 15px;
-  line-height: 1.45;
-}
-
-/* Цена первого занятия — главный довод блока, поэтому крупно. */
-
-.final-cta-price {
-  margin-bottom: 22px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-}
-
-.final-cta-price small {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: var(--tracking-label);
-}
-
-.final-cta-price strong {
-  font-family: var(--font-display);
-  font-size: clamp(48px, 5vw, 72px);
-  line-height: var(--leading-display);
-  letter-spacing: var(--tracking-display);
+.final-cta-offer p {
+  margin: 4px 0 0;
+  font-size: clamp(16px, 1.5vw, 20px);
   font-weight: 600;
 }
 
-.final-cta-price strong s {
-  margin-left: 12px;
-  font-size: 0.34em;
-  font-weight: 600;
-  letter-spacing: 0;
-  opacity: 0.5;
-  vertical-align: middle;
-}
-
-.final-cta-price span {
-  padding: 6px 12px;
-  border-radius: var(--radius-pill);
-  background: var(--color-pink);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: var(--tracking-label);
+.final-cta-offer span {
+  color: var(--color-muted);
+  font-size: 14px;
 }
 
 .final-cta-actions {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 14px 24px;
-}
-
-.final-cta-copy .final-cta-note {
-  margin: 18px 0 0;
-  color: var(--color-muted);
-  font-size: 12px;
 }
 
 /* ==================================================
@@ -572,7 +570,7 @@
   }
 
   .hero-copy h1 {
-    font-size: clamp(34px, 7vw, 64px);
+    font-size: clamp(27px, 5.6vw, 51px);
   }
 
   .hero-photo {
@@ -600,10 +598,6 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .final-cta {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .video-frame {
     width: 100%;
   }
@@ -619,7 +613,7 @@
   }
 
   .hero-copy h1 {
-    font-size: clamp(30px, 8.6vw, 52px);
+    font-size: clamp(24px, 6.9vw, 42px);
   }
 
   .hero-photo {
@@ -644,7 +638,7 @@
   .faq-heading h2 {
     /* 12.5vw, а не 14vw: при 14vw слово «СВОБОДНОМУ» шире экрана телефона
     и заголовок вылезал за правый край. */
-    font-size: clamp(38px, 12.5vw, 68px);
+    font-size: clamp(30px, 10vw, 54px);
   }
 
   .moments-heading {
@@ -674,15 +668,6 @@
 
   .faq-question > span {
     font-size: 14px;
-  }
-
-  .final-cta {
-    grid-template-columns: 1fr;
-  }
-
-  .final-cta-pink,
-  .final-cta-copy {
-    padding: 55px 22px;
   }
 }
 
@@ -724,7 +709,7 @@
 .rental-copy h2 {
   margin: 0 0 22px;
   font-family: var(--font-display);
-  font-size: clamp(44px, 5vw, 74px);
+  font-size: clamp(35px, 4vw, 59px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -747,5 +732,29 @@
 
   .rental-copy {
     padding: 48px 22px;
+  }
+}
+
+/* ---- «Не нужно уметь…» и «Бесплатно» на телефоне: всё в столбик ---- */
+@media (max-width: 680px) {
+  .about-copy {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-copy .outline-button {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+    margin: 22px 0 0;
+  }
+
+  .final-cta {
+    padding: 48px 22px;
+  }
+
+  .final-cta::before {
+    left: -90px;
+    width: 260px;
+    height: 260px;
   }
 }

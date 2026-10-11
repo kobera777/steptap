@@ -4,7 +4,7 @@ import { HomeHeader } from "@/components/layout/HomeHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { homeHero, marqueeItems } from "@/data/home";
 import { bachataStyles, firstClassFaq } from "@/data/directions";
-import { firstLesson, firstLessonWithPlan, rub } from "@/data/prices";
+import { firstLesson, rub } from "@/data/prices";
 import { FaqList } from "@/components/home/FaqList";
 import { MomentsVideo } from "@/components/home/MomentsVideo";
 import { DirectionCard } from "@/components/sections/DirectionCard";
@@ -24,10 +24,6 @@ export function HomePage() {
       {/* HERO */}
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="section-kicker" data-reveal>
-            {homeHero.kicker}
-          </p>
-
           <h1 data-reveal data-reveal-delay="1">
             {homeHero.title.map((line, index) => (
               <span key={line}>
@@ -93,11 +89,9 @@ export function HomePage() {
           <p className="section-kicker">ЭТО STEP TAP</p>
 
           <h2>
-            НЕ НУЖНО УМЕТЬ
+            НЕ НУЖНО УМЕТЬ ТАНЦЕВАТЬ,
             <br />
-            ТАНЦЕВАТЬ,
-            <br />
-            ЧТОБЫ НАЧАТЬ.
+            <span>ЧТОБЫ НАЧАТЬ.</span>
           </h2>
 
           <Link className="outline-button" href="/about">
@@ -169,41 +163,25 @@ export function HomePage() {
         <FaqList items={firstClassFaq} />
       </section>
 
-      {/* СНАЧАЛА ПОПРОБУЙ */}
+      {/* ПЕРВОЕ ЗАНЯТИЕ — бесплатно при покупке абонемента */}
       <section className="final-cta" id="trial">
-        <div className="final-cta-pink" data-reveal="left">
-          <p>ПЕРВОЕ ЗНАКОМСТВО</p>
-          <h2>
-            СНАЧАЛА
-            <br />
-            ПОПРОБУЙ.
-            <br />
-            ПОТОМ РЕШАЙ.
-          </h2>
+        <div className="final-cta-offer" data-reveal>
+          <small>ПЕРВОЕ ГРУППОВОЕ ЗАНЯТИЕ</small>
+          <strong>
+            БЕСПЛАТНО
+            <BrandDot />
+          </strong>
+          <p>первое занятие при покупке абонемента</p>
+          <span>без абонемента — {rub(firstLesson.price)}</span>
         </div>
 
-        <div className="final-cta-copy" data-reveal data-reveal-delay="1">
-          <div className="final-cta-price">
-            <small>ПЕРВОЕ ГРУППОВОЕ ЗАНЯТИЕ</small>
-            <strong>
-              {rub(firstLessonWithPlan())}
-              <s>{rub(firstLesson.price)}</s>
-            </strong>
-            <span>−50 % ПРИ ПОКУПКЕ АБОНЕМЕНТА</span>
-          </div>
-
-          <div className="final-cta-actions">
-            <SignupLink className="primary-button">
-              ЗАПИСАТЬСЯ <span>→</span>
-            </SignupLink>
-            <Link className="hero-textlink" href="/prices">
-              ЦЕНЫ И УСЛОВИЯ →
-            </Link>
-          </div>
-
-          <p className="final-cta-note">
-            Условия для выбранной группы уточни при записи.
-          </p>
+        <div className="final-cta-actions" data-reveal data-reveal-delay="1">
+          <SignupLink className="primary-button">
+            ЗАПИСАТЬСЯ <span>→</span>
+          </SignupLink>
+          <Link className="hero-textlink" href="/prices">
+            ЦЕНЫ И УСЛОВИЯ →
+          </Link>
         </div>
       </section>
 

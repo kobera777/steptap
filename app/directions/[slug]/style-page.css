@@ -106,7 +106,7 @@
 
 .sp-hero h1 {
   margin: 0;
-  font-size: clamp(36px, 4.3vw, 66px);
+  font-size: clamp(29px, 3.4vw, 53px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -161,7 +161,7 @@
 
 .sp-rings span {
   font-family: var(--font-serif);
-  font-size: 26px;
+  font-size: 21px;
   font-style: italic;
   transform: rotate(-8deg);
 }
@@ -181,7 +181,7 @@
 .sp-who h2,
 .sp-learn h2 {
   margin: 0 0 26px;
-  font-size: clamp(38px, 4.6vw, 70px);
+  font-size: clamp(30px, 3.7vw, 56px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -285,7 +285,7 @@
 
 .sp-learn-grid h3 {
   margin: 48px 0 12px;
-  font-size: clamp(22px, 2vw, 30px);
+  font-size: clamp(18px, 1.6vw, 24px);
   line-height: 1;
   letter-spacing: var(--tracking-heading);
   font-weight: 600;
@@ -345,7 +345,7 @@
 
 @media (max-width: 520px) {
   .sp-hero h1 {
-    font-size: clamp(30px, 8.6vw, 44px);
+    font-size: clamp(24px, 6.9vw, 35px);
   }
 
   .sp-geometry {

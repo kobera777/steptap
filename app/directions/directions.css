@@ -44,7 +44,7 @@
 
 .directions-page .directions-hero h1 {
   margin: 0;
-  font-size: clamp(52px, 6.8vw, 108px);
+  font-size: clamp(42px, 5.4vw, 86px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -115,7 +115,7 @@
 
 .directions-page .direction-intro h2 {
   margin: 0;
-  font-size: clamp(44px, 6vw, 92px);
+  font-size: clamp(35px, 4.8vw, 74px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -137,7 +137,7 @@
 
 .directions-page .other-heading h2 {
   margin: 0 0 30px;
-  font-size: clamp(44px, 5.5vw, 84px);
+  font-size: clamp(35px, 4.4vw, 67px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -217,7 +217,7 @@
 .directions-page .other-card-title h3 {
   margin: 0;
   /* Кегль подобран так, чтобы «ДЭНСХОЛЛ» целиком помещался в карточку. */
-  font-size: clamp(34px, 3.6vw, 64px);
+  font-size: clamp(27px, 2.9vw, 51px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -284,7 +284,7 @@
 
 .directions-page .choice-pink h2 {
   margin: 0;
-  font-size: clamp(36px, 4.4vw, 66px);
+  font-size: clamp(29px, 3.5vw, 53px);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
@@ -373,7 +373,7 @@
   }
 
   .directions-page .directions-hero h1 {
-    font-size: clamp(40px, 12vw, 64px);
+    font-size: clamp(32px, 9.6vw, 51px);
     letter-spacing: var(--tracking-display);
   }
 
@@ -396,7 +396,7 @@
   }
 
   .directions-page .direction-intro h2 {
-    font-size: clamp(34px, 10vw, 60px);
+    font-size: clamp(27px, 8vw, 48px);
   }
 
   .directions-page .other-directions {
@@ -408,7 +408,7 @@
   .directions-page .other-heading h2 {
     /* Фиксированные 70px не влезали: слово «НАПРАВЛЕНИЯ.» шире экрана телефона,
        и секцию обрезало по краю. Теперь кегль тянется за шириной экрана. */
-    font-size: clamp(34px, 11vw, 70px);
+    font-size: clamp(27px, 8.8vw, 56px);
   }
 
   .directions-page .other-card {
@@ -417,7 +417,7 @@
   }
 
   .directions-page .other-card-title h3 {
-    font-size: clamp(34px, 12vw, 65px);
+    font-size: clamp(27px, 9.6vw, 52px);
   }
 
   .directions-page .other-card-shape,
@@ -437,6 +437,6 @@
   }
 
   .directions-page .choice-pink h2 {
-    font-size: clamp(34px, 11vw, 64px);
+    font-size: clamp(27px, 8.8vw, 51px);
   }
 }

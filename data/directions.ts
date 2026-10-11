@@ -49,8 +49,7 @@ export const firstClassFaq: FaqItem[] = [
   },
   {
     question: "На парную бачату обязательно приходить вдвоём?",
-    answer:
-      "Нет. На групповых занятиях партнёры меняются, поэтому можно прийти одному.",
+    answer: "Нет. На групповых занятиях партнёры меняются, поэтому можно прийти одному.",
   },
   {
     question: "Что надеть и взять с собой?",
@@ -162,7 +161,12 @@ export const danceStyles: DanceStyle[] = [
       src: "/directions/estilo-masculino.webp",
       alt: "Преподаватель мужского стиля бачаты в STEP TAP",
     },
-    card: { variant: "card-dark", number: "03", kicker: "БАЧАТА", title: "МУЖСКОЙ СТИЛЬ" },
+    card: {
+      variant: "card-dark",
+      number: "03",
+      kicker: "БАЧАТА",
+      title: "МУЖСКОЙ СТИЛЬ",
+    },
   },
   {
     slug: "experimental",

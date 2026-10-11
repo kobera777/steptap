@@ -1,4 +1,3 @@
-import { firstLessonWithPlan, rub } from "@/data/prices";
 import { siteContacts } from "@/data/site";
 
 /**
@@ -8,7 +7,6 @@ import { siteContacts } from "@/data/site";
  */
 
 export const homeHero = {
-  kicker: "ШКОЛА ТАНЦЕВ ДЛЯ ВЗРОСЛЫХ · ЕКАТЕРИНБУРГ",
   title: ["ТАНЦЫ,", "НА КОТОРЫЕ", "ХОЧЕТСЯ", "ВОЗВРАЩАТЬСЯ."],
 };
 
@@ -24,7 +22,8 @@ const street = siteContacts.address.replace(/^г\.\s*[^,]+,\s*ул\.\s*/, "");
 const mall = siteContacts.addressNote.split(",")[0];
 
 export const marqueeItems: MarqueeItem[] = [
-  { text: "ПЕРВОЕ ЗАНЯТИЕ —", accent: `${rub(firstLessonWithPlan())} С АБОНЕМЕНТОМ` },
+  { text: "ШКОЛА ТАНЦЕВ ДЛЯ ВЗРОСЛЫХ · ЕКАТЕРИНБУРГ" },
+  { text: "ПЕРВОЕ ЗАНЯТИЕ —", accent: "БЕСПЛАТНО С АБОНЕМЕНТОМ" },
   { text: "МОЖНО БЕЗ ПАРЫ" },
   { text: "МОЖНО С НУЛЯ" },
   { text: "БАЧАТА · ДЭНСХОЛЛ · ЛАТИНА" },
