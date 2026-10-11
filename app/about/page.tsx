@@ -73,6 +73,17 @@ export default function AboutPage() {
             «Здесь можно быть собой, учиться и получать удовольствие от танца».
           </p>
         </div>
+
+        {/* Открытие школы 29 ноября 2025 — разрезаем ленточку. */}
+        <div className="st-story-photo">
+          <Image
+            src="/about/otkrytie.webp"
+            alt="Открытие STEP TAP 29 ноября 2025 года: перерезают красную ленточку"
+            width={1280}
+            height={853}
+            sizes="(max-width: 900px) 100vw, 50vw"
+          />
+        </div>
       </section>
 
       {/* НАШ ПОДХОД */}
@@ -140,9 +151,7 @@ export default function AboutPage() {
       <section className="st-life">
         <div className="st-life-title">
           <h2>
-            ТАНЦЫ —
-            <br />
-            ЭТО ЕЩЁ
+            ТАНЦЫ — ЭТО ЕЩЁ
             <br />И ВСТРЕЧИ.
           </h2>
 

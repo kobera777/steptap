@@ -49,6 +49,7 @@
 
 .st-hero-left h1 {
   margin: 25px 0 28px;
+  color: var(--color-pink);
   font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
@@ -134,17 +135,36 @@
 /* STORY */
 
 .st-story {
-  min-height: 390px;
+  /* Текст истории слева, фото открытия школы справа. */
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
   background: var(--white);
+}
+
+.st-story-photo {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.st-story-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 30%;
 }
 
 /* STORY CONTENT */
 
 .st-story-content {
   position: relative;
-  padding: 56px 52px;
+  padding: 64px 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .st-story-content h2 {
@@ -155,7 +175,8 @@
 }
 
 .st-story-copy {
-  max-width: 570px;
+  max-width: 520px;
+  margin-top: 14px;
 }
 
 .st-story-copy p {
@@ -224,55 +245,75 @@
 /* LIFE */
 
 .st-life {
-  display: grid;
-  grid-template-columns:
-    28%
-    72%;
-  padding: 45px 52px;
+  /* Текст на всю ширину раздела, иконки — компактной строкой под ним. */
+  padding: 64px 52px;
   background: var(--white);
   border-top: 1px solid rgba(17, 17, 17, 0.12);
 }
 
+.st-life-title {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: end;
+  gap: 16px 56px;
+}
+
 .st-life-title h2 {
-  margin: 10px 0 0;
+  grid-row: span 2;
+  margin: 0;
   font-size: var(--fs-title);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
 }
 
+.st-about .st-life-text {
+  max-width: 520px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.st-about .st-life-link {
+  justify-self: start;
+  margin-top: 0;
+}
+
 .st-life-grid {
+  margin-top: 44px;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .st-life-item {
-  min-height: 100px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 10px;
-  text-align: center;
-  border-left: 1px solid rgba(17, 17, 17, 0.18);
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-bg-soft);
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease;
 }
 
-.st-life-item .life-icon {
-  width: 34px;
-  height: 34px;
-  color: var(--color-pink);
-  transition: transform 0.25s ease;
-}
-
-.st-life-item:hover .life-icon {
+.st-life-item:hover {
+  border-color: var(--color-pink);
   transform: translateY(-3px);
 }
 
+.st-life-item .life-icon {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  color: var(--color-pink);
+}
+
 .st-life-item span {
-  max-width: 120px;
-  margin-top: 14px;
-  font-size: 10px;
-  letter-spacing: var(--tracking-label);
+  font-size: 11px;
   font-weight: 600;
+  letter-spacing: var(--tracking-label);
   line-height: 1.2;
 }
 
@@ -348,10 +389,6 @@
     font-size: var(--fs-title);
   }
 
-  .st-story-copy {
-    padding-right: 75px;
-  }
-
   .st-values {
     display: block;
     padding: 40px 22px;
@@ -380,26 +417,25 @@
   }
 
   .st-life {
-    display: block;
     padding: 40px 22px;
   }
 
+  .st-life-title {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .st-life-title h2 {
-    margin-bottom: 30px;
-    font-size: var(--fs-title);
+    grid-row: auto;
+    font-size: var(--fs-title-mobile);
   }
 
   .st-life-grid {
-    grid-template-columns: repeat(2, 1fr);
+    margin-top: 28px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .st-life-item {
-    border-left: 0;
-    border-top: 1px solid rgba(17, 17, 17, 0.15);
-  }
-
-  .st-life-item:nth-child(odd) {
-    border-right: 1px solid rgba(17, 17, 17, 0.15);
+  .st-story-photo {
+    min-height: 280px;
   }
 }
 
@@ -532,16 +568,8 @@
   letter-spacing: var(--tracking-label);
 }
 
-.st-life-text {
-  max-width: 300px;
-  margin: 16px 0 0;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
 .st-about .st-life-link {
   display: inline-block;
-  margin-top: 18px;
   padding-bottom: 3px;
   border-bottom: 1px solid currentColor;
   font-size: 11px;
