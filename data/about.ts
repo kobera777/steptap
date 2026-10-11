@@ -57,6 +57,6 @@ export const lifeItems: { icon: LifeIconName; title: string; photo: string }[] =
     title: "МАСТЕР-КЛАССЫ",
     photo: "/directions/estilo-masculino.webp",
   },
-  { icon: "performance", title: "ВЫСТУПЛЕНИЯ", photo: "/directions/lady.webp" },
+  { icon: "performance", title: "ВЫСТУПЛЕНИЯ", photo: "/about/vystupleniya.webp" },
   { icon: "trip", title: "ПОЕЗДКИ", photo: "/gallery/demo/p11.webp" },
 ];
