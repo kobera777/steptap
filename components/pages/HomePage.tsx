@@ -11,6 +11,7 @@ import { DirectionCard } from "@/components/sections/DirectionCard";
 import { SignupLink } from "@/components/layout/SignupLink";
 import { SchoolMap } from "@/components/sections/SchoolMap";
 import { BrandDot } from "@/components/ui/BrandDot";
+import { Arrow } from "@/components/ui/Arrow";
 
 /**
  * Главная страница. Оформление — прежнее, тексты и порядок блоков — из
@@ -35,7 +36,10 @@ export function HomePage() {
 
           <div className="hero-actions" data-reveal data-reveal-delay="3">
             <SignupLink className="primary-button">
-              НА ПЕРВОЕ ЗАНЯТИЕ <span>→</span>
+              НА ПЕРВОЕ ЗАНЯТИЕ{" "}
+              <span>
+                <Arrow />
+              </span>
             </SignupLink>
             <Link className="hero-textlink" href="/directions">
               ВЫБРАТЬ НАПРАВЛЕНИЕ
@@ -95,7 +99,7 @@ export function HomePage() {
           </h2>
 
           <Link className="outline-button" href="/about">
-            ПОЗНАКОМИТЬСЯ СО ШКОЛОЙ →
+            ПОЗНАКОМИТЬСЯ СО ШКОЛОЙ <Arrow />
           </Link>
         </div>
       </section>
@@ -116,7 +120,7 @@ export function HomePage() {
 
         <div className="moments-footer" data-reveal data-reveal-delay="2">
           <Link className="outline-button" href="/gallery">
-            СМОТРЕТЬ ГАЛЕРЕЮ →
+            СМОТРЕТЬ ГАЛЕРЕЮ <Arrow />
           </Link>
         </div>
       </section>
@@ -134,7 +138,7 @@ export function HomePage() {
           </div>
 
           <Link className="outline-button" href="/directions">
-            ВСЕ НАПРАВЛЕНИЯ →
+            ВСЕ НАПРАВЛЕНИЯ <Arrow />
           </Link>
         </div>
 
@@ -179,10 +183,13 @@ export function HomePage() {
 
         <div className="final-cta-actions" data-reveal data-reveal-delay="1">
           <SignupLink className="primary-button">
-            ЗАПИСАТЬСЯ <span>→</span>
+            ЗАПИСАТЬСЯ{" "}
+            <span>
+              <Arrow />
+            </span>
           </SignupLink>
           <Link className="hero-textlink" href="/prices">
-            ЦЕНЫ И УСЛОВИЯ →
+            ЦЕНЫ И УСЛОВИЯ <Arrow />
           </Link>
         </div>
       </section>
@@ -202,7 +209,10 @@ export function HomePage() {
           </p>
 
           <Link className="primary-button" href="/rental">
-            ЗАЛЫ И ТАРИФЫ <span>→</span>
+            ЗАЛЫ И ТАРИФЫ{" "}
+            <span>
+              <Arrow />
+            </span>
           </Link>
         </div>
       </section>

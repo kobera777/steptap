@@ -4,6 +4,7 @@ import { contactsPage } from "@/data/contacts";
 import { siteContacts, socialLinks, telHref, yandexMapPageUrl } from "@/data/site";
 import { SchoolMap } from "./SchoolMap";
 import "./contacts.css";
+import { Arrow } from "@/components/ui/Arrow";
 
 /**
  * Контакты школы: где, как позвонить, куда написать и карта. Оформление — прежнего блока внизу главной,
@@ -28,7 +29,9 @@ export function ContactsSection() {
           <strong>{siteContacts.address}</strong>
           {siteContacts.addressNote && <small>{siteContacts.addressNote}</small>}
           <a href={yandexMapPageUrl()} target="_blank" rel="noreferrer">
-            <small>Построить маршрут →</small>
+            <small>
+              Построить маршрут <Arrow />
+            </small>
           </a>
         </div>
 
@@ -47,7 +50,9 @@ export function ContactsSection() {
         <div className="contacts-block">
           <span>НАПИШИ</span>
           <SignupLink>
-            <strong>MAX →</strong>
+            <strong>
+              MAX <Arrow />
+            </strong>
           </SignupLink>
           {siteContacts.email && (
             <a href={`mailto:${siteContacts.email}`}>
@@ -61,7 +66,10 @@ export function ContactsSection() {
         {socialLinks().map((item) => (
           <a key={item.key} href={item.href} target="_blank" rel="noreferrer">
             <SocialIcon name={item.key} />
-            {item.label.toUpperCase()} <span>→</span>
+            {item.label.toUpperCase()}{" "}
+            <span>
+              <Arrow />
+            </span>
           </a>
         ))}
       </div>

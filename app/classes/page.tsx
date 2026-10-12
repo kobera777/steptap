@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SignupLink } from "@/components/layout/SignupLink";
 import { classFormats, levelGuide } from "@/data/classes";
 import "./classes.css";
+import { Arrow } from "@/components/ui/Arrow";
 
 export const metadata: Metadata = {
   title: "Занятия",
@@ -41,7 +42,10 @@ export default function ClassesPage() {
           </ul>
           <div className="cl-actions">
             <Link className="cl-btn" href="/schedule">
-              ВЫБРАТЬ ВРЕМЯ <span>→</span>
+              ВЫБРАТЬ ВРЕМЯ{" "}
+              <span>
+                <Arrow />
+              </span>
             </Link>
           </div>
         </article>
@@ -61,7 +65,10 @@ export default function ClassesPage() {
           </ul>
           <div className="cl-actions">
             <SignupLink className="cl-btn" ariaLabel="Обсудить индивидуальный урок">
-              ОБСУДИТЬ УРОК <span>→</span>
+              ОБСУДИТЬ УРОК{" "}
+              <span>
+                <Arrow />
+              </span>
             </SignupLink>
           </div>
         </article>

@@ -9,6 +9,7 @@ import { siteName } from "@/data/site";
 import { NavDropdown } from "./NavDropdown";
 import { SignupLink } from "@/components/layout/SignupLink";
 import "./home-header.css";
+import { Arrow } from "@/components/ui/Arrow";
 
 /** Ссылка меню: внутри страницы (#якорь) — обычный <a>, на другую страницу — <Link>.
  *  Пункт текущего раздела подсвечен (is-active), в том числе на вложенных
@@ -71,7 +72,10 @@ export function HomeHeader() {
       </nav>
 
       <SignupLink className="header-action">
-        ЗАПИСАТЬСЯ <span>→</span>
+        ЗАПИСАТЬСЯ{" "}
+        <span>
+          <Arrow />
+        </span>
       </SignupLink>
 
       <button
@@ -94,7 +98,9 @@ export function HomeHeader() {
         {homeNav.map((item) => (
           <NavLink key={item.label} item={item} />
         ))}
-        <SignupLink className="mobile-nav-action">ЗАПИСАТЬСЯ →</SignupLink>
+        <SignupLink className="mobile-nav-action">
+          ЗАПИСАТЬСЯ <Arrow />
+        </SignupLink>
       </nav>
     </header>
   );

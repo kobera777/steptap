@@ -12,6 +12,7 @@ import {
   firstLesson,
 } from "@/data/prices";
 import "./prices.css";
+import { Arrow } from "@/components/ui/Arrow";
 
 export const metadata: Metadata = {
   title: "Цены",
@@ -49,7 +50,10 @@ export default function PricesPage() {
             </p>
 
             <SignupLink className="pr-btn pr-btn-dark">
-              НА ПЕРВОЕ ЗАНЯТИЕ <span>→</span>
+              НА ПЕРВОЕ ЗАНЯТИЕ{" "}
+              <span>
+                <Arrow />
+              </span>
             </SignupLink>
           </div>
 
@@ -95,7 +99,10 @@ export default function PricesPage() {
                 className={`pr-btn${plan.featured ? "" : " pr-btn-ghost"}`}
                 ariaLabel={`Выбрать абонемент: ${plan.title}, ${rub(plan.total)}`}
               >
-                ВЫБРАТЬ АБОНЕМЕНТ <span>→</span>
+                ВЫБРАТЬ АБОНЕМЕНТ{" "}
+                <span>
+                  <Arrow />
+                </span>
               </SignupLink>
             </article>
           ))}
@@ -108,7 +115,10 @@ export default function PricesPage() {
           </div>
           <strong>{rub(singleLesson.total)}</strong>
           <SignupLink className="pr-btn pr-btn-ghost">
-            ЗАПИСАТЬСЯ <span>→</span>
+            ЗАПИСАТЬСЯ{" "}
+            <span>
+              <Arrow />
+            </span>
           </SignupLink>
         </div>
       </section>

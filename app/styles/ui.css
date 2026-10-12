@@ -270,3 +270,29 @@
 :root .pr-first .pr-eyebrow {
   color: rgba(0, 0, 0, 0.7);
 }
+
+/* ---------- Стрелка сайта (components/ui/Arrow.tsx) ----------
+   Размер — от текста, в котором стоит; цвет — currentColor.
+   Диагональная ↗ при наведении на кнопку или ссылку поворачивается вправо. */
+
+.arrow-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.2em;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+a:hover .arrow-go,
+a:focus-visible .arrow-go,
+button:hover .arrow-go,
+button:focus-visible .arrow-go {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow-icon {
+    transition: none;
+  }
+}

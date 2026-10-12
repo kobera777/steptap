@@ -8,6 +8,7 @@ import Image from "next/image";
 import "./about.css";
 import { SignupLink } from "@/components/layout/SignupLink";
 import { LifeIcon } from "@/components/ui/LifeIcon";
+import { Arrow } from "@/components/ui/Arrow";
 
 export const metadata: Metadata = {
   title: "О школе",
@@ -145,7 +146,7 @@ export default function AboutPage() {
               <p>{teacher.text}</p>
 
               <SignupLink ariaLabel={`Подобрать занятие у преподавателя ${teacher.name}`}>
-                Подобрать занятие →
+                Подобрать занятие <Arrow />
               </SignupLink>
             </article>
           ))}
@@ -167,7 +168,7 @@ export default function AboutPage() {
           </p>
 
           <Link className="st-life-link" href="/gallery">
-            ПОСМОТРЕТЬ ГАЛЕРЕЮ →
+            ПОСМОТРЕТЬ ГАЛЕРЕЮ <Arrow />
           </Link>
         </div>
 

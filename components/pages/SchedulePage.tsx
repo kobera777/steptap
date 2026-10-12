@@ -4,6 +4,7 @@ import { useMemo, useState, useSyncExternalStore } from "react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SignupLink } from "@/components/layout/SignupLink";
+import { Arrow } from "@/components/ui/Arrow";
 import {
   classes,
   days,
@@ -134,7 +135,9 @@ function ClassRow({ item }: { item: ClassItem }) {
         {info.label}
         {isClosed(item) && <small>Закрытая группа</small>}
       </span>
-      <i>Записаться →</i>
+      <i>
+        Записаться <Arrow />
+      </i>
     </SignupLink>
   );
 }
@@ -150,7 +153,9 @@ function EventRow({ event }: { event: ScheduleEvent }) {
         {event.title}
         <small>{event.note}</small>
       </span>
-      <i>Записаться →</i>
+      <i>
+        Записаться <Arrow />
+      </i>
     </SignupLink>
   );
 }
@@ -225,7 +230,7 @@ export function SchedulePage() {
                 disabled={monthOffset <= 0}
                 onClick={() => setMonthOffset((n) => n - 1)}
               >
-                ←
+                <Arrow dir="prev" />
               </button>
             )}
 
@@ -257,7 +262,7 @@ export function SchedulePage() {
                 disabled={monthOffset >= MONTHS_AHEAD}
                 onClick={() => setMonthOffset((n) => n + 1)}
               >
-                →
+                <Arrow dir="next" />
               </button>
             )}
           </div>

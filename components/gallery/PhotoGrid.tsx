@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { GalleryPhoto } from "@/data/gallery";
+import { Arrow } from "@/components/ui/Arrow";
 
 /* ---------- ФОТО + LIGHTBOX ---------- */
 
@@ -110,7 +111,7 @@ export function PhotoGrid({ photos }: { photos: GalleryPhoto[] }) {
                   step(-1);
                 }}
               >
-                ←
+                <Arrow dir="prev" />
               </button>
               <button
                 type="button"
@@ -121,7 +122,7 @@ export function PhotoGrid({ photos }: { photos: GalleryPhoto[] }) {
                   step(1);
                 }}
               >
-                →
+                <Arrow dir="next" />
               </button>
             </>
           )}

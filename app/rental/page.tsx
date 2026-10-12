@@ -10,6 +10,7 @@ import { halls, rentalGroup, rentalIndividual, rub } from "@/data/prices";
 /* Оформление общее со страницей цен: те же таблицы, карточки и рамки.
    Второй файл с тем же содержимым пришлось бы править в двух местах. */
 import "../prices/prices.css";
+import { Arrow } from "@/components/ui/Arrow";
 
 export const metadata: Metadata = {
   title: "Аренда залов",
@@ -72,7 +73,7 @@ export default function RentalPage() {
                 className="pr-hall-link"
                 ariaLabel={`Узнать об аренде: ${hall.name.toLowerCase()}`}
               >
-                УЗНАТЬ О ЗАЛЕ →
+                УЗНАТЬ О ЗАЛЕ <Arrow />
               </SignupLink>
             </article>
           ))}
@@ -179,10 +180,13 @@ export default function RentalPage() {
 
         <div className="pr-rental-actions" data-reveal>
           <SignupLink className="pr-button pr-button-dark">
-            УТОЧНИТЬ СВОБОДНОЕ ВРЕМЯ <span>→</span>
+            УТОЧНИТЬ СВОБОДНОЕ ВРЕМЯ{" "}
+            <span>
+              <Arrow />
+            </span>
           </SignupLink>
           <Link className="pr-rental-link" href="/contacts">
-            КАК НАС НАЙТИ →
+            КАК НАС НАЙТИ <Arrow />
           </Link>
         </div>
       </section>

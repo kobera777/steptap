@@ -1,5 +1,6 @@
 import { siteContacts, yandexMapEmbedUrl, yandexMapPageUrl } from "@/data/site";
 import "./contacts.css";
+import { Arrow } from "@/components/ui/Arrow";
 
 /**
  * Карта Яндекса с карточкой школы и кнопкой «Открыть Яндекс Карты».
@@ -28,7 +29,10 @@ export function SchoolMap() {
         </p>
 
         <a href={yandexMapPageUrl()} target="_blank" rel="noreferrer">
-          ОТКРЫТЬ ЯНДЕКС КАРТЫ <span>→</span>
+          ОТКРЫТЬ ЯНДЕКС КАРТЫ{" "}
+          <span>
+            <Arrow />
+          </span>
         </a>
       </div>
     </div>
