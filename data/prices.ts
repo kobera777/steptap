@@ -201,6 +201,9 @@ export type Hall = {
   description: string;
   photo: string;
   alt: string;
+  /** Короткий ролик вместо фото: играет сам, без звука, по кругу.
+   *  `photo` тогда служит кадром-заставкой, пока видео грузится. */
+  video?: string;
 };
 
 /**
@@ -218,7 +221,8 @@ export const halls: Hall[] = [
   {
     name: "Средний зал",
     description: "Для небольших групп и репетиций.",
-    photo: "/gallery/demo/p07.webp",
+    photo: "/video/sredniy-zal-poster.webp",
+    video: "/video/sredniy-zal.mp4",
     alt: "Средний зал школы STEP TAP",
   },
   {

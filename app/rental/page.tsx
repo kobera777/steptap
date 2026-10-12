@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { HallVideo } from "@/components/rental/HallVideo";
 import { SignupLink } from "@/components/layout/SignupLink";
 import { halls, rentalGroup, rentalIndividual, rub } from "@/data/prices";
 
@@ -52,12 +53,16 @@ export default function RentalPage() {
               data-reveal-delay={String((index % 3) + 1)}
             >
               <div className="pr-hall-photo">
-                <Image
-                  src={hall.photo}
-                  alt={hall.alt}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1000px) 45vw, 30vw"
-                />
+                {hall.video ? (
+                  <HallVideo src={hall.video} poster={hall.photo} label={hall.alt} />
+                ) : (
+                  <Image
+                    src={hall.photo}
+                    alt={hall.alt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1000px) 45vw, 30vw"
+                  />
+                )}
               </div>
               <h3>{hall.name}</h3>
               <p>{hall.description}</p>
