@@ -15,10 +15,17 @@ const nextConfig: NextConfig = {
       { source: "/events", destination: "/schedule#events", permanent: false },
       // Демо-альбомов галереи больше нет — старые ссылки ведут в галерею.
       { source: "/gallery/:album", destination: "/gallery", permanent: false },
-      // Отдельных страниц стилей больше нет — все старые адреса
+      // Отдельных страниц стилей больше нет — их старые адреса
       // (/directions/lady, /directions/bachata/lady…) ведут на «Направления».
+      // Только имена стилей, а не всё подряд: в public/directions лежат фото
+      // карточек, и общее правило /directions/:path+ уводило их на страницу.
       {
-        source: "/directions/:path+",
+        source: "/directions/:style(bachata|lady|men|experimental|dancehall|latina)",
+        destination: "/directions",
+        permanent: false,
+      },
+      {
+        source: "/directions/bachata/:style",
         destination: "/directions",
         permanent: false,
       },

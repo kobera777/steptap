@@ -135,10 +135,6 @@ export const danceStyles: DanceStyle[] = [
   },
 ];
 
-export function findStyle(slug: string) {
-  return danceStyles.find((style) => style.slug === slug);
-}
-
 /** Четыре вида бачаты — с фотографиями. */
 export const bachataStyles = danceStyles.filter((style) => style.photo);
 /** Дэнсхолл и латина — карточки без фото. */

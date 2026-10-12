@@ -53,16 +53,18 @@ export default function RentalPage() {
               data-reveal-delay={String((index % 3) + 1)}
             >
               <div className="pr-hall-photo">
-                {hall.video ? (
-                  <HallVideo src={hall.video} poster={hall.photo} label={hall.alt} />
-                ) : (
-                  <Image
-                    src={hall.photo}
-                    alt={hall.alt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1000px) 45vw, 30vw"
-                  />
-                )}
+                <div className="pr-hall-media">
+                  {hall.video ? (
+                    <HallVideo src={hall.video} poster={hall.photo} label={hall.alt} />
+                  ) : (
+                    <Image
+                      src={hall.photo}
+                      alt={hall.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1000px) 45vw, 30vw"
+                    />
+                  )}
+                </div>
               </div>
               <h3>{hall.name}</h3>
               <p>{hall.description}</p>
