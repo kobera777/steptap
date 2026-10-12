@@ -857,6 +857,7 @@
 .pr-first-main {
   position: relative;
   z-index: 1;
+  container-type: inline-size;
 }
 
 .pr-first .pr-eyebrow {
@@ -865,7 +866,8 @@
 
 .pr-first-price {
   margin: 10px 0 18px;
-  font-size: clamp(58px, 5.6vw, 88px);
+  /* Не больше ширины колонки: на телефоне «БЕСПЛАТНО» целиком в строку. */
+  font-size: min(clamp(58px, 5.6vw, 88px), 14.5cqi);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   font-weight: 600;
