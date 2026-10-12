@@ -237,10 +237,19 @@
 }
 
 .video-frame {
+  /* Ролик в «рамке»: чёрный кант как у экрана, тень и розовая подложка
+     со сдвигом — как у фото открытия на странице «О школе». */
   position: relative;
-  /* Ролик занимает всю ширину полосы: владелец просил крупно. */
-  width: 100%;
-  margin: 0 auto;
+  width: calc(100% - 24px);
+  margin: 0 24px 24px 0;
+  padding: 12px;
+  border-radius: 28px;
+  background: var(--color-black);
+  /* Подложка — тенью без размытия: у блока есть анимация появления
+     (transform), и псевдоэлемент с z-index: -1 лёг бы поверх рамки. */
+  box-shadow:
+    24px 24px 0 var(--color-pink),
+    0 30px 70px rgba(0, 0, 0, 0.22);
 }
 
 .video-placeholder {
@@ -256,8 +265,7 @@
     var(--color-black) 42%,
     var(--color-black) 100%
   );
-  border: 1px solid var(--black);
-  box-shadow: none;
+  isolation: isolate;
 }
 
 /* Сам ролик. Раньше здесь была нарисованная «заглушка» плеера:
@@ -271,6 +279,49 @@
   height: 100%;
   object-fit: cover;
   background: var(--color-black);
+}
+
+/* Кнопка звука: ролик стартует без звука, включить — по желанию. */
+.moments-sound {
+  position: absolute;
+  z-index: 5;
+  right: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius-pill);
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--color-white);
+  font: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.moments-sound:hover,
+.moments-sound:focus-visible,
+.moments-sound[aria-pressed="true"] {
+  background: var(--color-pink);
+  border-color: var(--color-pink);
+  color: var(--color-black);
+}
+
+.moments-sound svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .video-brand {
@@ -555,10 +606,6 @@
     padding-left: 5vw;
     padding-right: 5vw;
   }
-
-  .video-frame {
-    width: 100%;
-  }
 }
 
 /* ==================================================
@@ -601,10 +648,6 @@
   .faq-section {
     /* minmax(0, …): длинное слово не должно растягивать колонку шире экрана. */
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .video-frame {
-    width: 100%;
   }
 }
 
@@ -656,11 +699,22 @@
   }
 
   .video-frame {
-    /* Отступ слева был нужен под стрелки «вперёд/назад», которых больше нет:
-    на телефоне ролик занимает всю ширину колонки. */
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    width: calc(100% - 12px);
+    margin: 0 12px 12px 0;
+    padding: 6px;
+    border-radius: 20px;
+  }
+
+  .video-frame {
+    box-shadow:
+      12px 12px 0 var(--color-pink),
+      0 18px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  .moments-sound {
+    right: 10px;
+    bottom: 10px;
+    padding: 7px 11px;
   }
 
   .video-placeholder {
