@@ -57,7 +57,13 @@ export const lifeItems: {
   /** Какая часть фото остаётся в кадре при обрезке (object-position). */
   focus?: string;
 }[] = [
-  { icon: "party", title: "ВЕЧЕРИНКИ", photo: "/video/momenty-poster.webp" },
+  {
+    icon: "party",
+    title: "ВЕЧЕРИНКИ",
+    photo: "/about/vecherinki.webp",
+    // в кадре пара в центре и светящийся логотип STEP TAP на стене
+    focus: "46% 50%",
+  },
   {
     icon: "masterclass",
     title: "МАСТЕР-КЛАССЫ",
