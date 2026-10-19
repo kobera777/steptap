@@ -207,9 +207,8 @@ export type Hall = {
 };
 
 /**
- * У большого и среднего зала — настоящие ролики (public/video).
- * ⚠️ У маленького пока временное фото из галереи: замените `photo`
- * на реальный снимок или добавьте `video`, как у остальных.
+ * У всех трёх залов — настоящие ролики (public/video); `photo` — кадр
+ * из ролика, который виден, пока видео грузится.
  */
 export const halls: Hall[] = [
   {
@@ -229,7 +228,8 @@ export const halls: Hall[] = [
   {
     name: "Маленький зал",
     description: "Для индивидуальных занятий и работы над движениями.",
-    photo: "/gallery/demo/p10.webp",
+    photo: "/video/malyy-zal-poster.webp",
+    video: "/video/malyy-zal.mp4",
     alt: "Маленький зал школы STEP TAP",
   },
 ];
