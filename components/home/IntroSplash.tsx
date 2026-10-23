@@ -10,8 +10,8 @@ import { logoParts, logoViewBox } from "./introLogo";
  *
  *   STEP — буквы по очереди «шагают» сверху и пружинят при приземлении;
  *   TAP  — поднимаются снизу в том же ритме;
- *   точка падает и дважды отскакивает («tap-tap»), от первого касания
- *   расходится розовое кольцо; затем проявляется «[стэп тэп]»;
+ *   точка «шагает» на счёт 1-2-3-4 по буквам S-T-E-P и спрыгивает на место,
+ *   от последнего шага расходится розовое кольцо; проявляется «[стэп тэп]»;
  *   уход — диагональная шторка: чёрная, за ней розовая.
  *
  * Один раз за визит (sessionStorage; уже видевшим её прячет скрипт
@@ -64,11 +64,11 @@ export function IntroSplash() {
       add(
         el,
         [
-          { transform: "translateY(-220px)", opacity: 0 },
-          { transform: "translateY(14px) scaleY(.92)", opacity: 1, offset: 0.7 },
+          { transform: "translateY(-200px)", opacity: 0 },
+          { transform: "translateY(12px) scaleY(.92)", opacity: 1, offset: 0.7 },
           { transform: "translateY(0) scaleY(1)", opacity: 1 },
         ],
-        { duration: 560, delay: 150 + i * 95, easing: ease.out },
+        { duration: 420, delay: i * 60, easing: ease.out },
       );
     });
 
@@ -77,50 +77,70 @@ export function IntroSplash() {
       add(
         el,
         [
-          { transform: "translateY(220px)", opacity: 0 },
-          { transform: "translateY(-12px)", opacity: 1, offset: 0.7 },
+          { transform: "translateY(200px)", opacity: 0 },
+          { transform: "translateY(-10px)", opacity: 1, offset: 0.7 },
           { transform: "translateY(0)", opacity: 1 },
         ],
-        { duration: 560, delay: 620 + i * 95, easing: ease.out },
+        { duration: 420, delay: 250 + i * 60, easing: ease.out },
       );
     });
 
-    // Точка: падение и два отскока — «tap-tap».
+    // Точка «шагает» на счёт 1-2-3-4 по верху букв S, T, E, P и спрыгивает
+    // на своё место. Координаты — в единицах логотипа: верх STEP на y = 60,
+    // низ точки на 906,75 → подъём −847; центры S, T, E, P относительно
+    // точки: −979, −674, −376, −66.
+    const land = "scale(1.15,.85)";
     q(".intro-dot").forEach((el) => {
       add(
         el,
         [
-          { transform: "translateY(-760px)", opacity: 0, easing: ease.fall },
+          { transform: "translate(-979px,-1300px)", opacity: 0, easing: ease.fall },
           {
-            transform: "translateY(-760px)",
+            transform: "translate(-979px,-1300px)",
             opacity: 1,
             offset: 0.02,
             easing: ease.fall,
           },
-          { transform: "translateY(0) scale(1.18,.82)", offset: 0.42, easing: ease.rise },
           {
-            transform: "translateY(-150px) scale(.95,1.05)",
-            offset: 0.62,
-            easing: ease.fall,
+            transform: `translate(-979px,-847px) ${land}`,
+            offset: 0.2,
+            easing: ease.rise,
           },
-          { transform: "translateY(0) scale(1.1,.9)", offset: 0.8, easing: ease.rise },
-          { transform: "translateY(-38px)", offset: 0.9, easing: ease.fall },
-          { transform: "translateY(0) scale(1)", opacity: 1 },
+          { transform: "translate(-826px,-1010px)", offset: 0.3, easing: ease.fall },
+          {
+            transform: `translate(-674px,-847px) ${land}`,
+            offset: 0.4,
+            easing: ease.rise,
+          },
+          { transform: "translate(-525px,-1010px)", offset: 0.5, easing: ease.fall },
+          {
+            transform: `translate(-376px,-847px) ${land}`,
+            offset: 0.6,
+            easing: ease.rise,
+          },
+          { transform: "translate(-221px,-1010px)", offset: 0.7, easing: ease.fall },
+          {
+            transform: `translate(-66px,-847px) ${land}`,
+            offset: 0.8,
+            easing: ease.rise,
+          },
+          { transform: "translate(-20px,-960px)", offset: 0.88, easing: ease.fall },
+          { transform: "translate(0,0) scale(1)", opacity: 1 },
         ],
-        { duration: 1000, delay: 1050 },
+        { duration: 900, delay: 380 },
       );
     });
 
-    // Кольцо от первого касания точки.
+    // Кольцо — когда точка встаёт на своё место.
     q(".intro-ring").forEach((el) => {
       add(
         el,
         [
           { transform: "scale(.4)", opacity: 0 },
           { transform: "scale(.4)", opacity: 0.9, offset: 0.01 },
-          { transform: "scale(4.2)", opacity: 0 },
+          { transform: "scale(4)", opacity: 0 },
         ],
-        { duration: 900, delay: 1470, easing: ease.out },
+        { duration: 600, delay: 1280, easing: ease.out },
       );
     });
 
@@ -129,17 +149,17 @@ export function IntroSplash() {
       add(
         el,
         [
-          { transform: "translateY(40px)", opacity: 0, filter: "blur(6px)" },
+          { transform: "translateY(36px)", opacity: 0, filter: "blur(6px)" },
           { transform: "translateY(0)", opacity: 1, filter: "blur(0)" },
         ],
-        { duration: 650, delay: 1900, easing: ease.out },
+        { duration: 400, delay: 1150, easing: ease.out },
       );
     });
 
     // Лёгкий общий «вдох» логотипа.
     q(".intro-logo").forEach((el) => {
       add(el, [{ transform: "scale(.94)" }, { transform: "scale(1)" }], {
-        duration: 2500,
+        duration: 1500,
         easing: ease.out,
       });
     });
@@ -152,12 +172,12 @@ export function IntroSplash() {
       ];
       const out = [
         ...q(".intro-black").map((el) =>
-          el.animate(wipe, { duration: 800, easing: ease.inOut, fill: "forwards" }),
+          el.animate(wipe, { duration: 650, easing: ease.inOut, fill: "forwards" }),
         ),
         ...q(".intro-pink").map((el) =>
           el.animate(wipe, {
-            duration: 800,
-            delay: 140,
+            duration: 650,
+            delay: 100,
             easing: ease.inOut,
             fill: "forwards",
           }),
@@ -182,7 +202,7 @@ export function IntroSplash() {
 
     Promise.all(anims.map((a) => a.finished))
       .catch(() => {})
-      .then(() => new Promise((resolve) => window.setTimeout(resolve, skipped ? 0 : 450)))
+      .then(() => new Promise((resolve) => window.setTimeout(resolve, skipped ? 0 : 250)))
       .then(leave);
 
     return () => {
