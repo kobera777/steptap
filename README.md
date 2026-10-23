@@ -1,6 +1,6 @@
 # STEP TAP — sitio web
 
-Sitio de la escuela de baile STEP TAP. Next.js 16 (App Router), React 19, TypeScript, CSS plano. Publicado en Vercel: <https://steptap.vercel.app>.
+Sitio de la escuela de baile STEP TAP. Next.js 16 (App Router), React 19, TypeScript, CSS plano. Publicado en <https://steptap.ru> (servidor propio); en Vercel queda una copia: <https://steptap.vercel.app>.
 
 ## Comandos
 

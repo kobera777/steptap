@@ -13,7 +13,7 @@ import { Arrow } from "@/components/ui/Arrow";
 export const metadata: Metadata = {
   title: "О школе",
   description:
-    "STEP TAP — школа танцев для взрослых в центре Екатеринбурга: история, подход, преподаватели и жизнь школы.",
+    "STEP TAP — школа танцев для взрослых и детей в центре Екатеринбурга: история, подход, преподаватели и жизнь школы.",
 };
 
 export default function AboutPage() {

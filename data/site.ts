@@ -2,7 +2,7 @@
 export const siteName = "STEP TAP";
 export const siteTagline = "[ ТАНЦЕВАЛЬНАЯ ШКОЛА ]";
 /** Адрес сайта в интернете (для sitemap и open graph). */
-export const siteUrl = "https://steptap.vercel.app";
+export const siteUrl = "https://steptap.ru";
 
 /**
  * Контакты и ссылки школы — единственное место, где они задаются.
