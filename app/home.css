@@ -829,6 +829,7 @@
   z-index: 2000;
   display: grid;
   place-items: center;
+  overflow: hidden;
   background: var(--color-black);
   transition: opacity 0.6s ease;
 }
@@ -905,5 +906,18 @@ html.intro-lock body {
   .intro-skip {
     right: 18px;
     bottom: 22px;
+  }
+}
+
+/* Вертикальный экран: кадр 16:9 вдвое шире экрана (края вихря обрезаются),
+   чтобы логотип занимал ~80 % ширины, а не 40 %. */
+@media (max-aspect-ratio: 1/1) {
+  .intro-video {
+    left: -50vw;
+    width: 200vw;
+  }
+
+  .intro .intro-logo {
+    width: calc(min(200vw, 177.78vh) * 0.4);
   }
 }

@@ -7,6 +7,7 @@ import { bachataStyles, firstClassFaq } from "@/data/directions";
 import { firstLesson, rub } from "@/data/prices";
 import { FaqList } from "@/components/home/FaqList";
 import { MomentsVideo } from "@/components/home/MomentsVideo";
+import { IntroSplash } from "@/components/home/IntroSplash";
 import { DirectionCard } from "@/components/sections/DirectionCard";
 import { SignupLink } from "@/components/layout/SignupLink";
 import { SchoolMap } from "@/components/sections/SchoolMap";
@@ -20,6 +21,14 @@ import { Arrow } from "@/components/ui/Arrow";
 export function HomePage() {
   return (
     <main className="site-shell">
+      {/* Заставка с анимированным логотипом — один раз за визит (скрипт
+          intro-seen в app/layout.tsx прячет её до отрисовки). Без JS не
+          показывается. */}
+      <noscript>
+        <style>{".intro{display:none}"}</style>
+      </noscript>
+      <IntroSplash />
+
       <HomeHeader />
 
       {/* HERO */}
