@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   siteContacts,
@@ -22,10 +23,14 @@ export function SiteFooter() {
     <footer className="sc-footer">
       <div className="sc-footer-top">
         <Link href="/" className="sc-footer-logo">
-          <strong>
-            {siteName}
-            <span>.</span>
-          </strong>
+          {/* Официальный горизонтальный логотип из фирменного комплекта. */}
+          <Image
+            src="/brand/logo-horizontal-black.svg"
+            alt={siteName}
+            width={2511}
+            height={494}
+            unoptimized
+          />
           <small>{siteTagline}</small>
         </Link>
 

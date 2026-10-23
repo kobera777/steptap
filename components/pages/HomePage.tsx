@@ -114,7 +114,15 @@ export function HomePage() {
           <div className="video-placeholder">
             <MomentsVideo />
 
-            <div className="video-brand">STEP TAP.</div>
+            <div className="video-brand">
+              <Image
+                src="/brand/logo-horizontal-white.svg"
+                alt=""
+                width={2511}
+                height={494}
+                unoptimized
+              />
+            </div>
           </div>
         </div>
 

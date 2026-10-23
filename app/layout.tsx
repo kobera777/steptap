@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import Script from "next/script";
 import { siteName, siteUrl } from "@/data/site";
 import "./styles/tokens.css";
 import "./styles/base.css";
@@ -37,8 +38,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ru" className={montserrat.variable}>
+    // suppressHydrationWarning: скрипт ниже до гидрации добавляет <html>
+    // класс intro-seen — это ожидаемое расхождение с серверной разметкой.
+    <html lang="ru" className={montserrat.variable} suppressHydrationWarning>
       <body>
+        {/* Заставка главной (components/home/IntroSplash.tsx) показывается
+            один раз за визит: уже видевшим её прячем до отрисовки. */}
+        <Script id="intro-seen" strategy="beforeInteractive">
+          {`try{if(sessionStorage.getItem("st-intro"))document.documentElement.classList.add("intro-seen")}catch(e){}`}
+        </Script>
         {children}
         <MotionEffects />
       </body>

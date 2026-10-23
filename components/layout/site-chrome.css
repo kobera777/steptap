@@ -6,10 +6,6 @@
   text-decoration: none;
 }
 
-.sc-footer-logo strong span {
-  color: var(--sc-pink);
-}
-
 /* Подвал */
 
 .sc-footer {
@@ -84,10 +80,11 @@
   line-height: 1;
 }
 
-.sc-footer-logo strong {
-  font-size: 23px;
-  font-weight: 600;
-  letter-spacing: var(--tracking-heading);
+/* В SVG есть охранное поле (~5 %) — поэтому без отрицательных отступов. */
+.sc-footer-logo img {
+  display: block;
+  width: 170px;
+  height: auto;
 }
 
 .sc-footer-logo small {

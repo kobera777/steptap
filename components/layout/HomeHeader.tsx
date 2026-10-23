@@ -47,13 +47,24 @@ export function HomeHeader() {
 
   return (
     <header className={`site-header ${menuOpen ? "is-open" : ""}`} data-glass-header>
+      {/* Официальные логотипы из фирменного комплекта (public/brand):
+          горизонтальный — для шапки сайта, компактный — на узких экранах. */}
       <Link className="site-logo" href="/" aria-label={`${siteName} — на главную`}>
         <Image
-          src="/step-tap-logo.png"
+          className="site-logo-wide"
+          src="/brand/logo-horizontal-white.svg"
           alt={siteName}
-          width={160}
-          height={160}
-          priority
+          width={2511}
+          height={494}
+          unoptimized
+        />
+        <Image
+          className="site-logo-compact"
+          src="/brand/logo-compact-white.svg"
+          alt=""
+          width={1306}
+          height={966}
+          unoptimized
         />
       </Link>
 

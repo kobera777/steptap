@@ -45,18 +45,25 @@
   transform-origin: left center;
 }
 
+/* Логотип из фирменного комплекта (горизонтальная версия — для шапки сайта).
+   В SVG уже есть охранное поле (~5 %). Ширина подобрана так, чтобы меню
+   оставалось в одну строку. */
 .site-logo {
   display: block;
-  width: 86px;
+  width: clamp(150px, 13vw, 190px);
   height: auto;
-  flex: 0 0 86px;
+  flex: 0 0 auto;
+  flex-shrink: 0;
 }
 
 .site-logo img {
   display: block;
   width: 100%;
   height: auto;
-  object-fit: contain;
+}
+
+.site-logo .site-logo-compact {
+  display: none;
 }
 
 .main-nav {
@@ -217,9 +224,17 @@
     min-height: 70px;
   }
 
+  /* Узкая шапка: компактный логотип в две строки. */
   .site-logo {
-    width: 82px;
-    flex-basis: 82px;
+    width: 96px;
+  }
+
+  .site-logo .site-logo-wide {
+    display: none;
+  }
+
+  .site-logo .site-logo-compact {
+    display: block;
   }
 
   .main-nav {
@@ -244,8 +259,7 @@
   }
 
   .site-logo {
-    width: 78px;
-    flex-basis: 78px;
+    width: 88px;
   }
 
   .main-nav {
