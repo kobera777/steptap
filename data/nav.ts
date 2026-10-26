@@ -34,3 +34,9 @@ export const homeNav: HomeNavItem[] = [
   { href: "/rental", label: "АРЕНДА" },
   { href: "/contacts", label: "КОНТАКТЫ" },
 ];
+
+/**
+ * Юридические документы — ссылки в подвале на всех страницах и в sitemap.
+ * Политика конфиденциальности добавится сюда, когда владелец пришлёт текст.
+ */
+export const legalNav: NavItem[] = [{ href: "/offer", label: "Публичная оферта" }];

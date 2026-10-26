@@ -9,6 +9,7 @@ import {
   telHref,
 } from "@/data/site";
 import { SocialIcon } from "@/components/ui/SocialIcon";
+import { legalNav } from "@/data/nav";
 import "./site-chrome.css";
 
 /** Общий подвал всех страниц. Контакты и реквизиты берутся из data/site.ts. */
@@ -70,9 +71,20 @@ export function SiteFooter() {
         </p>
       </div>
 
-      <p className="sc-footer-legal">
-        {siteLegal.entity} · ИНН {siteLegal.inn} · ОГРНИП {siteLegal.ogrnip}
-      </p>
+      <div className="sc-footer-bottom">
+        <p className="sc-footer-legal">
+          {siteLegal.entity} · ИНН {siteLegal.inn} · ОГРНИП {siteLegal.ogrnip}
+        </p>
+
+        {/* Юридические документы — на всех страницах (data/nav.ts → legalNav). */}
+        <nav className="sc-footer-docs" aria-label="Документы">
+          {legalNav.map((item) => (
+            <Link key={item.href} href={item.href}>
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
     </footer>
   );
 }
